@@ -7,7 +7,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 
 internal object NativeCommands {
-    val version: String get() = javaClass.getResourceAsStream("/VERSION")!!.bufferedReader().use { it.readText().trim() }
+    val version: String get() = ToolRuntime.version
     private class Arguments(args: List<String>) {
         val options = linkedMapOf<String, String>()
         val positional = mutableListOf<String>()
@@ -29,7 +29,7 @@ internal object NativeCommands {
             require(options["--format"] in setOf(null, "json", "text")) { "format must be json or text" }
         }
         fun need(key: String): String = options[key] ?: error("required option: $key")
-        fun root(): Path = Path.of(options["--repo"] ?: System.getProperty("taskctl.repository") ?: ".").toAbsolutePath().normalize()
+        fun root(): Path = Path.of(options["--repo"] ?: System.getProperty("taskctl.repository") ?: System.getenv("TASKCTL_REPOSITORY") ?: ".").toAbsolutePath().normalize()
     }
 
     fun run(args: List<String>): Int {
@@ -44,21 +44,22 @@ internal object NativeCommands {
                 seed --file FILE --expect-revision REVISION
                 verify TASK --receipt FILE
                 close TASK --receipt FILE --expect-revision REVISION
-                recover | info
+                recover | info | version [--format json]
+                --version | -V (no repository or network access)
                 All native commands accept --repo PATH and --format json|text.
                 init composition contract: taskctl.init/alpha1. No implicit Git/network operations.
             """.trimIndent())
             return 0
         }
         val result = when (command) {
-            "info" -> { options.allow(); obj("tool" to StringValue("taskctl"), "version" to StringValue(version), "native_v1" to StringValue("not-frozen")) }
+            "info" -> { options.allow(); ToolRuntime.info() }
             "init" -> {
                 options.allow("--id", "--toolchain", "--profile", "--seed", "--plan", "--contract")
                 require(options.options["--profile"] in setOf(null, "minimal/alpha1")) { "only minimal/alpha1 is bundled" }
                 require(options.options["--contract"] in setOf(null, Bootstrap.CONTRACT)) { "unsupported init contract" }
-                val distribution = System.getProperty("taskctl.distribution") ?: error("init requires the standalone distribution (bootstrap templates bundled)")
+                val distribution = ToolRuntime.distribution() ?: error("init requires the standalone distribution (bootstrap templates bundled)")
                 val seed = options.options["--seed"]?.let { NativeCodec.decodeSeed(readObject(Path.of(it))) } ?: Transition.AddRecords()
-                val plan = Bootstrap.plan(options.root(), options.need("--id"), version, Path.of(distribution), Files.readString(Path.of(options.need("--toolchain"))), seed)
+                val plan = Bootstrap.plan(options.root(), options.need("--id"), version, distribution, Files.readString(Path.of(options.need("--toolchain"))), seed)
                 if ("--plan" in options.options) plan.result() else Bootstrap.apply(plan)
             }
             "recover" -> {
@@ -68,8 +69,8 @@ internal object NativeCommands {
             }
             else -> ledgerCommand(command, options, FileTaskLedger(options.root()))
         }
-        val envelope = obj("api" to StringValue("taskctl.cli/alpha1"), "command" to StringValue(command),
-            "repository" to StringValue(options.root().toString()), "result" to result)
+        val envelope = ObjectValue(obj("api" to StringValue("taskctl.cli/alpha1"), "command" to StringValue(command), "result" to result).fields +
+            if (command == "info") emptyMap() else mapOf("repository" to StringValue(options.root().toString())))
         if (options.options["--format"] == "json") println(Json.encode(envelope))
         else render(command, result)
         return 0
@@ -138,7 +139,7 @@ internal object NativeCommands {
                 println(if (tasks.isEmpty()) "No ready tasks." else tasks.joinToString("\n") { (it as StringValue).value })
                 println("Revision: ${result.requiredString("revision")}")
             }
-            "info" -> println("taskctl $version (native alpha; v1 not frozen)")
+            "info" -> { println("taskctl $version (${ToolRuntime.implementation}; protocol v1 not frozen)"); result.fields.forEach { (key, value) -> println("$key: " + Json.encode(value)) } }
             else -> { println("$command: OK"); result.fields.forEach { (key, value) -> println("$key: " + if (value is StringValue) value.value else Json.encode(value)) } }
         }
     }

@@ -99,7 +99,7 @@ object Bootstrap {
             val key = line.substringBefore('='); val value = line.substringAfter('=')
             require(key in allowed && key !in pin) { "unknown or duplicate toolchain field: $key" }; pin[key] = value
         }
-        require(pin["lockFormat"] == "2" && pin["wrapperVersion"] == "2" && pin["toolVersion"] == version) { "toolchain lock must select this exact tool/wrapper version" }
+        require(pin["lockFormat"] == "2" && pin["wrapperVersion"] in setOf("2", "3") && pin["toolVersion"] == version) { "toolchain lock must select this exact tool/wrapper version" }
         val selected = platforms.filter { "$it.url" in pin || "$it.sha256" in pin }
         require(selected.isNotEmpty()) { "toolchain has no platform artifacts" }
         selected.forEach {

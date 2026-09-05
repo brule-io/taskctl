@@ -8,7 +8,11 @@ import java.nio.file.Path
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
+    // A process protocol has one encoding even when Windows stdout is redirected.
+    System.setOut(java.io.PrintStream(System.out, true, Charsets.UTF_8))
+    System.setErr(java.io.PrintStream(System.err, true, Charsets.UTF_8))
     try {
+        if (ToolRuntime.versionCommand(args.toList())) return
         if (args.firstOrNull() != "--adapter") {
             NativeCommands.run(args.toList())
             return
@@ -16,7 +20,7 @@ fun main(args: Array<String>) {
         if (args.contentEquals(arrayOf("info")) || args.contentEquals(arrayOf("--adapter", FantastiktAdapter.ID, "info"))) {
             println(Json.encode(stringMap(mapOf("tool" to "taskctl", "version" to NativeCommands.version, "adapter_version" to FantastiktAdapter.VERSION,
                 "adapter" to FantastiktAdapter.ID, "donor_revision" to FantastiktAdapter.SOURCE_REVISION,
-                "native_v1" to "not-frozen", "java" to System.getProperty("java.version")))))
+                "native_v1" to "not-frozen", "implementation" to ToolRuntime.implementation, "java" to System.getProperty("java.version")))))
             return
         }
         if (args.isEmpty() || args.contentEquals(arrayOf("--help"))) {

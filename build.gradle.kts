@@ -1,6 +1,7 @@
 plugins {
     base
     kotlin("jvm") version "2.4.10" apply false
+    id("org.graalvm.buildtools.native") version "0.11.5" apply false
 }
 allprojects {
     group = "io.brule.tasking"

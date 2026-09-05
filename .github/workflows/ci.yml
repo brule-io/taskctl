@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   check:
-    timeout-minutes: 20
+    timeout-minutes: 40
     strategy:
       fail-fast: false
       matrix:
@@ -29,12 +29,31 @@ jobs:
       - name: Check source
         shell: bash
         run: ./gradlew --no-daemon check :cli:installDist
-      - name: Package standalone runtime
-        run: python scripts/package.py
+      - name: Acquire digest-pinned GraalVM build toolchain
+        run: python scripts/graalvm.py
+      - uses: ilammy/msvc-dev-cmd@v1
+        if: runner.os == 'Windows'
+        with:
+          arch: x64
+      - name: Compile native tool and run the existing behavioral corpus natively
+        shell: bash
+        run: ./gradlew --no-daemon :cli:nativeCompile :native-tests:nativeTest --max-workers=1
+      - name: Require identical successful JVM and native test identities
+        run: python scripts/corpus_proof.py
+      - name: Package both standalone implementations
+        run: |
+          python scripts/package.py --kind jvm
+          python scripts/package.py --kind native
       - name: Verify reproducible archive bytes
-        run: python scripts/reproducibility_test.py
+        run: |
+          python scripts/reproducibility_test.py --kind jvm
+          python scripts/reproducibility_test.py --kind native
       - name: Prove pinned acquisition without build tools
-        run: python scripts/bootstrap_test.py
+        run: |
+          python scripts/bootstrap_test.py --kind jvm
+          python scripts/bootstrap_test.py --kind native
+      - name: Compare process outputs exit codes and repository effects
+        run: python scripts/parity_test.py
       - uses: actions/upload-artifact@v4
         with:
           name: distribution-${{ matrix.os }}
@@ -45,4 +64,6 @@ jobs:
         if: always()
         with:
           name: test-results-${{ matrix.os }}
-          path: '**/build/test-results/test/*.xml'
+          path: |
+            **/build/test-results/test/*.xml
+            **/build/test-results/test-native/*.xml

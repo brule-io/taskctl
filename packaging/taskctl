@@ -25,8 +25,20 @@ while IFS= read -r line || [ -n "$line" ]; do
         *) fail "Unknown lock key: $key";;
     esac
 done < "$lock"
-[ "$lock_format/$wrapper_version" = '2/2' ] || fail 'Unsupported taskctl lock or wrapper version'
+case "$lock_format/$wrapper_version" in 2/2|2/3) :;; *) fail 'Unsupported taskctl lock or wrapper version';; esac
 case "$tool_version" in ''|*[!A-Za-z0-9.-]*) fail 'Invalid tool version';; esac
+# Report the committed pin before any cache, acquisition or ledger access.
+case "${1:-}" in
+    --version|-V|version)
+        if [ "$#" -eq 1 ]; then printf 'taskctl %s\n' "$tool_version"; exit 0; fi
+        if [ "$1" = version ] && [ "$#" -eq 3 ] && [ "$2" = --format ]; then
+            case "$3" in
+                json) printf '{"api":"taskctl.cli/alpha1","command":"version","result":{"tool":"taskctl","version":"%s"}}\n' "$tool_version"; exit 0;;
+                text) printf 'taskctl %s\n' "$tool_version"; exit 0;;
+            esac
+        fi
+        fail 'usage: taskctl --version | -V | version [--format json|text]';;
+esac
 case "$artifact_sha" in ''|*[!0-9a-f]*) fail 'Missing platform or invalid locked checksum';; esac
 [ "${#artifact_sha}" -eq 64 ] || fail 'Invalid locked checksum'
 case "$artifact_url" in file:///*|https://*) :;; *) fail 'Only file or HTTPS artifact locations are accepted';; esac
@@ -82,6 +94,13 @@ fi
 manifest=$(tar -xOf "$archive" files.sha256) || fail 'Distribution file manifest missing'
 (cd "$install" && printf '%s\n' "$manifest" | hash --check --status -) || fail 'Cached taskctl file checksum mismatch'
 grep -Fx "toolVersion=$tool_version" "$install/distribution.properties" >/dev/null || fail 'Locked version does not match distribution'
+if grep -Fx 'launcherContract=taskctl.launcher/1' "$install/distribution.properties" >/dev/null; then
+    entrypoint=$(sed -n 's/^entrypoint=//p' "$install/distribution.properties")
+    [ "$entrypoint" = taskctl ] || fail 'Unsupported artifact entry point'
+    export TASKCTL_DISTRIBUTION="$install" TASKCTL_REPOSITORY="$script_dir"
+    exec "$install/$entrypoint" "$@"
+fi
+# Compatibility for the published JVM alpha. New archives own their execution.
 classpath=
 libraries=$(printf '%s\n' "$manifest" | sed -n 's/^[0-9a-f]*  \(lib\/.*\.jar\)$/\1/p')
 while IFS= read -r library; do

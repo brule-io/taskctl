@@ -20,10 +20,16 @@ $TaskArguments = @($args)
         [void]$encoded.Append('"')
         return $encoded.ToString()
     }
-$launchArguments = @(('-Dtaskctl.distribution=' + $PSScriptRoot), '-cp', (Join-Path $PSScriptRoot 'lib/*'), 'io.brule.tasking.cli.MainKt') + $TaskArguments
+$classpath = ('__LIBRARIES__'.Split(';') | ForEach-Object { Join-Path $PSScriptRoot ('lib/' + $_) }) -join ';'
+$launchArguments = @(('-Dtaskctl.distribution=' + $PSScriptRoot), '-cp', $classpath, 'io.brule.tasking.cli.MainKt') + $TaskArguments
 $start = [Diagnostics.ProcessStartInfo]::new()
 $start.FileName = Join-Path $PSScriptRoot 'runtime/bin/java.exe'
+if ('__IMPLEMENTATION__' -eq 'native') {
+    $start.FileName = Join-Path $PSScriptRoot 'taskctl.exe'
+    $launchArguments = $TaskArguments
+}
 $start.UseShellExecute = $false
+$start.EnvironmentVariables['TASKCTL_DISTRIBUTION'] = $PSScriptRoot
 $start.Arguments = ($launchArguments | ForEach-Object { ConvertTo-NativeArgument $_ }) -join ' '
 $process = [Diagnostics.Process]::Start($start)
 $process.WaitForExit()

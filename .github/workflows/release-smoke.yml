@@ -38,11 +38,15 @@ jobs:
           python-version: '3.13'
       - name: Download exact release inputs
         shell: bash
-        run: gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern "*$TARGET.$EXTENSION" --pattern release-manifest.json --pattern toolchain.lock --dir build/distributions
+        run: gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern "*$TARGET.$EXTENSION" --pattern "*$TARGET.$EXTENSION.intoto.json" --pattern release-manifest.json --pattern 'toolchain*.lock' --dir build/distributions
       - name: Validate release and stage metadata
         run: python scripts/stage_release_test.py
-      - name: Exercise cold GitHub acquisition and native consumer
-        run: python scripts/bootstrap_test.py --lock build/distributions/toolchain.lock
+      - name: Exercise cold GitHub acquisition of both implementations
+        run: |
+          python scripts/bootstrap_test.py --kind native --lock build/distributions/toolchain.lock
+          python scripts/bootstrap_test.py --kind jvm --lock build/distributions/toolchain-jvm.lock
+      - name: Require release process parity
+        run: python scripts/parity_test.py
       - uses: actions/upload-artifact@v4
         with:
           name: release-smoke-${{ matrix.target }}

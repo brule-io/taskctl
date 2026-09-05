@@ -18,7 +18,16 @@ try {
         if ($key -cnotin $allowed -or $pin.ContainsKey($key)) { throw "Unknown or duplicate lock key: $key" }
         $pin[$key] = $value
     }
-    if ($pin.lockFormat -cne '2' -or $pin.wrapperVersion -cne '2' -or $pin.toolVersion -cnotmatch '^[0-9]+[.][0-9]+[.][0-9]+[-A-Za-z0-9.]*$') { throw 'Unsupported taskctl lock or wrapper version' }
+    if ($pin.lockFormat -cne '2' -or $pin.wrapperVersion -cnotin @('2','3') -or $pin.toolVersion -cnotmatch '^[0-9]+[.][0-9]+[.][0-9]+[-A-Za-z0-9.]*$') { throw 'Unsupported taskctl lock or wrapper version' }
+    # The committed pin is available even when no runtime has been acquired.
+    if ($TaskArguments.Count -gt 0 -and $TaskArguments[0] -cin @('--version','-V','version')) {
+        if ($TaskArguments.Count -eq 1) { Write-Output ('taskctl ' + $pin.toolVersion); exit 0 }
+        if ($TaskArguments.Count -eq 3 -and $TaskArguments[0] -ceq 'version' -and $TaskArguments[1] -ceq '--format') {
+            if ($TaskArguments[2] -ceq 'json') { Write-Output ('{"api":"taskctl.cli/alpha1","command":"version","result":{"tool":"taskctl","version":"' + $pin.toolVersion + '"}}'); exit 0 }
+            if ($TaskArguments[2] -ceq 'text') { Write-Output ('taskctl ' + $pin.toolVersion); exit 0 }
+        }
+        throw 'usage: taskctl --version | -V | version [--format json|text]'
+    }
     if ($env:PROCESSOR_ARCHITECTURE -ne 'AMD64') { throw 'This launcher supports Windows x86_64' }
     $sha = $pin['windows-x86_64.sha256']
     if ($sha -cnotmatch '^[0-9a-f]{64}$') { throw 'Invalid locked checksum' }
@@ -110,9 +119,25 @@ try {
         return $encoded.ToString()
     }
     $launchArguments = @(('-Dtaskctl.distribution=' + $install), ('-Dtaskctl.repository=' + $PSScriptRoot), '-cp', $classpath, 'io.brule.tasking.cli.MainKt') + $TaskArguments
+    if ($distribution -ccontains 'launcherContract=taskctl.launcher/1') {
+        $entries = @($distribution | Where-Object { $_.StartsWith('entrypoint=') })
+        if ($entries.Count -ne 1) { throw 'Missing or duplicate artifact entry point' }
+        $entry = $entries[0].Substring('entrypoint='.Length)
+        switch -CaseSensitive ($entry) {
+            'taskctl.exe' { $java = Join-Path $install $entry; $launchArguments = $TaskArguments }
+            'taskctl.ps1' {
+                $java = Join-Path $PSHOME 'powershell.exe'
+                if (-not [IO.File]::Exists($java)) { $java = Join-Path $PSHOME 'pwsh.exe' }
+                $launchArguments = @('-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',(Join-Path $install $entry)) + $TaskArguments
+            }
+            default { throw 'Unsupported artifact entry point' }
+        }
+    }
     $start = [Diagnostics.ProcessStartInfo]::new()
     $start.FileName = $java
     $start.UseShellExecute = $false
+    $start.EnvironmentVariables['TASKCTL_DISTRIBUTION'] = $install
+    $start.EnvironmentVariables['TASKCTL_REPOSITORY'] = $PSScriptRoot
     $start.Arguments = ($launchArguments | ForEach-Object { ConvertTo-NativeArgument $_ }) -join ' '
     $process = [Diagnostics.Process]::Start($start)
     $process.WaitForExit()
