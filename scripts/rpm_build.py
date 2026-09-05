@@ -15,8 +15,11 @@ for release in (meta['release']-1,meta['release']):
     if release==meta['release']-1:
         shutil.copy2(rpms[0],output/'upgrade-baseline.rpm'); continue
     for path,kind in ((rpms[0],'binary-rpm'),(sources[0],'source-rpm')):
-        shutil.copy2(path,output/path.name)
-        artifacts.append(dict(file=path.name,sha256=sha(path),bytes=path.stat().st_size,format=kind,implementation='native'))
+        # GitHub normalizes '~' in asset names. Header EVR remains canonical;
+        # transport names use the upstream SemVer spelling instead.
+        name=path.name.replace('~','-')
+        shutil.copy2(path,output/name)
+        artifacts.append(dict(file=name,sha256=sha(path),bytes=path.stat().st_size,format=kind,implementation='native'))
     binary=rpms[0]
 
 scripts=run(['rpm','-qp','--scripts','--triggers','--filetriggers',binary]); assert not scripts,scripts
@@ -33,7 +36,7 @@ payload_format='[%{FILENAMES} %{FILEDIGESTS} %{FILEMODES} %{FILEUSERNAME} %{FILE
 assert run(['rpm','-qp','--qf',payload_format,binary])==run(['rpm','-qp','--qf',payload_format,rebuilt[0]])
 assert run(['rpm','-qp','--qf','%{VERSION}-%{RELEASE}',binary])==run(['rpm','-qp','--qf','%{VERSION}-%{RELEASE}',rebuilt[0]])
 assert requires==run(['rpm','-qpR',rebuilt[0]])
-lint=subprocess.run(['rpmlint',str(root/'taskctl.spec'),str(binary),str(sources[0])],capture_output=True,text=True)
+lint=subprocess.run(['rpmlint',str(root/'taskctl.spec'),*[str(output/a['file']) for a in artifacts]],capture_output=True,text=True)
 text=lint.stdout+lint.stderr; (output/'rpmlint.txt').write_text(text)
 print(text)
 findings=[]

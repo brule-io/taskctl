@@ -10,5 +10,9 @@
   "potential-bashisms": {
     "pattern": "taskctl\\.x86_64: W: potential-bashisms /usr/share/taskctl/bootstrap/taskctl",
     "reason": "checkbashisms mistakes calls to the wrapper's own POSIX hash() function for the Bash hash builtin. Preserve the canonical template; its SHA adapter and offline execution are covered by the existing wrapper corpus and Fedora test."
+  },
+  "non-coherent-filename": {
+    "pattern": "taskctl\\.(src|x86_64): W: non-coherent-filename taskctl-(\\d+\\.\\d+\\.\\d+)-([a-z]+\\.\\d+)-(\\d+\\.fc44)\\.\\1\\.rpm taskctl-\\2~\\3-\\4\\.\\1\\.rpm",
+    "reason": "GitHub rewrites tilde characters in asset names. Only the exact tilde-to-hyphen transport spelling is allowed; RPM header EVR and DNF upgrade ordering remain unchanged."
   }
 }

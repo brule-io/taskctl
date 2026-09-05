@@ -10,7 +10,7 @@ on:
       packaging_release:
         description: Positive RPM packaging revision (does not rebuild taskctl)
         required: true
-        default: '1'
+        default: '2'
         type: string
 permissions:
   contents: read

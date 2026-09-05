@@ -20,11 +20,11 @@ before installing; these initial packages are not signed with a separate RPM key
 The repository remains private, so release downloads require read access.
 
 ```sh
-gh release verify rpm-v0.2.0-alpha.2-1 --repo brule-io/taskctl
-gh release download rpm-v0.2.0-alpha.2-1 --repo brule-io/taskctl \
+gh release verify rpm-v0.2.0-alpha.2-2 --repo brule-io/taskctl
+gh release download rpm-v0.2.0-alpha.2-2 --repo brule-io/taskctl \
   --pattern '*.x86_64.rpm' --pattern RPM-SHA256SUMS
 sha256sum --check --ignore-missing RPM-SHA256SUMS
-sudo dnf install ./taskctl-0.2.0~alpha.2-1.fc44.x86_64.rpm
+sudo dnf install ./taskctl-0.2.0-alpha.2-2.fc44.x86_64.rpm
 taskctl --version
 taskctl help
 taskctl init --repo ./my-project --id example.my-project \
@@ -75,7 +75,7 @@ process evidence must identify that exact native archive and JVM reference.
 
 ```sh
 gh workflow run rpm.yml --repo brule-io/taskctl \
-  -f upstream_tag=v0.2.0-alpha.2 -f packaging_release=1
+  -f upstream_tag=v0.2.0-alpha.2 -f packaging_release=2
 ```
 
 Dependency images are prepared with network access. The actual rpmbuild and runtime
@@ -131,3 +131,6 @@ version/release and dependencies must match the candidate RPM.
 Pre-release versions map `0.2.0-alpha.2` to RPM `0.2.0~alpha.2`, with packaging
 revisions in Release; this preserves alpha-before-final ordering under
 [RPM's version rules](https://rpm.org/docs/latest/man/rpm-version.7).
+GitHub rewrites `~` in uploaded asset names, so release filenames use the upstream
+SemVer spelling (`0.2.0-alpha.2`); RPM headers retain `0.2.0~alpha.2`. DNF compares
+the headers, not the download filename. Rpmlint checks the actual transport names.

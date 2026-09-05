@@ -116,7 +116,7 @@ def main():
                 buildType='https://github.com/brule-io/taskctl/rpm-repack/alpha1',
                 externalParameters=dict(upstream_version=identity['version'],rpm_release=args.release,implementation='native'),
                 internalParameters=identity|dict(build_environment=build['environment']),
-                resolvedDependencies=[dict(uri='https://github.com/brule-io/taskctl/releases/tag/v'+identity['version'],digest=dict(sha256=identity['upstream']['sha256'])),
+                resolvedDependencies=[dict(uri='https://github.com/brule-io/taskctl/releases/download/v'+identity['version']+'/'+identity['upstream']['file'],digest=dict(sha256=identity['upstream']['sha256'])),
                     dict(uri='git+https://github.com/brule-io/taskctl',digest=dict(gitCommit=identity['packaging_revision']))]),
                 runDetails=dict(builder=dict(id='https://github.com/brule-io/taskctl/.github/workflows/rpm.yml'),
                     metadata=dict(invocationId=os.environ.get('GITHUB_RUN_ID','local')+'/'+os.environ.get('GITHUB_RUN_ATTEMPT','1')))))
