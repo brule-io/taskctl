@@ -4,3 +4,5 @@
 **/build/
 .proof/
 *.hprof
+__pycache__/
+*.pyc

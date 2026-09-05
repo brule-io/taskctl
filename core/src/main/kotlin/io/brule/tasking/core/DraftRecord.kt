@@ -15,7 +15,7 @@ data class DraftRecord(
     }
 }
 
-class DraftDocument private constructor(val record: DraftRecord, val source: String, private val titleSpan: SourceSpan) {
+class DraftDocument private constructor(val record: DraftRecord, val source: String, private val titleSpan: SourceSpan, private val stateSpan: SourceSpan) {
     fun render(): String = source
     /** In-memory contract edit; splices one scalar and preserves all other
      * source bytes. Lifecycle writing is not exposed by this codec. */
@@ -23,6 +23,8 @@ class DraftDocument private constructor(val record: DraftRecord, val source: Str
         require(title.isNotBlank())
         return parse(source.replaceRange(titleSpan.start, titleSpan.end, Json.encode(StringValue(title))))
     }
+    /** Storage calls this only after the shared lifecycle reducer validates closure. */
+    fun withState(state: String): DraftDocument = parse(source.replaceRange(stateSpan.start, stateSpan.end, Json.encode(StringValue(state))))
     companion object {
         private val fields = setOf("protocol", "id", "title", "state", "intent", "requires", "requirements", "acceptance", "required_extensions", "extensions")
         private val feature = Regex("[a-z][a-z0-9-]*(?:\\.[a-z][a-z0-9-]*)+/v[1-9][0-9]*")
@@ -48,7 +50,7 @@ class DraftDocument private constructor(val record: DraftRecord, val source: Str
             val state = text("state").also { require(it in setOf("open", "closed")) }
             val record = DraftRecord(text("id"), text("title"), state, text("intent"), dependencies,
                 texts("requirements", true), texts("acceptance", true), required, extensions)
-            return DraftDocument(record, source, decoded.rootFields.getValue("title"))
+            return DraftDocument(record, source, decoded.rootFields.getValue("title"), decoded.rootFields.getValue("state"))
         }
     }
 }

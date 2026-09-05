@@ -27,6 +27,8 @@ jobs:
         run: ./gradlew --no-daemon check :cli:installDist
       - name: Package standalone runtime
         run: python scripts/package.py
+      - name: Verify reproducible archive bytes
+        run: python scripts/reproducibility_test.py
       - name: Prove pinned acquisition without build tools
         run: python scripts/bootstrap_test.py
       - uses: actions/upload-artifact@v4

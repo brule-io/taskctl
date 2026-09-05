@@ -11,7 +11,7 @@ dependencies {
 tasks.test {
     systemProperty("tasking.root", rootProject.projectDir.absolutePath)
     inputs.files(rootProject.fileTree(".") {
-        include("core/src/**/*.kt", "compatibility/src/**/*.kt", "cli/src/**/*.kt", "conformance/src/**/*.kt")
+        include("core/src/**/*.kt", "repository/src/**/*.kt", "compatibility/src/**/*.kt", "cli/src/**/*.kt", "conformance/src/**/*.kt")
     }).withPropertyName("architecturalPolicySources")
 }
 

@@ -17,4 +17,4 @@ subprojects {
     }
     dependencyLocking { lockAllConfigurations() }
 }
-tasks.named("check") { dependsOn(":core:check", ":compatibility:check", ":conformance:check", ":cli:check") }
+tasks.named("check") { dependsOn(":core:check", ":repository:check", ":compatibility:check", ":conformance:check", ":cli:check") }

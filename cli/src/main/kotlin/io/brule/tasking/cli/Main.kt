@@ -9,10 +9,8 @@ import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
     try {
-        if (args.contentEquals(arrayOf("info")) || args.contentEquals(arrayOf("info", "--format", "json"))) {
-            val version = object {}.javaClass.getResourceAsStream("/VERSION")!!.bufferedReader().use { it.readText().trim() }
-            println(Json.encode(obj("tool" to StringValue("taskctl"), "version" to StringValue(version),
-                "native_v1" to StringValue("not-frozen"))))
+        if (args.firstOrNull() != "--adapter") {
+            NativeCommands.run(args.toList())
             return
         }
         if (args.contentEquals(arrayOf("info")) || args.contentEquals(arrayOf("--adapter", FantastiktAdapter.ID, "info"))) {
@@ -40,7 +38,15 @@ fun main(args: Array<String>) {
             io.brule.workflow.cli.main(command)
         }
     } catch (failure: Exception) {
-        System.err.println(failure.message ?: failure.javaClass.simpleName)
-        exitProcess(2)
+        val code = when (failure) {
+            is RevisionConflict -> 4
+            is java.io.IOException -> 5
+            else -> if (failure.message?.contains("required") == true && failure.message?.contains("provider") == true) 3 else 2
+        }
+        val message = failure.message ?: failure.javaClass.simpleName
+        if (args.toList().windowed(2).any { it == listOf("--format", "json") }) {
+            println(Json.encode(obj("api" to StringValue("taskctl.cli/alpha1"), "error" to obj("code" to integer(code), "message" to StringValue(message)))))
+        } else System.err.println(message)
+        exitProcess(code)
     }
 }

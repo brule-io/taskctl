@@ -29,6 +29,7 @@ def main():
         for name in ('taskctl','taskctl.ps1','taskctl.bat'):
             shutil.copyfile(ROOT/'packaging'/name, stage/'bootstrap'/name)
         shutil.copyfile(ROOT/'NOTICE.md',stage/'NOTICE.md')
+        shutil.copyfile(ROOT/'packaging/distribution.ps1',stage/'taskctl.ps1')
         (stage/'taskctl').write_text('#!/bin/sh\nset -eu\nbase=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)\nexec "$base/runtime/bin/java" "-Dtaskctl.distribution=$base" -cp "$base/lib/*" io.brule.tasking.cli.MainKt "$@"\n',encoding='utf-8',newline='\n')
         (stage/'taskctl').chmod(0o755)
         (stage/'bootstrap/taskctl').chmod(0o755)

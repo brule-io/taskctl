@@ -4,4 +4,4 @@ dependencyResolutionManagement {
     repositories { mavenCentral() }
 }
 rootProject.name = "taskctl"
-include("core", "compatibility", "cli", "conformance")
+include("core", "repository", "compatibility", "cli", "conformance")
