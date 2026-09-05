@@ -5,27 +5,30 @@ acceptance, causal prerequisites and closure evidence. Roadmaps describe durable
 lines of advance; epics associate work by capability. Project state stays in the
 project repository; the implementation comes from an exact pinned release.
 
-**Native alpha: `0.2.0-alpha.1`. Native v1 is not frozen.**
-Windows x86_64, Linux x86_64 and macOS arm64 are tested in GitHub CI.
+**Release: `0.2.0-alpha.2`. Native protocol v1 is not frozen.**
+Native executables and JVM reference archives are tested on Windows x86_64,
+Linux x86_64 and macOS arm64. Native is the default after behavioral parity passes.
 
 ## 60-second greenfield quick start
 
-Download the [release](https://github.com/brule-io/taskctl/releases/tag/v0.2.0-alpha.1)
-archive for your platform and `toolchain.lock`. The archive includes Java.
+Download the [release](https://github.com/brule-io/taskctl/releases/tag/v0.2.0-alpha.2)
+native archive for your platform and `toolchain.lock`. Native needs no JVM.
+The optional JVM reference archives use `toolchain-jvm.lock` and bundle Java.
 For this initially private repository, authenticate `gh` with repository read access.
 
 Windows PowerShell (no Java, Gradle or taskctl installation):
 
 ```powershell
 $download = Join-Path $env:TEMP ('taskctl-' + [Guid]::NewGuid().ToString('N'))
-gh release download v0.2.0-alpha.1 --repo brule-io/taskctl --pattern '*windows-x86_64.zip' --pattern toolchain.lock --dir $download
+gh release download v0.2.0-alpha.2 --repo brule-io/taskctl --pattern '*native-windows-x86_64.zip' --pattern toolchain.lock --dir $download
 $pin = ConvertFrom-StringData (Get-Content -Raw "$download/toolchain.lock")
-$archive = "$download/taskctl-0.2.0-alpha.1-windows-x86_64.zip"
+$archive = "$download/taskctl-0.2.0-alpha.2-native-windows-x86_64.zip"
 if ((Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne $pin['windows-x86_64.sha256']) { throw 'Checksum mismatch' }
 Expand-Archive $archive "$download/tool"
-& "$download/tool/taskctl.ps1" init --repo ./my-project --id brule.my-project --toolchain "$download/toolchain.lock"
+& "$download/tool/taskctl.exe" init --repo ./my-project --id brule.my-project --toolchain "$download/toolchain.lock"
 $env:TASKCTL_GITHUB_TOKEN = gh auth token
 cd my-project
+./taskctl.ps1 --version
 ./taskctl.ps1 doctor
 ./taskctl.ps1 frontier
 ```
@@ -35,14 +38,15 @@ Linux/macOS shell (`TARGET=macos-aarch64` on Apple Silicon):
 ```sh
 TARGET=linux-x86_64
 DOWNLOAD=$(mktemp -d)
-gh release download v0.2.0-alpha.1 --repo brule-io/taskctl --pattern "*$TARGET.tar.gz" --pattern toolchain.lock --dir "$DOWNLOAD"
-ARCHIVE="$DOWNLOAD/taskctl-0.2.0-alpha.1-$TARGET.tar.gz"
+gh release download v0.2.0-alpha.2 --repo brule-io/taskctl --pattern "*native-$TARGET.tar.gz" --pattern toolchain.lock --dir "$DOWNLOAD"
+ARCHIVE="$DOWNLOAD/taskctl-0.2.0-alpha.2-native-$TARGET.tar.gz"
 EXPECTED=$(sed -n "s/^$TARGET.sha256=//p" "$DOWNLOAD/toolchain.lock")
 ACTUAL=$(shasum -a 256 "$ARCHIVE"); test "${ACTUAL%% *}" = "$EXPECTED" || exit 1
 tar -xzf "$ARCHIVE" -C "$DOWNLOAD"
 "$DOWNLOAD/taskctl" init --repo ./my-project --id brule.my-project --toolchain "$DOWNLOAD/toolchain.lock"
 export TASKCTL_GITHUB_TOKEN=$(gh auth token)
 cd my-project
+./taskctl --version
 ./taskctl doctor
 ./taskctl frontier
 ```
@@ -50,6 +54,9 @@ cd my-project
 `No ready tasks.` is a successful empty frontier. Initialization creates no fake
 work. Add an explicit plan with `--seed PLAN.json`, or later through `seed` and a
 revision check. [Native records and evidence](docs/NATIVE.md) describe the inputs.
+`--version`, `-V`, and `version` report one line without repository discovery or
+network access. `version --format json` reports the pin in machine-readable form;
+`info --format json` reports the acquired implementation and build/runtime details.
 The PowerShell launcher supports Unicode paths and precise argument forwarding;
 `.bat` is a convenience entry point for ordinary Windows shells.
 
@@ -72,7 +79,9 @@ Commit the generated `taskctl`, `taskctl.ps1`, `taskctl.bat`, `.taskctl` and `.a
 state, including the POSIX executable bit. The launcher acquires exactly the
 platform archive in `toolchain.lock`, verifies SHA-256, caches it outside your
 project and checks its manifest on every run. No consumer build is invoked.
-Use `TASKCTL_OFFLINE=1` to require cached operation. Private downloads need an
+The verified artifact owns its entry point, whether native or JVM. Version queries
+work even before the first acquisition. Use `TASKCTL_OFFLINE=1` to require cached
+operation. Private downloads need an
 explicit contents-read credential; no credential is stored in the project.
 
 An agent starts with the generated `AGENTS.md`, `taskctl context`, `doctor`, and
@@ -86,6 +95,7 @@ last inspected. `verify` validates supplied evidence without running project cod
 - [Native repository, ledger seam, lifecycle and evidence](docs/NATIVE.md)
 - [Extensions and provider boundaries](docs/EXTENSIONS.md)
 - [Releases, pins, versioning and migrations](docs/VERSIONING.md)
+- [Native Image, JVM parity and provenance](docs/NATIVE-IMAGE.md)
 - [Milestone results and current limits](docs/PRODUCTIZATION.md)
 - [Bootstrap composition contract](docs/BOOTSTRAP.md) and [reference generator](examples/generator/README.md)
 - [Planning-model evidence](docs/PLANNING-MODEL.md)
@@ -106,9 +116,12 @@ but native inspect/plan/apply migrations are not shipped in this alpha.
 
 Source builds require Java 21: `./gradlew check :cli:installDist` (`./gradlew.bat`
 on Windows). `python scripts/package.py` packages the build using `JAVA_HOME`;
-`python scripts/bootstrap_test.py` exercises a generated consumer with build tools
+`python scripts/bootstrap_test.py --kind jvm` exercises a generated consumer with build tools
 removed from PATH. CI also requires byte-identical repackaging. Read [AGENTS.md](AGENTS.md).
 The typed value algebra and no-top-type architecture policy are enforced in CI.
+Native delivery additionally runs the same 79 behavioral tests as native code and
+49 process comparisons, plus 21 bootstrap checks per implementation. Native build
+commands and the exact GraalVM pin are in [NATIVE-IMAGE.md](docs/NATIVE-IMAGE.md).
 
 ## License
 

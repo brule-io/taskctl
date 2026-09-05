@@ -23,7 +23,10 @@ def install():
             with zipfile.ZipFile(archive) as bundle: bundle.extractall(directory)
         else:
             with tarfile.open(archive) as bundle: bundle.extractall(directory, filter='tar')
-    executables = list(directory.rglob('bin/native-image.cmd' if target().startswith('windows') else 'bin/native-image'))
+    # Unix archives also contain lib/svm/bin/native-image; select the JDK home,
+    # identified by its release descriptor, rather than that internal launcher.
+    executables = [p for p in directory.rglob('bin/native-image.cmd' if target().startswith('windows') else 'bin/native-image')
+                   if (p.parent.parent/'release').is_file()]
     assert len(executables) == 1, executables
     home = executables[0].parent.parent
     (ROOT/'build/graalvm-home.txt').write_text(str(home), encoding='utf-8')
