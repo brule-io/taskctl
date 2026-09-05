@@ -4,7 +4,7 @@ plugins {
 }
 allprojects {
     group = "io.brule.tasking"
-    version = "0.1.0-dev.1"
+    version = rootProject.file("VERSION").readText().trim()
 }
 subprojects {
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {

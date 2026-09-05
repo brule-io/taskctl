@@ -9,6 +9,12 @@ import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
     try {
+        if (args.contentEquals(arrayOf("info")) || args.contentEquals(arrayOf("info", "--format", "json"))) {
+            val version = object {}.javaClass.getResourceAsStream("/VERSION")!!.bufferedReader().use { it.readText().trim() }
+            println(Json.encode(obj("tool" to StringValue("taskctl"), "version" to StringValue(version),
+                "native_v1" to StringValue("not-frozen"))))
+            return
+        }
         if (args.contentEquals(arrayOf("info")) || args.contentEquals(arrayOf("--adapter", FantastiktAdapter.ID, "info"))) {
             println(Json.encode(stringMap(mapOf("tool" to "taskctl", "version" to FantastiktAdapter.VERSION,
                 "adapter" to FantastiktAdapter.ID, "donor_revision" to FantastiktAdapter.SOURCE_REVISION,

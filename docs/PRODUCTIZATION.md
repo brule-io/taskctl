@@ -37,3 +37,11 @@ See [GitHub's immutable-release contract](https://docs.github.com/en/code-securi
 
 The Kotlin interfaces remain internal. The composable public boundary is a
 versioned process command and typed JSON result, with explicit repository root.
+
+## M1 result
+
+Private canonical repository created and pushed at https://github.com/brule-io/taskctl.
+The initial source baseline passes 73 tests locally. CI builds all three target
+platforms. Its first run exposed the provider's exact JDK version spelling
+(`21.0.11+10.0.LTS`); the pin was corrected without changing runtime selection.
+No standalone release is claimed at M1. Source command: `./gradlew check`.

@@ -15,16 +15,26 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: '21.0.11+10'
+          java-version: '21.0.11+10.0.LTS'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
       - name: Check source
         shell: bash
         run: ./gradlew --no-daemon check :cli:installDist
+      - name: Package standalone runtime
+        run: python scripts/package.py
+      - name: Prove pinned acquisition without build tools
+        run: python scripts/bootstrap_test.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: distribution-${{ matrix.os }}
+          path: |
+            build/distributions/*
+            build/proof/*.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:

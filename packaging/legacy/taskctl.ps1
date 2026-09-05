@@ -10,7 +10,7 @@ function Get-Sha256([string]$path) {
 try {
     $lockFile = Join-Path $PSScriptRoot '.taskctl/toolchain.lock'
     $pin = @{}
-    $allowed = @('lockFormat','toolVersion','wrapperVersion','windows-x86_64.url','windows-x86_64.sha256','linux-x86_64.url','linux-x86_64.sha256','macos-aarch64.url','macos-aarch64.sha256')
+    $allowed = @('lockFormat','toolVersion','wrapperVersion','adapter','windows-x86_64.url','windows-x86_64.sha256','linux-x86_64.url','linux-x86_64.sha256')
     foreach ($line in [IO.File]::ReadAllLines($lockFile)) {
         if ($line -eq '' -or $line.StartsWith('#')) { continue }
         if ($line -notmatch '^([^=]+)=(.*)$') { throw 'Malformed taskctl lock' }
@@ -18,8 +18,8 @@ try {
         if ($key -cnotin $allowed -or $pin.ContainsKey($key)) { throw "Unknown or duplicate lock key: $key" }
         $pin[$key] = $value
     }
-    if ($pin.lockFormat -cne '2' -or $pin.wrapperVersion -cne '2' -or $pin.toolVersion -cnotmatch '^[0-9]+[.][0-9]+[.][0-9]+[-A-Za-z0-9.]*$') { throw 'Unsupported taskctl lock or wrapper version' }
-    if ($env:PROCESSOR_ARCHITECTURE -ne 'AMD64') { throw 'This launcher supports Windows x86_64' }
+    if ($pin.Count -ne $allowed.Count -or $pin.lockFormat -cne '1' -or $pin.wrapperVersion -cne '1') { throw 'Unsupported taskctl lock or wrapper version' }
+    if ($env:PROCESSOR_ARCHITECTURE -ne 'AMD64') { throw 'This proof archive supports Windows x86_64' }
     $sha = $pin['windows-x86_64.sha256']
     if ($sha -cnotmatch '^[0-9a-f]{64}$') { throw 'Invalid locked checksum' }
     $url = [Uri]$pin['windows-x86_64.url']
@@ -37,15 +37,7 @@ try {
             else {
                 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
                 $client = [Net.WebClient]::new()
-                try {
-                    if ($url.Host -eq 'api.github.com') {
-                        $client.Headers['Accept'] = 'application/octet-stream'
-                        $client.Headers['User-Agent'] = 'taskctl-bootstrap/2'
-                        $token = if ($env:TASKCTL_GITHUB_TOKEN) { $env:TASKCTL_GITHUB_TOKEN } else { $env:GH_TOKEN }
-                        if ($token) { $client.Headers['Authorization'] = 'Bearer ' + $token }
-                    }
-                    $client.DownloadFile($url, $download)
-                } finally { $client.Dispose() }
+                try { $client.DownloadFile($url, $download) } finally { $client.Dispose() }
             }
             if ((Get-Sha256 $download) -cne $sha) { throw 'taskctl distribution checksum mismatch' }
             try { [IO.File]::Move($download, $archive) } catch { if (-not [IO.File]::Exists($archive)) { throw } }
@@ -85,7 +77,7 @@ try {
         if ($relative.StartsWith('lib/') -and $relative.EndsWith('.jar')) { $libraryPaths += $file }
     }
     $distribution = [IO.File]::ReadAllLines((Join-Path $install 'distribution.properties'))
-    if ($distribution -cnotcontains ('toolVersion=' + $pin.toolVersion)) { throw 'Locked version does not match distribution' }
+    if ($distribution -cnotcontains ('toolVersion=' + $pin.toolVersion) -or $distribution -cnotcontains ('adapter=' + $pin.adapter)) { throw 'Locked version or adapter does not match distribution' }
     $java = Join-Path $install 'runtime/bin/java.exe'
     $classpath = ($libraryPaths -join ';')
     # Windows PowerShell 5 does not preserve embedded quotes in native argument
@@ -109,7 +101,7 @@ try {
         [void]$encoded.Append('"')
         return $encoded.ToString()
     }
-    $launchArguments = @(('-Dtaskctl.distribution=' + $install), ('-Dtaskctl.repository=' + $PSScriptRoot), '-cp', $classpath, 'io.brule.tasking.cli.MainKt') + $TaskArguments
+    $launchArguments = @('-cp', $classpath, 'io.brule.tasking.cli.MainKt', '--adapter', $pin.adapter) + $TaskArguments
     $start = [Diagnostics.ProcessStartInfo]::new()
     $start.FileName = $java
     $start.UseShellExecute = $false
