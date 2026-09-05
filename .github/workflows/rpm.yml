@@ -14,6 +14,7 @@ on:
         type: string
 permissions:
   contents: read
+  attestations: read
 jobs:
   rpm:
     runs-on: ubuntu-24.04
