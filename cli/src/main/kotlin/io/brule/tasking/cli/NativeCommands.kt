@@ -46,7 +46,7 @@ internal object NativeCommands {
                 close TASK --receipt FILE --expect-revision REVISION
                 recover | info | version [--format json]
                 --version | -V (no repository or network access)
-                All native commands accept --repo PATH and --format json|text.
+                Repository commands accept --repo PATH and --format json|text.
                 init composition contract: taskctl.init/alpha1. No implicit Git/network operations.
             """.trimIndent())
             return 0
@@ -69,8 +69,8 @@ internal object NativeCommands {
             }
             else -> ledgerCommand(command, options, FileTaskLedger(options.root()))
         }
-        val envelope = ObjectValue(obj("api" to StringValue("taskctl.cli/alpha1"), "command" to StringValue(command), "result" to result).fields +
-            if (command == "info") emptyMap() else mapOf("repository" to StringValue(options.root().toString())))
+        val envelope = obj("api" to StringValue("taskctl.cli/alpha1"), "command" to StringValue(command),
+            "repository" to StringValue(options.root().toString()), "result" to result)
         if (options.options["--format"] == "json") println(Json.encode(envelope))
         else render(command, result)
         return 0
