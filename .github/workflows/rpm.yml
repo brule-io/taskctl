@@ -1,0 +1,49 @@
+name: Fedora RPM (optional)
+on:
+  workflow_dispatch:
+    inputs:
+      upstream_tag:
+        description: Canonical release with successful Linux native/JVM parity
+        required: true
+        default: v0.2.0-alpha.2
+        type: string
+      packaging_release:
+        description: Positive RPM packaging revision (does not rebuild taskctl)
+        required: true
+        default: '1'
+        type: string
+permissions:
+  contents: read
+jobs:
+  rpm:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      UPSTREAM_TAG: ${{ inputs.upstream_tag }}
+      PACKAGING_RELEASE: ${{ inputs.packaging_release }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Download canonical artifact and parity evidence
+        shell: bash
+        run: |
+          mkdir -p build/rpm-inputs
+          gh release verify "$UPSTREAM_TAG" --repo "$GITHUB_REPOSITORY" --format json > build/rpm-inputs/release-verification.json
+          gh release download "$UPSTREAM_TAG" --repo "$GITHUB_REPOSITORY" --pattern '*native-linux-x86_64.tar.gz*' --pattern release-manifest.json --pattern toolchain.lock --pattern parity-linux-x86_64.json --pattern corpus-linux-x86_64.json --dir build/rpm-inputs
+      - name: Package and test in isolated Fedora containers
+        shell: bash
+        run: python scripts/rpm_pipeline.py --inputs build/rpm-inputs --output build/rpm-result --release "$PACKAGING_RELEASE"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fedora-rpm
+          path: build/rpm-result/artifacts/*
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fedora-rpm-diagnostics
+          path: |
+            build/rpm-result/build/*
+            build/rpm-result/test/*

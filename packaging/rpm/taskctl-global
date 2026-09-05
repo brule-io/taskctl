@@ -1,0 +1,4 @@
+#!/bin/sh
+# System installation owns its runtime. Repository pins remain independent.
+export TASKCTL_DISTRIBUTION=/usr/share/taskctl
+exec /usr/libexec/taskctl/taskctl "$@"

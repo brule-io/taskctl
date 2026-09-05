@@ -1,0 +1,4 @@
+{
+  "invalid-license": "The owner has not selected a project license. The explicit LicenseRef-taskctl-license-pending tag grants none; this is a private upstream package, not a Fedora inclusion candidate.",
+  "unstripped-binary-or-object": "Stripping would change the canonical parity-tested native executable. RPM payload identity is checked byte-for-byte instead."
+}

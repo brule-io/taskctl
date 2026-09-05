@@ -1,0 +1,57 @@
+.TH TASKCTL 1 "September 2026" "taskctl" "User Commands"
+.SH NAME
+taskctl \- inspect and advance repository task graphs
+.SH SYNOPSIS
+.B taskctl
+.I command
+.RI [ options ]
+.SH DESCRIPTION
+The system command runs the RPM-installed native executable. Repository-local
+.B ./taskctl
+uses that repository's committed toolchain lock and digest-verified cache.
+Installing, upgrading or removing this RPM does not update repository pins,
+initialize projects, or remove project state or caches.
+.SH COMMANDS
+.TP
+.BR --version ", " -V ", " version
+Print the tool version without repository discovery or network access.
+.B version --format json
+returns a machine-readable version.
+.TP
+.B info --format json
+Inspect implementation, runtime and canonical build identity.
+.TP
+.B help
+List supported commands and arguments.
+.TP
+.B init --repo PATH --id ID --toolchain LOCK
+Explicitly initialize a greenfield repository. Add
+.B --plan
+to inspect without writing. The release's default native lock is installed at
+.IR /usr/share/taskctl/toolchain.lock .
+.TP
+.BR doctor ", " context ", " frontier
+Inspect repository validity, context and executable work. Use
+.B --repo PATH
+or run in the repository. An empty frontier is successful.
+.SH EXAMPLE
+.nf
+taskctl init --repo ./my-project --id example.my-project \\
+  --toolchain /usr/share/taskctl/toolchain.lock
+cd my-project
+taskctl doctor
+./taskctl frontier
+.fi
+.SH FILES
+.I /usr/share/doc/taskctl/README.rpm.md
+contains packaging, offline operation and upgrade details.
+.SH NOTES
+Repository wrappers may download their pinned artifact on first use. This is
+explicit command execution, not an RPM transaction. Private GitHub acquisition
+requires a contents-read token through TASKCTL_GITHUB_TOKEN or GH_TOKEN.
+TASKCTL_OFFLINE=1 requires an existing wrapper cache.
+.SH SEE ALSO
+.BR rpm (8),
+.BR dnf (8)
+.PP
+https://github.com/brule-io/taskctl
