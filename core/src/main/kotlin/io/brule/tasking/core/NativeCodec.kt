@@ -3,14 +3,14 @@ package io.brule.tasking.core
 /** Typed process/storage envelopes; protocol drafts remain explicitly versioned. */
 object NativeCodec {
     fun task(record: DraftRecord): ObjectValue = obj(
-        "protocol" to StringValue("tasking/core-draft-1"), "id" to StringValue(record.id),
+        "protocol" to StringValue("tasking/core-draft-1"), "id" to StringValue(record.id.value),
         "title" to StringValue(record.title), "state" to StringValue(record.state), "intent" to StringValue(record.intent),
-        "requires" to strings(record.requires), "requirements" to strings(record.requirements), "acceptance" to strings(record.acceptance),
+        "requires" to strings(record.requires.map { it.value }), "requirements" to strings(record.requirements), "acceptance" to strings(record.acceptance),
         "required_extensions" to strings(record.requiredExtensions), "extensions" to record.extensions,
     )
     fun evidence(value: ClosureEvidence): ObjectValue = obj(
         "protocol" to StringValue("taskctl.receipt/alpha1"), "classification" to StringValue("actor-assertion"),
-        "task" to StringValue(value.receipt.taskId), "contract" to StringValue(value.receipt.contractDigest),
+        "task" to StringValue(value.receipt.taskId.value), "contract" to StringValue(value.receipt.contractDigest.value),
         "actor" to StringValue(value.actor), "recorded_at" to StringValue(value.recordedAt),
         "evidence" to stringMap(value.receipt.evidence),
     )
@@ -20,7 +20,7 @@ object NativeCodec {
         val entries = (root.fields["evidence"] as? ObjectValue ?: error("evidence must be an object")).fields.mapValues {
             (it.value as? StringValue)?.value ?: error("evidence must contain strings")
         }
-        return ClosureEvidence(Receipt(root.requiredString("task"), root.requiredString("contract"), entries), root.requiredString("actor"), root.requiredString("recorded_at"))
+        return ClosureEvidence(Receipt(TaskId.parseOrThrow(root.requiredString("task")), ContractDigest.parseOrThrow(root.requiredString("contract")), entries), root.requiredString("actor"), root.requiredString("recorded_at"))
     }
     fun decodeSeed(root: ObjectValue): Transition.AddRecords {
         require((root.fields.keys - setOf("contract", "tasks", "roadmaps", "epics")).isEmpty()) { "unknown seed fields" }

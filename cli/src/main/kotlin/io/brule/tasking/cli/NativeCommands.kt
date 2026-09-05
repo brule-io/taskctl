@@ -87,22 +87,22 @@ internal object NativeCommands {
             else -> error("unknown command: $command; run taskctl help")
         }
         if (command == "frontier") {
-            val frontier = ledger.frontier(FrontierQuery(args.options["--roadmap"]?.let(::RoadmapId), args.options["--epic"]?.let(::EpicId)))
+            val frontier = ledger.frontier(FrontierQuery(args.options["--roadmap"]?.let(RoadmapId::parseOrThrow), args.options["--epic"]?.let(EpicId::parseOrThrow)))
             return obj("revision" to StringValue(frontier.revision.value), "tasks" to strings(frontier.tasks.map { it.value }))
         }
         if (command == "seed") {
-            val result = ledger.apply(Revision(args.need("--expect-revision")), NativeCodec.decodeSeed(readObject(Path.of(args.need("--file")))))
+            val result = ledger.apply(Revision.parseOrThrow(args.need("--expect-revision")), NativeCodec.decodeSeed(readObject(Path.of(args.need("--file")))))
             return transition(result)
         }
         if (command == "verify" || command == "close") {
             val evidence = NativeCodec.decodeEvidence(readObject(Path.of(args.need("--receipt"))))
-            require(evidence.receipt.taskId == args.positional.single()) { "receipt task differs from requested task" }
-            if (command == "close") return transition(ledger.apply(Revision(args.need("--expect-revision")), Transition.CloseTask(evidence)))
+            require(evidence.receipt.taskId == TaskId.parseOrThrow(args.positional.single())) { "receipt task differs from requested task" }
+            if (command == "close") return transition(ledger.apply(Revision.parseOrThrow(args.need("--expect-revision")), Transition.CloseTask(evidence)))
             val snapshot = ledger.snapshot()
-            val errors = snapshot.dependencyProblems() + snapshot.universe.closureProblems(TaskId(evidence.receipt.taskId), evidence.receipt)
+            val errors = snapshot.dependencyProblems() + snapshot.universe.closureProblems(evidence.receipt.taskId, evidence.receipt)
             require(errors.isEmpty()) { errors.joinToString("\n") }
             return obj("revision" to StringValue(snapshot.revision.value), "valid" to BooleanValue(true),
-                "classification" to StringValue("actor-assertion"), "contract" to StringValue(evidence.receipt.contractDigest))
+                "classification" to StringValue("actor-assertion"), "contract" to StringValue(evidence.receipt.contractDigest.value))
         }
         val snapshot = ledger.snapshot()
         val universe = snapshot.universe
@@ -115,10 +115,10 @@ internal object NativeCommands {
                 "instructions" to StringValue("Read AGENTS.md. Use frontier, show, roadmap and epic; mutations require the inspected revision."),
             )
             "show" -> {
-                val task = universe.tasks.singleOrNull { it.id == args.positional.single() } ?: error("unknown task: ${args.positional.single()}")
-                ObjectValue(NativeCodec.task(task).fields + mapOf("contract_digest" to StringValue(DraftLifecycle.contract(task)),
-                    "revision" to StringValue(snapshot.revision.value), "roadmaps" to strings(universe.roadmapsFor(TaskId(task.id)).map { it.value }),
-                    "epics" to strings(universe.epicsFor(TaskId(task.id)).map { it.value })))
+                val task = universe.tasks.singleOrNull { it.id == TaskId.parseOrThrow(args.positional.single()) } ?: error("unknown task: ${args.positional.single()}")
+                ObjectValue(NativeCodec.task(task).fields + mapOf("contract_digest" to StringValue(DraftLifecycle.contract(task).value),
+                    "revision" to StringValue(snapshot.revision.value), "roadmaps" to strings(universe.roadmapsFor(task.id).map { it.value }),
+                    "epics" to strings(universe.epicsFor(task.id).map { it.value })))
             }
             "roadmap", "epic" -> {
                 val records: List<PlanningRecord> = if (command == "roadmap") universe.roadmaps else universe.epics
@@ -129,7 +129,7 @@ internal object NativeCommands {
             else -> error("unsupported command")
         }
     }
-    private fun transition(result: TransitionResult) = obj("revision" to StringValue(result.revision.value), "changed" to strings(result.changed))
+    private fun transition(result: TransitionResult) = obj("revision" to StringValue(result.revision.value), "changed" to strings(result.changed.map { it.value }))
     private fun readObject(path: Path) = YamlValues.parse(Files.readString(path)).value as? ObjectValue ?: error("input must be an object")
     private fun render(command: String, result: ObjectValue) {
         when (command) {

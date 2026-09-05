@@ -28,7 +28,7 @@ object Bootstrap {
             }
         }
         validateLock(lock, version)
-        val universe = LedgerTransitions.reduce(LedgerSnapshot(repositoryId, Revision("initial"), DraftUniverse(emptyList())), seed)
+        val universe = LedgerTransitions.reduce(LedgerSnapshot(repositoryId, Revision.initial(), DraftUniverse(emptyList())), seed)
         val files = linkedMapOf(
             ".taskctl/toolchain.lock" to lock.replace("\r\n", "\n"),
             ".taskctl/.gitignore" to "bootstrap-journal.json\n",
@@ -38,7 +38,7 @@ object Bootstrap {
             "AGENTS.md" to agentInstructions(),
         )
         for (name in listOf("taskctl", "taskctl.ps1", "taskctl.bat")) files[name] = Files.readString(distribution.resolve("bootstrap/$name"))
-        universe.tasks.forEach { files[".agents/tasks/" + NativeFiles.fileName(it.id)] = Json.encode(NativeCodec.task(it)) + "\n" }
+        universe.tasks.forEach { files[".agents/tasks/" + NativeFiles.fileName(it.id.value)] = Json.encode(NativeCodec.task(it)) + "\n" }
         universe.roadmaps.forEach { files[".agents/roadmaps/" + NativeFiles.fileName(it.id.value)] = Json.encode(PlanningRecordCodec.encode(it)) + "\n" }
         universe.epics.forEach { files[".agents/epics/" + NativeFiles.fileName(it.id.value)] = Json.encode(PlanningRecordCodec.encode(it)) + "\n" }
         files.keys.forEach { NativeFiles.locate(root, it) }

@@ -3,7 +3,7 @@ package io.brule.tasking.core
 /** Internal transport-neutral seam. No paths, locks, clocks or HTTP types. */
 interface TaskLedger {
     fun snapshot(): LedgerSnapshot
-    fun task(id: TaskId): DraftRecord? = snapshot().universe.tasks.singleOrNull { it.id == id.value }
+    fun task(id: TaskId): DraftRecord? = snapshot().universe.tasks.singleOrNull { it.id == id }
     fun frontier(query: FrontierQuery = FrontierQuery()): Frontier {
         val snapshot = snapshot()
         require(snapshot.dependencyProblems().isEmpty()) { snapshot.dependencyProblems().joinToString("\n") }
@@ -12,13 +12,12 @@ interface TaskLedger {
     fun apply(expectedRevision: Revision, transition: Transition): TransitionResult
 }
 
-@JvmInline value class Revision(val value: String)
 data class LedgerSnapshot(val repositoryId: String, val revision: Revision, val universe: DraftUniverse,
                           val receipts: List<ClosureEvidence> = emptyList(),
                           val dependencyBindings: Map<TaskId, List<Dependency>> = emptyMap())
 data class FrontierQuery(val roadmap: RoadmapId? = null, val epic: EpicId? = null)
 data class Frontier(val revision: Revision, val tasks: List<TaskId>)
-data class TransitionResult(val revision: Revision, val changed: List<String>)
+data class TransitionResult(val revision: Revision, val changed: List<RecordId>)
 class RevisionConflict(message: String) : IllegalStateException(message)
 
 /** Actor-supplied assertions are labeled honestly; this is not an attestation
@@ -46,7 +45,7 @@ object LedgerTransitions {
             }
             is Transition.CloseTask -> {
                 val evidence = transition.evidence
-                val errors = universe.closureProblems(TaskId(evidence.receipt.taskId), evidence.receipt)
+                val errors = universe.closureProblems(evidence.receipt.taskId, evidence.receipt)
                 require(errors.isEmpty()) { errors.joinToString("\n") }
                 universe.copy(tasks = universe.tasks.map { if (it.id == evidence.receipt.taskId) it.copy(state = "closed") else it })
             }

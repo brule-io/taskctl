@@ -7,6 +7,7 @@ import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.com.intellij.psi.util.PsiTreeUtil
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.psi.*
+import org.jetbrains.kotlin.lexer.KtTokens
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.test.*
@@ -40,6 +41,11 @@ class ArchitecturePolicyTest {
             file.importDirectives.forEach { imported ->
                 if (imported.importedFqName?.asString() in setOf("kotlin.Any", "java.lang.Object")) errors += "top-type import forbidden"
                 if (imported.importedFqName?.asString() == "kotlin.Suppress" && imported.aliasName != null) errors += "suppression alias forbidden"
+            }
+            PsiTreeUtil.collectElementsOfType(file, KtClass::class.java).forEach { type ->
+                if (type.hasModifier(KtTokens.VALUE_KEYWORD) && type.primaryConstructor?.hasModifier(KtTokens.PRIVATE_KEYWORD) != true) {
+                    errors += "value class construction must cross a private validated boundary: ${type.name}"
+                }
             }
             PsiTreeUtil.collectElementsOfType(file, KtUserType::class.java).forEach { type ->
                 if (type.referencedName in setOf("Any", "Object") && !permittedLocal(type)) errors += "untyped type forbidden: ${type.text}"
@@ -86,5 +92,12 @@ class ArchitecturePolicyTest {
         assertTrue(violations("// Any? is prohibited\nval example = \"Map<String, Any?>\"").isEmpty())
         assertTrue(violations("@UntypedBoundary(\"SnakeYAML\") fun decode(): Any = TODO()",
             "core/src/main/kotlin/io/brule/tasking/core/YamlValues.kt").isNotEmpty())
+    }
+    @Test fun `policy rejects public nominal identity constructors`() {
+        for (name in listOf("TaskRef", "RoadmapRef", "EpicRef", "AdrRef", "TaskId", "Revision")) {
+            assertTrue(violations("@JvmInline value class $name(val value: String)").isNotEmpty())
+            assertTrue(violations("@JvmInline value class $name public constructor(val value: String)").isNotEmpty())
+            assertTrue(violations("@JvmInline value class $name private constructor(val value: String)").isEmpty())
+        }
     }
 }

@@ -8,7 +8,7 @@ import kotlin.test.*
 
 class FileTaskLedgerTest {
     @TempDir lateinit var directory: Path
-    private val task = DraftRecord("TASK.a", "A", "open", "Bounded work", emptyList(), listOf("Persist"), listOf("Durable"), emptyList(), obj())
+    private val task = DraftRecord(TaskId.parseOrThrow("TASK.a"), "A", "open", "Bounded work", emptyList(), listOf("Persist"), listOf("Durable"), emptyList(), obj())
     private fun create(seed: Transition.AddRecords = Transition.AddRecords()): FileTaskLedger {
         val distribution = directory.resolve("distribution/bootstrap"); Files.createDirectories(distribution)
         listOf("taskctl", "taskctl.ps1", "taskctl.bat").forEach { Files.writeString(distribution.resolve(it), "launcher fixture\n") }
@@ -52,9 +52,9 @@ class FileTaskLedgerTest {
         val before = ledger.snapshot()
         val record = before.universe.tasks.single()
         val evidence = ClosureEvidence(Receipt(task.id, DraftLifecycle.contract(record), mapOf("test" to "passed")), "tester", "2026-09-05T00:00:00Z")
-        assertFailsWith<RevisionConflict> { ledger.apply(Revision("wrong"), Transition.CloseTask(evidence)) }
+        assertFailsWith<RevisionConflict> { ledger.apply(Revision.parseOrThrow("sha256:" + "f".repeat(64)), Transition.CloseTask(evidence)) }
         ledger.apply(before.revision, Transition.CloseTask(evidence))
-        assertEquals("closed", ledger.task(TaskId(task.id))!!.state)
+        assertEquals("closed", ledger.task(task.id)!!.state)
         assertEquals(document.substringAfter("extensions:"), Files.readString(taskPath).substringAfter("extensions:"))
         assertEquals(evidence, ledger.snapshot().receipts.single())
         Files.writeString(taskPath, Files.readString(taskPath).replace("[Durable]", "[More durable]"))
@@ -64,21 +64,21 @@ class FileTaskLedgerTest {
     @Test fun `missing prerequisites wrong kind and fabricated closed seeds fail before writes`() {
         val ledger = create()
         val revision = ledger.snapshot().revision
-        assertFails { ledger.apply(revision, Transition.AddRecords(listOf(task.copy(requires = listOf("missing"))))) }
+        assertFails { ledger.apply(revision, Transition.AddRecords(listOf(task.copy(requires = listOf(TaskId.parseOrThrow("TASK.missing")))))) }
         assertFails { ledger.apply(revision, Transition.AddRecords(listOf(task.copy(state = "closed")))) }
         assertEquals(revision, ledger.snapshot().revision)
     }
 
     @Test fun `recovery completes only matching preimages and rejects unrelated paths`() {
         val ledger = create()
-        val path = ".agents/tasks/" + NativeFiles.fileName(task.id)
+        val path = ".agents/tasks/" + NativeFiles.fileName(task.id.value)
         val content = Json.encode(NativeCodec.task(task)) + "\n"
         val operation = obj("contract" to StringValue("taskctl.transaction/alpha1"),
             "before" to obj(path to NullValue), "after" to obj(path to StringValue(content)))
         NativeFiles.atomicWrite(ledger.root, ".agents/runtime/transaction.json", Json.encode(operation))
         assertFails { ledger.snapshot() }
         ledger.recover()
-        assertEquals(task, ledger.task(TaskId(task.id)))
+        assertEquals(task, ledger.task(task.id))
         NativeFiles.atomicWrite(ledger.root, ".agents/runtime/transaction.json", Json.encode(operation))
         Files.writeString(ledger.root.resolve(path), content + "# External change\n")
         assertFails { ledger.recover() }

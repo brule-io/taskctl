@@ -31,6 +31,16 @@ consistent reads, a cooperative writer lock and recoverable bounded writes.
 the same operations in conformance; no service or HTTP adapter is implemented.
 The interface is not a supported public Kotlin API in this alpha.
 
+Native `TaskId`, `RoadmapId`, `EpicId`, `Revision` and `ContractDigest` have private
+constructors and symmetric `parse` / `parseOrThrow` boundaries. Task records,
+prerequisite edges and receipts carry nominal types, not interchangeable strings.
+`RecordId` is the closed sum of task/roadmap/epic identities for mixed results.
+Native record IDs have their kind prefix and preserve the complete case-sensitive
+suffix (`TASK.process.006.workflow-canon-backport`, `TASK.M2.nginx`). They do not
+inherit the legacy adapter's three-digit grammar. Digests/revisions admit exact
+SHA-256 identities. Source archaeology retains raw source strings until admission.
+The architecture gate rejects reopening value-class constructors.
+
 Dependency edges have an internal `Dependency(upstream, observedContract)` shape.
 An observed upstream contract digest is separate from both task identity and the
 whole-ledger revision. Adapters can supply those bindings in a snapshot; the

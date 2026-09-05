@@ -3,16 +3,16 @@ package io.brule.tasking.core
 import kotlin.test.*
 
 class PlanningUniverseTest {
-    private val api = TaskId("TASK.api")
-    private val ui = TaskId("TASK.ui")
-    private val receipt = TaskId("TASK.receipt")
-    private val delivery = RoadmapId("ROADMAP.delivery")
-    private val experience = RoadmapId("ROADMAP.experience")
-    private val checkout = EpicId("EPIC.checkout")
-    private val observability = EpicId("EPIC.observability")
+    private val api = TaskId.parseOrThrow("TASK.api")
+    private val ui = TaskId.parseOrThrow("TASK.ui")
+    private val receipt = TaskId.parseOrThrow("TASK.receipt")
+    private val delivery = RoadmapId.parseOrThrow("ROADMAP.delivery")
+    private val experience = RoadmapId.parseOrThrow("ROADMAP.experience")
+    private val checkout = EpicId.parseOrThrow("EPIC.checkout")
+    private val observability = EpicId.parseOrThrow("EPIC.observability")
 
     private fun task(id: TaskId, requires: List<TaskId> = emptyList(), state: String = "open") = DraftRecord(
-        id.value, id.value, state, "Implement the bounded ${id.value} transition.", requires.map { it.value },
+        id, id.value, state, "Implement the bounded ${id.value} transition.", requires,
         listOf("Persist the result."), listOf("The resulting state survives restart."), emptyList(), obj(),
     )
     private fun universe() = DraftUniverse(
@@ -63,23 +63,26 @@ class PlanningUniverseTest {
 
     @Test fun `filtering a roadmap cannot conceal unmet prerequisites elsewhere or a global cycle`() {
         val a = universe()
-        val cycleElsewhere = listOf(task(TaskId("TASK.x"), listOf(TaskId("TASK.y"))), task(TaskId("TASK.y"), listOf(TaskId("TASK.x"))))
+        val cycleElsewhere = listOf(task(TaskId.parseOrThrow("TASK.x"), listOf(TaskId.parseOrThrow("TASK.y"))), task(TaskId.parseOrThrow("TASK.y"), listOf(TaskId.parseOrThrow("TASK.x"))))
         assertFails { a.copy(tasks = a.tasks + cycleElsewhere).frontier(roadmap = experience) }
-        val completed = a.copy(tasks = a.tasks.map { if (it.id == api.value) it.copy(state = "closed") else it })
+        val completed = a.copy(tasks = a.tasks.map { if (it.id == api) it.copy(state = "closed") else it })
         assertEquals(listOf(ui, receipt), completed.frontier(roadmap = experience))
-        val roadmapAsDependency = a.copy(tasks = a.tasks.map { if (it.id == ui.value) it.copy(requires = listOf(delivery.value)) else it })
-        assertFails { roadmapAsDependency.frontier() }
+        assertFails {
+        val roadmapAsDependency = a.copy(tasks = a.tasks.map { if (it.id == ui) it.copy(requires = listOf(TaskId.parseOrThrow(delivery.value))) else it })
+        roadmapAsDependency.frontier()
+        }
     }
 
     @Test fun `planning records reject dangling duplicate and wrong-kind references`() {
         val a = universe()
         assertTrue(a.copy(roadmaps = a.roadmaps + a.roadmaps.first()).indexProblems().any { "duplicate roadmap" in it })
         assertTrue(a.copy(epics = a.epics + a.epics.first()).indexProblems().any { "duplicate epic" in it })
-        assertTrue(a.copy(roadmaps = listOf(a.roadmaps.first().copy(tasks = listOf(TaskId(checkout.value))))).indexProblems().any { "missing task" in it })
+        assertNull(TaskId.parse(checkout.value))
+        assertTrue(a.copy(roadmaps = listOf(a.roadmaps.first().copy(tasks = listOf(TaskId.parseOrThrow("TASK.missing"))))).indexProblems().any { "missing task" in it })
         assertFails { DraftRoadmap(delivery, "Delivery", "Intent", listOf(api, api)) }
         assertFails { DraftEpic(checkout, "Checkout", "Scope", listOf(api, api)) }
-        assertFails { a.frontier(roadmap = RoadmapId("unknown")) }
-        assertFails { a.frontier(epic = EpicId("unknown")) }
+        assertFails { a.frontier(roadmap = RoadmapId.parseOrThrow("unknown")) }
+        assertFails { a.frontier(epic = EpicId.parseOrThrow("unknown")) }
     }
 
     @Test fun `regrouping preserves task evidence but changes the durable universe snapshot`() {
@@ -101,7 +104,7 @@ class PlanningUniverseTest {
         val provider = object : SemanticProvider {
             override val identity = "test.readiness/v1"
             override val pin = "fixture-provider-1"
-            override fun evaluate(record: DraftRecord) = if (record.id == receipt.value) Contribution(prerequisites = listOf(api.value)) else Contribution()
+            override fun evaluate(record: DraftRecord) = if (record.id == receipt) Contribution(prerequisites = listOf(api)) else Contribution()
             override fun verify(record: DraftRecord, evidence: Map<String, String>) = emptyList<String>()
         }
         val profile = Profile(mapOf(provider.identity to provider.pin))

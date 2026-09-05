@@ -6,8 +6,12 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   check:
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:

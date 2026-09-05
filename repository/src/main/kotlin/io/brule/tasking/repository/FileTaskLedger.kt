@@ -11,8 +11,8 @@ import java.nio.file.StandardOpenOption.*
 class FileTaskLedger(repository: Path) : TaskLedger {
     val root: Path = NativeFiles.repositoryRoot(repository)
     private val journal = ".agents/runtime/transaction.json"
-    private data class Loaded(val snapshot: LedgerSnapshot, val documents: Map<String, DraftDocument>,
-                              val taskPaths: Map<String, String>, val contents: Map<String, String>)
+    private data class Loaded(val snapshot: LedgerSnapshot, val documents: Map<TaskId, DraftDocument>,
+                              val taskPaths: Map<TaskId, String>, val contents: Map<String, String>)
 
     override fun snapshot(): LedgerSnapshot = load().snapshot
 
@@ -48,7 +48,7 @@ class FileTaskLedger(repository: Path) : TaskLedger {
         universe.tasks.filter { it.state == "closed" }.forEach { task ->
             require(receipts.any { DraftLifecycle.addresses(it.receipt, task) }) { "closed task lacks evidence for its current contract: ${task.id}" }
         }
-        val revision = Revision(Canonical.digest("taskctl.file-revision/alpha1", stringMap(files.mapValues { Canonical.sha256(it.value.toByteArray()) })))
+        val revision = Revision.parseOrThrow(Canonical.digest("taskctl.file-revision/alpha1", stringMap(files.mapValues { Canonical.sha256(it.value.toByteArray()) })))
         return Loaded(LedgerSnapshot(config.getValue("repository_id"), revision, universe, receipts),
             taskFiles.values.associateBy { it.record.id }, taskFiles.entries.associate { it.value.record.id to it.key }, files)
     }
@@ -58,17 +58,17 @@ class FileTaskLedger(repository: Path) : TaskLedger {
         if (before.snapshot.revision != expectedRevision) throw RevisionConflict("stale ledger revision; inspect again before applying")
         LedgerTransitions.reduce(before.snapshot, transition)
         val writes = linkedMapOf<String, String>()
-        val changed = mutableListOf<String>()
+        val changed = mutableListOf<RecordId>()
         when (transition) {
             is Transition.AddRecords -> {
                 transition.tasks.forEach { task ->
-                    writes[".agents/tasks/" + NativeFiles.fileName(task.id)] = Json.encode(NativeCodec.task(task)) + "\n"; changed += task.id
+                    writes[".agents/tasks/" + NativeFiles.fileName(task.id.value)] = Json.encode(NativeCodec.task(task)) + "\n"; changed += task.id
                 }
                 transition.roadmaps.forEach { roadmap ->
-                    writes[".agents/roadmaps/" + NativeFiles.fileName(roadmap.id.value)] = Json.encode(PlanningRecordCodec.encode(roadmap)) + "\n"; changed += roadmap.id.value
+                    writes[".agents/roadmaps/" + NativeFiles.fileName(roadmap.id.value)] = Json.encode(PlanningRecordCodec.encode(roadmap)) + "\n"; changed += roadmap.id
                 }
                 transition.epics.forEach { epic ->
-                    writes[".agents/epics/" + NativeFiles.fileName(epic.id.value)] = Json.encode(PlanningRecordCodec.encode(epic)) + "\n"; changed += epic.id.value
+                    writes[".agents/epics/" + NativeFiles.fileName(epic.id.value)] = Json.encode(PlanningRecordCodec.encode(epic)) + "\n"; changed += epic.id
                 }
                 require(writes.keys.none { Files.exists(NativeFiles.locate(root, it)) }) { "record locator collision" }
             }
@@ -87,7 +87,7 @@ class FileTaskLedger(repository: Path) : TaskLedger {
             NativeFiles.atomicWrite(root, journal, Json.encode(operation))
             finish(operation)
         }
-        TransitionResult(load().snapshot.revision, changed.sorted())
+        TransitionResult(load().snapshot.revision, changed.sortedBy { it.value })
     }
 
     fun recover(): Revision = locked {

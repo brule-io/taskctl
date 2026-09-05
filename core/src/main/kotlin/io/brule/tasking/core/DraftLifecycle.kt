@@ -3,8 +3,8 @@ package io.brule.tasking.core
 /** Pins identify semantic behavior, including schema-only validators. Merely
  * installing a provider never activates it. A declared profile does. */
 data class Profile(val pins: Map<String, String> = emptyMap())
-data class Contribution(val prerequisites: List<String> = emptyList(), val blockers: List<String> = emptyList(), val evidenceRequirements: List<String> = emptyList())
-data class Receipt(val taskId: String, val contractDigest: String, val evidence: Map<String, String>)
+data class Contribution(val prerequisites: List<TaskId> = emptyList(), val blockers: List<String> = emptyList(), val evidenceRequirements: List<String> = emptyList())
+data class Receipt(val taskId: TaskId, val contractDigest: ContractDigest, val evidence: Map<String, String>)
 interface SemanticProvider {
     val identity: String
     val pin: String
@@ -16,8 +16,8 @@ interface SemanticProvider {
 fun interface EnvironmentProbe { fun probe(): Map<String, String> }
 
 data class DraftEvaluation(
-    val records: Map<String, DraftRecord>, val dependencies: Map<String, List<String>>,
-    val contributions: Map<String, Contribution>, val problems: List<String>,
+    val records: Map<TaskId, DraftRecord>, val dependencies: Map<TaskId, List<TaskId>>,
+    val contributions: Map<TaskId, Contribution>, val problems: List<String>,
 ) {
     val frontier: List<DraftRecord> get() = if (problems.isNotEmpty()) emptyList() else records.values.filter { task ->
         task.state == "open" && dependencies.getValue(task.id).all { records[it]?.state == "closed" } &&
@@ -26,16 +26,16 @@ data class DraftEvaluation(
 }
 
 object DraftLifecycle {
-    fun contract(record: DraftRecord, profile: Profile = Profile()): String {
+    fun contract(record: DraftRecord, profile: Profile = Profile()): ContractDigest {
         val active = (profile.pins.keys + record.requiredExtensions).sorted()
-        return Canonical.digest("tasking/core-draft-1/semantic-contract/1", obj(
-            "id" to StringValue(record.id), "title" to SemanticMarkdown.value(record.title),
-            "intent" to SemanticMarkdown.value(record.intent), "requires" to strings(record.requires.sorted()),
+        return ContractDigest.parseOrThrow(Canonical.digest("tasking/core-draft-1/semantic-contract/1", obj(
+            "id" to StringValue(record.id.value), "title" to SemanticMarkdown.value(record.title),
+            "intent" to SemanticMarkdown.value(record.intent), "requires" to strings(record.requires.sorted().map { it.value }),
             "requirements" to ArrayValue(record.requirements.map { SemanticMarkdown.value(it) }),
             "acceptance" to ArrayValue(record.acceptance.map { SemanticMarkdown.value(it, acceptance = true) }),
             "required_extensions" to strings(record.requiredExtensions.sorted()), "profile" to stringMap(profile.pins),
             "semantic_extensions" to ObjectValue(active.associateWith { record.extensions.fields[it] ?: NullValue }),
-        ))
+        )))
     }
 
     /** A matching digest identifies the contract a receipt addresses; this
@@ -48,7 +48,7 @@ object DraftLifecycle {
         val errors = mutableListOf<String>()
         if (records.map { it.id }.distinct().size != records.size) return DraftEvaluation(emptyMap(), emptyMap(), emptyMap(), listOf("duplicate task identity"))
         val graph = records.associateBy { it.id }
-        val contributed = mutableMapOf<String, Contribution>()
+        val contributed = mutableMapOf<TaskId, Contribution>()
         if (providers.map { it.identity }.distinct().size != providers.size) return DraftEvaluation(graph, emptyMap(), emptyMap(), listOf("duplicate provider identity"))
         val installed = providers.associateBy { it.identity }
         records.forEach { record ->
@@ -68,9 +68,9 @@ object DraftLifecycle {
         }
         val edges = graph.mapValues { (id, record) -> (record.requires + contributed.getValue(id).prerequisites).distinct() }
         edges.forEach { (id, dependencies) -> dependencies.forEach { if (it !in graph) errors += "$id: missing prerequisite: $it" } }
-        val visiting = mutableSetOf<String>()
-        val visited = mutableSetOf<String>()
-        fun visit(id: String) {
+        val visiting = mutableSetOf<TaskId>()
+        val visited = mutableSetOf<TaskId>()
+        fun visit(id: TaskId) {
             if (id in visited) return
             if (!visiting.add(id)) { errors += "dependency cycle: $id"; return }
             edges[id].orEmpty().filter { it in graph }.forEach(::visit)
@@ -80,7 +80,7 @@ object DraftLifecycle {
         return DraftEvaluation(graph, edges, contributed, errors.distinct().sorted())
     }
 
-    fun closureProblems(records: List<DraftRecord>, taskId: String, receipt: Receipt,
+    fun closureProblems(records: List<DraftRecord>, taskId: TaskId, receipt: Receipt,
                         profile: Profile = Profile(), providers: List<SemanticProvider> = emptyList()): List<String> {
         val evaluation = evaluate(records, profile, providers)
         if (evaluation.problems.any { it == "duplicate task identity" || it == "duplicate provider identity" }) return evaluation.problems

@@ -2,14 +2,14 @@ package io.brule.tasking.core
 
 /** Executable design experiment; explicitly not native v1. */
 data class DraftRecord(
-    val id: String, val title: String, val state: String, val intent: String,
-    val requires: List<String>, val requirements: List<String>, val acceptance: List<String>,
+    val id: TaskId, val title: String, val state: String, val intent: String,
+    val requires: List<TaskId>, val requirements: List<String>, val acceptance: List<String>,
     val requiredExtensions: List<String>, val extensions: ObjectValue,
 ) {
     init {
-        require(id.isNotBlank() && title.isNotBlank() && intent.isNotBlank())
+        require(title.isNotBlank() && intent.isNotBlank())
         require(state in setOf("open", "closed"))
-        require(requires.all { it.isNotBlank() } && requires.distinct().size == requires.size)
+        require(requires.distinct().size == requires.size)
         require(requirements.isNotEmpty() && requirements.all { it.isNotBlank() })
         require(acceptance.isNotEmpty() && acceptance.all { it.isNotBlank() })
     }
@@ -48,7 +48,7 @@ class DraftDocument private constructor(val record: DraftRecord, val source: Str
             val dependencies = texts("requires")
             require(dependencies.distinct().size == dependencies.size)
             val state = text("state").also { require(it in setOf("open", "closed")) }
-            val record = DraftRecord(text("id"), text("title"), state, text("intent"), dependencies,
+            val record = DraftRecord(TaskId.parseOrThrow(text("id")), text("title"), state, text("intent"), dependencies.map(TaskId::parseOrThrow),
                 texts("requirements", true), texts("acceptance", true), required, extensions)
             return DraftDocument(record, source, decoded.rootFields.getValue("title"), decoded.rootFields.getValue("state"))
         }

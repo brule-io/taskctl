@@ -12,7 +12,7 @@ data class DraftUniverse(
         if (tasks.map { it.id }.distinct().size != tasks.size) errors += "duplicate task identity"
         if (roadmaps.map { it.id }.distinct().size != roadmaps.size) errors += "duplicate roadmap identity"
         if (epics.map { it.id }.distinct().size != epics.size) errors += "duplicate epic identity"
-        val taskIds = tasks.map { TaskId(it.id) }.toSet()
+        val taskIds = tasks.map { it.id }.toSet()
         roadmaps.forEach { roadmap -> roadmap.tasks.filter { it !in taskIds }.forEach {
             errors += "${roadmap.id.value}: missing task member: ${it.value}"
         } }
@@ -50,8 +50,8 @@ data class DraftUniverse(
         require(requiredPlanning.isEmpty()) { "required planning providers are not implemented in this draft: $requiredPlanning" }
         val evaluation = DraftLifecycle.evaluate(tasks, profile, providers)
         require(evaluation.problems.isEmpty()) { evaluation.problems.joinToString("\n") }
-        val ready = evaluation.frontier.map { TaskId(it.id) }.toSet()
-        val order = selectedRoadmap?.tasks ?: tasks.map { TaskId(it.id) }.sortedBy { it.value }
+        val ready = evaluation.frontier.map { it.id }.toSet()
+        val order = selectedRoadmap?.tasks ?: tasks.map { it.id }.sortedBy { it.value }
         return order.filter { it in ready && (selectedEpic == null || it in selectedEpic.tasks) }
     }
 
@@ -59,8 +59,8 @@ data class DraftUniverse(
      * Provider-contributed prerequisites are evaluated by frontier/closure. */
     fun prerequisitesOutside(roadmap: RoadmapId): Map<TaskId, List<TaskId>> {
         val members = requireRoadmap(roadmap).tasks.toSet()
-        return tasks.filter { TaskId(it.id) in members }.sortedBy { it.id }.associate { task ->
-            TaskId(task.id) to task.requires.map(::TaskId).filter { it !in members }.sortedBy { it.value }
+        return tasks.filter { it.id in members }.sortedBy { it.id }.associate { task ->
+            task.id to task.requires.filter { it !in members }.sortedBy { it.value }
         }.filterValues { it.isNotEmpty() }
     }
 
@@ -68,7 +68,7 @@ data class DraftUniverse(
                         providers: List<SemanticProvider> = emptyList()): List<String> {
         val planningProblems = indexProblems() + (roadmaps.flatMap { it.requiredExtensions } + epics.flatMap { it.requiredExtensions })
             .distinct().map { "required planning provider unavailable in this draft: $it" }
-        return (planningProblems + DraftLifecycle.closureProblems(tasks, task.value, receipt, profile, providers)).distinct().sorted()
+        return (planningProblems + DraftLifecycle.closureProblems(tasks, task, receipt, profile, providers)).distinct().sorted()
     }
 
     /** Planning membership/order/scope changes invalidate the universe view,
@@ -88,8 +88,8 @@ data class DraftUniverse(
         }
         return Canonical.digest("tasking/universe-draft-1/snapshot/1", obj(
             "tasks" to ArrayValue(tasks.sortedBy { it.id }.map { task -> obj(
-                "id" to StringValue(task.id), "state" to StringValue(task.state),
-                "contract" to StringValue(DraftLifecycle.contract(task, profile)), "extensions" to task.extensions,
+                "id" to StringValue(task.id.value), "state" to StringValue(task.state),
+                "contract" to StringValue(DraftLifecycle.contract(task, profile).value), "extensions" to task.extensions,
             ) }),
             "roadmaps" to ArrayValue(roadmaps.sortedBy { it.id.value }.map(::planning)),
             "epics" to ArrayValue(epics.sortedBy { it.id.value }.map(::planning)),
@@ -99,7 +99,7 @@ data class DraftUniverse(
     private fun requireValidIndexes() { require(indexProblems().isEmpty()) { indexProblems().joinToString("\n") } }
     private fun requireTask(id: TaskId): DraftRecord {
         requireValidIndexes()
-        return tasks.singleOrNull { it.id == id.value } ?: error("unknown task: ${id.value}")
+        return tasks.singleOrNull { it.id == id } ?: error("unknown task: ${id.value}")
     }
     private fun requireRoadmap(id: RoadmapId): DraftRoadmap {
         requireValidIndexes()

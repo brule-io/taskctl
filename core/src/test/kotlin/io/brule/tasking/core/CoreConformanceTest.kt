@@ -56,7 +56,7 @@ class CoreConformanceTest {
             .replace("12345678901234567890.123456789", "1.0")).record
         assertEquals(DraftLifecycle.contract(a), DraftLifecycle.contract(b))
         assertNotEquals(DraftLifecycle.contract(a), DraftLifecycle.contract(a.copy(acceptance = listOf("Unit test passes."))))
-        assertNotEquals(DraftLifecycle.contract(a), DraftLifecycle.contract(a.copy(requires = listOf("TASK.other"))))
+        assertNotEquals(DraftLifecycle.contract(a), DraftLifecycle.contract(a.copy(requires = listOf(TaskId.parseOrThrow("TASK.other")))))
     }
 
     @Test fun `Markdown contracts ignore wrapping and checkbox progress but retain nested criteria and code`() {
@@ -96,8 +96,8 @@ class CoreConformanceTest {
 
     @Test fun `installed providers do not activate until pinned and contributions cannot waive core prerequisites`() {
         val p = provider()
-        val task = record().copy(requires = listOf("TASK.dependency"))
-        val dependency = record().copy(id = "TASK.dependency")
+        val task = record().copy(requires = listOf(TaskId.parseOrThrow("TASK.dependency")))
+        val dependency = record().copy(id = TaskId.parseOrThrow("TASK.dependency"))
         val profile = Profile(mapOf(p.identity to p.pin))
         val receipt = Receipt(task.id, DraftLifecycle.contract(task, profile), mapOf("test" to "passed"))
         val errors = DraftLifecycle.closureProblems(listOf(task, dependency), task.id, receipt, profile, listOf(p))

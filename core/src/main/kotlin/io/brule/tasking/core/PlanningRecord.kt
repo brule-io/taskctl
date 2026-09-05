@@ -1,8 +1,5 @@
 package io.brule.tasking.core
 
-@JvmInline value class TaskId(val value: String) { init { require(value.isNotBlank()) } }
-@JvmInline value class RoadmapId(val value: String) { init { require(value.isNotBlank()) } }
-@JvmInline value class EpicId(val value: String) { init { require(value.isNotBlank()) } }
 
 /** Native planning records are durable indexes, never executable DAG nodes.
  * Neither membership nor presentation order grants execution authority. */
@@ -80,12 +77,12 @@ object PlanningRecordCodec {
         fun texts(key: String): List<String> = if (key !in root.fields) emptyList() else root.requiredArray(key).map {
             (it as? StringValue)?.value ?: error("$key must contain strings")
         }
-        val tasks = texts("tasks").map(::TaskId)
+        val tasks = texts("tasks").map(TaskId::parseOrThrow)
         val required = texts("required_extensions")
         val extensions = (root.fields["extensions"] ?: obj()) as? ObjectValue ?: error("extensions must be an object")
         return when (kind) {
-            "roadmap" -> DraftRoadmap(RoadmapId(root.requiredString("id")), root.requiredString("title"), root.requiredString(contentKey), tasks, required, extensions)
-            "epic" -> DraftEpic(EpicId(root.requiredString("id")), root.requiredString("title"), root.requiredString(contentKey), tasks, required, extensions)
+            "roadmap" -> DraftRoadmap(RoadmapId.parseOrThrow(root.requiredString("id")), root.requiredString("title"), root.requiredString(contentKey), tasks, required, extensions)
+            "epic" -> DraftEpic(EpicId.parseOrThrow(root.requiredString("id")), root.requiredString("title"), root.requiredString(contentKey), tasks, required, extensions)
             else -> error("unknown planning kind")
         }
     }
