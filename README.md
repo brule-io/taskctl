@@ -85,7 +85,7 @@ operation. Private downloads need an
 explicit contents-read credential; no credential is stored in the project.
 
 An agent starts with the generated `AGENTS.md`, `taskctl context`, `doctor`, and
-`frontier`. All native commands accept `--repo PATH` and `--format json`. The local
+`frontier`. Repository commands accept `--repo PATH` and `--format json`. The local
 launcher defaults to its own repository, even when called from another directory.
 `show`, `roadmap` and `epic` expose the model. `seed` and `close` require the revision
 last inspected. `verify` validates supplied evidence without running project code.

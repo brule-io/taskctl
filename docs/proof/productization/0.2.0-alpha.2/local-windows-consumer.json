@@ -1,0 +1,284 @@
+{
+  "platform": "windows-x86_64",
+  "version": "0.2.0-alpha.2",
+  "implementation": "native",
+  "source_revision": "4ea1074fb629b66d3e76d18151fd9273e1ee041a",
+  "archive_sha256": "6a924ad61a03b3db2dfe34d27d77c852328020e50e50c1f0a8add5827a3f4882",
+  "transport": "GitHub published release asset API",
+  "project": "C:\\projects\\taskctl-native-demo",
+  "source_free": true,
+  "consumer_path": "Windows system utilities and PowerShell only; absent JAVA_HOME",
+  "direct_and_wrapper_versions_without_repository_or_cache": true,
+  "offline_without_credentials": true,
+  "read_bytes_and_mtimes_unchanged": true,
+  "existing_alpha1_demo_unchanged": true,
+  "repository_fingerprint": {
+    "AGENTS.md": [
+      "8ccef6fb783089e2c1b02c1de82fe0a57e2eaa75cbd84f16064cd629c33eed54",
+      1788649806640528800
+    ],
+    "taskctl": [
+      "e7f570fbb055ee805a0db1bf7188d7bef2dce8d030857c0e0c4893075f2d49b4",
+      1788649806645029400
+    ],
+    "taskctl.bat": [
+      "6ccc6519d822672e00e30c0e340c520ab702fe6e609ba428a39b28ae7f313e09",
+      1788649806651800700
+    ],
+    "taskctl.ps1": [
+      "01157cec12038ccf8a22cda7084e7d1e4de09a712ffcee2cff66e1cd9b287089",
+      1788649806648161000
+    ],
+    ".agents/.gitignore": [
+      "60259fc73806bd7c95dbe47ba9b5125cb820d5553a7803b28f12c0642bddacbd",
+      1788649806636532200
+    ],
+    ".agents/config.toml": [
+      "3f4ac1d29b89ded30e6f31a1abc332ade5fb244794871bcc00d81a8e2e58e50d",
+      1788649806626014700
+    ],
+    ".agents/policy.toml": [
+      "bed3a0fba02da425edd187f7cfe0fef56ad149772ea861206e3ad1b958dd5f58",
+      1788649806631014600
+    ],
+    ".taskctl/.gitignore": [
+      "ab914be8fee508fcdea4f4bd0264e6b15a54830d3ed22126c87b7b1e961f83dd",
+      1788649806620497900
+    ],
+    ".taskctl/init-receipt.json": [
+      "99c64c13415a5a75bfa3328492e6f4da902876b740af157d1d706a0360a9c583",
+      1788649806659449600
+    ],
+    ".taskctl/toolchain.lock": [
+      "f2f079acb76ee2fae6c007c332266f7a7f373545b641a93a270bf3753c925cd3",
+      1788649806617497300
+    ]
+  },
+  "results": {
+    "direct_version_long": "taskctl 0.2.0-alpha.2\n",
+    "direct_version_short": "taskctl 0.2.0-alpha.2\n",
+    "direct_version_subcommand": "taskctl 0.2.0-alpha.2\n",
+    "direct_version_json": {
+      "api": "taskctl.cli/alpha1",
+      "command": "version",
+      "result": {
+        "tool": "taskctl",
+        "version": "0.2.0-alpha.2"
+      }
+    },
+    "init": {
+      "api": "taskctl.cli/alpha1",
+      "command": "init",
+      "repository": "C:\\projects\\taskctl-native-demo",
+      "result": {
+        "contract": "taskctl.init/alpha1",
+        "repository_id": "brule.native-demo",
+        "plan_digest": "sha256:9654b34f3cede760731e0d611e9e2c8c03a46cfa5a7dd60a8329087fd142d9a0",
+        "files": [
+          ".agents/.gitignore",
+          ".agents/config.toml",
+          ".agents/policy.toml",
+          ".taskctl/.gitignore",
+          ".taskctl/toolchain.lock",
+          "AGENTS.md",
+          "taskctl",
+          "taskctl.bat",
+          "taskctl.ps1"
+        ]
+      }
+    },
+    "cold_doctor": {
+      "api": "taskctl.cli/alpha1",
+      "command": "doctor",
+      "repository": "C:\\projects\\taskctl-native-demo",
+      "result": {
+        "repository_id": "brule.native-demo",
+        "protocol": "taskctl.native/alpha1",
+        "profile": "minimal/alpha1",
+        "revision": "sha256:32534564de68277ee4793b03950852bfe891a0ad01383b9f79246b57fba75cfe",
+        "tasks": 0,
+        "roadmaps": 0,
+        "epics": 0,
+        "required_capabilities_unavailable": [],
+        "instructions": "Read AGENTS.md. Use frontier, show, roadmap and epic; mutations require the inspected revision."
+      }
+    },
+    "offline_info": {
+      "api": "taskctl.cli/alpha1",
+      "command": "info",
+      "repository": "C:\\projects\\taskctl-native-demo",
+      "result": {
+        "tool": "taskctl",
+        "version": "0.2.0-alpha.2",
+        "implementation": "native",
+        "java_runtime": "25.0.4.1+1-jvmci-25.3-b22",
+        "vm": "Substrate VM",
+        "native_v1": "not-frozen",
+        "build": {
+          "version": "0.2.0-alpha.2",
+          "platform": "windows-x86_64",
+          "implementation": "native",
+          "source_revision": "4ea1074fb629b66d3e76d18151fd9273e1ee041a",
+          "source_dirty": false,
+          "native_v1": "not-frozen",
+          "launcher_contract": "taskctl.launcher/1",
+          "entrypoint": "taskctl.exe",
+          "build_identity": {
+            "implementation": "native",
+            "source_revision": "4ea1074fb629b66d3e76d18151fd9273e1ee041a",
+            "source_dirty": false,
+            "kotlin": "2.4.10",
+            "gradle": "9.6.0",
+            "libraries": {
+              "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+              "cli-0.2.0-alpha.2.jar": "72341161bcf62d35237fe446b7a9d054c497b5b27a220ff6070e72e16da1fb7f",
+              "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+              "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+              "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+              "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+              "compatibility-0.2.0-alpha.2.jar": "032fd6437484eab5a80595457f071439114c31215881942c187330c848dec762",
+              "core-0.2.0-alpha.2.jar": "2eea68e605ec8e1c76ef106509ee0c56eb97f1902d4fa3bdbfb3edd593a6ed0b",
+              "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+              "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+              "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+              "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+              "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+              "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+              "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+              "repository-0.2.0-alpha.2.jar": "7d4def68cd3caf32c2d8ce50959fb3ca7775dc58a33059ad9a98c3b442961664",
+              "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+            },
+            "graalvm": {
+              "distribution": "GraalVM Community",
+              "release": "graal-25.3.4.1",
+              "toolchain": {
+                "url": "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.3.4.1/graalvm-community-jdk-25i3-25.0.4.1_windows-x64_bin.zip",
+                "sha256": "770a0d78aba4c19bd40ee410ec82afbbee8e33fdd762e509006ac64e1007b4ce"
+              },
+              "native_image": "native-image 25.0.4.1 2026-08-18\nGraalVM Runtime Environment GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1-jvmci-25.3-b22)\nSubstrate VM GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1, serial gc, compressed references)",
+              "native_build_tools": "0.11.5",
+              "arguments": [
+                "--no-fallback",
+                "-march=compatibility",
+                "-J-Xmx5g"
+              ],
+              "resources": [
+                "VERSION"
+              ],
+              "executable_sha256": "4a046c9887d02556cb221a34ff87814aef1aa6034606452c0a835e2405fed74c"
+            }
+          }
+        }
+      }
+    },
+    "offline_frontier": {
+      "api": "taskctl.cli/alpha1",
+      "command": "frontier",
+      "repository": "C:\\projects\\taskctl-native-demo",
+      "result": {
+        "revision": "sha256:32534564de68277ee4793b03950852bfe891a0ad01383b9f79246b57fba75cfe",
+        "tasks": []
+      }
+    },
+    "offline_doctor": {
+      "api": "taskctl.cli/alpha1",
+      "command": "doctor",
+      "repository": "C:\\projects\\taskctl-native-demo",
+      "result": {
+        "repository_id": "brule.native-demo",
+        "protocol": "taskctl.native/alpha1",
+        "profile": "minimal/alpha1",
+        "revision": "sha256:32534564de68277ee4793b03950852bfe891a0ad01383b9f79246b57fba75cfe",
+        "tasks": 0,
+        "roadmaps": 0,
+        "epics": 0,
+        "required_capabilities_unavailable": [],
+        "instructions": "Read AGENTS.md. Use frontier, show, roadmap and epic; mutations require the inspected revision."
+      }
+    },
+    "default_cache_doctor": {
+      "api": "taskctl.cli/alpha1",
+      "command": "doctor",
+      "repository": "C:\\projects\\taskctl-native-demo",
+      "result": {
+        "repository_id": "brule.native-demo",
+        "protocol": "taskctl.native/alpha1",
+        "profile": "minimal/alpha1",
+        "revision": "sha256:32534564de68277ee4793b03950852bfe891a0ad01383b9f79246b57fba75cfe",
+        "tasks": 0,
+        "roadmaps": 0,
+        "epics": 0,
+        "required_capabilities_unavailable": [],
+        "instructions": "Read AGENTS.md. Use frontier, show, roadmap and epic; mutations require the inspected revision."
+      }
+    },
+    "default_cache_offline_info": {
+      "api": "taskctl.cli/alpha1",
+      "command": "info",
+      "repository": "C:\\projects\\taskctl-native-demo",
+      "result": {
+        "tool": "taskctl",
+        "version": "0.2.0-alpha.2",
+        "implementation": "native",
+        "java_runtime": "25.0.4.1+1-jvmci-25.3-b22",
+        "vm": "Substrate VM",
+        "native_v1": "not-frozen",
+        "build": {
+          "version": "0.2.0-alpha.2",
+          "platform": "windows-x86_64",
+          "implementation": "native",
+          "source_revision": "4ea1074fb629b66d3e76d18151fd9273e1ee041a",
+          "source_dirty": false,
+          "native_v1": "not-frozen",
+          "launcher_contract": "taskctl.launcher/1",
+          "entrypoint": "taskctl.exe",
+          "build_identity": {
+            "implementation": "native",
+            "source_revision": "4ea1074fb629b66d3e76d18151fd9273e1ee041a",
+            "source_dirty": false,
+            "kotlin": "2.4.10",
+            "gradle": "9.6.0",
+            "libraries": {
+              "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+              "cli-0.2.0-alpha.2.jar": "72341161bcf62d35237fe446b7a9d054c497b5b27a220ff6070e72e16da1fb7f",
+              "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+              "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+              "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+              "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+              "compatibility-0.2.0-alpha.2.jar": "032fd6437484eab5a80595457f071439114c31215881942c187330c848dec762",
+              "core-0.2.0-alpha.2.jar": "2eea68e605ec8e1c76ef106509ee0c56eb97f1902d4fa3bdbfb3edd593a6ed0b",
+              "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+              "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+              "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+              "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+              "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+              "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+              "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+              "repository-0.2.0-alpha.2.jar": "7d4def68cd3caf32c2d8ce50959fb3ca7775dc58a33059ad9a98c3b442961664",
+              "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+            },
+            "graalvm": {
+              "distribution": "GraalVM Community",
+              "release": "graal-25.3.4.1",
+              "toolchain": {
+                "url": "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.3.4.1/graalvm-community-jdk-25i3-25.0.4.1_windows-x64_bin.zip",
+                "sha256": "770a0d78aba4c19bd40ee410ec82afbbee8e33fdd762e509006ac64e1007b4ce"
+              },
+              "native_image": "native-image 25.0.4.1 2026-08-18\nGraalVM Runtime Environment GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1-jvmci-25.3-b22)\nSubstrate VM GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1, serial gc, compressed references)",
+              "native_build_tools": "0.11.5",
+              "arguments": [
+                "--no-fallback",
+                "-march=compatibility",
+                "-J-Xmx5g"
+              ],
+              "resources": [
+                "VERSION"
+              ],
+              "executable_sha256": "4a046c9887d02556cb221a34ff87814aef1aa6034606452c0a835e2405fed74c"
+            }
+          }
+        }
+      }
+    }
+  }
+}

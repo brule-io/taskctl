@@ -117,3 +117,37 @@ publisher now obtains the draft's API URL through `gh release view`. Assembly
 resumed against the same uploaded assets; no archive was replaced or rebuilt.
 This publication-tool correction and the final receipts follow the release's
 source commit and do not change its runtime artifact identities.
+
+## Native executable delivery: 0.2.0-alpha.2
+
+[v0.2.0-alpha.2](https://github.com/brule-io/taskctl/releases/tag/v0.2.0-alpha.2)
+was published as an immutable private prerelease on 2026-09-05 UTC, from
+`4ea1074fb629b66d3e76d18151fd9273e1ee041a`. It adds conventional version aliases
+and machine-readable version output without repository discovery or acquisition.
+`info` retains its diagnostic envelope and reports implementation/runtime/build identity.
+
+All three targets now have GraalVM native executables and bundled JVM reference
+archives. The common wrapper verifies and executes the artifact's declared entry
+point. The default release lock selects native; a separate lock selects JVM.
+Protocol semantics are unchanged. Native compilation required only an exact
+VERSION resource inclusion, with no broad reflection configuration. Process parity
+exposed a Windows encoding difference, resolved by explicit UTF-8 output.
+
+[Source CI](https://github.com/brule-io/taskctl/actions/runs/33997015520) passed
+82 source checks, the same 79 behavioral tests on JVM and native, 49 process
+comparisons and 21 bootstrap checks per implementation on every platform.
+[Release transport CI](https://github.com/brule-io/taskctl/actions/runs/33997798618)
+repeated the 21 checks per implementation and 49 process comparisons against the
+actual release downloads on all three platforms. A fresh source-free Windows demo
+also passed direct native execution, version without acquisition, cold download,
+credential-free offline reuse and read byte/mtime preservation.
+
+All 22 asset digests and the source tag were verified after publication. GitHub's
+signed immutable release attestation binds the archives, exact GraalVM/build
+provenance statements, parity evidence and locks. This is publication attestation;
+no separate CI OIDC build signature or SLSA level is claimed. The complete
+[alpha.2 proof receipt](proof/productization/0.2.0-alpha.2/README.md) records the
+measurements, identities, verification result and runnable local demo.
+
+Native protocol v1 remains unfrozen; M5–M7 and the license decision remain pending.
+No existing consumer or product repository was migrated by this delivery.

@@ -1,0 +1,257 @@
+{
+  "contract": "taskctl.productization-proof/alpha2",
+  "recorded_at": "2026-09-05T23:10:24.388874+00:00",
+  "version": "0.2.0-alpha.2",
+  "source_revision": "4ea1074fb629b66d3e76d18151fd9273e1ee041a",
+  "tag_commit": "4ea1074fb629b66d3e76d18151fd9273e1ee041a",
+  "visibility": "private",
+  "native_v1": "not-frozen",
+  "release": {
+    "id": 383399564,
+    "html_url": "https://github.com/brule-io/taskctl/releases/tag/v0.2.0-alpha.2",
+    "tag_name": "v0.2.0-alpha.2",
+    "published_at": "2026-09-05T23:09:56Z",
+    "draft": false,
+    "prerelease": true,
+    "immutable": true
+  },
+  "assets": [
+    {
+      "id": 546412500,
+      "name": "corpus-linux-x86_64.json",
+      "size": 10589,
+      "digest": "sha256:6ccff503bcf6bf2dbe113a051f70f11e17db33f56bc0ad471234aba7e40e665a",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412500"
+    },
+    {
+      "id": 546412521,
+      "name": "corpus-macos-aarch64.json",
+      "size": 10590,
+      "digest": "sha256:fcf79de4a92bb376c6c12d3f0cea714a9d568c4c3b7168e6ca0f92b5f418fbba",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412521"
+    },
+    {
+      "id": 546412489,
+      "name": "corpus-windows-x86_64.json",
+      "size": 10591,
+      "digest": "sha256:4427a848823cc2928ccec5881a1b7e542124c53778f4c0fe3c507ba7ab3fc8f6",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412489"
+    },
+    {
+      "id": 546412498,
+      "name": "parity-linux-x86_64.json",
+      "size": 15676,
+      "digest": "sha256:92e140263a9129b8f93c4d8ab3f50078dab83d87f14b3547107fb83c26507e88",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412498"
+    },
+    {
+      "id": 546412504,
+      "name": "parity-macos-aarch64.json",
+      "size": 15679,
+      "digest": "sha256:8f420fecb6c7fd79b81af49ff90d2c791683fcfeff1d4f0fd77b9b7a7deb0163",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412504"
+    },
+    {
+      "id": 546412478,
+      "name": "parity-windows-x86_64.json",
+      "size": 15666,
+      "digest": "sha256:931e57d31e711e55b78b05dcf0cee7da173ae12b1f530e9da2113e544764e58a",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412478"
+    },
+    {
+      "id": 546413256,
+      "name": "release-manifest.json",
+      "size": 20679,
+      "digest": "sha256:cff05785fcaf6a8a38107d159f445f96ea9f0544b948abca875fedf73c06967a",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546413256"
+    },
+    {
+      "id": 546413258,
+      "name": "SHA256SUMS",
+      "size": 2240,
+      "digest": "sha256:1d3c42aac87ecfc329805e9089435536393325bf9f3eee11e2712ebc26eb8ca1",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546413258"
+    },
+    {
+      "id": 546411924,
+      "name": "taskctl-0.2.0-alpha.2-jvm-linux-x86_64.tar.gz",
+      "size": 27954810,
+      "digest": "sha256:d81ed0e9458d7cec3ffc4b51eaea9c2cccef5833c31e5cfd0abbe16ca7aaa6b7",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546411924"
+    },
+    {
+      "id": 546412439,
+      "name": "taskctl-0.2.0-alpha.2-jvm-linux-x86_64.tar.gz.intoto.json",
+      "size": 3234,
+      "digest": "sha256:cf1555f45489c5964855cddc4027d724b97c65d49249abe26d340b67c20ed39e",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412439"
+    },
+    {
+      "id": 546412417,
+      "name": "taskctl-0.2.0-alpha.2-jvm-macos-aarch64.tar.gz",
+      "size": 24317925,
+      "digest": "sha256:1d8fc12c320e2a5349625587efae6d3604dd458e31644f2dfee8df5a6762ac25",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412417"
+    },
+    {
+      "id": 546412452,
+      "name": "taskctl-0.2.0-alpha.2-jvm-macos-aarch64.tar.gz.intoto.json",
+      "size": 3236,
+      "digest": "sha256:0c224a0a554d5920012aa0446a5ee8494cf68ef5f5ffed5596ef2118b5265216",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412452"
+    },
+    {
+      "id": 546411927,
+      "name": "taskctl-0.2.0-alpha.2-jvm-windows-x86_64.zip",
+      "size": 25889805,
+      "digest": "sha256:620a768f67ca018f5e81997a394b49f08a031e756553ebb7e27bda71a9c31775",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546411927"
+    },
+    {
+      "id": 546412426,
+      "name": "taskctl-0.2.0-alpha.2-jvm-windows-x86_64.zip.intoto.json",
+      "size": 3235,
+      "digest": "sha256:939352b1662d76f85b07bbd2594c507e0e19297109aa8a37b72ad7c6a16ba6d5",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412426"
+    },
+    {
+      "id": 546411919,
+      "name": "taskctl-0.2.0-alpha.2-native-linux-x86_64.tar.gz",
+      "size": 8062629,
+      "digest": "sha256:03db1f5b4fdc23dfe3a3014bd860fab1f73ca60737b77c6e3adaae0b05d1d946",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546411919"
+    },
+    {
+      "id": 546412437,
+      "name": "taskctl-0.2.0-alpha.2-native-linux-x86_64.tar.gz.intoto.json",
+      "size": 3998,
+      "digest": "sha256:4bc3c36227cbc71fa925c4dc4a9f0175d068c764018aefbd8d46f132e0afc794",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412437"
+    },
+    {
+      "id": 546411918,
+      "name": "taskctl-0.2.0-alpha.2-native-macos-aarch64.tar.gz",
+      "size": 8060875,
+      "digest": "sha256:81630f35f3a7db192050806b98496ebdd4d6bd067e61ec4ab183370419b7dd25",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546411918"
+    },
+    {
+      "id": 546412445,
+      "name": "taskctl-0.2.0-alpha.2-native-macos-aarch64.tar.gz.intoto.json",
+      "size": 4004,
+      "digest": "sha256:d1d16c46e556357f16a05bacd638a6323300dd84a2c07002f8f78977f4a02a94",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412445"
+    },
+    {
+      "id": 546411923,
+      "name": "taskctl-0.2.0-alpha.2-native-windows-x86_64.zip",
+      "size": 8031817,
+      "digest": "sha256:6a924ad61a03b3db2dfe34d27d77c852328020e50e50c1f0a8add5827a3f4882",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546411923"
+    },
+    {
+      "id": 546412425,
+      "name": "taskctl-0.2.0-alpha.2-native-windows-x86_64.zip.intoto.json",
+      "size": 3998,
+      "digest": "sha256:2af54f86794902b56e2c6a25bd5ce0e0d2703b19295601444b52ce4ff49c4423",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546412425"
+    },
+    {
+      "id": 546413257,
+      "name": "toolchain-jvm.lock",
+      "size": 584,
+      "digest": "sha256:f761346000b90e11d26f0584263ef2f4f9fe51c79fda93bbcb23814c1362a2c4",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546413257"
+    },
+    {
+      "id": 546413255,
+      "name": "toolchain.lock",
+      "size": 584,
+      "digest": "sha256:f2f079acb76ee2fae6c007c332266f7a7f373545b641a93a270bf3753c925cd3",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546413255"
+    }
+  ],
+  "source_ci": {
+    "conclusion": "success",
+    "databaseId": 33997015520,
+    "headSha": "4ea1074fb629b66d3e76d18151fd9273e1ee041a",
+    "jobs": [
+      {
+        "name": "check (macos-14)",
+        "conclusion": "success",
+        "url": "https://github.com/brule-io/taskctl/actions/runs/33997015520/job/101389329484"
+      },
+      {
+        "name": "check (windows-2025)",
+        "conclusion": "success",
+        "url": "https://github.com/brule-io/taskctl/actions/runs/33997015520/job/101389329553"
+      },
+      {
+        "name": "check (ubuntu-24.04)",
+        "conclusion": "success",
+        "url": "https://github.com/brule-io/taskctl/actions/runs/33997015520/job/101389329613"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/brule-io/taskctl/actions/runs/33997015520"
+  },
+  "release_smoke": {
+    "conclusion": "success",
+    "databaseId": 33997798618,
+    "headSha": "4ea1074fb629b66d3e76d18151fd9273e1ee041a",
+    "jobs": [
+      {
+        "name": "consumer (macos-14, macos-aarch64, tar.gz)",
+        "conclusion": "success",
+        "url": "https://github.com/brule-io/taskctl/actions/runs/33997798618/job/101391261346"
+      },
+      {
+        "name": "consumer (windows-2025, windows-x86_64, zip)",
+        "conclusion": "success",
+        "url": "https://github.com/brule-io/taskctl/actions/runs/33997798618/job/101391261452"
+      },
+      {
+        "name": "consumer (ubuntu-24.04, linux-x86_64, tar.gz)",
+        "conclusion": "success",
+        "url": "https://github.com/brule-io/taskctl/actions/runs/33997798618/job/101391261464"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/brule-io/taskctl/actions/runs/33997798618"
+  },
+  "measurements": {
+    "windows-x86_64": {
+      "source_checks": 82,
+      "behavioral_tests_per_implementation": 79,
+      "process_comparisons": 49,
+      "bootstrap_checks_per_implementation": 21
+    },
+    "linux-x86_64": {
+      "source_checks": 82,
+      "behavioral_tests_per_implementation": 79,
+      "process_comparisons": 49,
+      "bootstrap_checks_per_implementation": 21
+    },
+    "macos-aarch64": {
+      "source_checks": 82,
+      "behavioral_tests_per_implementation": 79,
+      "process_comparisons": 49,
+      "bootstrap_checks_per_implementation": 21
+    }
+  },
+  "preferred_implementation": "native",
+  "reference_implementation": "jvm",
+  "attestation": {
+    "command": "gh release verify v0.2.0-alpha.2 --repo brule-io/taskctl --format json",
+    "result": "verified",
+    "all_22_asset_digests_and_source_tag_match": true,
+    "boundary": "GitHub signature attests immutable publication of build provenance and parity assets; no independent CI OIDC build signature or SLSA level is claimed."
+  },
+  "limits": [
+    "Native protocol v1 is not frozen.",
+    "Project software license remains an owner decision.",
+    "No existing product repository was migrated.",
+    "Byte-identical repackaging is proven; independent native compiler reproducibility is not claimed.",
+    "Linux tested on Ubuntu 24.04; architecture does not imply other libc or older OS support."
+  ]
+}
