@@ -63,4 +63,3 @@ value class ContractDigest private constructor(val value: String) {
         fun parseOrThrow(value: String): ContractDigest = parse(value) ?: error("Invalid ContractDigest: $value")
     }
 }
-

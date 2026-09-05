@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
             return
         }
         if (args.contentEquals(arrayOf("info")) || args.contentEquals(arrayOf("--adapter", FantastiktAdapter.ID, "info"))) {
-            println(Json.encode(stringMap(mapOf("tool" to "taskctl", "version" to FantastiktAdapter.VERSION,
+            println(Json.encode(stringMap(mapOf("tool" to "taskctl", "version" to NativeCommands.version, "adapter_version" to FantastiktAdapter.VERSION,
                 "adapter" to FantastiktAdapter.ID, "donor_revision" to FantastiktAdapter.SOURCE_REVISION,
                 "native_v1" to "not-frozen", "java" to System.getProperty("java.version")))))
             return

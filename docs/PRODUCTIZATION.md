@@ -45,3 +45,45 @@ The initial source baseline passes 73 tests locally. CI builds all three target
 platforms. Its first run exposed the provider's exact JDK version spelling
 (`21.0.11+10.0.LTS`); the pin was corrected without changing runtime selection.
 No standalone release is claimed at M1. Source command: `./gradlew check`.
+
+## Native alpha delivery
+
+M2 packages Windows x86_64, Linux x86_64 and macOS arm64 with a bundled Java 21
+runtime. CI verifies archive-byte reproducibility, digest-checked cold acquisition,
+offline reuse, cached-file integrity, version mismatch rejection and a restricted
+consumer PATH. Real GitHub transport is a separate release-smoke workflow before
+immutable publication. Exact release asset identities are recorded in the release
+manifest and committed proof receipt after publication.
+
+M3 provides native `init`, `doctor`, `context`, `snapshot`, `frontier`, `show`,
+`roadmap`, `epic`, `seed`, `verify`, `close` and `recover`. Run the extracted release:
+
+```text
+taskctl init --repo ./new-project --id brule.new-project --toolchain ./toolchain.lock
+cd new-project
+./taskctl doctor
+./taskctl frontier
+```
+
+Windows uses the release/generated `taskctl.ps1`. The packaged test actually
+generates a repository, uses only its local interface from an unrelated cwd,
+reconstructs a checkout without ignored runtime files, admits a supplied plan,
+checks revision conflicts, verifies/records assertion evidence, closes a task and
+observes the dependent frontier. Existing source is refused by this greenfield
+command. Source bytes and mtimes remain unchanged during reads.
+
+M4's [reference generator](../examples/generator/README.md) invokes the same
+versioned initializer, optionally passes a seed, then adds only its own source
+skeleton. The packaged tests exercise its output. It has no forked templates or
+tasking implementation. [The bootstrap contract](BOOTSTRAP.md) documents composition.
+
+The native storage seam is `TaskLedger` / `FileTaskLedger`, with one core reducer.
+Revision-aware dependency observations are supported internally without fabricating
+bindings for existing identity-only edges. Nominal IDs have private constructors,
+validated parsing and a CI guard. Native task/prerequisite/receipt state carries
+typed IDs and contract digests. The hardened source build passes 82 tests.
+
+Unresolved owner decision: project software license (none selected). Native v1
+is not frozen. Group completion/archival, runtime capability providers, native
+version migration and M5–M7 adoption/import remain subsequent work. No actual
+consumer repository has been adopted or migrated.
