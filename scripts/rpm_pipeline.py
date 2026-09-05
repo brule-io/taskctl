@@ -52,7 +52,7 @@ def prepare(inputs,work,release):
             bundle.addfile(info,io.BytesIO(data))
     (sources/'taskctl-rpm-sources.sha256').write_text(''.join(f'{sha(p)}  {p.name}\n' for p in (sources/archive.name,support)),encoding='utf-8',newline='\n')
     rpm_version=version.replace('-','~')
-    spec=(ROOT/'packaging/rpm/taskctl.spec.in').read_text(encoding='utf-8').replace('@UPSTREAM_VERSION@',version).replace('@RPM_VERSION@',rpm_version)
+    spec=(ROOT/'packaging/rpm/taskctl.spec.in').read_text(encoding='utf-8').replace('@UPSTREAM_VERSION@',version).replace('@RPM_VERSION@',rpm_version).replace('@RPM_RELEASE@',str(release))
     (work/'taskctl.spec').write_text(spec,encoding='utf-8',newline='\n')
     packaging_revision=command(['git','rev-parse','HEAD'])
     packaging_dirty=bool(command(['git','status','--porcelain']))

@@ -18,6 +18,10 @@ def main():
     assert meta['contract']=='taskctl.rpm/alpha1' and not meta['packaging_dirty'] and not meta['compiler_invoked']
     proof=meta['test']; assert proof['passed'] and proof['canonical_executable_unchanged'] and proof['network_mode']=='none'
     assert proof['canonical_executable_sha256']==meta['graalvm']['executable_sha256']
+    assert proof['rpm_sha256']==next(a['sha256'] for a in meta['artifacts'] if a['format']=='binary-rpm')
+    build=json.loads((root/'rpm-build.json').read_text(encoding='utf-8'))
+    assert build['artifacts']==meta['artifacts'] and not build['lint']['unexpected']
+    assert all(build['source_rpm_rebuild'].values())
     assert all(t['internet_socket_calls']==0 for t in proof['transaction_traces'].values())
     run=json.loads(gh('run','view',str(args.run),'--repo',args.repository,'--json','status,conclusion,headSha,url,workflowName'))
     assert run['status']=='completed' and run['conclusion']=='success' and run['headSha']==meta['packaging_revision']

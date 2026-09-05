@@ -96,6 +96,7 @@ last inspected. `verify` validates supplied evidence without running project cod
 - [Extensions and provider boundaries](docs/EXTENSIONS.md)
 - [Releases, pins, versioning and migrations](docs/VERSIONING.md)
 - [Native Image, JVM parity and provenance](docs/NATIVE-IMAGE.md)
+- [Optional Fedora RPM and global versus pinned execution](docs/FEDORA-RPM.md)
 - [Milestone results and current limits](docs/PRODUCTIZATION.md)
 - [Bootstrap composition contract](docs/BOOTSTRAP.md) and [reference generator](examples/generator/README.md)
 - [Planning-model evidence](docs/PLANNING-MODEL.md)

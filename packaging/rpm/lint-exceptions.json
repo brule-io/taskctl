@@ -1,4 +1,14 @@
 {
-  "invalid-license": "The owner has not selected a project license. The explicit LicenseRef-taskctl-license-pending tag grants none; this is a private upstream package, not a Fedora inclusion candidate.",
-  "unstripped-binary-or-object": "Stripping would change the canonical parity-tested native executable. RPM payload identity is checked byte-for-byte instead."
+  "invalid-license": {
+    "pattern": "taskctl\\.(?:x86_64|src): W: invalid-license LicenseRef-taskctl-license-pending",
+    "reason": "The owner has not selected a project license. This explicit pending tag grants none; this is a private upstream package, not a Fedora inclusion candidate."
+  },
+  "invalid-url": {
+    "pattern": "taskctl\\.spec: W: invalid-url Source1: taskctl-rpm-support\\.tar\\.gz",
+    "reason": "Source1 is locally generated packaging support, not a remote download. Its exact checksum and bytes are included in the self-contained source RPM."
+  },
+  "potential-bashisms": {
+    "pattern": "taskctl\\.x86_64: W: potential-bashisms /usr/share/taskctl/bootstrap/taskctl",
+    "reason": "checkbashisms mistakes calls to the wrapper's own POSIX hash() function for the Bash hash builtin. Preserve the canonical template; its SHA adapter and offline execution are covered by the existing wrapper corpus and Fedora test."
+  }
 }

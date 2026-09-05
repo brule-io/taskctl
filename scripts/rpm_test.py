@@ -1,5 +1,5 @@
 """Clean Fedora install/upgrade/erase with no network and protected project state."""
-import hashlib, json, os, re, shutil, subprocess, tarfile
+import hashlib, json, os, pwd, re, shutil, subprocess, tarfile
 from pathlib import Path
 
 root=Path('/work'); output=root/'output'; output.mkdir(exist_ok=True)
@@ -10,8 +10,8 @@ expected_binary=meta['graalvm']['executable_sha256']
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
 def fingerprint(path):
     return {p.relative_to(path).as_posix():[sha(p),p.stat().st_mtime_ns,p.stat().st_mode & 0o7777] for p in path.rglob('*') if p.is_file()}
-def run(args,code=0,cwd=root,env=None):
-    p=subprocess.run([str(a) for a in args],cwd=cwd,env=env,capture_output=True,text=True,encoding='utf-8',timeout=120)
+def run(args,code=0,cwd=root,env=None,**identity):
+    p=subprocess.run([str(a) for a in args],cwd=cwd,env=env,capture_output=True,text=True,encoding='utf-8',timeout=120,**identity)
     assert p.returncode==code,(args,p.returncode,p.stdout,p.stderr)
     return p.stdout
 checks=[]; observations={}; traces={}
@@ -28,7 +28,8 @@ for name in ('.agents/keep.yaml','.taskctl/toolchain.lock','.git/config','src/pr
 run(['chown','-R','taskctl-test:taskctl-test',home])
 env=os.environ.copy(); env.update(HOME=str(home),TASKCTL_OFFLINE='1',JAVA_HOME='/absent-java',PATH='/usr/bin:/bin')
 for name in ('GH_TOKEN','GITHUB_TOKEN','TASKCTL_GITHUB_TOKEN','TASKCTL_REPOSITORY','TASKCTL_DISTRIBUTION'): env.pop(name,None)
-def user(args,cwd=home): return run(['runuser','-u','taskctl-test','--',*args],cwd=cwd,env=env)
+account=pwd.getpwnam('taskctl-test')
+def user(args,cwd=home): return run(args,cwd=cwd,env=env,user=account.pw_uid,group=account.pw_gid,extra_groups=[])
 def transaction(action,path,label):
     before=fingerprint(home)
     trace=output/(label+'-network.trace')
@@ -43,6 +44,15 @@ def transaction(action,path,label):
 transaction('install',packages/'upgrade-baseline.rpm','install')
 assert shutil.which('taskctl')=='/usr/bin/taskctl'
 assert sha(Path('/usr/libexec/taskctl/taskctl'))==expected_binary
+canonical_files={}
+with tarfile.open(root/meta['upstream']['file']) as archive:
+    destinations={'taskctl':'/usr/libexec/taskctl/taskctl','NOTICE.md':'/usr/share/licenses/taskctl/NOTICE.md',
+        'THIRD-PARTY-NOTICES.zip':'/usr/share/licenses/taskctl/THIRD-PARTY-NOTICES.zip'}
+    destinations.update({name:'/usr/share/taskctl/'+name for name in ('bootstrap/taskctl','bootstrap/taskctl.ps1','bootstrap/taskctl.bat','distribution.json','distribution.properties')})
+    for original,destination in destinations.items():
+        digest=hashlib.sha256(archive.extractfile(original).read()).hexdigest()
+        assert sha(Path(destination))==digest,destination
+        canonical_files[destination]=digest
 run(['rpm','-V','taskctl'])
 checked('installed canonical executable digest and RPM file verification')
 before=fingerprint(home)
@@ -104,7 +114,7 @@ assert json.loads(user(['./taskctl','frontier','--format','json'],fresh))==obser
 assert fingerprint(projects)==before
 checked('erase removes only package files; cached repository wrapper still operates')
 proof=dict(contract='taskctl.rpm-test/alpha1',passed=True,platform='fedora-44-x86_64',network_mode='none',
-    canonical_executable_unchanged=True,canonical_executable_sha256=expected_binary,upstream_archive_sha256=meta['upstream']['sha256'],
+    canonical_executable_unchanged=True,canonical_files=canonical_files,canonical_executable_sha256=expected_binary,upstream_archive_sha256=meta['upstream']['sha256'],
     rpm_sha256=sha(binary),upgrade=dict(from_evr=baseline,to_evr=upgraded,kind='packaging-release upgrade of the same canonical executable'),
     unprivileged_commands=True,checks=checks,observations=observations,transaction_traces=traces,
     os_release=Path('/etc/os-release').read_text(),dnf=run(['rpm','-q','dnf5']),runtime_packages=run(['rpm','-qa']).splitlines())
