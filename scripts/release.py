@@ -3,7 +3,7 @@
 Publication is a separate explicit `gh release edit TAG --draft=false` after the
 real-transport tests pass. Immutable releases must be enabled on the repository.
 """
-import argparse, hashlib, json, subprocess, tempfile
+import argparse, hashlib, json, subprocess
 from pathlib import Path
 
 def gh(*args):
@@ -47,10 +47,11 @@ release manifest, SHA256SUMS and toolchain.lock. No asset is replaced in place.
     assert json.loads(gh('api',f'repos/{args.repository}/immutable-releases'))['enabled']
     gh('release','create',tag,'--repo',args.repository,'--draft','--prerelease','--target',args.revision,'--title',f'taskctl {args.version}','--notes-file',str(notes))
     gh('release','upload',tag,'--repo',args.repository,*[str(p) for p in archives])
-    release=json.loads(gh('release','view',tag,'--repo',args.repository,'--json','assets'))
+    release=json.loads(gh('release','view',tag,'--repo',args.repository,'--json','apiUrl'))
     # Private and public repos share the API asset transport; auth is explicit
     # in the launcher environment and never persisted in this lock.
-    api=json.loads(gh('api',f'repos/{args.repository}/releases/tags/{tag}'))
+    # A draft has no published tag endpoint yet; gh resolves its release ID.
+    api=json.loads(gh('api',release['apiUrl']))
     assets={p['name']:p for p in api['assets']}
     lock=f'lockFormat=2\nwrapperVersion=2\ntoolVersion={args.version}\n'
     for meta in records:

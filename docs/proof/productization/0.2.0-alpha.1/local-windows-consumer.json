@@ -1,0 +1,106 @@
+{
+  "platform": "windows-x86_64",
+  "version": "0.2.0-alpha.1",
+  "archive_sha256": "a0c039d2539c2ca660cdced488d47d53667aa8b79e6dc0c03cb001450c1dcdfe",
+  "transport": "GitHub release asset API",
+  "project": "C:\\projects\\taskctl-greenfield-demo",
+  "source_free": true,
+  "consumer_path": "Windows system utilities and PowerShell only",
+  "read_bytes_and_mtimes_unchanged": true,
+  "results": {
+    "init": {
+      "api": "taskctl.cli/alpha1",
+      "command": "init",
+      "repository": "C:\\projects\\taskctl-greenfield-demo",
+      "result": {
+        "contract": "taskctl.init/alpha1",
+        "repository_id": "brule.greenfield-demo",
+        "plan_digest": "sha256:1ca2c032718919f031019add98abcff8915dea6c8254b47308c1e3e110c7ab9b",
+        "files": [
+          ".agents/.gitignore",
+          ".agents/config.toml",
+          ".agents/policy.toml",
+          ".taskctl/.gitignore",
+          ".taskctl/toolchain.lock",
+          "AGENTS.md",
+          "taskctl",
+          "taskctl.bat",
+          "taskctl.ps1"
+        ]
+      }
+    },
+    "cold_doctor": {
+      "api": "taskctl.cli/alpha1",
+      "command": "doctor",
+      "repository": "C:\\projects\\taskctl-greenfield-demo",
+      "result": {
+        "repository_id": "brule.greenfield-demo",
+        "protocol": "taskctl.native/alpha1",
+        "profile": "minimal/alpha1",
+        "revision": "sha256:bef705660f29538f56b9240fcc59584de69c3bfab15e8e9e0e8238f2277567b9",
+        "tasks": 0,
+        "roadmaps": 0,
+        "epics": 0,
+        "required_capabilities_unavailable": [],
+        "instructions": "Read AGENTS.md. Use frontier, show, roadmap and epic; mutations require the inspected revision."
+      }
+    },
+    "frontier": {
+      "api": "taskctl.cli/alpha1",
+      "command": "frontier",
+      "repository": "C:\\projects\\taskctl-greenfield-demo",
+      "result": {
+        "revision": "sha256:bef705660f29538f56b9240fcc59584de69c3bfab15e8e9e0e8238f2277567b9",
+        "tasks": []
+      }
+    },
+    "offline_doctor": {
+      "api": "taskctl.cli/alpha1",
+      "command": "doctor",
+      "repository": "C:\\projects\\taskctl-greenfield-demo",
+      "result": {
+        "repository_id": "brule.greenfield-demo",
+        "protocol": "taskctl.native/alpha1",
+        "profile": "minimal/alpha1",
+        "revision": "sha256:bef705660f29538f56b9240fcc59584de69c3bfab15e8e9e0e8238f2277567b9",
+        "tasks": 0,
+        "roadmaps": 0,
+        "epics": 0,
+        "required_capabilities_unavailable": [],
+        "instructions": "Read AGENTS.md. Use frontier, show, roadmap and epic; mutations require the inspected revision."
+      }
+    }
+  },
+  "published_default_cache_doctor": {
+    "api": "taskctl.cli/alpha1",
+    "command": "doctor",
+    "repository": "C:\\projects\\taskctl-greenfield-demo",
+    "result": {
+      "repository_id": "brule.greenfield-demo",
+      "protocol": "taskctl.native/alpha1",
+      "profile": "minimal/alpha1",
+      "revision": "sha256:bef705660f29538f56b9240fcc59584de69c3bfab15e8e9e0e8238f2277567b9",
+      "tasks": 0,
+      "roadmaps": 0,
+      "epics": 0,
+      "required_capabilities_unavailable": [],
+      "instructions": "Read AGENTS.md. Use frontier, show, roadmap and epic; mutations require the inspected revision."
+    }
+  },
+  "published_default_cache_offline_doctor": {
+    "api": "taskctl.cli/alpha1",
+    "command": "doctor",
+    "repository": "C:\\projects\\taskctl-greenfield-demo",
+    "result": {
+      "repository_id": "brule.greenfield-demo",
+      "protocol": "taskctl.native/alpha1",
+      "profile": "minimal/alpha1",
+      "revision": "sha256:bef705660f29538f56b9240fcc59584de69c3bfab15e8e9e0e8238f2277567b9",
+      "tasks": 0,
+      "roadmaps": 0,
+      "epics": 0,
+      "required_capabilities_unavailable": [],
+      "instructions": "Read AGENTS.md. Use frontier, show, roadmap and epic; mutations require the inspected revision."
+    }
+  }
+}

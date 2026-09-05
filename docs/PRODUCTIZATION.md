@@ -87,3 +87,33 @@ Unresolved owner decision: project software license (none selected). Native v1
 is not frozen. Group completion/archival, runtime capability providers, native
 version migration and M5–M7 adoption/import remain subsequent work. No actual
 consumer repository has been adopted or migrated.
+
+## Published result: M1–M4
+
+[v0.2.0-alpha.1](https://github.com/brule-io/taskctl/releases/tag/v0.2.0-alpha.1)
+was published as an immutable private prerelease on 2026-09-05 UTC, from source
+`af6bc50cc183442b22f9737e1bfae898d02a5837`. All six GitHub asset digests and the tag's
+commit were verified after publication. The archives can be consumed without a
+source checkout, a system JVM, Gradle or a globally installed taskctl.
+
+- [Source CI](https://github.com/brule-io/taskctl/actions/runs/33938059239):
+  82 tests on each platform, plus byte-identical archive repackaging and packaged
+  consumer checks.
+- [Release acquisition CI](https://github.com/brule-io/taskctl/actions/runs/33938579848):
+  20 checks on each platform using the actual GitHub asset URLs, including native
+  greenfield bootstrap and reference generator composition.
+- Windows x86_64, Linux x86_64 and macOS arm64 all passed. A local Windows consumer
+  also passed cold acquisition with only system utilities and PowerShell on PATH,
+  then offline operation with no credentials and unchanged repository bytes/mtimes.
+
+The [publication receipt](proof/productization/0.2.0-alpha.1/README.md) contains the
+manifest, lock, asset identities, per-platform evidence and exact consumer commands.
+The [README quick start](../README.md#60-second-greenfield-quick-start) downloads
+the published archive and initializes a new project. M4's exact generator command
+is in the [reference client documentation](../examples/generator/README.md).
+
+During release assembly, GitHub's tag endpoint did not resolve the draft. The
+publisher now obtains the draft's API URL through `gh release view`. Assembly
+resumed against the same uploaded assets; no archive was replaced or rebuilt.
+This publication-tool correction and the final receipts follow the release's
+source commit and do not change its runtime artifact identities.
