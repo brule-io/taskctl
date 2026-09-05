@@ -1,5 +1,5 @@
 """Deterministic native/JVM archives with a common, verified launcher contract."""
-import argparse, gzip, hashlib, json, os, platform, shutil, subprocess, tarfile, tempfile, zipfile
+import argparse, gzip, hashlib, json, os, platform, re, shutil, subprocess, tarfile, tempfile, zipfile
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = (ROOT/'VERSION').read_text(encoding='utf-8').strip()
@@ -14,6 +14,23 @@ def digest(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 def output_of(command):
     result = subprocess.run([str(p) for p in command], cwd=ROOT, capture_output=True, text=True, check=True)
     return '\n'.join(line for line in (result.stdout + result.stderr).splitlines() if not line.startswith('NOTE:')).strip()
+
+def third_party_notices(stage, libraries, graal_home=None):
+    # Native linking removes the JAR/runtime containers that previously carried
+    # these notices. Preserve their exact bytes in one separately readable bundle.
+    notices={}
+    for library in libraries:
+        with zipfile.ZipFile(library) as jar:
+            for member in jar.namelist():
+                if not member.endswith('/') and re.search(r'(^|/)(license|notice|copying|copyright)([._/-]|$)',member,re.I):
+                    notices['libraries/'+library.name+'/'+member]=jar.read(member)
+    if graal_home:
+        for path in sorted((graal_home/'legal').rglob('*')):
+            if path.is_file(): notices['graalvm/'+path.relative_to(graal_home/'legal').as_posix()]=path.read_bytes()
+    with zipfile.ZipFile(stage/'THIRD-PARTY-NOTICES.zip','w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as bundle:
+        for name,data in sorted(notices.items()):
+            info=zipfile.ZipInfo(name,date_time=(2026,9,4,0,0,0)); info.compress_type=zipfile.ZIP_DEFLATED
+            info.external_attr=0o100644 << 16; bundle.writestr(info,data)
 
 def main():
     parser = argparse.ArgumentParser()
@@ -54,6 +71,7 @@ def main():
                 executable_sha256=digest(binary))
             assert pin['java'] in identity['graalvm']['native_image'], 'Unexpected Native Image toolchain'
         (stage/'bootstrap').mkdir()
+        third_party_notices(stage,libraries,home if args.kind=='native' else None)
         for name in ('taskctl','taskctl.ps1','taskctl.bat'):
             shutil.copyfile(ROOT/'packaging'/name,stage/'bootstrap'/name)
         shutil.copyfile(ROOT/'NOTICE.md',stage/'NOTICE.md')
