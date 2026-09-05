@@ -1,5 +1,5 @@
 """Exercise only distribution/bootstrap interfaces with no build tools on PATH."""
-import argparse, hashlib, json, os, platform, shutil, subprocess, tarfile, tempfile, zipfile
+import argparse, hashlib, json, os, platform, shutil, subprocess, sys, tarfile, tempfile, zipfile
 from pathlib import Path
 from package import target
 ROOT = Path(__file__).resolve().parents[1]
@@ -130,12 +130,23 @@ def main():
         invalid=work/'invalid'
         standalone(['init','--repo',invalid,'--id','test.invalid','--toolchain',lock_path,'--seed',bad],2)
         assert not invalid.exists()
+        generated=work/'composed generator project'
+        generator=[sys.executable,str(ROOT/'examples/generator/generate.py'),str(generated),'--id','test.generator',
+                   '--taskctl',str(distribution/('taskctl.ps1' if windows else 'taskctl')),'--toolchain',str(lock_path),'--seed',str(seed)]
+        composed=subprocess.run(generator,cwd=work,env=env,capture_output=True,text=True,encoding='utf-8',timeout=120)
+        assert composed.returncode==0,(composed.stdout,composed.stderr)
+        generated_result=json.loads(composed.stdout)
+        assert generated_result['initialization']['contract']=='taskctl.init/alpha1'
+        assert (generated/'src/main.py').is_file()
+        launcher=[str(shell),'-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',str(generated/'taskctl.ps1')] if windows else [str(generated/'taskctl')]
+        assert json.loads(run(['doctor','--format','json']).stdout)['result']['tasks']==2
+        assert json.loads(run(['frontier','--format','json']).stdout)['result']['tasks']==['TASK.api']
         result=dict(platform=system,version=metadata['version'],archive_sha256=metadata['sha256'],transport='release' if args.lock else 'file',
             checks=['cold acquisition','warm offline operation','no Java/Gradle/Git/Python on consumer PATH','consumer bytes and mtimes unchanged',
                     'explicit repository launcher from unrelated cwd','wrong version rejected','corrupt cached library rejected','unlisted JAR ignored','wrong archive digest rejected',
                     'mutation-free init plan and deterministic apply','greenfield init from standalone distribution','empty native doctor and frontier','committed-only checkout reconstruction',
                     'seed admission with revision CAS','global prerequisite evaluation before roadmap filter','read-only evidence validation and evidenced closure',
-                    'warm offline native commands','existing source and repeated-init refusal','invalid seed rejected before writes'])
+                    'warm offline native commands','existing source and repeated-init refusal','invalid seed rejected before writes','reference generator composition without copied templates'])
         (output/f'bootstrap-{system}.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8',newline='\n')
         print(json.dumps(result))
 if __name__=='__main__': main()

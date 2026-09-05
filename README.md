@@ -87,6 +87,7 @@ last inspected. `verify` validates supplied evidence without running project cod
 - [Extensions and provider boundaries](docs/EXTENSIONS.md)
 - [Releases, pins, versioning and migrations](docs/VERSIONING.md)
 - [Milestone results and current limits](docs/PRODUCTIZATION.md)
+- [Bootstrap composition contract](docs/BOOTSTRAP.md) and [reference generator](examples/generator/README.md)
 - [Planning-model evidence](docs/PLANNING-MODEL.md)
 
 Generators compose `init --contract taskctl.init/alpha1 --format json`; they do
