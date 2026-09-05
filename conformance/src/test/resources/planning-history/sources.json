@@ -1,0 +1,130 @@
+{
+  "schema": "tasking/planning-source-witness/1",
+  "classification": "historical-source-evidence-not-native-import",
+  "local_inventory": [
+    {
+      "repository": "fantastikt",
+      "revision": "b932b0eecbc2b6053b3f2235ad2963fd31fbb4c4",
+      "counts": {
+        "tasks": 40,
+        "roadmaps": 1,
+        "epics": 1
+      }
+    },
+    {
+      "repository": "loom-ir",
+      "revision": "d66b540ab8bcdc12360ba74ba290aa7aec080a0c",
+      "counts": {
+        "tasks": 269,
+        "roadmaps": 20,
+        "epics": 1
+      }
+    },
+    {
+      "repository": "brule-message-bus",
+      "revision": "1d2a454bc6819cb9f6e96cecb2ea69a41c1a57aa",
+      "counts": {
+        "tasks": 16,
+        "roadmaps": 7,
+        "epics": 3
+      }
+    },
+    {
+      "repository": "dropzone/dropzone-app",
+      "revision": "f9828c2df1f14f18864cf080fe336e144d2db5cb",
+      "counts": {
+        "tasks": 41,
+        "roadmaps": 0,
+        "epics": 11
+      }
+    },
+    {
+      "repository": "dropzone/dropzone-biz",
+      "revision": "34c5030551f98e708e8ccf8b4f10b194a19f58aa",
+      "counts": {
+        "tasks": 35,
+        "roadmaps": 0,
+        "epics": 11
+      }
+    }
+  ],
+  "sources": [
+    {
+      "repository": "https://gitlab.com/daemon-eng/geist/daemon-geist-workspace",
+      "revision": "4328917ad11541fc06e9e951f836380c3d10c7dd",
+      "path": ".agents/AGENTS.md",
+      "file": "daemon-geist-workspace/AGENTS.md",
+      "sha256": "065938d991a72babd4dd11fdb43de756ce646c12213c28e6bae0b4f0ff987b87"
+    },
+    {
+      "repository": "https://gitlab.com/daemon-eng/geist/daemon-geist-workspace",
+      "revision": "4328917ad11541fc06e9e951f836380c3d10c7dd",
+      "path": ".agents/roadmaps/closed/ROADMAP.geist.converse-tool-call-and-copyability.md",
+      "file": "daemon-geist-workspace/roadmaps/closed/ROADMAP.geist.converse-tool-call-and-copyability.md",
+      "sha256": "17393b639defb15b3c281df566acfb114b45bb155dd494d09fc195a5fd194dbe"
+    },
+    {
+      "repository": "https://gitlab.com/daemon-eng/geist/daemon-geist-workspace",
+      "revision": "4328917ad11541fc06e9e951f836380c3d10c7dd",
+      "path": ".agents/tasks/closed/core/TASK.core.388.shell-exec-agent-prompt-contract.md",
+      "file": "daemon-geist-workspace/tasks/closed/core/TASK.core.388.shell-exec-agent-prompt-contract.md",
+      "sha256": "e1ffea6a646afdb879716dfa90a29604517021512f960698007169437f056b46"
+    },
+    {
+      "repository": "https://gitlab.com/daemon-eng/geist/daemon-geist-workspace",
+      "revision": "4328917ad11541fc06e9e951f836380c3d10c7dd",
+      "path": ".agents/tasks/closed/operator/TASK.operator.1159.converse-prompt-tool-call-loop.md",
+      "file": "daemon-geist-workspace/tasks/closed/operator/TASK.operator.1159.converse-prompt-tool-call-loop.md",
+      "sha256": "04771842c1bfa34720b8724c3067afded45b0e86af38bca60f526cddb9047027"
+    },
+    {
+      "repository": "https://gitlab.com/daemon-eng/geist/daemon-geist-workspace",
+      "revision": "4328917ad11541fc06e9e951f836380c3d10c7dd",
+      "path": ".agents/tasks/closed/operator/TASK.operator.1160.converse-copyable-evidence-surface.md",
+      "file": "daemon-geist-workspace/tasks/closed/operator/TASK.operator.1160.converse-copyable-evidence-surface.md",
+      "sha256": "bf29640504d9fb3ddec672d0763f1a0720f0beedda74e5f14d72cbf89aee1485"
+    },
+    {
+      "repository": "https://gitlab.com/daemon-eng/geist/daemon-geist-workspace",
+      "revision": "4328917ad11541fc06e9e951f836380c3d10c7dd",
+      "path": ".agents/tasks/closed/operator/TASK.operator.1161.converse-tool-call-browser-audit.md",
+      "file": "daemon-geist-workspace/tasks/closed/operator/TASK.operator.1161.converse-tool-call-browser-audit.md",
+      "sha256": "fdef7ae14b1938195f8111c5ae6b81735e432e6300f0a568b293338ecb72ff1e"
+    },
+    {
+      "repository": "https://gitlab.com/daemon-eng/platform/daemon-platform-workspace",
+      "revision": "28d716e2f480676aa18e6a208751066b3c7dbc2a",
+      "path": ".agents/AGENTS.md",
+      "file": "daemon-platform-workspace/AGENTS.md",
+      "sha256": "03234e14b0c22c12fdb22cef460af3f1c561575f373def8afb78048b7fa2c77d"
+    },
+    {
+      "repository": "https://gitlab.com/daemon-eng/platform/daemon-platform-workspace",
+      "revision": "28d716e2f480676aa18e6a208751066b3c7dbc2a",
+      "path": ".agents/memos/MEMO.process.multi-roadmap-contract.md",
+      "file": "daemon-platform-workspace/memos/MEMO.process.multi-roadmap-contract.md",
+      "sha256": "9b4b4fcdcce53e38c9840c86cbed3a5991dd38a57a792cb5d9f41a17be20a434"
+    },
+    {
+      "repository": "https://gitlab.com/daemon-eng/platform/daemon-platform-workspace",
+      "revision": "28d716e2f480676aa18e6a208751066b3c7dbc2a",
+      "path": ".agents/roadmaps/closed/ROADMAP.platform.alpha.hardening.phase2.md",
+      "file": "daemon-platform-workspace/roadmaps/closed/ROADMAP.platform.alpha.hardening.phase2.md",
+      "sha256": "e042b203e8468f50b819a3b1873041e6ebb4060074928b02109a933bd97611ee"
+    },
+    {
+      "repository": "https://gitlab.com/daemon-eng/platform/daemon-platform-workspace",
+      "revision": "28d716e2f480676aa18e6a208751066b3c7dbc2a",
+      "path": ".agents/roadmaps/closed/ROADMAP.platform.alpha.release.md",
+      "file": "daemon-platform-workspace/roadmaps/closed/ROADMAP.platform.alpha.release.md",
+      "sha256": "3790b6f76912c42aa666efc2956da87cb959b3fe91b58f48ef62975d0c89aa99"
+    },
+    {
+      "repository": "https://gitlab.com/daemon-eng/platform/daemon-platform-workspace",
+      "revision": "28d716e2f480676aa18e6a208751066b3c7dbc2a",
+      "path": ".agents/tasks/closed/alpha/TASK.alpha.034.spec-first-tooling.md",
+      "file": "daemon-platform-workspace/tasks/closed/alpha/TASK.alpha.034.spec-first-tooling.md",
+      "sha256": "343f2d5ae9c85a8f485b9cf10329af9de953862b5872215f1cb7f72ab10f54f2"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.jar binary
+*.zip binary
+*.png binary
+# Historical witnesses are source bytes, not authored text to normalize.
+conformance/src/test/resources/** -text

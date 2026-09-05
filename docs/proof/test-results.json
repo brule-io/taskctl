@@ -1,0 +1,26 @@
+{
+  "core": {
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "compatibility": {
+    "tests": 44,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "conformance": {
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  ".proof/oracle": {
+    "tests": 44,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}

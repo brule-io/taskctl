@@ -1,0 +1,15 @@
+image: eclipse-temurin:21-jdk
+
+check:
+  before_script:
+    - apt-get update
+    - apt-get install -y --no-install-recommends git
+  script:
+    - sh gradlew --no-daemon check :cli:installDist :conformance:proofJar
+  artifacts:
+    when: always
+    paths:
+      - core/build/test-results/
+      - compatibility/build/test-results/
+      - conformance/build/test-results/
+      - conformance/build/proof/

@@ -1,0 +1,192 @@
+{
+  "schema": "tasking/planning-model-test-result/1",
+  "classification": "source-build-verification-not-packaged-artifact-proof",
+  "recorded_at": "2026-09-05T01:32:21.470519+00:00",
+  "command": "./gradlew.bat check --console=plain",
+  "build_result": "BUILD SUCCESSFUL",
+  "totals": {
+    "tests": 73,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "module": "core",
+      "name": "io.brule.tasking.core.CoreConformanceTest",
+      "timestamp": "2026-09-05T01:29:29.593Z",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "fce45ccd751a5046f99c52f10b85995c5356d2c48e16cf9497395ff293562053"
+    },
+    {
+      "module": "core",
+      "name": "io.brule.tasking.core.PlanningUniverseTest",
+      "timestamp": "2026-09-05T01:29:29.921Z",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "05683fdb86c0d5a7db76bac3ca4410c24d2f4e12ecc9b005cf1a2b94d578a162"
+    },
+    {
+      "module": "compatibility",
+      "name": "io.brule.workflow.model.TaskReferenceTest",
+      "timestamp": "2026-09-05T01:29:28.728Z",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "2383192f7c56dee605539f1fa68da442865acd2c40315efeab68c179c7880155"
+    },
+    {
+      "module": "compatibility",
+      "name": "io.brule.workflow.task.RoadmapClosureServiceTest",
+      "timestamp": "2026-09-05T01:29:28.828Z",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "e5bca48e3deda4e5bffa7940670fed573bb73ae91d7e8673c3d3f05b461479f9"
+    },
+    {
+      "module": "compatibility",
+      "name": "io.brule.workflow.task.TaskClosureServiceTest",
+      "timestamp": "2026-09-05T01:29:30.154Z",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "cb016cbb14da420eeccaa734eb2bcc183a3b5c430c947019a866b9ab53ad60d0"
+    },
+    {
+      "module": "compatibility",
+      "name": "io.brule.workflow.task.TaskClosureTransactionInvariantTest",
+      "timestamp": "2026-09-05T01:29:30.260Z",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "6bb79a547c4c42f704029fe416983abe3fa7ae6144d9b28310afee0b90e10d9c"
+    },
+    {
+      "module": "compatibility",
+      "name": "io.brule.workflow.task.TaskExpectedFrontierClosureTest",
+      "timestamp": "2026-09-05T01:29:31.602Z",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "663d4695d04213586fae79e5995c568ec04f134055f170d78c04dd666a584649"
+    },
+    {
+      "module": "compatibility",
+      "name": "io.brule.workflow.task.TaskGraphTest",
+      "timestamp": "2026-09-05T01:29:31.924Z",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "43a23ff014f6f088ba3bc991ff9ba811af653199a2c15a624f8fe32243e6480e"
+    },
+    {
+      "module": "compatibility",
+      "name": "io.brule.workflow.task.TaskLedgerCycleInvariantTest",
+      "timestamp": "2026-09-05T01:29:31.929Z",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "973b343b6faed0460ab1261f84fec0ad5f8f1151c6886fec2a5651c488d8431f"
+    },
+    {
+      "module": "compatibility",
+      "name": "io.brule.workflow.task.TaskLedgerTest",
+      "timestamp": "2026-09-05T01:29:31.954Z",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "6cbcde54e72a7ba65cacd4cee33325565d6de6ea3020c3fd9445b7eb18ca478b"
+    },
+    {
+      "module": "compatibility",
+      "name": "io.brule.workflow.task.TaskRecordFileNameTest",
+      "timestamp": "2026-09-05T01:29:32.179Z",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "fbb062d75129a674a33949ecac1abb04a0a495e9bbc2312df217bc47f88cdb2c"
+    },
+    {
+      "module": "conformance",
+      "name": "io.brule.tasking.conformance.ArchitecturePolicyTest",
+      "timestamp": "2026-09-05T01:29:28.742Z",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "680afa9f0343b02cac5a01330683e49721be95b9b8b7ef31f6fd6378b1a9b568"
+    },
+    {
+      "module": "conformance",
+      "name": "io.brule.tasking.conformance.HistoricalConformanceTest",
+      "timestamp": "2026-09-05T01:29:30.370Z",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "a517c09fd7123131c1d46ab13ffe73f99edeaef15a4ff8e0d56213c9bb723a92"
+    },
+    {
+      "module": "conformance",
+      "name": "io.brule.tasking.conformance.PlanningHistoryTest",
+      "timestamp": "2026-09-05T01:29:30.606Z",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "34e75e519df058a355c68d293bc952861c0ecb2c4449825c1e7ec135f96b4e38"
+    },
+    {
+      "module": "conformance",
+      "name": "io.brule.tasking.conformance.ReadBoundaryTest",
+      "timestamp": "2026-09-05T01:29:30.844Z",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result_sha256": "e44e32c1f6d1ff5892eaec364d2cfcb2bb0f1a59f6524be33a9f52a0018fbd5e"
+    }
+  ],
+  "source_sha256": {
+    "build.gradle.kts": "e6c9dcf8dd1d6335240cee25a5f66c624d35c5690b8c8179cbcfe8a61c82b4a6",
+    "conformance/build.gradle.kts": "fa4bf9fc9ce3d7e8cf21f5190318862a1eb51be1a5e578cbba5e0901c7d0acc3",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/ArchitecturePolicyTest.kt": "94b568a6955ed6ad398f9509abdfa342a9db6de810fc46fc2de840093f04b9ff",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalConformanceTest.kt": "d04d96b8f00a7ce65b7c894146d27cc2a617775f1f783629f82d6ade02f95df8",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/PlanningHistoryTest.kt": "1dcc2b5bc7c48d842a72e7855ca2280b2b33434dd044b3af68a9a499bca20870",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/ReadBoundaryTest.kt": "c2d5803b10126cf73a0d027111ef00cd5a1cf31b711563fee42fd9f0f4c7d61c",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/RecoveryProbe.kt": "47bc4d0099acad0703b09f13c6ce9e66fdb2d9383ff23e930ed9f828d5e3d871",
+    "conformance/src/test/resources/planning-history/sources.json": "7b0b4838f9e0ecb1235341f17e95bd430c7a4f6b1369e03f349445d54469de5f",
+    "core/build.gradle.kts": "194f1af50b6fb3acc95d7559c7877d2a6ae3910327deee1d16b42c0cd517d327",
+    "core/src/main/kotlin/io/brule/tasking/core/Canonical.kt": "6dc1554d010be5b3698c946e72be421fb438c73a31259539708c23ec89440356",
+    "core/src/main/kotlin/io/brule/tasking/core/DraftLifecycle.kt": "386cc651a1dd056c6d86475e3399a6c4bc8aadeda5a785523be3d1dc54b209bb",
+    "core/src/main/kotlin/io/brule/tasking/core/DraftRecord.kt": "d06a048c0d4bccc6a616dc54082a5abb652a8ecc5a4325fe0c8df9acde1da1ed",
+    "core/src/main/kotlin/io/brule/tasking/core/DraftUniverse.kt": "6bb9c2ebb912337701f4cd4e54fa7d26db2b0f614372ab4bb02da26ceb171bdd",
+    "core/src/main/kotlin/io/brule/tasking/core/HistoricalImport.kt": "9a6d3741a2d02bc8d81c6838c873e74e1f40ed79517184784178a6888479ab6f",
+    "core/src/main/kotlin/io/brule/tasking/core/PlanningRecord.kt": "4fc469719a0cda8574d16e6f9a23fc872ff26d3c4417faf5dcf4eb67b95dc539",
+    "core/src/main/kotlin/io/brule/tasking/core/SemanticMarkdown.kt": "67abcb5649aeedeb5bc43b6f541a42a1574b2588b7d10aaa6512b2c84e3f37b4",
+    "core/src/main/kotlin/io/brule/tasking/core/Value.kt": "7241c3d77dd478d7f539c14eecb0f8423f5ea3607558ba057b7c02a390fa6bd9",
+    "core/src/main/kotlin/io/brule/tasking/core/YamlValues.kt": "236c6bd857147d6f4b63aa410eb5ddac0890a3a15c0a62dd5304808ad400beff",
+    "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt": "55b9d3948ce2dfea587b954e37c7892c1a601d1d805951a79e56cbdaad3924d1",
+    "core/src/test/kotlin/io/brule/tasking/core/PlanningUniverseTest.kt": "5b279e839a40e577d079fd49427d5bf2e633ec26988009fff71025e54cd2d043"
+  },
+  "notes": [
+    "Native v1 remains unfrozen.",
+    "Earlier extraction archives and proof records are unchanged; these counts cover the current source build.",
+    "The check lifecycle includes the Kotlin PSI type-safety policy."
+  ]
+}

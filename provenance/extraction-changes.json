@@ -1,0 +1,31 @@
+{
+  "adapter": "fantastikt-loom-agent-2026",
+  "source_revision": "b932b0eecbc2b6053b3f2235ad2963fd31fbb4c4",
+  "changed_donor_files": [
+    {
+      "path": "compatibility/src/main/kotlin/io/brule/workflow/cli/TaskCtl.kt",
+      "donor_sha256": "7f93f445bcb4f9acfb1fbaf4ae56b00b84824a148488153aa9362b0850cb35dd",
+      "current_sha256": "6cbf60b6c38425011cd2012d1e03a0017db0a171d764fa1285ebf5be52102db2"
+    },
+    {
+      "path": "compatibility/src/main/kotlin/io/brule/workflow/io/AtomicTextFile.kt",
+      "donor_sha256": "4889f73b1adc33e4628071335d9afd224d8ecde6cbee86a165895738cc2b9e6c",
+      "current_sha256": "94b297359d8507677bd403a2932f90f295a191b1b0cc5f73447f57ccbc5cbd70"
+    },
+    {
+      "path": "compatibility/src/main/kotlin/io/brule/workflow/task/RoadmapClosureService.kt",
+      "donor_sha256": "419e5a3b7132cf657a127686e7d5c97e64b200822b00b3317018baa71365a211",
+      "current_sha256": "e5c21b46b0334d9869248bcc62566b722714746d8c77413903b0ebfbdd6210f6"
+    },
+    {
+      "path": "compatibility/src/main/kotlin/io/brule/workflow/task/TaskClosureService.kt",
+      "donor_sha256": "aee38388ab98dd0ff0361ee5cbf6fa7dc6155312ffe41d4a80d846c993386cdf",
+      "current_sha256": "4e64d9173ffbc8d164739c184009028d4b09a066f4622eeb9edcbf008ccf603e"
+    },
+    {
+      "path": "compatibility/src/main/kotlin/io/brule/workflow/task/TaskLedger.kt",
+      "donor_sha256": "3467b6bedfe021323b897b4b59a137ffd334240fe901c726592ec93394e3e5f1",
+      "current_sha256": "3a2ce247a9ee0d8a9e7226d2e3073d7553746893dcedca696ad123da2029ca03"
+    }
+  ]
+}

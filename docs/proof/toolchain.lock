@@ -1,0 +1,8 @@
+lockFormat=1
+toolVersion=0.1.0-dev.1
+wrapperVersion=1
+adapter=fantastikt-loom-agent-2026
+windows-x86_64.url=file:///C:/projects/tasking/build/distributions/taskctl-0.1.0-dev.1-windows-x86_64.zip
+windows-x86_64.sha256=7becfde61783ff0cd0c12c69064743cf813282ad0d82dce3cf51d6ebdccbe7eb
+linux-x86_64.url=file:///home/developer/Developer/src/tasking-extraction-proof-20260904/build/distributions/taskctl-0.1.0-dev.1-linux-x86_64.tar.gz
+linux-x86_64.sha256=7db7a1cd9fa977cba7351174e6ad7ea6dadafd7569822b0c8f547809ad9bf31e

@@ -1,0 +1,71 @@
+#!/bin/sh
+set -eu
+fail() { printf '%s\n' "$*" >&2; exit 2; }
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+lock="$script_dir/.taskctl/toolchain.lock"
+[ "$(uname -s)/$(uname -m)" = 'Linux/x86_64' ] || fail 'This proof archive supports Linux x86_64'
+lock_format= wrapper_version= tool_version= adapter= artifact_url= artifact_sha= seen='|'
+count=0
+while IFS= read -r line || [ -n "$line" ]; do
+    case "$line" in ''|'#'*) continue;; esac
+    case "$line" in *=*) key=${line%%=*}; value=${line#*=};; *) fail 'Malformed taskctl lock';; esac
+    case "$seen" in *"|$key|"*) fail "Duplicate lock key: $key";; esac
+    seen="$seen$key|"; count=$((count + 1))
+    case "$key" in
+        lockFormat) lock_format=$value;;
+        wrapperVersion) wrapper_version=$value;;
+        toolVersion) tool_version=$value;;
+        adapter) adapter=$value;;
+        linux-x86_64.url) artifact_url=$value;;
+        linux-x86_64.sha256) artifact_sha=$value;;
+        windows-x86_64.url|windows-x86_64.sha256) :;;
+        *) fail "Unknown lock key: $key";;
+    esac
+done < "$lock"
+[ "$count/$lock_format/$wrapper_version" = '8/1/1' ] || fail 'Unsupported taskctl lock or wrapper version'
+case "$artifact_sha" in ''|*[!0-9a-f]*) fail 'Invalid locked checksum';; esac
+[ "${#artifact_sha}" -eq 64 ] || fail 'Invalid locked checksum'
+case "$artifact_url" in file:///*|https://*) :;; *) fail 'Only file or HTTPS artifact locations are accepted';; esac
+cache_base=${TASKCTL_CACHE:-${XDG_CACHE_HOME:-$HOME/.cache}/taskctl}
+case "$cache_base" in /*) :;; *) fail 'TASKCTL_CACHE must be absolute';; esac
+cache="$cache_base/$artifact_sha"
+mkdir -p "$cache"
+archive="$cache/archive.tar.gz"
+if [ ! -f "$archive" ]; then
+    [ "${TASKCTL_OFFLINE:-0}" != 1 ] || fail 'Locked taskctl distribution is not cached (offline)'
+    download=$(mktemp "$cache/download.XXXXXX")
+    trap 'rm -f -- "$download"' EXIT HUP INT TERM
+    curl --fail --silent --show-error --location --proto '=https,file' --proto-redir '=https' --output "$download" "$artifact_url"
+    actual=$(sha256sum "$download"); actual=${actual%% *}
+    [ "$actual" = "$artifact_sha" ] || fail 'taskctl distribution checksum mismatch'
+    mv -f -- "$download" "$archive"
+    trap - EXIT HUP INT TERM
+fi
+actual=$(sha256sum "$archive"); actual=${actual%% *}
+[ "$actual" = "$artifact_sha" ] || fail 'Cached taskctl distribution checksum mismatch'
+install="$cache/home"
+if [ ! -d "$install" ]; then
+    tar -tzf "$archive" | while IFS= read -r member; do
+        case "$member" in /*|../*|*/../*|*/..|*[!A-Za-z0-9_./+-]*) exit 2;; esac
+    done || fail 'Unsafe archive path'
+    staging=$(mktemp -d "$cache/install.XXXXXX")
+    tar -xzf "$archive" --no-same-owner -C "$staging"
+    # Generated, absolute cache child; never a consumer path.
+    if ! mv -T -- "$staging" "$install" 2>/dev/null; then
+        [ -d "$install" ] || fail 'Could not install taskctl'
+        rm -rf -- "$staging"
+    fi
+fi
+# Read the manifest from the verified archive, not the mutable extracted tree.
+manifest=$(tar -xOf "$archive" files.sha256) || fail 'Distribution file manifest missing'
+(cd "$install" && printf '%s\n' "$manifest" | sha256sum --check --status -) || fail 'Cached taskctl file checksum mismatch'
+grep -Fx "toolVersion=$tool_version" "$install/distribution.properties" >/dev/null || fail 'Locked version does not match distribution'
+grep -Fx "adapter=$adapter" "$install/distribution.properties" >/dev/null || fail 'Locked adapter does not match distribution'
+classpath=
+libraries=$(printf '%s\n' "$manifest" | sed -n 's/^[0-9a-f]*  \(lib\/.*\.jar\)$/\1/p')
+while IFS= read -r library; do
+    classpath="${classpath:+$classpath:}$install/$library"
+done <<EOF
+$libraries
+EOF
+exec "$install/runtime/bin/java" -cp "$classpath" io.brule.tasking.cli.MainKt --adapter "$adapter" "$@"

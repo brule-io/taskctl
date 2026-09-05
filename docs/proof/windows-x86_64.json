@@ -1,0 +1,718 @@
+{
+  "status": "passed",
+  "platform": "windows-x86_64",
+  "run_directory": "C:\\projects\\tasking\\.proof\\runs\\windows-x86_64-91f14a36d0",
+  "release": {
+    "version": "0.1.0-dev.1",
+    "platform": "windows-x86_64",
+    "file": "taskctl-0.1.0-dev.1-windows-x86_64.zip",
+    "sha256": "7becfde61783ff0cd0c12c69064743cf813282ad0d82dce3cf51d6ebdccbe7eb",
+    "bytes": 25980245,
+    "java": "openjdk version \"21.0.11\" 2026-04-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.11+10 (build 21.0.11+10-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.11+10 (build 21.0.11+10-LTS, mixed mode)"
+  },
+  "tool_info": {
+    "tool": "taskctl",
+    "version": "0.1.0-dev.1",
+    "adapter": "fantastikt-loom-agent-2026",
+    "donor_revision": "b932b0eecbc2b6053b3f2235ad2963fd31fbb4c4",
+    "native_v1": "not-frozen",
+    "java": "21.0.11"
+  },
+  "checks": [
+    "cold acquisition and warm offline use; bootstrap leaves consumer unchanged",
+    "frozen Fantastikt doctor/frontier/plan/list/show parity; external reads create no lock",
+    "stale snapshot rejected under lock; evidenced closure and receipts match donor with bounded writes",
+    "blocked closure and unsupported schema fail without task/source/Git writes",
+    "spaces, embedded quotes, literal shell metacharacters and trailing backslashes survive argument forwarding",
+    "packaged runtime recovers an interrupted committed closure using the original snapshot and receipt",
+    "bad pins, duplicate lock keys, version mismatch and tampered archive/runtime cache fail closed"
+  ],
+  "closure_writes": [
+    ".agents/tasks/closed/TASK.test.001.proof.md",
+    ".agents/tasks/open/TASK.test.001.proof.md"
+  ],
+  "recovery_writes": [
+    ".agents/.lock",
+    ".agents/tasks/closed/TASK.test.001.proof.md",
+    ".agents/tasks/open/TASK.test.001.proof.md"
+  ],
+  "frozen_snapshot": {
+    "adapter": "fantastikt-loom-agent-2026",
+    "adapter_version": "0.1.0-dev.1",
+    "native_protocol": null,
+    "tasks": [
+      {
+        "id": "TASK.draft-mvp.001",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.001.admit-specification.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:fd518237eafbc6f5aad3eed89bf2d91c90c0b993ff43e1fa303cab21c749eb5f"
+      },
+      {
+        "id": "TASK.draft-mvp.002",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.002.scaffold-modules.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.001"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:9ad8cf56467e1365678a3a6252922d76aa0fd156e030270eda1bcd3cbc81c9ff"
+      },
+      {
+        "id": "TASK.draft-mvp.003",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.003.provision-postgres.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.001"
+        ],
+        "realizes": null,
+        "effort": "MEDIUM",
+        "impact": "HIGH",
+        "contract_digest": "sha256:63111c195ec03359b83b706b2ef72e4289633d7d4f188a746687053390cbaeb7"
+      },
+      {
+        "id": "TASK.draft-mvp.004",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.004.define-domain-types.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.002"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:3db9b6f6858b6196396f74f119a12d8bb5e895c46b0aa9d04a38ab7913da0a68"
+      },
+      {
+        "id": "TASK.draft-mvp.005",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.005.define-ports-domain.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.004"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:14b4b2ebca31c86f9c20f32b43f08d747f23e9c3ca2aedf65d48f279d4eb04ae"
+      },
+      {
+        "id": "TASK.draft-mvp.006",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.006.create-foundation-migrations.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.003",
+          "TASK.draft-mvp.004"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:319ea18e0b3da328745cf379ce512fe5ef328bb328907d69a1fe14cc7a386c7e"
+      },
+      {
+        "id": "TASK.draft-mvp.007",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.007.implement-postgres-adapter.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.005",
+          "TASK.draft-mvp.006"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:cab0ff8030d5b7b7ffd48d8cb4c83d855607474b08289d2e537c947140390da4"
+      },
+      {
+        "id": "TASK.draft-mvp.008",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.008.build-cli-shell.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.002",
+          "TASK.draft-mvp.005"
+        ],
+        "realizes": null,
+        "effort": "MEDIUM",
+        "impact": "MEDIUM",
+        "contract_digest": "sha256:d99ec8d23295eeecccbbe48515f3a5b15a54aa4167fb3b92b5ba81b3d67047a3"
+      },
+      {
+        "id": "TASK.draft-mvp.009",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.009.implement-artifact-fetch.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.005",
+          "TASK.draft-mvp.006",
+          "TASK.draft-mvp.007"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:c5b3c1fa02a9ad0841535da463e6d8e85deaf0ba4af051c127fdca9d8f9a3266"
+      },
+      {
+        "id": "TASK.draft-mvp.010",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.010.orchestrate-etl-runs.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.009"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:4fd8fd4139f2e1a9741da948f0faeecced55564d95442a7f8cf7e56d255b9a8c"
+      },
+      {
+        "id": "TASK.draft-mvp.011",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.011.persist-canonical-identity.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.004",
+          "TASK.draft-mvp.006",
+          "TASK.draft-mvp.007"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:57e397f53d444ae504cd26c0ad9319b8867e1313762bd63c7dd120818f6ee61d"
+      },
+      {
+        "id": "TASK.draft-mvp.012",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.012.seed-football-vocabulary.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.004",
+          "TASK.draft-mvp.006",
+          "TASK.draft-mvp.007",
+          "TASK.draft-mvp.011"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:f0f3985d88f331bf2fb1d90d344d6df992635feee0659ce2aa1a6f885cb156af"
+      },
+      {
+        "id": "TASK.draft-mvp.013",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.013.ingest-nflverse-players.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.009",
+          "TASK.draft-mvp.010",
+          "TASK.draft-mvp.011"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:9f12a476dfdd0722751f8fa3fed1cf9a9688257557ac194071d8bcb3143bc637"
+      },
+      {
+        "id": "TASK.draft-mvp.014",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.014.ingest-nflverse-teams.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.009",
+          "TASK.draft-mvp.010",
+          "TASK.draft-mvp.012",
+          "TASK.draft-mvp.013"
+        ],
+        "realizes": null,
+        "effort": "MEDIUM",
+        "impact": "HIGH",
+        "contract_digest": "sha256:55c099ef03dd80b35cd8a730c81f1e117e06cf4c0e2b4d0c46e5afab03f94114"
+      },
+      {
+        "id": "TASK.draft-mvp.015",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.015.reconcile-player-identities.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.008",
+          "TASK.draft-mvp.011",
+          "TASK.draft-mvp.013",
+          "TASK.draft-mvp.014"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:ccef5dc1950a0a5922d44f78dcb8d76e8a21681f6e4e3d85982d3b6833a6e856"
+      },
+      {
+        "id": "TASK.draft-mvp.016",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.016.ingest-season-rosters.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.012",
+          "TASK.draft-mvp.013",
+          "TASK.draft-mvp.014",
+          "TASK.draft-mvp.015"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:07f34ce7b3e7449f65ea88805b08cb9664739e00663a9d7c2f6358a0331656e6"
+      },
+      {
+        "id": "TASK.draft-mvp.017",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.017.ingest-weekly-rosters.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.016"
+        ],
+        "realizes": null,
+        "effort": "MEDIUM",
+        "impact": "HIGH",
+        "contract_digest": "sha256:32f51c4195d42ebe1fd643c4330e805e8d94356c763e0d9fe606a7ca973fd714"
+      },
+      {
+        "id": "TASK.draft-mvp.018",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.018.persist-weekly-stats.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.011",
+          "TASK.draft-mvp.012",
+          "TASK.draft-mvp.016"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:a28fb5c75c0f0d780001b9d0025d014bd99613372e136916a51a70db0169532c"
+      },
+      {
+        "id": "TASK.draft-mvp.019",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.019.ingest-weekly-stats.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.013",
+          "TASK.draft-mvp.014",
+          "TASK.draft-mvp.015",
+          "TASK.draft-mvp.017",
+          "TASK.draft-mvp.018"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:7a14b61b8d208ebfe7e653ae2d988eb315eec50f9d04ec3da98138c2b4688d4a"
+      },
+      {
+        "id": "TASK.draft-mvp.020",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.020.ingest-ffverse-crosswalk.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.009",
+          "TASK.draft-mvp.010",
+          "TASK.draft-mvp.015"
+        ],
+        "realizes": null,
+        "effort": "MEDIUM",
+        "impact": "HIGH",
+        "contract_digest": "sha256:87be6fd009dfca9e42f547dcf7853f8a5eaf8ddb4bf2a40cf0b4374253ae7c3a"
+      },
+      {
+        "id": "TASK.draft-mvp.021",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.021.persist-fantasy-league.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.005",
+          "TASK.draft-mvp.006",
+          "TASK.draft-mvp.007",
+          "TASK.draft-mvp.011",
+          "TASK.draft-mvp.012",
+          "TASK.draft-mvp.018"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:34ec671a456470a62d05cc264d63ed1642c6031613f94dd39cb8dc95223d68d9"
+      },
+      {
+        "id": "TASK.draft-mvp.022",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.022.load-league-overrides.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.005",
+          "TASK.draft-mvp.007",
+          "TASK.draft-mvp.008",
+          "TASK.draft-mvp.021"
+        ],
+        "realizes": null,
+        "effort": "MEDIUM",
+        "impact": "HIGH",
+        "contract_digest": "sha256:ec2b4992dda04cd1fcec107c16531218cd1ff95586a604c23cf41089385cf48f"
+      },
+      {
+        "id": "TASK.draft-mvp.023",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.023.build-espn-client.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.008",
+          "TASK.draft-mvp.009",
+          "TASK.draft-mvp.010",
+          "TASK.draft-mvp.017",
+          "TASK.draft-mvp.019"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:2355674350b348b002e7098cfc02e163ae61020484e95a74f80c45909432b6a2"
+      },
+      {
+        "id": "TASK.draft-mvp.024",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.024.ingest-espn-league.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.021",
+          "TASK.draft-mvp.022",
+          "TASK.draft-mvp.023"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:98e8f3c90e90f8ee36830aba4c3b4f84c3b735ebedf8cf37658b7f6f58903439"
+      },
+      {
+        "id": "TASK.draft-mvp.025",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.025.ingest-espn-player-pool.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.015",
+          "TASK.draft-mvp.020",
+          "TASK.draft-mvp.021",
+          "TASK.draft-mvp.023",
+          "TASK.draft-mvp.024"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:aba7da1d8d54de3dba5b2053fb1e0bd3720a96415a648c0f00e528c9ab56b203"
+      },
+      {
+        "id": "TASK.draft-mvp.026",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.026.ingest-fantasypros-forecasts.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.009",
+          "TASK.draft-mvp.010",
+          "TASK.draft-mvp.015",
+          "TASK.draft-mvp.021",
+          "TASK.draft-mvp.025"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:53989da34d733735f8d68a6c608fa2993a4c5de529aa39d2dab51cca0ef79b3b"
+      },
+      {
+        "id": "TASK.draft-mvp.027",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.027.ingest-ffverse-rankings.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.009",
+          "TASK.draft-mvp.010",
+          "TASK.draft-mvp.020",
+          "TASK.draft-mvp.021",
+          "TASK.draft-mvp.025"
+        ],
+        "realizes": null,
+        "effort": "MEDIUM",
+        "impact": "HIGH",
+        "contract_digest": "sha256:5ed508e9942ccba8f3eca48f46a0ffbe1fdc659ef7b653776b49a6275cb09235"
+      },
+      {
+        "id": "TASK.draft-mvp.028",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.028.build-draft-board-input.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.017",
+          "TASK.draft-mvp.019",
+          "TASK.draft-mvp.024",
+          "TASK.draft-mvp.025",
+          "TASK.draft-mvp.026",
+          "TASK.draft-mvp.027"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:832eaf88264807d90bf0ac2242c75210030931ad00cc33f42c1ebd9a2e0c1faf"
+      },
+      {
+        "id": "TASK.draft-mvp.029",
+        "state": "closed",
+        "path": ".agents/tasks/closed/TASK.draft-mvp.029.wire-etl-league-cli.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.008",
+          "TASK.draft-mvp.010",
+          "TASK.draft-mvp.022",
+          "TASK.draft-mvp.024",
+          "TASK.draft-mvp.025",
+          "TASK.draft-mvp.026",
+          "TASK.draft-mvp.027",
+          "TASK.draft-mvp.028"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:55305eaa2724da9980a9f504da094f291d25b81f8f3cce2655fa65d69985cd43"
+      },
+      {
+        "id": "TASK.draft-mvp.030",
+        "state": "open",
+        "path": ".agents/tasks/open/TASK.draft-mvp.030.implement-etl-doctor.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.003",
+          "TASK.draft-mvp.007",
+          "TASK.draft-mvp.009",
+          "TASK.draft-mvp.010",
+          "TASK.draft-mvp.017",
+          "TASK.draft-mvp.019",
+          "TASK.draft-mvp.022",
+          "TASK.draft-mvp.025",
+          "TASK.draft-mvp.026",
+          "TASK.draft-mvp.027",
+          "TASK.draft-mvp.029",
+          "TASK.draft-mvp.031",
+          "TASK.draft-mvp.032"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:ee0f001172122de15cb68f15fa587697a7015ca80aaa2e24836b11c7c7974d76"
+      },
+      {
+        "id": "TASK.draft-mvp.031",
+        "state": "open",
+        "path": ".agents/tasks/open/TASK.draft-mvp.031.persist-draft-ledger.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.007",
+          "TASK.draft-mvp.021",
+          "TASK.draft-mvp.024",
+          "TASK.draft-mvp.025",
+          "TASK.draft-mvp.028",
+          "TASK.draft-mvp.033"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:45ec1e6595c5232f0b87a9ef51d8c2f6951760c8134135936912722d87f3f4c5"
+      },
+      {
+        "id": "TASK.draft-mvp.032",
+        "state": "open",
+        "path": ".agents/tasks/open/TASK.draft-mvp.032.implement-manual-draft.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.008",
+          "TASK.draft-mvp.028",
+          "TASK.draft-mvp.031"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:f2d8e6bf3fdc9a42df32573c26a6554e066c5f824eaea8474ce25d6ed2580100"
+      },
+      {
+        "id": "TASK.draft-mvp.033",
+        "state": "open",
+        "path": ".agents/tasks/open/TASK.draft-mvp.033.rank-static-board.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.022",
+          "TASK.draft-mvp.028",
+          "TASK.draft-mvp.029",
+          "TASK.draft-mvp.038"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:7a2a03018620b88db1d97832c1aaed057818cbfb87f03ded88f1b9e5f21d6f75"
+      },
+      {
+        "id": "TASK.draft-mvp.034",
+        "state": "open",
+        "path": ".agents/tasks/open/TASK.draft-mvp.034.model-pick-survival.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.028",
+          "TASK.draft-mvp.031",
+          "TASK.draft-mvp.033"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:d01d11c501aeded35550cfdd7677ab2424b32074c6de778004da75320d3a621d"
+      },
+      {
+        "id": "TASK.draft-mvp.035",
+        "state": "open",
+        "path": ".agents/tasks/open/TASK.draft-mvp.035.simulate-payout-strategy.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.021",
+          "TASK.draft-mvp.022",
+          "TASK.draft-mvp.034"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:73eb8c1e8de461690db3a9e34fbfe7f0ad05f9f871aeb85c7aed453c2ea3bc6b"
+      },
+      {
+        "id": "TASK.draft-mvp.036",
+        "state": "open",
+        "path": ".agents/tasks/open/TASK.draft-mvp.036.run-offline-draft-watch.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.030",
+          "TASK.draft-mvp.032",
+          "TASK.draft-mvp.035"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:1cd5709af7a2361855af3c7bdf71f633da3bd34215a0f19c5ad5abbbf52bd111"
+      },
+      {
+        "id": "TASK.draft-mvp.037",
+        "state": "open",
+        "path": ".agents/tasks/open/TASK.draft-mvp.037.validate-espn-draft-feed.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.023",
+          "TASK.draft-mvp.025",
+          "TASK.draft-mvp.031",
+          "TASK.draft-mvp.032"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "MEDIUM",
+        "contract_digest": "sha256:cb19a3eb26e1ade91115e8d95bf0647288375a35f81a6350bdc4dc8a72a57389"
+      },
+      {
+        "id": "TASK.draft-mvp.038",
+        "state": "open",
+        "path": ".agents/tasks/open/TASK.draft-mvp.038.verify-operator-configuration.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.022",
+          "TASK.draft-mvp.024",
+          "TASK.draft-mvp.025",
+          "TASK.draft-mvp.026",
+          "TASK.draft-mvp.029"
+        ],
+        "realizes": null,
+        "effort": "MEDIUM",
+        "impact": "HIGH",
+        "contract_digest": "sha256:7795e2f7e11a76c75e0a45850ddcd4c04a0b5a024c9be5428d85cb519c443d5e"
+      },
+      {
+        "id": "TASK.draft-mvp.039",
+        "state": "open",
+        "path": ".agents/tasks/open/TASK.draft-mvp.039.prove-mock-draft.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.030",
+          "TASK.draft-mvp.036",
+          "TASK.draft-mvp.037",
+          "TASK.draft-mvp.038"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:20378832d170bb1f09d8fd61102a87b1098445ae34ba40ac013cfefdeb0862af"
+      },
+      {
+        "id": "TASK.draft-mvp.040",
+        "state": "open",
+        "path": ".agents/tasks/open/TASK.draft-mvp.040.execute-sunday-freeze.md",
+        "roadmap": "ROADMAP.draft-mvp.001",
+        "requires": [
+          "TASK.draft-mvp.039"
+        ],
+        "realizes": null,
+        "effort": "HIGH",
+        "impact": "HIGH",
+        "contract_digest": "sha256:75b042ad30e7c2ef57c21072a7b3043a531768caa0db0eb5af097014afb7f48d"
+      }
+    ],
+    "roadmaps": [
+      {
+        "id": "ROADMAP.draft-mvp.001",
+        "state": "open",
+        "ordinal": 0,
+        "epic": "EPIC.draft-mvp.001"
+      }
+    ],
+    "epics": [
+      {
+        "id": "EPIC.draft-mvp.001",
+        "state": "open"
+      }
+    ],
+    "frontier": [
+      "TASK.draft-mvp.038"
+    ],
+    "layers": [
+      [
+        "TASK.draft-mvp.038"
+      ],
+      [
+        "TASK.draft-mvp.033"
+      ],
+      [
+        "TASK.draft-mvp.031"
+      ],
+      [
+        "TASK.draft-mvp.032",
+        "TASK.draft-mvp.034"
+      ],
+      [
+        "TASK.draft-mvp.030",
+        "TASK.draft-mvp.035",
+        "TASK.draft-mvp.037"
+      ],
+      [
+        "TASK.draft-mvp.036"
+      ],
+      [
+        "TASK.draft-mvp.039"
+      ],
+      [
+        "TASK.draft-mvp.040"
+      ]
+    ],
+    "semantic_snapshot_id": "sha256:5b8fd9d62f7eeca2bce2bf1b7a468d3c6cef007155ea5cdefc3718c7e7827499",
+    "snapshot_id": "sha256:2a7ecccdabc3250ce2c7b9f2e7b231cc51ee1ce980314dc8f69fa3b97480fb18"
+  },
+  "oracle_revision": "b932b0eecbc2b6053b3f2235ad2963fd31fbb4c4"
+}

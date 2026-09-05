@@ -1,0 +1,39 @@
+# Productization milestones
+
+The initial release is an alpha. Publishing source or an archive does not freeze
+native v1. This work follows the owner's order:
+
+1. M1: canonical GitHub repository, contributor contract, CI and source history.
+2. M2: versioned runtime archives, immutable checksums, pinned acquisition tests.
+3. M3: native greenfield initialization and usable generated repository interface.
+4. M4: reference generator consuming the supported bootstrap command contract.
+5. M5: explicit adoption into existing code with no tasking.
+6. M6: inspect/plan/apply import framework with durable provenance.
+7. M7: historical adapters, starting with Fantastikt.
+
+The immediate delivery is M1–M3, followed by M4. Existing consumers stay unchanged.
+Each milestone's measured result and commands will be recorded here. A task-only
+or empty graph is valid; scaffolding must not invent epics, roadmaps or work.
+
+## Publication decisions
+
+Canonical remote: `brule-io/taskctl`. Initially private unless the owner selects
+public visibility. No project software license has been selected. This is a
+separate owner decision; third-party licenses remain applicable to their components.
+
+GitHub Releases is the distribution transport. Artifact hashes, release version
+and platform belong to the launcher lock, never to task semantic contracts.
+Use draft releases to assemble and verify all assets before immutable publication.
+See [GitHub's immutable-release contract](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases).
+
+## Module boundaries
+
+- `core`: deterministic typed protocol, semantic contracts, task DAG and planning indexes.
+- `repository`: native storage, initialization and bounded mutations (added with M3).
+- `cli`: human/JSON commands using core and storage; no consumer build integration.
+- `compatibility`: isolated historical dialect implementation.
+- `conformance`: source witnesses, integration and architecture constraints.
+- `packaging`: canonical launchers bundled with the tool, not generator-owned templates.
+
+The Kotlin interfaces remain internal. The composable public boundary is a
+versioned process command and typed JSON result, with explicit repository root.

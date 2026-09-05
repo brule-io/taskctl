@@ -1,0 +1,41 @@
+{
+  "schema": "tasking.fixture-provenance/v1",
+  "records": [
+    {
+      "file": "TASK.process.006.platform-thin-ci-gradle-repo-reset-doctrine.md",
+      "repository": "https://gitlab.com/daemon-eng/os/daemon-os-workspace",
+      "revision": "68e32a8b87932f6d69d34cc28f50b9b4102f1a79",
+      "source_path": ".agents/tasks/closed/process/TASK.process.006.platform-thin-ci-gradle-repo-reset-doctrine.md",
+      "source_sha256": "a5411f847066fedb905306a237d73e0f061e618c02f1c487d0a6d0acbe450956",
+      "adapter": "daemon-workspace-prose/2026",
+      "adapter_version": "0.1.0-dev.1",
+      "source_state": "closed",
+      "evidence_class": "historical-narrative",
+      "native_protocol": false
+    },
+    {
+      "file": "TASK.process.006.workflow-canon-backport.md",
+      "repository": "https://gitlab.com/daemon-eng/os/daemon-os-workspace",
+      "revision": "68e32a8b87932f6d69d34cc28f50b9b4102f1a79",
+      "source_path": ".agents/tasks/closed/process/TASK.process.006.workflow-canon-backport.md",
+      "source_sha256": "f3d656da9ca248a63d1acfc4ee83cfe87d8eb8666e9e62e947940ec86f17db73",
+      "adapter": "daemon-workspace-prose/2026",
+      "adapter_version": "0.1.0-dev.1",
+      "source_state": "closed",
+      "evidence_class": "historical-narrative",
+      "native_protocol": false
+    },
+    {
+      "file": "TASK.M2.nginx.md",
+      "repository": "https://gitlab.com/daemon-eng/net/daemon-net-workspace",
+      "revision": "46c13b1d3a5223096d9d90a2ea0a4849bc9e7bea",
+      "source_path": ".agents/tasks/closed/TASK.M2.nginx.md",
+      "source_sha256": "de79ba73832616a1f9eae590fa0773c928d64b4b959b74c0d0b0ae954dbb0044",
+      "adapter": "daemon-net-triage/2026",
+      "adapter_version": "0.1.0-dev.1",
+      "source_state": "closed",
+      "evidence_class": "historical-narrative",
+      "native_protocol": false
+    }
+  ]
+}
