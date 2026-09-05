@@ -151,3 +151,37 @@ measurements, identities, verification result and runnable local demo.
 
 Native protocol v1 remains unfrozen; M5–M7 and the license decision remain pending.
 No existing consumer or product repository was migrated by this delivery.
+
+## Optional Fedora RPM delivery
+
+[rpm-v0.2.0-alpha.2-2](https://github.com/brule-io/taskctl/releases/tag/rpm-v0.2.0-alpha.2-2)
+was published immutably on 2026-09-05 UTC from packaging source
+`25d1bd0a88f1edd621adb8a41dee28e76a4f3d95`. It packages the exact Linux native
+executable already proven in alpha.2; no taskctl compiler or alternate protocol
+implementation is involved. The existing tar.gz and wrapper releases remain
+independent. The RPM installs the global command in `/usr/bin/taskctl`, with
+bootstrap data, documentation, notices and a manual page in normal system locations.
+
+[Fedora CI](https://github.com/brule-io/taskctl/actions/runs/33999027802) passed all
+11 transaction/runtime checks in a clean Fedora 44 x86_64 container: install,
+version/help/info, unprivileged greenfield initialization, doctor/frontier, upgrade,
+erase, and continued cached repository-wrapper operation after erase. Transactions
+ran with networking disabled, made zero IPv4/IPv6 socket calls, and preserved
+project/user bytes, mtimes and modes. Package-content checks found no scriptlets,
+triggers, JVM dependency or ownership of project state. The source RPM also rebuilt
+offline with matching payload digests, permissions, ownership, links, EVR and
+dependencies, providing the standard build-service seam for future COPR use.
+
+Rpmlint completed with zero errors and seven documented warnings: pending license,
+locally generated support source, a wrapper-function false positive, and portable
+GitHub filenames. RPM headers retain `0.2.0~alpha.2`; download filenames use
+`0.2.0-alpha.2` because GitHub rewrites tildes. The unpublished first draft was
+discarded after asset-name verification caught that behavior. No published asset
+was replaced. All 11 final release assets and the signed release attestation were
+verified. [The RPM proof receipt](proof/productization/rpm-0.2.0-alpha.2-2/README.md)
+records the hashes, provenance, lint output, network traces and results.
+
+The package grants no project license; its metadata explicitly records the pending
+decision and includes existing third-party notices. No COPR project or official
+Fedora inclusion request was created. [RPM usage and maintenance](FEDORA-RPM.md)
+documents the global/pinned distinction and publication process.

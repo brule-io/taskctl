@@ -1,0 +1,140 @@
+{
+  "contract": "taskctl.rpm-publication/alpha1",
+  "recorded_at": "2026-09-05T23:38:54.547227+00:00",
+  "release": {
+    "id": 383405993,
+    "html_url": "https://github.com/brule-io/taskctl/releases/tag/rpm-v0.2.0-alpha.2-2",
+    "tag_name": "rpm-v0.2.0-alpha.2-2",
+    "published_at": "2026-09-05T23:38:47Z",
+    "draft": false,
+    "prerelease": true,
+    "immutable": true
+  },
+  "assets": [
+    {
+      "id": 546446458,
+      "name": "rpm-build.json",
+      "size": 20740,
+      "digest": "sha256:05f5d8038299e46bf038acf8e6fc96816855e55325dc46d32f23fc936535b8ac",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546446458"
+    },
+    {
+      "id": 546446455,
+      "name": "rpm-manifest.json",
+      "size": 38793,
+      "digest": "sha256:e0b0fe14275e9bd0bed4f2e9f52dcbe2cdf00cbd4d296812229abcdfb53d3c71",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546446455"
+    },
+    {
+      "id": 546446456,
+      "name": "RPM-SHA256SUMS",
+      "size": 934,
+      "digest": "sha256:415e210b346b1afbd71a3839a3cd512a63097568a61f2ef4e57bb43606a8d9f2",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546446456"
+    },
+    {
+      "id": 546446457,
+      "name": "rpm-test.json",
+      "size": 15973,
+      "digest": "sha256:b3891d1ca1c96eb6940b3422d2a0f38528b761d2172a0adcd0ced39cc17cd75a",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546446457"
+    },
+    {
+      "id": 546446459,
+      "name": "rpmlint.txt",
+      "size": 1073,
+      "digest": "sha256:8c8b6d8e7bf0ee9c025321b96107a935b2b97f3f411865640cc04726d05556d4",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546446459"
+    },
+    {
+      "id": 546446463,
+      "name": "taskctl-0.2.0-alpha.2-2.fc44.src.rpm",
+      "size": 8049363,
+      "digest": "sha256:2043ca87fb76c789868489f7505985e9d7665c7e6a3d94a9f1968151fc9d0155",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546446463"
+    },
+    {
+      "id": 546446469,
+      "name": "taskctl-0.2.0-alpha.2-2.fc44.src.rpm.intoto.json",
+      "size": 25213,
+      "digest": "sha256:061accbae078d7bc37964687cb56ef3421670daee603042d54b926db0396371b",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546446469"
+    },
+    {
+      "id": 546446470,
+      "name": "taskctl-0.2.0-alpha.2-2.fc44.x86_64.rpm",
+      "size": 6668754,
+      "digest": "sha256:c7baffd18763c7e50ebb5b6edb5938fa35e9ded7341cdf3bc18a72e954bb5530",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546446470"
+    },
+    {
+      "id": 546446473,
+      "name": "taskctl-0.2.0-alpha.2-2.fc44.x86_64.rpm.intoto.json",
+      "size": 25216,
+      "digest": "sha256:3e0aa3341b4933ac3ed34666cfcc882ed0a004cc3bef256108b7dc0c7f9d5072",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546446473"
+    },
+    {
+      "id": 546446476,
+      "name": "taskctl.spec",
+      "size": 3182,
+      "digest": "sha256:8e02d712fdb920cd33fafc135c83a1cc98da23fab3ba195e8d117b8ef19d3c53",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546446476"
+    },
+    {
+      "id": 546446503,
+      "name": "upstream-toolchain.lock",
+      "size": 584,
+      "digest": "sha256:f2f079acb76ee2fae6c007c332266f7a7f373545b641a93a270bf3753c925cd3",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546446503"
+    }
+  ],
+  "source_revision": "25d1bd0a88f1edd621adb8a41dee28e76a4f3d95",
+  "canonical_tool_source": "4ea1074fb629b66d3e76d18151fd9273e1ee041a",
+  "upstream_release": "https://github.com/brule-io/taskctl/releases/tag/v0.2.0-alpha.2",
+  "canonical_asset": {
+    "name": "taskctl-0.2.0-alpha.2-native-linux-x86_64.tar.gz",
+    "digest": "sha256:03db1f5b4fdc23dfe3a3014bd860fab1f73ca60737b77c6e3adaae0b05d1d946",
+    "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/546411919"
+  },
+  "workflow": {
+    "conclusion": "success",
+    "databaseId": 33999027802,
+    "headSha": "25d1bd0a88f1edd621adb8a41dee28e76a4f3d95",
+    "jobs": [
+      {
+        "name": "rpm",
+        "conclusion": "success",
+        "url": "https://github.com/brule-io/taskctl/actions/runs/33999027802/job/101394468904"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/brule-io/taskctl/actions/runs/33999027802"
+  },
+  "transaction_checks": 11,
+  "native_executable_unchanged": true,
+  "source_rpm_rebuild_verified": true,
+  "scriptlets_and_triggers": "none",
+  "network_mode": "none",
+  "internet_socket_calls": 0,
+  "rpmlint": {
+    "errors": 0,
+    "warnings": 7,
+    "exceptions": "Exact diagnostic patterns and reasons in packaging/rpm/lint-exceptions.json"
+  },
+  "release_attestation": "Signature, all asset digests and packaging tag verified",
+  "limits": [
+    "Private upstream RPM, not official Fedora inclusion.",
+    "License decision remains pending; no project license granted.",
+    "No COPR project created.",
+    "No separate RPM signing key or CI OIDC build signature.",
+    "Upgrade fixture changes RPM packaging release of the same tool version.",
+    "Tested in clean Fedora 44 x86_64 containers."
+  ],
+  "tag_commit": "25d1bd0a88f1edd621adb8a41dee28e76a4f3d95",
+  "published_downloads_verified": {
+    "RPM-SHA256SUMS": "415e210b346b1afbd71a3839a3cd512a63097568a61f2ef4e57bb43606a8d9f2",
+    "taskctl-0.2.0-alpha.2-2.fc44.src.rpm": "2043ca87fb76c789868489f7505985e9d7665c7e6a3d94a9f1968151fc9d0155",
+    "taskctl-0.2.0-alpha.2-2.fc44.x86_64.rpm": "c7baffd18763c7e50ebb5b6edb5938fa35e9ded7341cdf3bc18a72e954bb5530"
+  }
+}

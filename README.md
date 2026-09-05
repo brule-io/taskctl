@@ -8,6 +8,8 @@ project repository; the implementation comes from an exact pinned release.
 **Release: `0.2.0-alpha.2`. Native protocol v1 is not frozen.**
 Native executables and JVM reference archives are tested on Windows x86_64,
 Linux x86_64 and macOS arm64. Native is the default after behavioral parity passes.
+Fedora 44 users can also [install the optional native RPM](docs/FEDORA-RPM.md).
+The system command and repository-pinned `./taskctl` remain independent.
 
 ## 60-second greenfield quick start
 
