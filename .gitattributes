@@ -4,3 +4,7 @@
 *.png binary
 # Historical witnesses are source bytes, not authored text to normalize.
 conformance/src/test/resources/** -text
+# Release evidence is hashed; preserve raw bytes and tool-emitted whitespace.
+docs/proof/productization/** -text
+docs/proof/productization/**/*.log -whitespace
+docs/proof/productization/**/rpmlint.txt -whitespace
