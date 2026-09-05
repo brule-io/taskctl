@@ -1,0 +1,49 @@
+name: Release smoke
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Exact draft or published release tag
+        required: true
+        type: string
+# GitHub restricts draft release visibility to writers. This job reads assets;
+# publication remains a separate explicit maintainer operation.
+permissions:
+  contents: write
+jobs:
+  consumer:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-2025
+            target: windows-x86_64
+            extension: zip
+          - os: ubuntu-24.04
+            target: linux-x86_64
+            extension: tar.gz
+          - os: macos-14
+            target: macos-aarch64
+            extension: tar.gz
+    runs-on: ${{ matrix.os }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ inputs.tag }}
+      TARGET: ${{ matrix.target }}
+      EXTENSION: ${{ matrix.extension }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Download exact release inputs
+        shell: bash
+        run: gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern "*$TARGET.$EXTENSION" --pattern release-manifest.json --pattern toolchain.lock --dir build/distributions
+      - name: Validate release and stage metadata
+        run: python scripts/stage_release_test.py
+      - name: Exercise cold GitHub acquisition and native consumer
+        run: python scripts/bootstrap_test.py --lock build/distributions/toolchain.lock
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-smoke-${{ matrix.target }}
+          path: build/proof/*.json

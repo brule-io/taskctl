@@ -79,7 +79,9 @@ def main():
         assert not fresh.exists()
         assert json.loads(standalone(initialize).stdout)['result']['plan_digest']==plan['plan_digest']
         launcher=[str(shell),'-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',str(fresh/'taskctl.ps1')] if windows else [str(fresh/'taskctl')]
+        env['TASKCTL_CACHE']=str(work/'native-cold-cache')
         before=fingerprint(fresh)
+        assert 'offline' in run(['doctor'],2,{'TASKCTL_OFFLINE':'1'}).stderr
         doctor=json.loads(run(['doctor','--format','json']).stdout)['result']
         assert doctor['repository_id']=='test.greenfield' and doctor['tasks']==doctor['roadmaps']==doctor['epics']==0
         assert json.loads(run(['frontier','--format','json']).stdout)['result']['tasks']==[]
