@@ -9,7 +9,7 @@ import java.nio.file.StandardOpenOption.*
 /** The native filesystem adapter owns all layout, locking and journal behavior.
  * Read commands never create a lock, cache or journal inside the consumer. */
 class FileTaskLedger(repository: Path) : TaskLedger {
-    val root: Path = repository.toAbsolutePath().normalize()
+    val root: Path = NativeFiles.repositoryRoot(repository)
     private val journal = ".agents/runtime/transaction.json"
     private data class Loaded(val snapshot: LedgerSnapshot, val documents: Map<String, DraftDocument>,
                               val taskPaths: Map<String, String>, val contents: Map<String, String>)

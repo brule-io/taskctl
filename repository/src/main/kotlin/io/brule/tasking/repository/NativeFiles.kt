@@ -10,6 +10,14 @@ import java.nio.channels.FileChannel
 import java.nio.file.StandardOpenOption.*
 
 internal object NativeFiles {
+    /** Resolve the selected repository anchor once. macOS /var is a normal
+     * system alias; reject redirects inside the ledger, not that parent alias. */
+    fun repositoryRoot(input: Path): Path {
+        val absolute = input.toAbsolutePath().normalize()
+        var ancestor = absolute
+        while (!Files.exists(ancestor, NOFOLLOW_LINKS)) ancestor = ancestor.parent ?: error("repository has no existing ancestor")
+        return ancestor.toRealPath().resolve(ancestor.relativize(absolute)).normalize()
+    }
     fun objectValue(source: String): ObjectValue = YamlValues.parse(source).value as? ObjectValue ?: error("object required")
     fun locate(root: Path, relative: String): Path {
         require(!relative.contains('\\') && relative.split('/').none { it == ".." || it.isEmpty() }) { "unsafe ledger path" }

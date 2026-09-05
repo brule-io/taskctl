@@ -19,7 +19,7 @@ object Bootstrap {
 
     fun plan(repository: Path, repositoryId: String, version: String, distribution: Path, lock: String,
              seed: Transition.AddRecords = Transition.AddRecords()): InitializationPlan {
-        val root = repository.toAbsolutePath().normalize()
+        val root = NativeFiles.repositoryRoot(repository)
         require(repositoryId.isNotBlank()) { "repository identity is required" }
         if (Files.exists(root)) {
             require(Files.isDirectory(root) && !Files.isSymbolicLink(root)) { "destination must be a real directory" }
@@ -59,7 +59,7 @@ object Bootstrap {
     }
 
     fun recover(repository: Path): Boolean {
-        val root = repository.toAbsolutePath().normalize()
+        val root = NativeFiles.repositoryRoot(repository)
         val path = NativeFiles.locate(root, JOURNAL)
         if (!Files.exists(path)) return false
         finish(root, NativeFiles.objectValue(Files.readString(path)))
