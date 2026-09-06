@@ -31,9 +31,11 @@ public data class MarkdownDocument(
     public fun checklist(sectionName: String): List<ChecklistEntry> {
         val section = section(sectionName) ?: return emptyList()
         val checkbox = Regex("^\\s*- \\[( |x|X)]\\s+(.+?)\\s*$")
+        val fences = MarkdownFences()
         return section.content
             .lineSequence()
             .mapIndexedNotNull { offset, line ->
+                if (!fences.outside(line)) return@mapIndexedNotNull null
                 val match = checkbox.matchEntire(line) ?: return@mapIndexedNotNull null
                 ChecklistEntry(
                     description = match.groupValues[2],
@@ -57,7 +59,9 @@ public object MarkdownParser {
     ): MarkdownDocument {
         val lines = body.replace("\r\n", "\n").replace('\r', '\n').split('\n')
         val diagnostics = mutableListOf<Diagnostic>()
-        val heading = lines.firstOrNull { it.startsWith("# ") }?.removePrefix("# ")?.trim()
+        val fences = MarkdownFences()
+        val outside = lines.map { fences.outside(it) }
+        val heading = lines.withIndex().firstOrNull { outside[it.index] && it.value.startsWith("# ") }?.value?.removePrefix("# ")?.trim()
         val sections = linkedMapOf<String, MarkdownSection>()
         var sectionName: String? = null
         var sectionLine = 0
@@ -79,7 +83,7 @@ public object MarkdownParser {
         }
 
         lines.forEachIndexed { index, line ->
-            if (line.startsWith("## ")) {
+            if (outside[index] && line.startsWith("## ")) {
                 completeSection()
                 sectionName = line.removePrefix("## ").trim()
                 sectionLine = bodyStartLine + index
@@ -102,9 +106,11 @@ public object MarkdownEditor {
         val normalized = input.replace("\r\n", "\n").replace('\r', '\n')
         val lines = normalized.split('\n').toMutableList()
         val heading = "## $sectionName"
-        val start = lines.indexOfFirst { it == heading }
+        val fences = MarkdownFences()
+        val outside = lines.map { fences.outside(it) }
+        val start = lines.indices.firstOrNull { outside[it] && lines[it] == heading } ?: -1
         require(start >= 0) { "missing $heading" }
-        val next = ((start + 1) until lines.size).firstOrNull { lines[it].startsWith("## ") } ?: lines.size
+        val next = ((start + 1) until lines.size).firstOrNull { outside[it] && lines[it].startsWith("## ") } ?: lines.size
         val replacement =
             buildList {
                 add(heading)
@@ -115,5 +121,25 @@ public object MarkdownEditor {
         lines.subList(start, next).clear()
         lines.addAll(start, replacement)
         return lines.joinToString("\n").trimEnd() + "\n"
+    }
+}
+
+/** Historical section grammar uses column-zero headings and CommonMark-style
+ * backtick/tilde fences indented at most three spaces. An unclosed fence consumes
+ * the remainder. Fence contents never contribute checklist state or headings. */
+private class MarkdownFences {
+    private var marker: Char? = null
+    private var length = 0
+    fun outside(line: String): Boolean {
+        val fence = Regex("^ {0,3}(`{3,}|~{3,})(.*)$").matchEntire(line)
+        if (marker != null) {
+            if (fence != null && fence.groupValues[1].first() == marker && fence.groupValues[1].length >= length && fence.groupValues[2].isBlank()) marker = null
+            return false
+        }
+        if (fence != null && (fence.groupValues[1].first() != '`' || '`' !in fence.groupValues[2])) {
+            marker = fence.groupValues[1].first(); length = fence.groupValues[1].length
+            return false
+        }
+        return true
     }
 }

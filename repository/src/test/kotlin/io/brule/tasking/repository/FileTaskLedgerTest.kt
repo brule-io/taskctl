@@ -69,12 +69,81 @@ class FileTaskLedgerTest {
         assertEquals(revision, ledger.snapshot().revision)
     }
 
+    @Test fun `revision and review persistence preserve old receipts across a cold load`() {
+        val initial = task.copy(protocol = "tasking/core-draft-2", verification = listOf("test"))
+        val ledger = create(Transition.AddRecords(listOf(initial)))
+        val evidence = ClosureEvidence(Receipt(initial.id, DraftLifecycle.contract(initial), mapOf("test" to "passed")), "tester", "2026-09-06T00:00:00Z")
+        ledger.apply(ledger.snapshot().revision, Transition.CloseTask(evidence))
+        val before = ledger.snapshot()
+        val revised = initial.copy(state = "closed", acceptance = listOf("A stronger outcome"))
+        val plan = ledger.plan(before.revision, Transition.ReviseTask(revised))
+        assertTrue(plan.requiredArray("writes").isNotEmpty())
+        assertEquals(before.revision, ledger.snapshot().revision)
+        ledger.apply(before.revision, Transition.ReviseTask(revised))
+        val cold = FileTaskLedger(ledger.root)
+        assertEquals("closed", cold.task(initial.id)!!.state)
+        assertEquals(Currency.AFFECTED, cold.snapshot().currency().getValue(initial.id).state)
+        assertEquals(before.receipts, cold.snapshot().receipts)
+        val review = Reconciliation(initial.id, cold.snapshot().history!!.heads.getValue(initial.id), ReviewOutcome.REVALIDATED,
+            emptyList(), "tester", "2026-09-06T00:00:00Z", "Revalidated the stronger contract.", mapOf("test" to "passed"))
+        cold.apply(cold.snapshot().revision, Transition.ReconcileTask(review))
+        assertEquals(Currency.CURRENT, FileTaskLedger(ledger.root).snapshot().currency().getValue(initial.id).state)
+        assertEquals(before.receipts, cold.snapshot().receipts)
+        val revisionPath = Files.list(ledger.root.resolve(".agents/history/revisions")).use { it.findFirst().orElseThrow() }
+        Files.writeString(revisionPath, Files.readString(revisionPath).replace("Bounded work", "Forged work"))
+        assertFails { cold.snapshot() }
+    }
+
+    @Test fun `existing code adoption preserves source and contributor instructions`() {
+        val empty = create()
+        val existing = directory.resolve("existing")
+        Files.createDirectories(existing)
+        Files.writeString(existing.resolve("app.txt"), "existing code\n")
+        Files.writeString(existing.resolve("AGENTS.md"), "Keep this contributor contract.\n")
+        val plan = Bootstrap.plan(existing, "existing", "0.2.0-alpha.1", directory.resolve("distribution"),
+            Files.readString(empty.root.resolve(".taskctl/toolchain.lock")), adopt = true)
+        assertFalse("AGENTS.md" in plan.files)
+        assertEquals("existing code\n", Files.readString(existing.resolve("app.txt")))
+        Bootstrap.apply(plan)
+        assertEquals("Keep this contributor contract.\n", Files.readString(existing.resolve("AGENTS.md")))
+        assertTrue(Files.exists(existing.resolve(".agents/README.md")))
+        assertTrue(FileTaskLedger(existing).frontier().tasks.isEmpty())
+        assertFails { Bootstrap.plan(existing, "existing", "0.2.0-alpha.1", directory.resolve("distribution"),
+            Files.readString(empty.root.resolve(".taskctl/toolchain.lock")), adopt = true) }
+    }
+
+    @Test fun `explicit legacy tracking fences older writers without inventing observations`() {
+        val template = create()
+        val legacy = directory.resolve("legacy/.agents")
+        Files.createDirectories(legacy.resolve("tasks"))
+        Files.writeString(legacy.resolve("config.toml"), Files.readString(template.root.resolve(".agents/config.toml")).replace("taskctl.native/alpha2", "taskctl.native/alpha1"))
+        Files.copy(template.root.resolve(".agents/policy.toml"), legacy.resolve("policy.toml"))
+        val dependent = task.copy(id = TaskId.parseOrThrow("TASK.b"), requires = listOf(task.id))
+        listOf(task, dependent).forEach { Files.writeString(legacy.resolve("tasks/${it.id.value}.json"), Json.encode(NativeCodec.task(it))) }
+        val ledger = FileTaskLedger(legacy.parent)
+        val before = ledger.snapshot()
+        assertNull(before.history)
+        ledger.plan(before.revision, Transition.TrackHistory)
+        assertFalse(Files.exists(legacy.resolve("runtime")))
+        ledger.apply(before.revision, Transition.TrackHistory)
+        val after = FileTaskLedger(legacy.parent).snapshot()
+        assertEquals(before.revision, after.history!!.origin)
+        assertEquals(Currency.UNRESOLVED, after.currency().getValue(dependent.id).state)
+        assertContains(Files.readString(legacy.resolve("config.toml")), "taskctl.native/alpha2")
+        assertEquals("tasking/core-draft-1", after.universe.tasks.first().protocol)
+    }
+
     @Test fun `recovery completes only matching preimages and rejects unrelated paths`() {
         val ledger = create()
         val path = ".agents/tasks/" + NativeFiles.fileName(task.id.value)
         val content = Json.encode(NativeCodec.task(task)) + "\n"
+        val history = LedgerTransitions.evolve(ledger.snapshot(), Transition.AddRecords(listOf(task))).history!!
+        val historyPath = ".agents/history/revisions/${history.heads.getValue(task.id).value.removePrefix("sha256:")}.json"
         val operation = obj("contract" to StringValue("taskctl.transaction/alpha1"),
-            "before" to obj(path to NullValue), "after" to obj(path to StringValue(content)))
+            "before" to obj(path to NullValue, historyPath to NullValue,
+                ".agents/history/heads.json" to StringValue(Files.readString(ledger.root.resolve(".agents/history/heads.json")))),
+            "after" to obj(path to StringValue(content), historyPath to StringValue(Json.encode(HistoryCodec.revision(history.head(task.id))) + "\n"),
+                ".agents/history/heads.json" to StringValue(Json.encode(HistoryCodec.heads(history)) + "\n")))
         NativeFiles.atomicWrite(ledger.root, ".agents/runtime/transaction.json", Json.encode(operation))
         assertFails { ledger.snapshot() }
         ledger.recover()

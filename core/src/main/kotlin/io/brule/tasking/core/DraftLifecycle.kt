@@ -27,6 +27,8 @@ data class DraftEvaluation(
 
 object DraftLifecycle {
     fun contract(record: DraftRecord, profile: Profile = Profile()): ContractDigest {
+        if (record.protocol == "tasking/core-draft-2") return ContractDigest.parseOrThrow(
+            Canonical.digest("taskctl.semantic-contract/2", projection(record, profile)))
         val active = (profile.pins.keys + record.requiredExtensions).sorted()
         return ContractDigest.parseOrThrow(Canonical.digest("tasking/core-draft-1/semantic-contract/1", obj(
             "id" to StringValue(record.id.value), "title" to SemanticMarkdown.value(record.title),
@@ -37,6 +39,17 @@ object DraftLifecycle {
             "semantic_extensions" to ObjectValue(active.associateWith { record.extensions.fields[it] ?: NullValue }),
         )))
     }
+
+    /** Versioned public projection. Title is presentation; bounded intent is contractual. */
+    fun projection(record: DraftRecord, profile: Profile = Profile()): ObjectValue = obj(
+        "id" to StringValue(record.id.value), "intent" to SemanticMarkdown.value(record.intent),
+        "requires" to strings(record.requires.sorted().map { it.value }),
+        "requirements" to ArrayValue(record.requirements.map { SemanticMarkdown.value(it) }),
+        "acceptance" to ArrayValue(record.acceptance.map { SemanticMarkdown.value(it, acceptance = true) }),
+        "verification" to strings(record.verification.sorted()),
+        "required_extensions" to strings(record.requiredExtensions.sorted()), "profile" to stringMap(profile.pins),
+        "semantic_extensions" to ObjectValue((profile.pins.keys + record.requiredExtensions).sorted().associateWith { record.extensions.fields[it] ?: NullValue }),
+    )
 
     /** A matching digest identifies the contract a receipt addresses; this
      * alone does not attest that its supplied evidence is true. */
@@ -94,6 +107,7 @@ object DraftLifecycle {
         errors += contributed.getValue(taskId).blockers
         if (!addresses(receipt, task, profile)) errors += "receipt does not address current contract"
         if (receipt.evidence.values.none { it.isNotBlank() }) errors += "closure evidence is required"
+        task.verification.forEach { if (receipt.evidence[it].isNullOrBlank()) errors += "missing evidence: $it" }
         contributed.getValue(taskId).evidenceRequirements.forEach {
             if (receipt.evidence[it].isNullOrBlank()) errors += "missing evidence: $it"
         }

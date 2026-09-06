@@ -1,9 +1,8 @@
 # taskctl system package
 
 The RPM packages the canonical parity-tested Linux x86_64 native artifact.
-It does not compile taskctl or change protocol semantics. The project software
-license remains undecided: `LicenseRef-taskctl-license-pending` records that fact
-and grants no license. NOTICE.md and the canonical third-party notices are installed
+It does not compile taskctl or change protocol semantics. taskctl is licensed
+under Apache-2.0. LICENSE, NOTICE.md and canonical third-party notices are installed
 under `/usr/share/licenses/taskctl`. No shell completion files exist upstream yet.
 
 Install a verified local RPM with `sudo dnf install ./taskctl-*.x86_64.rpm`.

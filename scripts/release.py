@@ -48,15 +48,17 @@ def main():
     args.output.mkdir(parents=True,exist_ok=True)
     tag='v'+args.version
     notes=args.output/'release-notes.md'
-    notes.write_text(f'''taskctl {args.version}: native greenfield alpha for humans and agents.
+    notes.write_text(f'''taskctl {args.version}: semantic hardening and self-hosting alpha.
 
 Native executables and JVM reference runtimes: Windows x86_64, Linux x86_64,
 macOS arm64. toolchain.lock selects native after corpus/process parity passed;
 toolchain-jvm.lock explicitly selects the JVM reference. No fallback is implicit.
-Version aliases work without acquisition. See the README for initialization.
+Version aliases work without acquisition. Immutable task revisions, transitive
+dependency currency, explicit evidenced reconciliation, and bounded existing-code
+adoption are available. See docs/SEMANTIC-0.3.md for compatibility and commands.
 
 Native v1 is not frozen. Historical adapters remain explicit compatibility paths.
-No project software license has been selected. Existing third-party licenses remain.
+Apache-2.0 covers the protocol and reference tooling. Existing third-party licenses remain.
 
 Source: {args.revision}. CI verifies tests, byte-identical repackaging and clean
 consumer acquisition/bootstrap on each platform. SHA-256 digests are in the
@@ -84,6 +86,7 @@ release manifest, SHA256SUMS and toolchain.lock. No asset is replaced in place.
     bound_metadata={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in statements+parity}
     for name,sha in bound_metadata.items(): assert assets[name]['digest']=='sha256:'+sha
     manifest=dict(contract='taskctl.release/alpha2',version=args.version,source_revision=args.revision,repository=args.repository,
+        license='Apache-2.0', license_sha256=records[0]['license_sha256'],
         preferred_implementation='native',artifacts=records,toolchains=locks,evidence=bound_metadata,
         attestation='Build provenance statements and parity evidence are assets bound by the signed immutable GitHub release attestation; no separate CI OIDC signature is claimed.')
     (args.output/'release-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8',newline='\n')

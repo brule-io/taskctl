@@ -133,6 +133,56 @@ def main():
         assert receipts=={p.name:p.read_bytes() for p in (repo/'.agents/receipts').iterdir()}
         task_path.write_text(task_path.read_text(encoding='utf-8').replace('[Changed acceptance.]','[Restart succeeds.]'),encoding='utf-8',newline='\n')
         current=json_pair('restored valid contract',['doctor'])['result']
+        # Revision/currency corpus runs through both shipped executables, including
+        # immutable history, review evidence, transitive changes and bounded plans.
+        d=a|dict(protocol='tasking/core-draft-2',id='TASK.rev.a',verification=['integration'])
+        e2=d|dict(id='TASK.rev.b',requires=['TASK.rev.a'])
+        f=d|dict(id='TASK.rev.c',requires=['TASK.rev.b'])
+        revision_seed=write('revision-seed.json',dict(contract='taskctl.seed/alpha1',tasks=[f,e2,d]))
+        json_pair('revision seed mutation plan',['seed','--file',revision_seed,'--expect-revision',current['revision'],'--plan'])
+        json_pair('revision seed',['seed','--file',revision_seed,'--expect-revision',current['revision']],mutation=True)
+        for task in (d,e2,f):
+            shown=json_pair('revision show '+task['id'],['show',task['id']])['result']
+            asserted=write('revision-receipt.json',evidence|dict(task=task['id'],contract=shown['contract_digest']))
+            json_pair('revision close '+task['id'],['close',task['id'],'--receipt',asserted,'--expect-revision',shown['revision']],mutation=True)
+        receipts={p.name:p.read_bytes() for p in (repo/'.agents/receipts').iterdir()}
+        shown=json_pair('closed revision before edit',['show',d['id']])['result']
+        material=write('material-revision.json',d|dict(state='closed',acceptance=['Durable after power loss.']))
+        json_pair('revise mutation plan',['revise',d['id'],'--file',material,'--expect-revision',shown['revision'],'--plan'])
+        json_pair('revise immutable contract',['revise',d['id'],'--file',material,'--expect-revision',shown['revision']],mutation=True)
+        json_pair('stale revise CAS',['revise',d['id'],'--file',material,'--expect-revision',shown['revision']],code=4)
+        affected=json_pair('transitive affected',['affected',d['id']])['result']['tasks']
+        assert {t['task'] for t in affected}=={d['id'],e2['id'],f['id']}
+        assert all(t['lifecycle']=='closed' and t['currency']=='affected' for t in affected)
+        pair('human currency',['status'])
+        json_pair('closed immutable history',['history',d['id']])
+        json_pair('reconcile without explicit review',['reconcile',d['id']],code=2)
+        plan=json_pair('review current inputs',['reconcile',d['id'],'--plan'])['result']
+        def review_file(plan,outcome='revalidated',evidence_data=None):
+            return write('review.json',dict(protocol='taskctl.reconciliation/1',classification='actor-assertion',
+                task=plan['task'],reviewed_head=plan['reviewed_head'],observations=plan['observations'],outcome=outcome,
+                actor='parity-test',recorded_at='2026-09-06T00:00:00Z',rationale='Reviewed against current inputs.',
+                evidence={'integration':'Explicit caller revalidation assertion.'} if evidence_data is None else evidence_data,successor=None))
+        missing=review_file(plan,evidence_data={})
+        json_pair('reject evidence-free revalidation',['reconcile',d['id'],'--file',missing,'--expect-revision',plan['revision']],code=2)
+        review=review_file(plan,outcome='unresolved')
+        json_pair('record unresolved review',['reconcile',d['id'],'--file',review,'--expect-revision',plan['revision']],mutation=True)
+        assert next(t for t in json_pair('unresolved status',['status'])['result']['tasks'] if t['task']==d['id'])['currency']=='unresolved'
+        downstream_plan=json_pair('downstream review while blocked',['reconcile',e2['id'],'--plan'])['result']
+        blocked=review_file(downstream_plan)
+        json_pair('reject review over unresolved upstream',['reconcile',e2['id'],'--file',blocked,'--expect-revision',downstream_plan['revision']],code=2)
+        for task in (d,e2,f):
+            plan=json_pair('reconcile inputs '+task['id'],['reconcile',task['id'],'--plan'])['result']
+            review=review_file(plan)
+            json_pair('review mutation plan '+task['id'],['reconcile',task['id'],'--file',review,'--expect-revision',plan['revision'],'--plan'])
+            json_pair('evidenced reconciliation '+task['id'],['reconcile',task['id'],'--file',review,'--expect-revision',plan['revision']],mutation=True)
+            json_pair('stale reconciliation CAS '+task['id'],['reconcile',task['id'],'--file',review,'--expect-revision',plan['revision']],code=4)
+            if task==e2:
+                remains=json_pair('transitive currency remains after intermediate review',['affected'])['result']['tasks']
+                assert f['id'] in {t['task'] for t in remains}
+        assert not json_pair('all revised tasks current',['affected'])['result']['tasks']
+        assert receipts=={p.name:p.read_bytes() for p in (repo/'.agents/receipts').iterdir()}
+        current=json_pair('revision doctor after reconciliations',['doctor'])['result']
         bad=write('dangling.json',dict(contract='taskctl.seed/alpha1',tasks=[a|dict(id='TASK.dangling',requires=['TASK.absent'])]))
         json_pair('reject dangling dependency',['seed','--file',bad,'--expect-revision',current['revision']],code=2)
         required=write('required.json',dict(contract='taskctl.seed/alpha1',tasks=[a|dict(id='TASK.required',required_extensions=['test.provider/v1'])]))
@@ -140,6 +190,17 @@ def main():
         json_pair('inspect unsupported feature',['doctor'])
         json_pair('required provider blocks readiness',['frontier'],code=3)
         pair('diagnostic stderr exit code',['show','banana'],code=2)
+        # Adoption has an explicit entry point; init still refuses existing code.
+        restore(None); repo.mkdir()
+        (repo/'source.txt').write_text('Existing source.\n',encoding='utf-8')
+        (repo/'AGENTS.md').write_text('Existing contributor authority.\n',encoding='utf-8')
+        adoption=['adopt','--repo',repo,'--id','test.adopt','--toolchain',lock]
+        json_pair('adopt existing code plan',[*adoption,'--plan'])
+        json_pair('adopt existing code',adoption,mutation=True,initialization=True)
+        assert (repo/'source.txt').read_text(encoding='utf-8')=='Existing source.\n'
+        assert (repo/'AGENTS.md').read_text(encoding='utf-8')=='Existing contributor authority.\n'
+        json_pair('adopted doctor',['doctor'])
+        json_pair('adoption collision refusal',adoption,code=2)
     result=dict(contract='taskctl.parity/alpha1',platform=system,version=native['version'],
         artifacts={kind:meta['sha256'] for kind,meta in metadata.items()},cases=checks,
         allowed_differences={'info.result':['implementation','java_runtime','vm','build']},

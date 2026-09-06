@@ -33,13 +33,13 @@ class TaskLedgerSeamTest {
             dependencyBindings = mapOf(TaskId.parseOrThrow("TASK.b") to listOf(Dependency(TaskId.parseOrThrow("TASK.a"), DraftLifecycle.contract(a)))))
         assertTrue(snapshot.dependencyProblems().isEmpty())
         val changed = snapshot.copy(universe = DraftUniverse(listOf(a.copy(acceptance = listOf("A different outcome")), b)))
-        assertTrue(changed.dependencyProblems().single().contains("observed upstream contract changed"))
+        assertTrue(changed.dependencyProblems().isEmpty())
+        assertEquals(Currency.UNRESOLVED, changed.currency().getValue(b.id).state)
         val ledger = object : TaskLedger {
             override fun snapshot() = changed
             override fun apply(expectedRevision: Revision, transition: Transition): TransitionResult = error("read-only test adapter")
         }
-        assertFails { ledger.frontier() }
-        assertFails { LedgerTransitions.reduce(changed, Transition.CloseTask(ClosureEvidence(Receipt(TaskId.parseOrThrow("TASK.b"), DraftLifecycle.contract(b), mapOf("test" to "passed")), "actor", "2026-09-05T00:00:00Z"))) }
+        assertEquals(listOf(b.id), ledger.frontier().tasks) // Legacy identity-only execution stays in its original contract.
         val unbound = changed.copy(dependencyBindings = emptyMap())
         assertEquals(listOf(Dependency(TaskId.parseOrThrow("TASK.a"))), unbound.dependencies(TaskId.parseOrThrow("TASK.b")))
         assertTrue(unbound.dependencyProblems().isEmpty())

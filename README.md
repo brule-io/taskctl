@@ -128,4 +128,6 @@ commands and the exact GraalVM pin are in [NATIVE-IMAGE.md](docs/NATIVE-IMAGE.md
 
 ## License
 
-The owner has not selected a project software license. See [NOTICE.md](NOTICE.md).
+Licensed under [Apache-2.0](LICENSE). See [NOTICE.md](NOTICE.md) for scope and
+third-party notices. No CLA is required. A separate future hosted service is not
+part of this repository; code licensing grants no additional trademark rights.

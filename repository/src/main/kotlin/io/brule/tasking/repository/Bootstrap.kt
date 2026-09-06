@@ -18,29 +18,40 @@ object Bootstrap {
     private const val JOURNAL = ".taskctl/bootstrap-journal.json"
 
     fun plan(repository: Path, repositoryId: String, version: String, distribution: Path, lock: String,
-             seed: Transition.AddRecords = Transition.AddRecords()): InitializationPlan {
+             seed: Transition.AddRecords = Transition.AddRecords(), adopt: Boolean = false): InitializationPlan {
         val root = NativeFiles.repositoryRoot(repository)
         require(repositoryId.isNotBlank()) { "repository identity is required" }
         if (Files.exists(root)) {
             require(Files.isDirectory(root) && !Files.isSymbolicLink(root)) { "destination must be a real directory" }
-            Files.list(root).use { children ->
+            if (!adopt) Files.list(root).use { children ->
                 require(children.allMatch { it.fileName.toString() == ".git" }) { "init requires an empty directory (an existing .git is allowed); existing-code adoption is a separate operation" }
+            }
+            if (adopt) require(listOf(".agents", ".taskctl", "taskctl", "taskctl.ps1", "taskctl.bat").none { Files.exists(NativeFiles.locate(root, it)) }) {
+                "adopt requires existing code without tasking or conflicting launchers; legacy import is a separate operation"
             }
         }
         validateLock(lock, version)
-        val universe = LedgerTransitions.reduce(LedgerSnapshot(repositoryId, Revision.initial(), DraftUniverse(emptyList())), seed)
+        val snapshot = LedgerTransitions.evolve(LedgerSnapshot(repositoryId, Revision.initial(), DraftUniverse(emptyList()), history = TaskHistory(Revision.initial())), seed)
+        val universe = snapshot.universe
         val files = linkedMapOf(
             ".taskctl/toolchain.lock" to lock.replace("\r\n", "\n"),
             ".taskctl/.gitignore" to "bootstrap-journal.json\n",
-            ".agents/config.toml" to "contract = \"taskctl.repository/alpha1\"\nprotocol = \"taskctl.native/alpha1\"\nrepository_id = ${Json.encode(StringValue(repositoryId))}\nprofile = \"minimal/alpha1\"\n",
+            ".agents/config.toml" to "contract = \"taskctl.repository/alpha1\"\nprotocol = \"taskctl.native/alpha2\"\nrepository_id = ${Json.encode(StringValue(repositoryId))}\nprofile = \"minimal/alpha1\"\n",
             ".agents/policy.toml" to "contract = \"taskctl.policy/alpha1\"\nprofile = \"minimal/alpha1\"\n",
             ".agents/.gitignore" to "runtime/\n.taskctl-*.tmp\n",
             "AGENTS.md" to agentInstructions(),
         )
+        if (adopt && Files.exists(NativeFiles.locate(root, "AGENTS.md"))) {
+            files.remove("AGENTS.md")
+            files[".agents/README.md"] = agentInstructions()
+        }
         for (name in listOf("taskctl", "taskctl.ps1", "taskctl.bat")) files[name] = Files.readString(distribution.resolve("bootstrap/$name"))
         universe.tasks.forEach { files[".agents/tasks/" + NativeFiles.fileName(it.id.value)] = Json.encode(NativeCodec.task(it)) + "\n" }
         universe.roadmaps.forEach { files[".agents/roadmaps/" + NativeFiles.fileName(it.id.value)] = Json.encode(PlanningRecordCodec.encode(it)) + "\n" }
         universe.epics.forEach { files[".agents/epics/" + NativeFiles.fileName(it.id.value)] = Json.encode(PlanningRecordCodec.encode(it)) + "\n" }
+        val history = requireNotNull(snapshot.history)
+        files[".agents/history/heads.json"] = Json.encode(HistoryCodec.heads(history)) + "\n"
+        history.revisions.forEach { (id, value) -> files[".agents/history/revisions/${id.value.removePrefix("sha256:")}.json"] = Json.encode(HistoryCodec.revision(value)) + "\n" }
         files.keys.forEach { NativeFiles.locate(root, it) }
         return InitializationPlan(root, repositoryId, files)
     }
@@ -73,9 +84,10 @@ object Bootstrap {
         }
         val plan = InitializationPlan(root, journal.requiredString("repository_id"), files)
         require(plan.digest == journal.requiredString("plan_digest")) { "bootstrap journal digest mismatch" }
-        val fixed = setOf(".taskctl/toolchain.lock", ".taskctl/.gitignore", ".agents/config.toml", ".agents/policy.toml", ".agents/.gitignore", "AGENTS.md", "taskctl", "taskctl.ps1", "taskctl.bat")
+        val fixed = setOf(".taskctl/toolchain.lock", ".taskctl/.gitignore", ".agents/config.toml", ".agents/policy.toml", ".agents/.gitignore", ".agents/README.md", "AGENTS.md", "taskctl", "taskctl.ps1", "taskctl.bat")
         for ((relative, content) in files) {
-            require(relative in fixed || Regex("^\\.agents/(tasks|roadmaps|epics)/[A-Za-z0-9._-]+\\.yaml$").matches(relative)) { "bootstrap path outside declared scope" }
+            require(relative in fixed || Regex("^\\.agents/(tasks|roadmaps|epics)/[A-Za-z0-9._-]+\\.yaml$").matches(relative) ||
+                relative == ".agents/history/heads.json" || Regex("^\\.agents/history/revisions/[a-f0-9]{64}\\.json$").matches(relative)) { "bootstrap path outside declared scope" }
             val path = NativeFiles.locate(root, relative)
             require(!Files.exists(path) || Files.readString(path) == content) { "external change conflicts with bootstrap: $relative" }
         }
@@ -129,6 +141,13 @@ object Bootstrap {
         it never runs a command or promotes an assertion into an independent proof.
         `taskctl close ID --receipt FILE --expect-revision REVISION` binds closure
         to that contract and the inspected ledger revision. Receipts are immutable.
+
+        Lifecycle and currency are independent. Use `taskctl status` and `affected`
+        to find stale work, `history ID` for immutable revisions, `revise ID --file
+        RECORD --expect-revision REVISION` for contract edits, and `reconcile ID
+        --plan` to inspect the exact inputs a review must address. Submit explicit
+        actor assertions with rationale and evidence through `reconcile --file`.
+        Never hand-edit HEAD or immutable history to clear an affected task.
 
         Read commands do not write the project. Writes are bounded to tasking state.
         No command implicitly commits, stages, merges, deploys, or contacts services.

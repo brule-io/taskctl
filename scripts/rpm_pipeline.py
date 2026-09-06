@@ -57,6 +57,7 @@ def prepare(inputs,work,release):
     packaging_revision=command(['git','rev-parse','HEAD'])
     packaging_dirty=bool(command(['git','status','--porcelain']))
     identity=dict(contract='taskctl.rpm/alpha1',version=version,rpm_version=rpm_version,release=release,
+        license='Apache-2.0',license_sha256=meta['license_sha256'],
         platform='linux-x86_64',implementation='native',upstream=meta,upstream_manifest_sha256=sha(inputs/'release-manifest.json'),
         upstream_parity_sha256=sha(inputs/'parity-linux-x86_64.json'),upstream_corpus_sha256=sha(inputs/'corpus-linux-x86_64.json'),
         toolchain_lock_sha256=sha(inputs/'toolchain.lock'),packaging_revision=packaging_revision,packaging_dirty=packaging_dirty,

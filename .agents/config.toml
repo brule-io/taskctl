@@ -1,0 +1,4 @@
+contract = "taskctl.repository/alpha1"
+protocol = "taskctl.native/alpha2"
+repository_id = "brule-io.taskctl"
+profile = "minimal/alpha1"

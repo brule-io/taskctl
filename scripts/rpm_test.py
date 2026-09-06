@@ -46,7 +46,7 @@ assert shutil.which('taskctl')=='/usr/bin/taskctl'
 assert sha(Path('/usr/libexec/taskctl/taskctl'))==expected_binary
 canonical_files={}
 with tarfile.open(root/meta['upstream']['file']) as archive:
-    destinations={'taskctl':'/usr/libexec/taskctl/taskctl','NOTICE.md':'/usr/share/licenses/taskctl/NOTICE.md',
+    destinations={'taskctl':'/usr/libexec/taskctl/taskctl','LICENSE':'/usr/share/licenses/taskctl/LICENSE','NOTICE.md':'/usr/share/licenses/taskctl/NOTICE.md',
         'THIRD-PARTY-NOTICES.zip':'/usr/share/licenses/taskctl/THIRD-PARTY-NOTICES.zip'}
     destinations.update({name:'/usr/share/taskctl/'+name for name in ('bootstrap/taskctl','bootstrap/taskctl.ps1','bootstrap/taskctl.bat','distribution.json','distribution.properties')})
     for original,destination in destinations.items():

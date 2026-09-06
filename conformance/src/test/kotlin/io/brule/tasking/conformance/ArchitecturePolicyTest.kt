@@ -73,6 +73,12 @@ class ArchitecturePolicyTest {
             Files.walk(root.resolve("$module/src")).use { paths ->
                 paths.filter { it.toString().endsWith(".kt") }.sorted().forEach { path ->
                     val relative = root.relativize(path).toString().replace('\\', '/')
+                    if (relative.startsWith("core/src/main/")) {
+                        val source = Files.readString(path)
+                        for (forbidden in listOf("import java.nio.file.", "import java.io.File", "Path.of(", ".agents/")) {
+                            if (forbidden in source) errors += "$relative: storage concern in core: $forbidden"
+                        }
+                    }
                     errors += violations(Files.readString(path), relative).map { "$relative: $it" }
                 }
             }

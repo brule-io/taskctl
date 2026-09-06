@@ -75,6 +75,7 @@ def main():
         for name in ('taskctl','taskctl.ps1','taskctl.bat'):
             shutil.copyfile(ROOT/'packaging'/name,stage/'bootstrap'/name)
         shutil.copyfile(ROOT/'NOTICE.md',stage/'NOTICE.md')
+        shutil.copyfile(ROOT/'LICENSE',stage/'LICENSE')
         script = (ROOT/'packaging/distribution.ps1').read_text(encoding='utf-8')
         script = script.replace('__IMPLEMENTATION__',args.kind).replace('__LIBRARIES__',';'.join(p.name for p in libraries))
         (stage/'taskctl.ps1').write_text(script,encoding='utf-8',newline='\n')
@@ -84,7 +85,7 @@ def main():
         (stage/'bootstrap/taskctl').chmod(0o755)
         entrypoint = ('taskctl.exe' if args.kind == 'native' else 'taskctl.ps1') if windows else 'taskctl'
         distribution = dict(version=VERSION, platform=system, implementation=args.kind, source_revision=revision,
-            source_dirty=dirty, native_v1='not-frozen', launcher_contract='taskctl.launcher/1', entrypoint=entrypoint, build_identity=identity)
+            source_dirty=dirty, license='Apache-2.0', license_sha256=digest(ROOT/'LICENSE'), native_v1='not-frozen', launcher_contract='taskctl.launcher/1', entrypoint=entrypoint, build_identity=identity)
         (stage/'distribution.json').write_text(json.dumps(distribution,indent=2)+'\n',encoding='utf-8',newline='\n')
         (stage/'distribution.properties').write_text(f'toolVersion={VERSION}\nlauncherContract=taskctl.launcher/1\nentrypoint={entrypoint}\n',encoding='utf-8',newline='\n')
         files = sorted(p for p in stage.rglob('*') if p.is_file())

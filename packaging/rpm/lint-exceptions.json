@@ -1,8 +1,4 @@
 {
-  "invalid-license": {
-    "pattern": "taskctl\\.(?:x86_64|src): W: invalid-license LicenseRef-taskctl-license-pending",
-    "reason": "The owner has not selected a project license. This explicit pending tag grants none; this is a private upstream package, not a Fedora inclusion candidate."
-  },
   "invalid-url": {
     "pattern": "taskctl\\.spec: W: invalid-url Source1: taskctl-rpm-support\\.tar\\.gz",
     "reason": "Source1 is locally generated packaging support, not a remote download. Its exact checksum and bytes are included in the self-contained source RPM."

@@ -2,13 +2,15 @@ package io.brule.tasking.core
 
 /** The upstream identity is durable; the contract it was observed to satisfy
  * can change independently. Null is explicitly unbound, never "current forever". */
-data class Dependency(val upstream: TaskId, val observedContract: ContractDigest? = null)
+data class Dependency(val upstream: TaskId, val observedContract: ContractDigest? = null,
+                      val observedRevision: TaskRevisionId? = null, val observedInputs: InputDigest? = null)
 
 /** Identity-only persisted alpha edges remain unbound. An adapter can supply
  * bindings without changing graph/lifecycle consumers or inventing old evidence. */
 fun LedgerSnapshot.dependencies(task: TaskId): List<Dependency> {
     val record = universe.tasks.singleOrNull { it.id == task } ?: error("unknown task: ${task.value}")
-    return dependencyBindings[task] ?: record.requires.map { Dependency(it) }
+    return history?.heads?.get(task)?.let { history.revisions.getValue(it).dependencies }
+        ?: dependencyBindings[task] ?: record.requires.map { Dependency(it) }
 }
 
 fun LedgerSnapshot.dependencyProblems(): List<String> {
@@ -23,9 +25,6 @@ fun LedgerSnapshot.dependencyProblems(): List<String> {
         edges.forEach { edge ->
             val upstream = tasks[edge.upstream]
             if (upstream == null) errors += "unknown dependency: ${edge.upstream.value}"
-            else if (edge.observedContract != null && edge.observedContract != DraftLifecycle.contract(upstream)) {
-                errors += "${dependent.value}: observed upstream contract changed: ${edge.upstream.value}"
-            }
         }
     }
     return errors.sorted()

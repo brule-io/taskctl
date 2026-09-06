@@ -63,3 +63,25 @@ value class ContractDigest private constructor(val value: String) {
         fun parseOrThrow(value: String): ContractDigest = parse(value) ?: error("Invalid ContractDigest: $value")
     }
 }
+
+@JvmInline
+value class TaskRevisionId private constructor(val value: String) {
+    init { require(PATTERN.matches(value)) { "Invalid TaskRevisionId: $value" } }
+    override fun toString(): String = value
+    companion object {
+        private val PATTERN = Regex("sha256:[0-9a-f]{64}")
+        fun parse(value: String): TaskRevisionId? = parseIdentity(value, PATTERN, ::TaskRevisionId)
+        fun parseOrThrow(value: String): TaskRevisionId = parse(value) ?: error("Invalid TaskRevisionId: $value")
+    }
+}
+
+@JvmInline
+value class InputDigest private constructor(val value: String) {
+    init { require(PATTERN.matches(value)) { "Invalid InputDigest: $value" } }
+    override fun toString(): String = value
+    companion object {
+        private val PATTERN = Regex("sha256:[0-9a-f]{64}")
+        fun parse(value: String): InputDigest? = parseIdentity(value, PATTERN, ::InputDigest)
+        fun parseOrThrow(value: String): InputDigest = parse(value) ?: error("Invalid InputDigest: $value")
+    }
+}

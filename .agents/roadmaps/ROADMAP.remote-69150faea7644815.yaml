@@ -1,0 +1,1 @@
+{"kind":"roadmap","id":"ROADMAP.remote","intent":"After the checkpoint, test the storage seam and one IDL projection.","protocol":"tasking/planning-draft-1","title":"Remote contract pressure tests","tasks":["TASK.remote.kernel","TASK.protocol.idl"],"required_extensions":[],"extensions":{}}

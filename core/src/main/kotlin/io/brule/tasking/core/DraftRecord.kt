@@ -5,6 +5,7 @@ data class DraftRecord(
     val id: TaskId, val title: String, val state: String, val intent: String,
     val requires: List<TaskId>, val requirements: List<String>, val acceptance: List<String>,
     val requiredExtensions: List<String>, val extensions: ObjectValue,
+    val protocol: String = "tasking/core-draft-1", val verification: List<String> = emptyList(),
 ) {
     init {
         require(title.isNotBlank() && intent.isNotBlank())
@@ -12,6 +13,8 @@ data class DraftRecord(
         require(requires.distinct().size == requires.size)
         require(requirements.isNotEmpty() && requirements.all { it.isNotBlank() })
         require(acceptance.isNotEmpty() && acceptance.all { it.isNotBlank() })
+        require(protocol in setOf("tasking/core-draft-1", "tasking/core-draft-2"))
+        require(verification.all { it.isNotBlank() } && (protocol != "tasking/core-draft-1" || verification.isEmpty()))
     }
 }
 
@@ -26,14 +29,16 @@ class DraftDocument private constructor(val record: DraftRecord, val source: Str
     /** Storage calls this only after the shared lifecycle reducer validates closure. */
     fun withState(state: String): DraftDocument = parse(source.replaceRange(stateSpan.start, stateSpan.end, Json.encode(StringValue(state))))
     companion object {
-        private val fields = setOf("protocol", "id", "title", "state", "intent", "requires", "requirements", "acceptance", "required_extensions", "extensions")
+        private val fields = setOf("protocol", "id", "title", "state", "intent", "requires", "requirements", "acceptance", "verification", "required_extensions", "extensions")
         private val feature = Regex("[a-z][a-z0-9-]*(?:\\.[a-z][a-z0-9-]*)+/v[1-9][0-9]*")
         fun parse(source: String): DraftDocument {
             val decoded = YamlValues.parse(source)
             val root = decoded.value as? ObjectValue ?: error("record must be a YAML mapping")
             val values = root.fields
             require((values.keys - fields).isEmpty()) { "unknown core fields: ${values.keys - fields}" }
-            require(root.requiredString("protocol") == "tasking/core-draft-1") { "native v1 is not frozen or accepted" }
+            val protocol = root.requiredString("protocol")
+            require(protocol in setOf("tasking/core-draft-1", "tasking/core-draft-2")) { "unsupported task draft; native v1 is not frozen" }
+            require(protocol != "tasking/core-draft-1" || "verification" !in values) { "verification requires core-draft-2" }
             fun text(key: String) = root.requiredString(key).also { require(it.isNotBlank()) { "$key cannot be blank" } }
             fun texts(key: String, required: Boolean = false): List<String> {
                 if (key !in values && !required) return emptyList()
@@ -49,7 +54,7 @@ class DraftDocument private constructor(val record: DraftRecord, val source: Str
             require(dependencies.distinct().size == dependencies.size)
             val state = text("state").also { require(it in setOf("open", "closed")) }
             val record = DraftRecord(TaskId.parseOrThrow(text("id")), text("title"), state, text("intent"), dependencies.map(TaskId::parseOrThrow),
-                texts("requirements", true), texts("acceptance", true), required, extensions)
+                texts("requirements", true), texts("acceptance", true), required, extensions, protocol, texts("verification"))
             return DraftDocument(record, source, decoded.rootFields.getValue("title"), decoded.rootFields.getValue("state"))
         }
     }

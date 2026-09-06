@@ -1,6 +1,7 @@
 package io.brule.tasking.conformance
 
 import io.brule.tasking.core.*
+import io.brule.tasking.compatibility.HistoricalImport
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.test.*

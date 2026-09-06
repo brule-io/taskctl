@@ -3,11 +3,11 @@ package io.brule.tasking.core
 /** Typed process/storage envelopes; protocol drafts remain explicitly versioned. */
 object NativeCodec {
     fun task(record: DraftRecord): ObjectValue = obj(
-        "protocol" to StringValue("tasking/core-draft-1"), "id" to StringValue(record.id.value),
+        "protocol" to StringValue(record.protocol), "id" to StringValue(record.id.value),
         "title" to StringValue(record.title), "state" to StringValue(record.state), "intent" to StringValue(record.intent),
         "requires" to strings(record.requires.map { it.value }), "requirements" to strings(record.requirements), "acceptance" to strings(record.acceptance),
         "required_extensions" to strings(record.requiredExtensions), "extensions" to record.extensions,
-    )
+    ).let { if (record.protocol == "tasking/core-draft-2") ObjectValue(it.fields + ("verification" to strings(record.verification))) else it }
     fun evidence(value: ClosureEvidence): ObjectValue = obj(
         "protocol" to StringValue("taskctl.receipt/alpha1"), "classification" to StringValue("actor-assertion"),
         "task" to StringValue(value.receipt.taskId.value), "contract" to StringValue(value.receipt.contractDigest.value),

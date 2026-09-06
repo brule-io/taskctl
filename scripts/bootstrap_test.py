@@ -131,6 +131,19 @@ def main():
         run(['close','TASK.api','--receipt',str(receipt),'--expect-revision',seeded['revision']])
         assert json.loads(run(['frontier','--roadmap','ROADMAP.ui','--format','json']).stdout)['result']['tasks']==['TASK.ui']
         run(['doctor'],extra={'TASKCTL_OFFLINE':'1'})
+        # New currency commands use only the already verified cached artifact.
+        offline={'TASKCTL_OFFLINE':'1'}
+        before=fingerprint(fresh)
+        run(['status','--format','json'],extra=offline)
+        run(['affected','TASK.api','--format','json'],extra=offline)
+        reviewed=json.loads(run(['reconcile','TASK.ui','--plan','--format','json'],extra=offline).stdout)['result']
+        assert fingerprint(fresh)==before
+        review=work/'revalidation.json'
+        review.write_text(json.dumps(dict(protocol='taskctl.reconciliation/1',classification='actor-assertion',task='TASK.ui',
+            reviewed_head=reviewed['reviewed_head'],observations=reviewed['observations'],outcome='revalidated',actor='bootstrap-test',
+            recorded_at='2026-09-06T00:00:00Z',rationale='Reviewed the cached consumer contract.',evidence={'integration':'Fixture assertion'},successor=None)),encoding='utf-8')
+        run(['reconcile','TASK.ui','--file',str(review),'--expect-revision',reviewed['revision']],extra=offline)
+        run(['history','TASK.ui','--format','json'],extra=offline)
         # Re-init is explicit refusal, and arbitrary source is never overwritten.
         before=fingerprint(fresh); standalone(initialize,2); assert fingerprint(fresh)==before
         existing=work/'existing'; existing.mkdir(); (existing/'source.txt').write_text('preserve me')
@@ -157,7 +170,7 @@ def main():
                     'explicit repository launcher from unrelated cwd','wrong version rejected','corrupt cached executable or library rejected','unlisted JAR ignored','wrong archive digest rejected',
                     'mutation-free init plan and deterministic apply','greenfield init from standalone distribution','empty native doctor and frontier','committed-only checkout reconstruction',
                     'seed admission with revision CAS','global prerequisite evaluation before roadmap filter','read-only evidence validation and evidenced closure',
-                    'warm offline native commands','existing source and repeated-init refusal','invalid seed rejected before writes','reference generator composition without copied templates'])
+                    'warm offline native commands','mutation-free cached currency and review inspection','evidenced offline reconciliation and history','existing source and repeated-init refusal','invalid seed rejected before writes','reference generator composition without copied templates'])
         (output/f'bootstrap-{args.kind}-{system}.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8',newline='\n')
         print(json.dumps(result))
 if __name__=='__main__': main()

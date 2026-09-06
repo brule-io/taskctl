@@ -39,8 +39,13 @@ internal object NativeCommands {
             println("""
                 taskctl $version — standalone native alpha (v1 not frozen)
                 init --repo PATH --id ID --toolchain LOCK [--seed FILE] [--plan]
+                adopt --repo PATH --id ID --toolchain LOCK [--seed FILE] [--plan]
                 doctor | context | snapshot | frontier [--roadmap ID] [--epic ID]
                 show TASK | roadmap [ID] | epic [ID]
+                status | affected [TASK] | history TASK
+                revise TASK --file RECORD --expect-revision REVISION
+                reconcile TASK --plan | --file REVIEW --expect-revision REVISION
+                track --expect-revision REVISION (explicit adoption of legacy native history)
                 seed --file FILE --expect-revision REVISION
                 verify TASK --receipt FILE
                 close TASK --receipt FILE --expect-revision REVISION
@@ -53,13 +58,13 @@ internal object NativeCommands {
         }
         val result = when (command) {
             "info" -> { options.allow(); ToolRuntime.info() }
-            "init" -> {
+            "init", "adopt" -> {
                 options.allow("--id", "--toolchain", "--profile", "--seed", "--plan", "--contract")
                 require(options.options["--profile"] in setOf(null, "minimal/alpha1")) { "only minimal/alpha1 is bundled" }
                 require(options.options["--contract"] in setOf(null, Bootstrap.CONTRACT)) { "unsupported init contract" }
                 val distribution = ToolRuntime.distribution() ?: error("init requires the standalone distribution (bootstrap templates bundled)")
                 val seed = options.options["--seed"]?.let { NativeCodec.decodeSeed(readObject(Path.of(it))) } ?: Transition.AddRecords()
-                val plan = Bootstrap.plan(options.root(), options.need("--id"), version, distribution, Files.readString(Path.of(options.need("--toolchain"))), seed)
+                val plan = Bootstrap.plan(options.root(), options.need("--id"), version, distribution, Files.readString(Path.of(options.need("--toolchain"))), seed, adopt = command == "adopt")
                 if ("--plan" in options.options) plan.result() else Bootstrap.apply(plan)
             }
             "recover" -> {
@@ -78,47 +83,110 @@ internal object NativeCommands {
 
     private fun ledgerCommand(command: String, args: Arguments, ledger: TaskLedger): ObjectValue {
         when (command) {
-            "doctor", "context", "snapshot" -> args.allow()
+            "doctor", "context", "snapshot", "status" -> args.allow()
+            "affected" -> args.allow(positions = args.positional.size.also { require(it <= 1) })
+            "history" -> args.allow(positions = 1)
             "frontier" -> args.allow("--roadmap", "--epic")
             "show" -> args.allow(positions = 1)
             "roadmap", "epic" -> args.allow(positions = args.positional.size.also { require(it <= 1) })
-            "seed" -> args.allow("--file", "--expect-revision")
+            "seed" -> args.allow("--file", "--expect-revision", "--plan")
             "verify" -> args.allow("--receipt", positions = 1)
-            "close" -> args.allow("--receipt", "--expect-revision", positions = 1)
+            "close" -> args.allow("--receipt", "--expect-revision", "--plan", positions = 1)
+            "revise" -> args.allow("--file", "--expect-revision", "--plan", positions = 1)
+            "reconcile" -> args.allow("--file", "--expect-revision", "--plan", positions = 1)
+            "track" -> args.allow("--expect-revision", "--plan")
             else -> error("unknown command: $command; run taskctl help")
+        }
+        fun mutate(value: Transition): ObjectValue {
+            val expected = Revision.parseOrThrow(args.need("--expect-revision"))
+            return if ("--plan" in args.options) {
+                require(ledger is FileTaskLedger) { "this ledger does not expose file mutation plans" }
+                ledger.plan(expected, value)
+            } else transition(ledger.apply(expected, value))
         }
         if (command == "frontier") {
             val frontier = ledger.frontier(FrontierQuery(args.options["--roadmap"]?.let(RoadmapId::parseOrThrow), args.options["--epic"]?.let(EpicId::parseOrThrow)))
             return obj("revision" to StringValue(frontier.revision.value), "tasks" to strings(frontier.tasks.map { it.value }))
         }
         if (command == "seed") {
-            val result = ledger.apply(Revision.parseOrThrow(args.need("--expect-revision")), NativeCodec.decodeSeed(readObject(Path.of(args.need("--file")))))
-            return transition(result)
+            return mutate(NativeCodec.decodeSeed(readObject(Path.of(args.need("--file")))))
+        }
+        if (command == "track") return mutate(Transition.TrackHistory)
+        if (command == "revise") {
+            val record = DraftDocument.parse(Files.readString(Path.of(args.need("--file")))).record
+            require(record.id == TaskId.parseOrThrow(args.positional.single())) { "revision task differs from requested task" }
+            return mutate(Transition.ReviseTask(record))
+        }
+        if (command == "reconcile" && "--file" in args.options) {
+            val review = HistoryCodec.decodeReview(readObject(Path.of(args.need("--file"))))
+            require(review.task == TaskId.parseOrThrow(args.positional.single())) { "review task differs from requested task" }
+            return mutate(Transition.ReconcileTask(review))
         }
         if (command == "verify" || command == "close") {
             val evidence = NativeCodec.decodeEvidence(readObject(Path.of(args.need("--receipt"))))
             require(evidence.receipt.taskId == TaskId.parseOrThrow(args.positional.single())) { "receipt task differs from requested task" }
-            if (command == "close") return transition(ledger.apply(Revision.parseOrThrow(args.need("--expect-revision")), Transition.CloseTask(evidence)))
+            if (command == "close") return mutate(Transition.CloseTask(evidence))
             val snapshot = ledger.snapshot()
-            val errors = snapshot.dependencyProblems() + snapshot.universe.closureProblems(evidence.receipt.taskId, evidence.receipt)
+            val errors = snapshot.closureProblems(evidence)
             require(errors.isEmpty()) { errors.joinToString("\n") }
             return obj("revision" to StringValue(snapshot.revision.value), "valid" to BooleanValue(true),
                 "classification" to StringValue("actor-assertion"), "contract" to StringValue(evidence.receipt.contractDigest.value))
         }
         val snapshot = ledger.snapshot()
         val universe = snapshot.universe
+        val currency = snapshot.currency()
         return when (command) {
             "doctor", "context", "snapshot" -> obj(
-                "repository_id" to StringValue(snapshot.repositoryId), "protocol" to StringValue("taskctl.native/alpha1"),
+                "repository_id" to StringValue(snapshot.repositoryId), "protocol" to StringValue(if (snapshot.history == null) "taskctl.native/alpha1" else "taskctl.native/alpha2"),
                 "profile" to StringValue("minimal/alpha1"), "revision" to StringValue(snapshot.revision.value),
                 "tasks" to integer(universe.tasks.size), "roadmaps" to integer(universe.roadmaps.size), "epics" to integer(universe.epics.size),
                 "required_capabilities_unavailable" to strings((universe.tasks.flatMap { it.requiredExtensions } + universe.roadmaps.flatMap { it.requiredExtensions } + universe.epics.flatMap { it.requiredExtensions }).distinct().sorted()),
-                "instructions" to StringValue("Read AGENTS.md. Use frontier, show, roadmap and epic; mutations require the inspected revision."),
+                "currency" to ObjectValue(Currency.entries.associate { state -> state.name.lowercase() to integer(currency.values.count { it.state == state }) }),
+                "work" to ArrayValue(universe.tasks.sortedBy { it.id }.map { obj("id" to StringValue(it.id.value), "title" to StringValue(it.title), "lifecycle" to StringValue(it.state), "currency" to StringValue(currency.getValue(it.id).state.name.lowercase())) }),
+                "instructions" to StringValue("Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision."),
             )
+            "status", "affected" -> {
+                val selected = args.positional.singleOrNull()?.let(TaskId::parseOrThrow)
+                require(selected == null || universe.tasks.any { it.id == selected }) { "unknown task: $selected" }
+                val records = currency.values.sortedBy { it.task }.filter { item ->
+                    command == "status" || (item.state != Currency.CURRENT && (selected == null || item.task == selected || item.causes.any { selected in it.path }))
+                }
+                obj("revision" to StringValue(snapshot.revision.value), "tasks" to ArrayValue(records.map { item ->
+                    ObjectValue(HistoryCodec.currency(item).fields + ("lifecycle" to StringValue(universe.tasks.single { it.id == item.task }.state)))
+                }))
+            }
+            "history" -> {
+                val id = TaskId.parseOrThrow(args.positional.single())
+                val history = requireNotNull(snapshot.history) { "history untracked; inspect and explicitly track it" }
+                var head: TaskRevisionId? = history.heads[id] ?: error("unknown task: $id")
+                val revisions = mutableListOf<Value>()
+                while (head != null) {
+                    val value = history.revisions.getValue(head)
+                    revisions += obj("revision" to StringValue(head.value), "value" to HistoryCodec.revision(value))
+                    head = value.parent
+                }
+                obj("revision" to StringValue(snapshot.revision.value), "origin_ledger_revision" to StringValue(history.origin.value), "revisions" to ArrayValue(revisions),
+                    "receipts" to ArrayValue(snapshot.receipts.filter { it.receipt.taskId == id }.map(NativeCodec::evidence)))
+            }
+            "reconcile" -> {
+                require("--plan" in args.options) { "reconcile requires --plan or --file REVIEW; no review was recorded" }
+                require(args.options.keys.none { it in setOf("--file", "--expect-revision") }) { "reconcile --plan is read-only; omit --file and --expect-revision" }
+                val id = TaskId.parseOrThrow(args.positional.single())
+                val history = requireNotNull(snapshot.history) { "track history before reconciliation" }
+                val task = universe.tasks.singleOrNull { it.id == id } ?: error("unknown task: $id")
+                val observations = CurrencyEvaluation.observations(snapshot)
+                obj("revision" to StringValue(snapshot.revision.value), "reviewed_head" to StringValue(history.heads.getValue(id).value),
+                    "task" to StringValue(id.value), "currency" to HistoryCodec.currency(currency.getValue(id)),
+                    "observations" to ArrayValue(task.requires.sorted().map { HistoryCodec.dependency(observations.getValue(it)) }),
+                    "required_evidence" to strings(task.verification),
+                    "outcomes" to strings(ReviewOutcome.entries.map { it.name.lowercase() }),
+                    "instructions" to StringValue("Submit taskctl.reconciliation/1 actor-assertion with these exact inputs, outcome, actor, recorded_at, rationale, evidence and successor (null except successor outcome). No review has been recorded."))
+            }
             "show" -> {
                 val task = universe.tasks.singleOrNull { it.id == TaskId.parseOrThrow(args.positional.single()) } ?: error("unknown task: ${args.positional.single()}")
                 ObjectValue(NativeCodec.task(task).fields + mapOf("contract_digest" to StringValue(DraftLifecycle.contract(task).value),
-                    "revision" to StringValue(snapshot.revision.value), "roadmaps" to strings(universe.roadmapsFor(task.id).map { it.value }),
+                    "revision" to StringValue(snapshot.revision.value), "head" to optionalString(snapshot.history?.heads?.get(task.id)?.value),
+                    "currency" to HistoryCodec.currency(currency.getValue(task.id)), "roadmaps" to strings(universe.roadmapsFor(task.id).map { it.value }),
                     "epics" to strings(universe.epicsFor(task.id).map { it.value })))
             }
             "roadmap", "epic" -> {
@@ -140,6 +208,14 @@ internal object NativeCommands {
                 println("Revision: ${result.requiredString("revision")}")
             }
             "info" -> { println("taskctl $version (${ToolRuntime.implementation}; protocol v1 not frozen)"); result.fields.forEach { (key, value) -> println("$key: " + Json.encode(value)) } }
+            "status", "affected" -> {
+                result.requiredArray("tasks").forEach { value ->
+                    val task = value as ObjectValue
+                    println("${task.requiredString("task")}: ${task.requiredString("lifecycle")} / ${task.requiredString("currency")}")
+                    task.requiredArray("causes").forEach { println("  " + Json.encode(it)) }
+                }
+                println("Revision: ${result.requiredString("revision")}")
+            }
             else -> { println("$command: OK"); result.fields.forEach { (key, value) -> println("$key: " + if (value is StringValue) value.value else Json.encode(value)) } }
         }
     }

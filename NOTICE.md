@@ -1,8 +1,14 @@
-# License decision pending
+# taskctl notices
 
-The owner has not selected a software license for taskctl. No project license
-is granted by this file. Repository visibility and software licensing are separate
-decisions.
+Copyright 2026 taskctl contributors.
+
+taskctl is licensed under the Apache License, Version 2.0. See LICENSE.
+This covers the CLI, core/domain, file ledger, protocol/specifications, codecs,
+wrappers, conformance code, generator/bootstrap interfaces, compatibility adapters,
+and public client/protocol artifacts in this repository. This repository contains
+no hosted service implementation and grants no rights to a future separate service.
+No additional trademark rights are granted beyond Apache-2.0 section 6.
+Historical third-party source witnesses retain their existing notices and provenance.
 
 Distributions include third-party components whose existing licenses remain in
 their JAR metadata and, for JVM archives, the bundled Java runtime's `legal`
