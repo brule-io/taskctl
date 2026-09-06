@@ -1,0 +1,270 @@
+{
+  "contract": "taskctl.publication-proof/alpha3",
+  "recorded_at": "2026-09-06T19:16:50.104856+00:00",
+  "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+  "tag_commit": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+  "visibility": "private",
+  "license": "Apache-2.0",
+  "native_v1": "not-frozen",
+  "release": {
+    "id": 383688081,
+    "html_url": "https://github.com/brule-io/taskctl/releases/tag/v0.3.0-alpha.1",
+    "tag_name": "v0.3.0-alpha.1",
+    "published_at": "2026-09-06T19:16:37Z",
+    "draft": false,
+    "prerelease": true,
+    "immutable": true
+  },
+  "assets": [
+    {
+      "id": 547571626,
+      "name": "corpus-linux-x86_64.json",
+      "size": 11955,
+      "digest": "sha256:e110f91b315facf8abb94a26f3a8841011307f7ab39cc6d8a320107b4889ec13",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571626"
+    },
+    {
+      "id": 547571647,
+      "name": "corpus-macos-aarch64.json",
+      "size": 11956,
+      "digest": "sha256:312195fcca1460ab41ad98f50d78e0289ee170aa6ad3bfbb44110ba2854b0949",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571647"
+    },
+    {
+      "id": 547571607,
+      "name": "corpus-windows-x86_64.json",
+      "size": 11957,
+      "digest": "sha256:21237ee1426ce6f7daba96e92737b4df1279e9abd7bbe7c76ef8da65b535907a",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571607"
+    },
+    {
+      "id": 547571620,
+      "name": "parity-linux-x86_64.json",
+      "size": 28523,
+      "digest": "sha256:eb94a17de42322010adbedf10148e2fb76d2972083fcc873d8b4c56d2968ed13",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571620"
+    },
+    {
+      "id": 547571645,
+      "name": "parity-macos-aarch64.json",
+      "size": 28526,
+      "digest": "sha256:7f2d0d74e98d20b0b8c4d7f60a9a48be8a42ce36c4cb16e54acb491066d6d726",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571645"
+    },
+    {
+      "id": 547571598,
+      "name": "parity-windows-x86_64.json",
+      "size": 28513,
+      "digest": "sha256:f50db07e0aa5b7c49b5c43035277c60c4f7daa785dc04686209178aac6d9455f",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571598"
+    },
+    {
+      "id": 547572359,
+      "name": "release-manifest.json",
+      "size": 22183,
+      "digest": "sha256:43d244f15a9e8daca6df682bad5f552a9f46a574c614748478d762efa0c4766d",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547572359"
+    },
+    {
+      "id": 547571615,
+      "name": "selfhost-jvm-linux-x86_64.json",
+      "size": 18192,
+      "digest": "sha256:a6b43c5cc6705cfaca574d8f09a162c8528b2596f4f1a67a74264818b48af7b0",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571615"
+    },
+    {
+      "id": 547571643,
+      "name": "selfhost-jvm-macos-aarch64.json",
+      "size": 18193,
+      "digest": "sha256:07a90e1cf958e300550733eab74166b04915d60d84b5b434baa219a4993d704a",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571643"
+    },
+    {
+      "id": 547571595,
+      "name": "selfhost-jvm-windows-x86_64.json",
+      "size": 18194,
+      "digest": "sha256:f11e12e922df9496e9f0335393ba564fe23aa30e1b34d87b97e46830ca2045ff",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571595"
+    },
+    {
+      "id": 547571610,
+      "name": "selfhost-native-linux-x86_64.json",
+      "size": 18195,
+      "digest": "sha256:4b377903f645f7cac74b8c67421c59319db447495c797ad0fccee26c3470f774",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571610"
+    },
+    {
+      "id": 547571629,
+      "name": "selfhost-native-macos-aarch64.json",
+      "size": 18196,
+      "digest": "sha256:1e1ca5acec11906b3abc253b4a149f4dafd642f6a64e24f905d98e59f6d05d5b",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571629"
+    },
+    {
+      "id": 547571594,
+      "name": "selfhost-native-windows-x86_64.json",
+      "size": 18197,
+      "digest": "sha256:67b3cf58dce16c34057ff27d4f03f8a03db7192efe92ac12b0460621d161a9d0",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571594"
+    },
+    {
+      "id": 547572355,
+      "name": "SHA256SUMS",
+      "size": 2837,
+      "digest": "sha256:f8aac5f2b46411554a015e3bdc8af35c047dffc1e088bdace0799529951838c3",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547572355"
+    },
+    {
+      "id": 547570414,
+      "name": "taskctl-0.3.0-alpha.1-jvm-linux-x86_64.tar.gz",
+      "size": 28089563,
+      "digest": "sha256:74b10550d600af1baafeac4d58249eb20193c83ee55bc91f94afdbb578700acb",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547570414"
+    },
+    {
+      "id": 547571581,
+      "name": "taskctl-0.3.0-alpha.1-jvm-linux-x86_64.tar.gz.intoto.json",
+      "size": 3234,
+      "digest": "sha256:b73f840644de30873c7937d45c4ef44059654c8fb9fa0c0c51fa0b68bd53ca8d",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571581"
+    },
+    {
+      "id": 547570679,
+      "name": "taskctl-0.3.0-alpha.1-jvm-macos-aarch64.tar.gz",
+      "size": 24445399,
+      "digest": "sha256:be00f223f1eabd136bd3ede686307b922919cd78a08e4cb72775fecad50a8375",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547570679"
+    },
+    {
+      "id": 547571586,
+      "name": "taskctl-0.3.0-alpha.1-jvm-macos-aarch64.tar.gz.intoto.json",
+      "size": 3236,
+      "digest": "sha256:23d34a723f04e53a86b01eec5f553ca4e7c1f40b1f72603938756c65385dc666",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571586"
+    },
+    {
+      "id": 547570415,
+      "name": "taskctl-0.3.0-alpha.1-jvm-windows-x86_64.zip",
+      "size": 26023454,
+      "digest": "sha256:9680ca29fdb916d3395ea6360117509053dee621fc40cdb79e2b77571ee7abaf",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547570415"
+    },
+    {
+      "id": 547571565,
+      "name": "taskctl-0.3.0-alpha.1-jvm-windows-x86_64.zip.intoto.json",
+      "size": 3235,
+      "digest": "sha256:330921c48f10589ced584b4bb7a1492df19b22d777476cbde98a4080f09467a3",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571565"
+    },
+    {
+      "id": 547570419,
+      "name": "taskctl-0.3.0-alpha.1-native-linux-x86_64.tar.gz",
+      "size": 8231145,
+      "digest": "sha256:6b6aa76eefac4c364a949c245324c4cb1faa5924a0bcebb7812ef8764063aecf",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547570419"
+    },
+    {
+      "id": 547571570,
+      "name": "taskctl-0.3.0-alpha.1-native-linux-x86_64.tar.gz.intoto.json",
+      "size": 3998,
+      "digest": "sha256:cef571323bc0614fce156cdac555a2312775e85959f1d4c749702f3d5ca560aa",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571570"
+    },
+    {
+      "id": 547570418,
+      "name": "taskctl-0.3.0-alpha.1-native-macos-aarch64.tar.gz",
+      "size": 8231235,
+      "digest": "sha256:bd0a3b8824395226f44e6c0ad2d5217808f9a1f4a6ff8787c7c6f96afd735f1c",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547570418"
+    },
+    {
+      "id": 547571583,
+      "name": "taskctl-0.3.0-alpha.1-native-macos-aarch64.tar.gz.intoto.json",
+      "size": 4004,
+      "digest": "sha256:99a346de0549a1ef2b72a744b0c96adc3c42e3042c16f3b9c0ab21107807ea09",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571583"
+    },
+    {
+      "id": 547570417,
+      "name": "taskctl-0.3.0-alpha.1-native-windows-x86_64.zip",
+      "size": 8202596,
+      "digest": "sha256:391a8f19a032eb47d7cc0b59def1e3b845d44d95603dafba0e68a5e104158b62",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547570417"
+    },
+    {
+      "id": 547571563,
+      "name": "taskctl-0.3.0-alpha.1-native-windows-x86_64.zip.intoto.json",
+      "size": 3998,
+      "digest": "sha256:7163b2e01419f61a0b4038715e8c98a2fe1758965bef080228bb58d6b6e1d977",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547571563"
+    },
+    {
+      "id": 547572358,
+      "name": "toolchain-jvm.lock",
+      "size": 584,
+      "digest": "sha256:a2fbe5137b819fe16a18580342154ec1a072e64ccba32303dd828f1d2674d526",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547572358"
+    },
+    {
+      "id": 547572354,
+      "name": "toolchain.lock",
+      "size": 584,
+      "digest": "sha256:d4c4893b97b5b3837c2d633236aff7e77fcb186b16133b4001d59bb74d92b2b7",
+      "url": "https://api.github.com/repos/brule-io/taskctl/releases/assets/547572354"
+    }
+  ],
+  "workflows": [
+    {
+      "conclusion": "success",
+      "databaseId": 34052801534,
+      "headSha": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+      "jobs": [
+        {
+          "name": "check (ubuntu-24.04)",
+          "conclusion": "success",
+          "url": "https://github.com/brule-io/taskctl/actions/runs/34052801534/job/101539559418"
+        },
+        {
+          "name": "check (macos-14)",
+          "conclusion": "success",
+          "url": "https://github.com/brule-io/taskctl/actions/runs/34052801534/job/101539559617"
+        },
+        {
+          "name": "check (windows-2025)",
+          "conclusion": "success",
+          "url": "https://github.com/brule-io/taskctl/actions/runs/34052801534/job/101539559664"
+        }
+      ],
+      "status": "completed",
+      "url": "https://github.com/brule-io/taskctl/actions/runs/34052801534",
+      "workflowName": "CI"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 34054149302,
+      "headSha": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+      "jobs": [
+        {
+          "name": "consumer (macos-14, macos-aarch64, tar.gz)",
+          "conclusion": "success",
+          "url": "https://github.com/brule-io/taskctl/actions/runs/34054149302/job/101542850185"
+        },
+        {
+          "name": "consumer (windows-2025, windows-x86_64, zip)",
+          "conclusion": "success",
+          "url": "https://github.com/brule-io/taskctl/actions/runs/34054149302/job/101542850265"
+        },
+        {
+          "name": "consumer (ubuntu-24.04, linux-x86_64, tar.gz)",
+          "conclusion": "success",
+          "url": "https://github.com/brule-io/taskctl/actions/runs/34054149302/job/101542850288"
+        }
+      ],
+      "status": "completed",
+      "url": "https://github.com/brule-io/taskctl/actions/runs/34054149302",
+      "workflowName": "Release smoke"
+    }
+  ],
+  "all_asset_digests_and_source_tag_verified": true,
+  "attestation_boundary": "Signed immutable GitHub publication binds these build provenance and evidence assets; no independent CI OIDC build signature, RPM signing key or SLSA level is claimed."
+}

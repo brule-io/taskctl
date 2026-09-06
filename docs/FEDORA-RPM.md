@@ -20,11 +20,11 @@ before installing; these initial packages are not signed with a separate RPM key
 The repository remains private, so release downloads require read access.
 
 ```sh
-gh release verify rpm-v0.2.0-alpha.2-2 --repo brule-io/taskctl
-gh release download rpm-v0.2.0-alpha.2-2 --repo brule-io/taskctl \
+gh release verify rpm-v0.3.0-alpha.1-1 --repo brule-io/taskctl
+gh release download rpm-v0.3.0-alpha.1-1 --repo brule-io/taskctl \
   --pattern '*.x86_64.rpm' --pattern RPM-SHA256SUMS
 sha256sum --check --ignore-missing RPM-SHA256SUMS
-sudo dnf install ./taskctl-0.2.0-alpha.2-2.fc44.x86_64.rpm
+sudo dnf install ./taskctl-0.3.0-alpha.1-1.fc44.x86_64.rpm
 taskctl --version
 taskctl help
 taskctl init --repo ./my-project --id example.my-project \
@@ -56,7 +56,7 @@ key installation, downloads or project initialization. It owns only these paths:
 | `/usr/bin/taskctl` | Small system launcher |
 | `/usr/libexec/taskctl/taskctl` | Unchanged canonical native executable |
 | `/usr/share/taskctl/` | Canonical bootstrap templates/build identity and release lock |
-| `/usr/share/doc/taskctl/` | RPM usage documentation |
+| `/usr/share/doc/taskctl/` | README, task/reconciliation guides and RPM usage |
 | `/usr/share/licenses/taskctl/` | Apache-2.0 LICENSE and original third-party notices |
 | `/usr/share/man/man1/taskctl.1.gz` | Manual page |
 
@@ -75,7 +75,7 @@ process evidence must identify that exact native archive and JVM reference.
 
 ```sh
 gh workflow run rpm.yml --repo brule-io/taskctl \
-  -f upstream_tag=v0.2.0-alpha.2 -f packaging_release=2
+  -f upstream_tag=v0.3.0-alpha.1 -f packaging_release=1
 ```
 
 Dependency images are prepared with network access. The actual rpmbuild and runtime
@@ -95,6 +95,10 @@ It checks file bytes, mtimes and modes in existing and newly created repositorie
 and the user's cache before and after every DNF transaction. It also compares
 global/pinned version resolution and runs the cached wrapper after erase. Network
 syscall traces must contain no IPv4/IPv6 socket calls during those transactions.
+The minimal Fedora container sets `tsflags=nodocs`; test transactions explicitly
+clear this option so the full documentation payload can be verified. This follows
+[DNF's option semantics](https://dnf5.readthedocs.io/en/stable/dnf5.8.html) and does
+not change the container configuration or override a user's package policy.
 The upgrade fixture uses the same native executable with an earlier RPM Release;
 it proves package lifecycle behavior without inventing another tool implementation.
 
@@ -126,9 +130,9 @@ The build gate also runs `rpmbuild --rebuild` on the generated SRPM in a separat
 build directory, offline. Its resulting payload digests, modes, ownership, links,
 version/release and dependencies must match the candidate RPM.
 
-Pre-release versions map `0.2.0-alpha.2` to RPM `0.2.0~alpha.2`, with packaging
+Pre-release versions map `0.3.0-alpha.1` to RPM `0.3.0~alpha.1`, with packaging
 revisions in Release; this preserves alpha-before-final ordering under
 [RPM's version rules](https://rpm.org/docs/latest/man/rpm-version.7).
 GitHub rewrites `~` in uploaded asset names, so release filenames use the upstream
-SemVer spelling (`0.2.0-alpha.2`); RPM headers retain `0.2.0~alpha.2`. DNF compares
+SemVer spelling (`0.3.0-alpha.1`); RPM headers retain `0.3.0~alpha.1`. DNF compares
 the headers, not the download filename. Rpmlint checks the actual transport names.

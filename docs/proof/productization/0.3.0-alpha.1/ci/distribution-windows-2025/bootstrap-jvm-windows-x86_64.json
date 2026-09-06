@@ -1,0 +1,32 @@
+{
+  "platform": "windows-x86_64",
+  "implementation": "jvm",
+  "version": "0.3.0-alpha.1",
+  "archive_sha256": "9680ca29fdb916d3395ea6360117509053dee621fc40cdb79e2b77571ee7abaf",
+  "transport": "file",
+  "checks": [
+    "version aliases without cache acquisition or repository discovery",
+    "cold acquisition",
+    "warm offline operation",
+    "no Java/Gradle/Git/Python on consumer PATH",
+    "consumer bytes and mtimes unchanged",
+    "explicit repository launcher from unrelated cwd",
+    "wrong version rejected",
+    "corrupt cached executable or library rejected",
+    "unlisted JAR ignored",
+    "wrong archive digest rejected",
+    "mutation-free init plan and deterministic apply",
+    "greenfield init from standalone distribution",
+    "empty native doctor and frontier",
+    "committed-only checkout reconstruction",
+    "seed admission with revision CAS",
+    "global prerequisite evaluation before roadmap filter",
+    "read-only evidence validation and evidenced closure",
+    "warm offline native commands",
+    "mutation-free cached currency and review inspection",
+    "evidenced offline reconciliation and history",
+    "existing source and repeated-init refusal",
+    "invalid seed rejected before writes",
+    "reference generator composition without copied templates"
+  ]
+}

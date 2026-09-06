@@ -1,0 +1,740 @@
+{
+  "contract": "taskctl.parity/alpha1",
+  "platform": "linux-x86_64",
+  "version": "0.3.0-alpha.1",
+  "artifacts": {
+    "jvm": "74b10550d600af1baafeac4d58249eb20193c83ee55bc91f94afdbb578700acb",
+    "native": "6b6aa76eefac4c364a949c245324c4cb1faa5924a0bcebb7812ef8764063aecf"
+  },
+  "cases": [
+    {
+      "case": "version --version",
+      "exit_code": 0,
+      "stdout_sha256": "6394c215e4d0b319d1f533149738d245408b95a352ea5ce8eee67e255fb351f4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "version -V",
+      "exit_code": 0,
+      "stdout_sha256": "6394c215e4d0b319d1f533149738d245408b95a352ea5ce8eee67e255fb351f4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "version version",
+      "exit_code": 0,
+      "stdout_sha256": "6394c215e4d0b319d1f533149738d245408b95a352ea5ce8eee67e255fb351f4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "structured version",
+      "exit_code": 0,
+      "stdout_sha256": "07b84ac578d416454b0c6c84a164f82ecd8fdd7a151e666034034d4b6c52988f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "invalid version options",
+      "exit_code": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f312f8ca2908d0712dcdd427435f26425d1a41fc8736554ce60b8051b35dad59",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "rich implementation diagnostics",
+      "exit_code": 0,
+      "stdout_sha256": "81814ba75ce83ad77f8fa8a1043efbacfd0f39ff88202a30d83eb02fe88b48b0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "help",
+      "exit_code": 0,
+      "stdout_sha256": "3eb2edb16b492544d39fe7913abfef43debc13f34b8063b1a90a102f5985ef34",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "historical adapter help",
+      "exit_code": 0,
+      "stdout_sha256": "5a0c3e079e1bc7cfc0c944a4e0b4fe4d3a2d14e8cedc1c49eea5d5c19aad69a2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "historical empty snapshot",
+      "exit_code": 0,
+      "stdout_sha256": "12dfbd918d9c050dd474ce944f2fe147b7b005bfe6b46528937e8f355ddbc1f7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "unknown command",
+      "exit_code": 2,
+      "stdout_sha256": "cf3c628d5f3b0c36a549f961be9feca7791b5988ec20b525a3f8213c0b78c5d9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "missing repository",
+      "exit_code": 5,
+      "stdout_sha256": "62cd4c2eab129a01bf3548da8ef7874f960a5ea99e0ce5973d398d72bdceb83e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "init plan",
+      "exit_code": 0,
+      "stdout_sha256": "0ca329ccb8ae2b5d10f5015dca06299513eda34dafc57d694cb2c28edbfb5631",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "init apply",
+      "exit_code": 0,
+      "stdout_sha256": "0ca329ccb8ae2b5d10f5015dca06299513eda34dafc57d694cb2c28edbfb5631",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "empty doctor",
+      "exit_code": 0,
+      "stdout_sha256": "2e03047e8f3b0dde9e00ccf3f6ce382caf762620c91e8f92f5c8338c82e070a8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "empty context",
+      "exit_code": 0,
+      "stdout_sha256": "c71ddce90c4d834e2034ceedbb3121d4b28b29bcfe207004cccd56b9fd859be9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "empty snapshot",
+      "exit_code": 0,
+      "stdout_sha256": "eb7d41cd2ac54dafc9dfbd7176f1fb150df8e3ce09db541bb8a97158257bac24",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "empty frontier",
+      "exit_code": 0,
+      "stdout_sha256": "5623db87c1ae207721a4c7794e05e64feb7e4366028b00f907cc2590829ad84e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "empty roadmap",
+      "exit_code": 0,
+      "stdout_sha256": "8ff05c304c292a097cca273b3867bee8783a30eb36fb58e1ba5c865968261fcb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "empty epic",
+      "exit_code": 0,
+      "stdout_sha256": "e41378a4cbca4692ec0080ed8772d2b503f13a824cc4c6a748799b8e1b42918b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "empty frontier text",
+      "exit_code": 0,
+      "stdout_sha256": "0bb7b03c962f1ba1fb8b21260ada46dfb0cff0bd2d59d0b2e8d9a4d111a479f3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "repeat initialization refusal",
+      "exit_code": 2,
+      "stdout_sha256": "ab6a020486dfe55de576a63b2c78b54ae5d2088b5f62d5feb17cb6ec62e83576",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "seed cross-cutting graph",
+      "exit_code": 0,
+      "stdout_sha256": "b8941cc53c4b59017d5b7d5a9e2ea53ca419d1b8ffd7377c2070cb9338976e4d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "stale seed CAS",
+      "exit_code": 4,
+      "stdout_sha256": "ea1a6198f8821fde825bf40dd480052db9a5c0d5fab1af7d6eb4915b567a3169",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "graph frontier",
+      "exit_code": 0,
+      "stdout_sha256": "3effd17dde4e9b2be1aaced3504d582515f6aac8aa316ebed87fbe583bfd421f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "graph frontier --roadmap ROADMAP.ui",
+      "exit_code": 0,
+      "stdout_sha256": "1c7510dbf5474f7b1460626a085c316550e4f6f885dd76b6c6b37f9da36f15f2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "graph frontier --epic EPIC.delivery",
+      "exit_code": 0,
+      "stdout_sha256": "b36c0eb739e7ed4d2b39f67ff0b35df58a91a52f043864af1ec03142f0943ba1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "graph roadmap ROADMAP.backend",
+      "exit_code": 0,
+      "stdout_sha256": "5ea65ae70616613a4df27e6e16376ffc6865bfa30ec5f4caead3568b923f39aa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "graph epic EPIC.observation",
+      "exit_code": 0,
+      "stdout_sha256": "b2652098a92cf4e2ad44e1fc9cbf28f510db86537fe2a2d4ef9b708578c7e11c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "invalid show banana",
+      "exit_code": 2,
+      "stdout_sha256": "765104b173f259e268a8eb2b572a28637659678a3c7d865732ece8b21c0ee736",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "invalid show TASK.absent",
+      "exit_code": 2,
+      "stdout_sha256": "531c5776d307dc73896968343ea4d1b25009ccf3fadda5266ca1e6139274eeb6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "invalid frontier --roadmap TASK.api",
+      "exit_code": 2,
+      "stdout_sha256": "b068df250ba5885ffdd516901dbf5d8162b4cbc8d54dea82776c317d48c9650a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "invalid doctor --unexpected x",
+      "exit_code": 2,
+      "stdout_sha256": "0239383ac5c6c59af4d7182b5667cd867de4119f57deb54b4a50681a1a90039d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "invalid doctor --repo /home/runner/work/taskctl/taskctl/build/proof/parity 3q62wk0d/project --repo /home/runner/work/taskctl/taskctl/build/proof/parity 3q62wk0d/project",
+      "exit_code": 2,
+      "stdout_sha256": "2cfc1c3908ce419982d6e2706400d8a4e63a7148b37a3c5acd071d1010822fd0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "show exact semantic contract",
+      "exit_code": 0,
+      "stdout_sha256": "24c28a4ba327abf204628de33e0fbdb66411e77d3174064d983e043e7f684799",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "verify evidence",
+      "exit_code": 0,
+      "stdout_sha256": "7ad462ec59c83816c37fafe1cb8e432896f1ac1855c9f1f79d3784eee4547faf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "reject wrong contract",
+      "exit_code": 2,
+      "stdout_sha256": "fd027e9b041f5fed1565ba3160904c7525ab9522cfd9bb14e6f21d08d1bcdefb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "reject wrong task",
+      "exit_code": 2,
+      "stdout_sha256": "a515c577084f2a1057f8932e27643aebb97d01e47196bd622b819943f8de3f95",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "stale close CAS",
+      "exit_code": 4,
+      "stdout_sha256": "ea1a6198f8821fde825bf40dd480052db9a5c0d5fab1af7d6eb4915b567a3169",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "evidenced close",
+      "exit_code": 0,
+      "stdout_sha256": "40764e561d4947dceef630154af2ecee7311d9a32de0a61f8c94b843d8c61278",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "frontier after closure",
+      "exit_code": 0,
+      "stdout_sha256": "acdfdb780c1bb3f16fddf27489a62a2c76e52dc11a23d1a59ba4476fca611cfd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "closed task evidence",
+      "exit_code": 0,
+      "stdout_sha256": "66fd9fe2f3685e55c50f836514c18176e57bcf2efafe92af93c94d4be9fb2472",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "doctor after closure",
+      "exit_code": 0,
+      "stdout_sha256": "531fc32da742c77727175b7deb19462636ffeba8b7c347ef2c33b4da634dbb57",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "historical receipt cannot prove changed contract",
+      "exit_code": 2,
+      "stdout_sha256": "c1f054139bf9ebb6acd4cdd4d14b8da96ff779c7db5d01b93acbdf4a2d1b2421",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "restored valid contract",
+      "exit_code": 0,
+      "stdout_sha256": "531fc32da742c77727175b7deb19462636ffeba8b7c347ef2c33b4da634dbb57",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "revision seed mutation plan",
+      "exit_code": 0,
+      "stdout_sha256": "1872b8f2371c687a1b451db9bc80452ee06a21f6c9d17ab28ede7592c93e09dc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "revision seed",
+      "exit_code": 0,
+      "stdout_sha256": "9c585428587afc7aad0d4a19034fc6c569946612f58d03422987b9643c9ed694",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "revision show TASK.rev.a",
+      "exit_code": 0,
+      "stdout_sha256": "6c6d944ee4fc4b843b111c6169408ab2825613886ca746cb753d24b18a933b3a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "revision close TASK.rev.a",
+      "exit_code": 0,
+      "stdout_sha256": "0c192a91ccbab9c60e33b2501eed5368ad3d61e6f8a95e41bdcb91a39cea680d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "revision show TASK.rev.b",
+      "exit_code": 0,
+      "stdout_sha256": "f023f5db73aa590f7b69e0ac970181dcee653755a165662239956bf1d341b5fe",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "revision close TASK.rev.b",
+      "exit_code": 0,
+      "stdout_sha256": "dddfac7e90c31a4d429ac635ed2548e9a331330b8934a8b81d364392037f4efa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "revision show TASK.rev.c",
+      "exit_code": 0,
+      "stdout_sha256": "676ec91fa42ae1dfbbc568868d35d951ca87a68f955b56ffab539f4e7643a487",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "revision close TASK.rev.c",
+      "exit_code": 0,
+      "stdout_sha256": "60f090cd0a1821fa3cdce4962ae318d1fd4a2417b370ab7e7d82a88869980af6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "closed revision before edit",
+      "exit_code": 0,
+      "stdout_sha256": "37de65e1bd40e2c6b5f356bb97aa8e9c1197f24765bda740529f96f0589116ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "revise mutation plan",
+      "exit_code": 0,
+      "stdout_sha256": "f7aaf8227c2dda0ea0922430703ec7df60d5891359cfe50c54838f4e187e6f07",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "revise immutable contract",
+      "exit_code": 0,
+      "stdout_sha256": "44db2ab137995ef200929386eedf3ad8c464875962ebd2a53679b81854902faf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "stale revise CAS",
+      "exit_code": 4,
+      "stdout_sha256": "ea1a6198f8821fde825bf40dd480052db9a5c0d5fab1af7d6eb4915b567a3169",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "transitive affected",
+      "exit_code": 0,
+      "stdout_sha256": "419294385cb8e4c048284c8b5c481d13e5f923d94f11cc76417d43357e268908",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "human currency",
+      "exit_code": 0,
+      "stdout_sha256": "73708f3882952c1d1588d9ad3db7e8835c9c51b84490ddf32044ed64509e27e6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "closed immutable history",
+      "exit_code": 0,
+      "stdout_sha256": "ee5fb4af82a738db9b8746b2ad311ceb9132006dcd0eebad03cc8d653ce7fe4a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "reconcile without explicit review",
+      "exit_code": 2,
+      "stdout_sha256": "6158a89805977651b7d45d5687c407008bf8fba675caf440e47498752da1190b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "review current inputs",
+      "exit_code": 0,
+      "stdout_sha256": "7b9c3666577cab6f25213feaf159ef79cb32d0306f4ac1237603ec99915f4931",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "reject evidence-free revalidation",
+      "exit_code": 2,
+      "stdout_sha256": "e527e204cff2dc942606ea261e4932243f11df17caca7086b15a153cc0766247",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "record unresolved review",
+      "exit_code": 0,
+      "stdout_sha256": "145307ef5f6cd60d886c06ac5b8cbe6d8c8447bc467ee545c53dc56179ecd9a5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "unresolved status",
+      "exit_code": 0,
+      "stdout_sha256": "98650e510835a9c56698885f9c5bb101b0e3ca168ec8b3b7a35ff3c402e78ebe",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "downstream review while blocked",
+      "exit_code": 0,
+      "stdout_sha256": "cd0a01093d04c16dfc2aae39a6d7a9ec6aea19036f01a540f879d3852ad4def8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "reject review over unresolved upstream",
+      "exit_code": 2,
+      "stdout_sha256": "9970c3e8176a006937d5c247a9b3dd64e75282c41a7858f607d412f0151ad255",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "reconcile inputs TASK.rev.a",
+      "exit_code": 0,
+      "stdout_sha256": "3298017db699075ad92d965b23ef0dfbbf6ddcd0590277cb7eb31cf4f4771b06",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "review mutation plan TASK.rev.a",
+      "exit_code": 0,
+      "stdout_sha256": "5bb58c60bb30e9b2d285f78bcf0bf468758f678fe18cfa90b397d1100c71249a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "evidenced reconciliation TASK.rev.a",
+      "exit_code": 0,
+      "stdout_sha256": "3e6105a438242d27785dd41c0f54031fe97988d0d6566790ae20260b4bf49850",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "stale reconciliation CAS TASK.rev.a",
+      "exit_code": 4,
+      "stdout_sha256": "ea1a6198f8821fde825bf40dd480052db9a5c0d5fab1af7d6eb4915b567a3169",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "reconcile inputs TASK.rev.b",
+      "exit_code": 0,
+      "stdout_sha256": "b6048ea1a5dd1906d1d07d2e5e96250e68ec15f0c9a259dd19a2ebb9c00c2d96",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "review mutation plan TASK.rev.b",
+      "exit_code": 0,
+      "stdout_sha256": "c9b6c44ca6e50eb235e03332bce8cd55375c66987b6a70f143d2342e30f3e713",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "evidenced reconciliation TASK.rev.b",
+      "exit_code": 0,
+      "stdout_sha256": "abb2532bd58ce5857f9f9e71fa461081115ee9e9746e3871da5954f2f99383aa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "stale reconciliation CAS TASK.rev.b",
+      "exit_code": 4,
+      "stdout_sha256": "ea1a6198f8821fde825bf40dd480052db9a5c0d5fab1af7d6eb4915b567a3169",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "transitive currency remains after intermediate review",
+      "exit_code": 0,
+      "stdout_sha256": "8d3de25b2100877b69378a533457464e4a37dec7903813ae2ec66deda444ecad",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "reconcile inputs TASK.rev.c",
+      "exit_code": 0,
+      "stdout_sha256": "fea1c3c6b2c60172b62d98430528c84264d5c895ea876e60ed54eb6ba799b2fa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "review mutation plan TASK.rev.c",
+      "exit_code": 0,
+      "stdout_sha256": "101eefa0e750dd7bfc6d705973809cc81a331f86f8465bbfbd38a58b3d3e5a8a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "evidenced reconciliation TASK.rev.c",
+      "exit_code": 0,
+      "stdout_sha256": "f45b50d2ad3ab5a58721877fd5a4b3ce03d9b642a24be8f08e75947b12e99bea",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "stale reconciliation CAS TASK.rev.c",
+      "exit_code": 4,
+      "stdout_sha256": "ea1a6198f8821fde825bf40dd480052db9a5c0d5fab1af7d6eb4915b567a3169",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "all revised tasks current",
+      "exit_code": 0,
+      "stdout_sha256": "185f71183ef5ff6829e11425b9b19c30d29587648d02ae03d0dacd17bb69dda7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "revision doctor after reconciliations",
+      "exit_code": 0,
+      "stdout_sha256": "55557801ff6c1b09e68ee676eeb622ac512a8e8fd0a281c563b28a57921e9949",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "reject dangling dependency",
+      "exit_code": 2,
+      "stdout_sha256": "1607333fa26a5aebe0315d30582a2e9cef267378e94ee76c71c1fdfca8f7df0c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "store unsupported required feature",
+      "exit_code": 0,
+      "stdout_sha256": "a5a0233384fac0838d4df7ee3abf1644fc819a2e3efe239d9f01570ea2950b4e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "inspect unsupported feature",
+      "exit_code": 0,
+      "stdout_sha256": "a7c0e405c65330e5a781716f36eea49ee2d2de5eb3bc59ea2d13b5b956dd9f6f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "required provider blocks readiness",
+      "exit_code": 3,
+      "stdout_sha256": "89461396f456d3b6dafc35009516b18e6e189d5a5261acacaa4b478c2b0f9758",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "diagnostic stderr exit code",
+      "exit_code": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e722f32972e1cb27cb486c51f6010edb2b2b377a0197609f5fdbb08a5d3285b4",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "adopt existing code plan",
+      "exit_code": 0,
+      "stdout_sha256": "e1809397d390b2bec1b78d825609d179e0e02a86c87d45477ad3c27a8f5baadf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "adopt existing code",
+      "exit_code": 0,
+      "stdout_sha256": "e1809397d390b2bec1b78d825609d179e0e02a86c87d45477ad3c27a8f5baadf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": false
+    },
+    {
+      "case": "adopted doctor",
+      "exit_code": 0,
+      "stdout_sha256": "aac2d5d7574228b2c2c0c949d98ecb7375eb237316f2b33d0714b6db2cdc79ed",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    },
+    {
+      "case": "adoption collision refusal",
+      "exit_code": 2,
+      "stdout_sha256": "4f1d0721d54f006e3ae5f29f16caae9f829df12d659e4f541bb8ef60bb2c7702",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_equal": true,
+      "read_only": true
+    }
+  ],
+  "allowed_differences": {
+    "info.result": [
+      "implementation",
+      "java_runtime",
+      "vm",
+      "build"
+    ]
+  },
+  "protocol_semantics_changed": false
+}

@@ -1,0 +1,1101 @@
+{
+  "contract": "taskctl.cold-selfhost-proof/alpha1",
+  "recorded_at": "2026-09-06T19:17:56.994162+00:00",
+  "version": "0.3.0-alpha.1",
+  "platform": "windows-x86_64",
+  "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+  "archive_sha256": "391a8f19a032eb47d7cc0b59def1e3b845d44d95603dafba0e68a5e104158b62",
+  "toolchain_lock_sha256": "d4c4893b97b5b3837c2d633236aff7e77fcb186b16133b4001d59bb74d92b2b7",
+  "repository_id": "brule-io.taskctl",
+  "inventory": {
+    ".agents/.gitignore": {
+      "sha256": "60259fc73806bd7c95dbe47ba9b5125cb820d5553a7803b28f12c0642bddacbd",
+      "mtime_ns": 1788719676649408000
+    },
+    ".agents/config.toml": {
+      "sha256": "78ee808a1278ebcae23d25cbf6fd2d1b820ccf9914e323359315d0d46cd7c9a5",
+      "mtime_ns": 1788719676636407500
+    },
+    ".agents/epics/EPIC.alpha3-1389f3dc2fd4ab0c.yaml": {
+      "sha256": "3a4c90bbd3db6f894d3ac7b275de571a09e0a4d7eeed0bf84bf5f13e10037b0c",
+      "mtime_ns": 1788719676791404200
+    },
+    ".agents/epics/EPIC.native-v1-f6682de8a72f488e.yaml": {
+      "sha256": "dc73256185a3d12d6fef919d756368409bc06c8b7279ba7ff92b4b9370c6092a",
+      "mtime_ns": 1788719676798404900
+    },
+    ".agents/history/heads.json": {
+      "sha256": "fa395f02c967d70751b57097d1e46cfee721c53a99455ad1b669d81f03a089d9",
+      "mtime_ns": 1788722251138751900
+    },
+    ".agents/history/revisions/0020513e9224f95828a901ee1cfb48797e71715ec4515e2f9c99b584cad288a2.json": {
+      "sha256": "ac94edafe48ed08150ead2843a91f31e0ecd7b91103bf10da175a3fa4f3eae94",
+      "mtime_ns": 1788719676819434700
+    },
+    ".agents/history/revisions/138f4d40be3c6a28f5ec71c5234c53aea8877440390aafe834b36038419a409f.json": {
+      "sha256": "95fab61f5d8f7ba66656fdfaf290da0983af05a8b4921f761e50d5147c269194",
+      "mtime_ns": 1788719676858404600
+    },
+    ".agents/history/revisions/1a8b3fe977415891191391a6ff0c5569c15456685e61389db5ad47ac61e075f2.json": {
+      "sha256": "7f96273d9facc38db368db0c295ac92afcbaa38f02e44f0c093f42960a0411b1",
+      "mtime_ns": 1788719676862406100
+    },
+    ".agents/history/revisions/1aa586ecc64450ab10d53e3fdd958bd63c756570d405f33b7eca60f134d54f18.json": {
+      "sha256": "3b1ce1ed7351bfe00890acbcef74439ab253ba5f3717f94a212e461841fe7466",
+      "mtime_ns": 1788719676822405800
+    },
+    ".agents/history/revisions/1e1bbc6994f8ab53a2a890cc159092cccea94e7ced5c0a1749a430786e3878ab.json": {
+      "sha256": "9d57c64cafd3f6d2e22fa89cfdc9188bf5265b5f073a2f72d3e6a205a9466338",
+      "mtime_ns": 1788719676815438700
+    },
+    ".agents/history/revisions/25a8a1c2f266f6d59e8f702e13de4ae6a02d97152acc6bb238425f19dc957f3c.json": {
+      "sha256": "0a9494d5ed3632cc33c9ece42673c6c08b1baef5fc3e168bd1bd001c00be6d22",
+      "mtime_ns": 1788720081997652900
+    },
+    ".agents/history/revisions/29b35b4f31c967cfa45ae14779d1d500b489ac7349fcf6305276cd10d39221b8.json": {
+      "sha256": "66d576326917a14f60c856e9aefcaf1679b35ba2c48e86e0b94b22387202b5d5",
+      "mtime_ns": 1788719676833406900
+    },
+    ".agents/history/revisions/2aa3a26b9eca644038453487defc87180b8bed5b1b98113183b1933cc74729ca.json": {
+      "sha256": "0ed7a0da281db9d03b58d88888906fab94c380432dffb5a5f99fb1b357ff0db8",
+      "mtime_ns": 1788719676855404400
+    },
+    ".agents/history/revisions/2bda480eced3946162ca851e74ddb4e6fdb2c7876a3789653539e1bc3b3330da.json": {
+      "sha256": "6fd4b5a6ea84224dcf5eabcfff4d1b6690d97ec660623db1d735c229d337057c",
+      "mtime_ns": 1788719676872404400
+    },
+    ".agents/history/revisions/34d13d227b84e731b61c515228cf72d35405eaead9226af65ea508b6f46daf49.json": {
+      "sha256": "fea8e81af580e93a5d2ab0ff614b142cb51a09bac54d644ef2f4e9b045612f74",
+      "mtime_ns": 1788720086577373100
+    },
+    ".agents/history/revisions/3cf97e320ac41b49ae504199cdb5ff8d884963e8ea2848825f39e2163a54f57a.json": {
+      "sha256": "2e74dae233ddb257e75175aaaf97a204f8c7d3de02f0f69a3594d71cb4eea051",
+      "mtime_ns": 1788719676879403600
+    },
+    ".agents/history/revisions/440f780c2ed8e0707c088a26d2932f5b430acd857b0a5610dcf7de97430e433b.json": {
+      "sha256": "61527cd11a950a717a2e16fc42a64dbebbadf595aa2ca56352c53ffe9f305324",
+      "mtime_ns": 1788719676865404300
+    },
+    ".agents/history/revisions/4a129807385a5a031d11a77db87925ebda6cdc086bd46bd5ba26a83a280e5e10.json": {
+      "sha256": "96349f84eba8458ece7cd325ca4693f994c982112a8063019376233e4fef1f0b",
+      "mtime_ns": 1788719676805405300
+    },
+    ".agents/history/revisions/585f3d2548b78ca07b16dde74819239d5f5905719f515bb8e6756aaad3e5c57f.json": {
+      "sha256": "ef33c1373415df3c6c742658b3c10672e085e126c475b931162de2ee634961ec",
+      "mtime_ns": 1788719676840404600
+    },
+    ".agents/history/revisions/5df3febd12e38cc59021d574cf12e8c5f5a104c6a9cc55d54bc1f7d0fbc83ec4.json": {
+      "sha256": "4dcf95b8400eb5933d188746ce1248a5462b29d07a2d3844cffca5c08491184c",
+      "mtime_ns": 1788719676812435100
+    },
+    ".agents/history/revisions/605dead7c8057fb876af73213891957813bfd4602a488eabf96bce0613502c0a.json": {
+      "sha256": "bba036696f3a0a52e6e03748c3e28ac1640065d64e8e35dcf9d210ba2f3e9771",
+      "mtime_ns": 1788719676844405100
+    },
+    ".agents/history/revisions/61927dee89b917837174fe67ef6f3a3697ef8c8ccc9038c2cac41f71362be612.json": {
+      "sha256": "b93258fa8199ebc85adf4c67ffb96ea1177b705bb0ae1e46d3b6f480bcf8b85c",
+      "mtime_ns": 1788720068288664400
+    },
+    ".agents/history/revisions/68ab87a1e02f27b7ebbfdedb0e110e2526d47aca7ef77c2df6862d68aec67286.json": {
+      "sha256": "4aab51f3285c014d975ebc2c20590c91fdf9d04247aa899286f677d896cbfbc9",
+      "mtime_ns": 1788719676876404600
+    },
+    ".agents/history/revisions/897c8c115ba1e5247ecc17958fc364399f25667b15481d217877b9dc96831d2e.json": {
+      "sha256": "6d3363b077828e301f9e2fa42b964f586a33c68ea6c1bb0936bd900194f90ff7",
+      "mtime_ns": 1788720091175905800
+    },
+    ".agents/history/revisions/9681c830d77f04f7a6ffeb0d11fb96fe9f4d83afe4ee8a1e558698081162da2c.json": {
+      "sha256": "b4ce5612fd0c8a1f5d0fd59e3caf433d6511e099ab8ed3485a1f65ea2d93471d",
+      "mtime_ns": 1788719676826404300
+    },
+    ".agents/history/revisions/a910870febdbac8d41ccc78e28631800014b1c171d7b34780a40a7abde9f3889.json": {
+      "sha256": "e7dcb5fd899ac0601034db605a771084887d1b4a1507dd9dfef0225dd58884f0",
+      "mtime_ns": 1788720072906328100
+    },
+    ".agents/history/revisions/bae2a13d1591f45530a8652b481e56c5c0173c033d61aad9f4c36e173b49bc8a.json": {
+      "sha256": "3aa51f8d6eee270418b5f9926ea5efab2fb10d85325bc5173d6eba18434ea29b",
+      "mtime_ns": 1788721866589123200
+    },
+    ".agents/history/revisions/c37b00c78722824625fbfea144615fce52b43f968620bea7baeb6ebb23958973.json": {
+      "sha256": "67dd9faa048069f2484a9ac966fc443b65652323a26d0ef103c951131aebfdcb",
+      "mtime_ns": 1788719676829403500
+    },
+    ".agents/history/revisions/c4043ba75192f971c0918883a6853492ec4ceb3115836c23777be53b407a193d.json": {
+      "sha256": "96b1dffba63c9d4252faa21c7691fd44d05f9a21c872d87eee0276f222d3fa81",
+      "mtime_ns": 1788720095785500200
+    },
+    ".agents/history/revisions/d6f4435318d7d7b6ab766250b102cef812e83a2484129a9961d6349e5581ea30.json": {
+      "sha256": "e6530c848afde009c1c2841e1ff6449527e924ae0d13d4c2bcc0fd95c2124563",
+      "mtime_ns": 1788719676848404600
+    },
+    ".agents/history/revisions/e48b4cc35d0534379baa7972ef999cb64709d3838adf5d0d6d9fccb1eb30bf43.json": {
+      "sha256": "cd435237ede8f8fa626186704a807d45671b72f0e21049839e38928b6f2be02c",
+      "mtime_ns": 1788722251142756600
+    },
+    ".agents/history/revisions/e4ddf94f3f0008c50d381f724a035f606ccecc33ef156f67b17d3276586df2ed.json": {
+      "sha256": "475a7480a7e1303225639592e438890b7f9a7d5215e0876c3b8a8de9509f9c3c",
+      "mtime_ns": 1788719676836404500
+    },
+    ".agents/history/revisions/e5eceb022b9606da9a72d1c0bb8b87744a0ec4e9ebe976e905cd56852f098bcc.json": {
+      "sha256": "41df2f77383a7aa88d8405e6ebc8413272ddfb9004601c0f77e018536fe2404a",
+      "mtime_ns": 1788719676852404900
+    },
+    ".agents/history/revisions/e62750f78dadcdaafb1f9c787805be6d8845397ee81bb3fc584160c1d0a83afe.json": {
+      "sha256": "4972cc631c850427f1fe7ef897f0709aedadbee9eb1aed130bdc635528a54b08",
+      "mtime_ns": 1788719676808404800
+    },
+    ".agents/history/revisions/ec4cf9fd12d8434817b936c51870143f1894d68683a15f55513270ee4e7e0dea.json": {
+      "sha256": "fe2fc7f85192d21af3f3d20223e8c4383ec3a0ffca57fb117df6faa33aeb21fc",
+      "mtime_ns": 1788720077461355300
+    },
+    ".agents/history/revisions/f050e6d3dfd01c255e84aa3eabc498c21ad324afaf29788c38eed9a134e3e17d.json": {
+      "sha256": "01ebed5004a17563cca453649a1c66efcad790b7bfcca20e67bcd901bf660bdd",
+      "mtime_ns": 1788719676869405600
+    },
+    ".agents/policy.toml": {
+      "sha256": "bed3a0fba02da425edd187f7cfe0fef56ad149772ea861206e3ad1b958dd5f58",
+      "mtime_ns": 1788719676642408400
+    },
+    ".agents/README.md": {
+      "sha256": "de5af20283290f3695febfede62bfc30af5e0f38f3d0a88d5a2bff57b2c05e39",
+      "mtime_ns": 1788719676655404200
+    },
+    ".agents/receipts/11c3a0a18f2e7670a3acb6e98b5d9db9c4d3affa44e5d4978a1d7980eb18354f.json": {
+      "sha256": "11c3a0a18f2e7670a3acb6e98b5d9db9c4d3affa44e5d4978a1d7980eb18354f",
+      "mtime_ns": 1788721866581121100
+    },
+    ".agents/receipts/180360ebed7af02b97fc3951a0ec5b889aef059d1fabdaf78c67adcaf75b8f37.json": {
+      "sha256": "180360ebed7af02b97fc3951a0ec5b889aef059d1fabdaf78c67adcaf75b8f37",
+      "mtime_ns": 1788720068280663800
+    },
+    ".agents/receipts/5c7255d683d7d64d0550b05de88067a126fd922b65a38c2efcc90a18f62d6451.json": {
+      "sha256": "5c7255d683d7d64d0550b05de88067a126fd922b65a38c2efcc90a18f62d6451",
+      "mtime_ns": 1788722251135751500
+    },
+    ".agents/receipts/823718baa0db72ad1e8ed01c7d570c2fed6cfaf0f4dcd477cc387845646f62d9.json": {
+      "sha256": "823718baa0db72ad1e8ed01c7d570c2fed6cfaf0f4dcd477cc387845646f62d9",
+      "mtime_ns": 1788720091167907200
+    },
+    ".agents/receipts/89117656fc696e6ae5db238a657ad7edb6a413439b857617bea2971edb9adbce.json": {
+      "sha256": "89117656fc696e6ae5db238a657ad7edb6a413439b857617bea2971edb9adbce",
+      "mtime_ns": 1788720086569372400
+    },
+    ".agents/receipts/9cd50e64c15544e018e7d8e1c98bb98ffc96775e5fae5c4242036a76d48a5828.json": {
+      "sha256": "9cd50e64c15544e018e7d8e1c98bb98ffc96775e5fae5c4242036a76d48a5828",
+      "mtime_ns": 1788720095777499800
+    },
+    ".agents/receipts/c1f067d775ec673b507b7fb3a2fbe39481ba2f0baacbd7c93675af850200793a.json": {
+      "sha256": "c1f067d775ec673b507b7fb3a2fbe39481ba2f0baacbd7c93675af850200793a",
+      "mtime_ns": 1788720072898326900
+    },
+    ".agents/receipts/c5bef7094157369d06f10b24293abb000d70ff090f8d54224c764395ef6cd74b.json": {
+      "sha256": "c5bef7094157369d06f10b24293abb000d70ff090f8d54224c764395ef6cd74b",
+      "mtime_ns": 1788720081990654600
+    },
+    ".agents/receipts/eca1b8048c54f7f67e0c29dd442d194b8abd93af18fed20468c39285800a491c.json": {
+      "sha256": "eca1b8048c54f7f67e0c29dd442d194b8abd93af18fed20468c39285800a491c",
+      "mtime_ns": 1788720077454354600
+    },
+    ".agents/roadmaps/ROADMAP.delivery-466205793905b276.yaml": {
+      "sha256": "5fcfec97b58cd40c7eeadfc797de13bc47c5838ad097ae6ee6dde6aa92cc0e48",
+      "mtime_ns": 1788719676775404200
+    },
+    ".agents/roadmaps/ROADMAP.migrations-4f88f05555528961.yaml": {
+      "sha256": "4606ee47aa3d9ca82f2df8fdbcfc8fed790e85e0a41cf6819e0412bbf2a4998a",
+      "mtime_ns": 1788719676780403400
+    },
+    ".agents/roadmaps/ROADMAP.remote-69150faea7644815.yaml": {
+      "sha256": "ca8db5b9fcf39c9454153fc1bd25fe3f2421690e8f942dd8f02a554d125b01c3",
+      "mtime_ns": 1788719676786406900
+    },
+    ".agents/roadmaps/ROADMAP.semantics-e6a28a189ee637c0.yaml": {
+      "sha256": "a1963a2d0ad2c992ad4a50cda53fa52be5a5f1e20fb1325e6a4ddd3a2fbca62b",
+      "mtime_ns": 1788719676770404500
+    },
+    ".agents/tasks/TASK.bootstrap.adopt-ac7a5382e01f559c.yaml": {
+      "sha256": "1ff01759f922796fe165bc867dcb50b9bafb5cebdda8834357a0bf7a76b2c2e4",
+      "mtime_ns": 1788720091163905000
+    },
+    ".agents/tasks/TASK.distribution.license-420a7e51e740ab81.yaml": {
+      "sha256": "704df7306bec8d9ad567a435d34470ba01ae1c5f58b195ed0134eb954f6fc5b6",
+      "mtime_ns": 1788720095774500600
+    },
+    ".agents/tasks/TASK.distribution.parity-7bd2a62911220aad.yaml": {
+      "sha256": "6c31b13efdbcacb0542bc3fb15037ba3608ca4716b45aac02d96470d309d5b4c",
+      "mtime_ns": 1788721866577608000
+    },
+    ".agents/tasks/TASK.distribution.rpm-24c1d777f9feb421.yaml": {
+      "sha256": "24f873919af7383164c6f648e3f1d688085137d7bb5fc28f3c496d39dacbb016",
+      "mtime_ns": 1788719676714407600
+    },
+    ".agents/tasks/TASK.document.fences-502cfad37395c220.yaml": {
+      "sha256": "ff1bbe0df1a01e986e29f59257aa76d9c6e52792d474f1d240127ee67f3cf008",
+      "mtime_ns": 1788720086563370800
+    },
+    ".agents/tasks/TASK.migration.brule-016959f2effccc30.yaml": {
+      "sha256": "7acba90ca3c9445964cb7662a733357810012fb3d7a6d69276c39dd174019521",
+      "mtime_ns": 1788719676726406100
+    },
+    ".agents/tasks/TASK.migration.daemon-descendants-a7f829bd45d0703a.yaml": {
+      "sha256": "73fd88142b46ef84d6fcf569d99ab7bb1972097177ea3e092adb411b25bd7581",
+      "mtime_ns": 1788719676752407700
+    },
+    ".agents/tasks/TASK.migration.daemon-meta-db7f6f3e05931df1.yaml": {
+      "sha256": "5db9a74c034166c37a44deded64212375fe7f7b5a5e576cba701bab7f01bab0e",
+      "mtime_ns": 1788719676755445000
+    },
+    ".agents/tasks/TASK.migration.divergent-c66d7efa77b68856.yaml": {
+      "sha256": "561cbc43bc4b36e551d987c796dbf513b43225c41ba5b999ee9ecfda587b2188",
+      "mtime_ns": 1788719676733405900
+    },
+    ".agents/tasks/TASK.migration.dropzone-90ff8be4cf86fe4c.yaml": {
+      "sha256": "2e8b20f7bcfb7f0b5cbf6c2a0e98ee519e30e556b696e60511f2abc98c1d2154",
+      "mtime_ns": 1788719676746434900
+    },
+    ".agents/tasks/TASK.migration.fantastikt-de68fb8fec7b66db.yaml": {
+      "sha256": "12db84e4fb9644998f629bd5ffdf412298aeb05c24d58d4e03a831777193df70",
+      "mtime_ns": 1788719676722405800
+    },
+    ".agents/tasks/TASK.migration.loom-63549375e7ea5c95.yaml": {
+      "sha256": "4b7995240cf95c2a5b060c6275e816bfd5ee853ff46f861d41cd33b254c27e14",
+      "mtime_ns": 1788719676741436300
+    },
+    ".agents/tasks/TASK.protocol.checkpoint-80bedca402517205.yaml": {
+      "sha256": "8aa47553d7679a7269b1f5aebfecf196f1d32a4e6167e9fa52e6dfdb2c3785a3",
+      "mtime_ns": 1788719676737407900
+    },
+    ".agents/tasks/TASK.protocol.idl-e0190e92c4a4d081.yaml": {
+      "sha256": "f916fb53f973051badd0115a908741e70d37d2c6d2ec21fb5f3d9e38fa61365f",
+      "mtime_ns": 1788719676763405400
+    },
+    ".agents/tasks/TASK.protocol.v1-candidate-93756252331b8676.yaml": {
+      "sha256": "a4f6799c9c043b2603428689dd763e0083ab9f5fd9b8697b9bc3ab7943ec8daf",
+      "mtime_ns": 1788719676766404900
+    },
+    ".agents/tasks/TASK.release.alpha3-40e1a45a5a6bfacb.yaml": {
+      "sha256": "a7f740bb01a77cbb3f42a3fd9439be3ad0499a5a5ff4b4ad7cdce313ef21e0bc",
+      "mtime_ns": 1788722251132751300
+    },
+    ".agents/tasks/TASK.release.dogfood-1258283678f2b11b.yaml": {
+      "sha256": "47f9982065869350878f60595a23208b14df235672f9c1836790c55a5c4e4d2b",
+      "mtime_ns": 1788719676718408300
+    },
+    ".agents/tasks/TASK.remote.kernel-47cf2c0181561f87.yaml": {
+      "sha256": "7cc9157a1d596e807106dbdf0907895e7a3f2e39f116b42c454c65e77de7f6aa",
+      "mtime_ns": 1788719676759404900
+    },
+    ".agents/tasks/TASK.semantic.contract-dd46ef1dc9f17a49.yaml": {
+      "sha256": "3b0e4fce5f392200fc5e978e427bfdb9899d0c8ceb9967436eb05b987d7e91c8",
+      "mtime_ns": 1788720068274662600
+    },
+    ".agents/tasks/TASK.semantic.currency-f71d3c2a7d39402f.yaml": {
+      "sha256": "1e7f2b4aa04c6d6a29a1553efcfae7b6136b8d85be1b4cd4dce376782d909b1d",
+      "mtime_ns": 1788720077450355500
+    },
+    ".agents/tasks/TASK.semantic.history-36bbdb7cc6da2d15.yaml": {
+      "sha256": "4cd6b302c6cf25c25a20beb62157fa93dfc12a4192fed4ad350fe8e270c70b5a",
+      "mtime_ns": 1788720072894326800
+    },
+    ".agents/tasks/TASK.semantic.reconcile-2dbfa457436507d8.yaml": {
+      "sha256": "23f8c57e953e122e70c8b316155819fcde6c63f4ea4832f6de4df1ba49280e71",
+      "mtime_ns": 1788720081986653700
+    },
+    ".taskctl/init-receipt.json": {
+      "sha256": "35db390e6ad7c91943a2d2d2addb32317975220ef725a2fcebc7b558d48d26a7",
+      "mtime_ns": 1788719676886406500
+    },
+    ".taskctl/toolchain.lock": {
+      "sha256": "d4c4893b97b5b3837c2d633236aff7e77fcb186b16133b4001d59bb74d92b2b7",
+      "mtime_ns": 1788722227155271200
+    },
+    "AGENTS.md": {
+      "sha256": "2b7b16bc90d90ffb96dde44260c5963d607f30be250e6e25fae016967e4f70d1",
+      "mtime_ns": 1788719450007570300
+    },
+    "taskctl": {
+      "sha256": "e7f570fbb055ee805a0db1bf7188d7bef2dce8d030857c0e0c4893075f2d49b4",
+      "mtime_ns": 1788719676659405100
+    },
+    "taskctl.bat": {
+      "sha256": "6ccc6519d822672e00e30c0e340c520ab702fe6e609ba428a39b28ae7f313e09",
+      "mtime_ns": 1788719676667407600
+    },
+    "taskctl.ps1": {
+      "sha256": "01157cec12038ccf8a22cda7084e7d1e4de09a712ffcee2cff66e1cd9b287089",
+      "mtime_ns": 1788719676663404800
+    }
+  },
+  "checks": [
+    {
+      "arguments": [
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "taskctl 0.3.0-alpha.1\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "-V"
+      ],
+      "exit_code": 0,
+      "stdout": "taskctl 0.3.0-alpha.1\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "version"
+      ],
+      "exit_code": 0,
+      "stdout": "taskctl 0.3.0-alpha.1\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "version",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"api\":\"taskctl.cli/alpha1\",\"command\":\"version\",\"result\":{\"tool\":\"taskctl\",\"version\":\"0.3.0-alpha.1\"}}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "doctor"
+      ],
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Locked taskctl distribution is not cached (offline)\n"
+    },
+    {
+      "arguments": [
+        "doctor",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"api\":\"taskctl.cli/alpha1\",\"command\":\"doctor\",\"repository\":\"C:\\\\Users\\\\developer\\\\AppData\\\\Local\\\\Temp\\\\taskctl cold selfhost 5dyo51wp\\\\repository\",\"result\":{\"repository_id\":\"brule-io.taskctl\",\"protocol\":\"taskctl.native/alpha2\",\"profile\":\"minimal/alpha1\",\"revision\":\"sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f\",\"tasks\":22,\"roadmaps\":4,\"epics\":2,\"required_capabilities_unavailable\":[],\"currency\":{\"current\":22,\"affected\":0,\"unresolved\":0},\"work\":[{\"id\":\"TASK.bootstrap.adopt\",\"title\":\"Self-host taskctl on its native graph\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.distribution.license\",\"title\":\"Ship Apache-2.0 licensing\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.distribution.parity\",\"title\":\"Prove native and JVM consumer parity\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.distribution.rpm\",\"title\":\"Package and test the canonical 0.3 Linux native artifact\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.document.fences\",\"title\":\"Harden Markdown example boundaries\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.migration.brule\",\"title\":\"Migrate and dogfood Brule Message Bus\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.daemon-descendants\",\"title\":\"Migrate DAEMON descendants before Meta\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.daemon-meta\",\"title\":\"Migrate DAEMON Meta last\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.divergent\",\"title\":\"Migrate a deliberately divergent specimen\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.dropzone\",\"title\":\"Migrate Dropzone after the protocol checkpoint\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.fantastikt\",\"title\":\"Migrate and dogfood Fantastikt\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.loom\",\"title\":\"Migrate Loom after the protocol checkpoint\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.protocol.checkpoint\",\"title\":\"Reassess the native protocol after first migrations\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.protocol.idl\",\"title\":\"Prove one transport-neutral IDL projection\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.protocol.v1-candidate\",\"title\":\"Assess native v1 freeze readiness\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.release.alpha3\",\"title\":\"Publish canonical 0.3.0-alpha.1 archives\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.release.dogfood\",\"title\":\"Complete release consumer and self-host acceptance\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.remote.kernel\",\"title\":\"Pressure-test a remote ledger kernel\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.semantic.contract\",\"title\":\"Version semantic contracts\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.semantic.currency\",\"title\":\"Evaluate transitive dependency currency\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.semantic.history\",\"title\":\"Persist immutable task revisions and HEAD\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.semantic.reconcile\",\"title\":\"Require explicit reconciliation evidence\",\"lifecycle\":\"closed\",\"currency\":\"current\"}],\"instructions\":\"Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision.\"}}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "info",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"api\":\"taskctl.cli/alpha1\",\"command\":\"info\",\"repository\":\"C:\\\\Users\\\\developer\\\\AppData\\\\Local\\\\Temp\\\\taskctl cold selfhost 5dyo51wp\\\\repository\",\"result\":{\"tool\":\"taskctl\",\"version\":\"0.3.0-alpha.1\",\"implementation\":\"native\",\"java_runtime\":\"25.0.4.1+1-jvmci-25.3-b22\",\"vm\":\"Substrate VM\",\"native_v1\":\"not-frozen\",\"build\":{\"version\":\"0.3.0-alpha.1\",\"platform\":\"windows-x86_64\",\"implementation\":\"native\",\"source_revision\":\"73fa5fe61ad3ba2488800dc3456ad2838d2dbe71\",\"source_dirty\":false,\"license\":\"Apache-2.0\",\"license_sha256\":\"cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30\",\"native_v1\":\"not-frozen\",\"launcher_contract\":\"taskctl.launcher/1\",\"entrypoint\":\"taskctl.exe\",\"build_identity\":{\"implementation\":\"native\",\"source_revision\":\"73fa5fe61ad3ba2488800dc3456ad2838d2dbe71\",\"source_dirty\":false,\"kotlin\":\"2.4.10\",\"gradle\":\"9.6.0\",\"libraries\":{\"annotations-13.0.jar\":\"ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478\",\"cli-0.3.0-alpha.1.jar\":\"21c0f66fd377ed4a2409268364a6981b8d6f8c23f15ada047e9597d28138476a\",\"clikt-jvm.jar\":\"7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7\",\"clikt-mordant-jvm.jar\":\"75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6\",\"colormath-jvm.jar\":\"59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c\",\"commonmark-0.24.0.jar\":\"679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b\",\"compatibility-0.3.0-alpha.1.jar\":\"dba17cd946942539b74631b2961c7c15f55d52de001d1c296b1f75c85c75a005\",\"core-0.3.0-alpha.1.jar\":\"8fa8bc884dbb485f0180bfc073f6f4e93a7b175c2ab508458860bb3a7cf05e72\",\"jna-5.14.0.jar\":\"34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6\",\"kotlin-stdlib-2.4.10.jar\":\"4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df\",\"mordant-jvm-ffm-jvm.jar\":\"10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4\",\"mordant-jvm-graal-ffi-jvm.jar\":\"6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a\",\"mordant-jvm-jna-jvm.jar\":\"41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d\",\"mordant-jvm.jar\":\"651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905\",\"mordant-omnibus-jvm.jar\":\"9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e\",\"repository-0.3.0-alpha.1.jar\":\"504d7fad490ad68805408db03bc551e5efd72b9c3a8306843fa84917267d289b\",\"snakeyaml-2.5.jar\":\"e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd\"},\"graalvm\":{\"distribution\":\"GraalVM Community\",\"release\":\"graal-25.3.4.1\",\"toolchain\":{\"url\":\"https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.3.4.1/graalvm-community-jdk-25i3-25.0.4.1_windows-x64_bin.zip\",\"sha256\":\"770a0d78aba4c19bd40ee410ec82afbbee8e33fdd762e509006ac64e1007b4ce\"},\"native_image\":\"native-image 25.0.4.1 2026-08-18\\nGraalVM Runtime Environment GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1-jvmci-25.3-b22)\\nSubstrate VM GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1, serial gc, compressed references)\",\"native_build_tools\":\"0.11.5\",\"arguments\":[\"--no-fallback\",\"-march=compatibility\",\"-J-Xmx5g\"],\"resources\":[\"VERSION\"],\"executable_sha256\":\"e04be985d5e9d5cf7126bccbdf03f6477ee13c48711751d0ca72c41f6cb8a509\"}}}}}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "doctor",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"api\":\"taskctl.cli/alpha1\",\"command\":\"doctor\",\"repository\":\"C:\\\\Users\\\\developer\\\\AppData\\\\Local\\\\Temp\\\\taskctl cold selfhost 5dyo51wp\\\\repository\",\"result\":{\"repository_id\":\"brule-io.taskctl\",\"protocol\":\"taskctl.native/alpha2\",\"profile\":\"minimal/alpha1\",\"revision\":\"sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f\",\"tasks\":22,\"roadmaps\":4,\"epics\":2,\"required_capabilities_unavailable\":[],\"currency\":{\"current\":22,\"affected\":0,\"unresolved\":0},\"work\":[{\"id\":\"TASK.bootstrap.adopt\",\"title\":\"Self-host taskctl on its native graph\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.distribution.license\",\"title\":\"Ship Apache-2.0 licensing\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.distribution.parity\",\"title\":\"Prove native and JVM consumer parity\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.distribution.rpm\",\"title\":\"Package and test the canonical 0.3 Linux native artifact\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.document.fences\",\"title\":\"Harden Markdown example boundaries\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.migration.brule\",\"title\":\"Migrate and dogfood Brule Message Bus\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.daemon-descendants\",\"title\":\"Migrate DAEMON descendants before Meta\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.daemon-meta\",\"title\":\"Migrate DAEMON Meta last\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.divergent\",\"title\":\"Migrate a deliberately divergent specimen\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.dropzone\",\"title\":\"Migrate Dropzone after the protocol checkpoint\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.fantastikt\",\"title\":\"Migrate and dogfood Fantastikt\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.loom\",\"title\":\"Migrate Loom after the protocol checkpoint\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.protocol.checkpoint\",\"title\":\"Reassess the native protocol after first migrations\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.protocol.idl\",\"title\":\"Prove one transport-neutral IDL projection\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.protocol.v1-candidate\",\"title\":\"Assess native v1 freeze readiness\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.release.alpha3\",\"title\":\"Publish canonical 0.3.0-alpha.1 archives\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.release.dogfood\",\"title\":\"Complete release consumer and self-host acceptance\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.remote.kernel\",\"title\":\"Pressure-test a remote ledger kernel\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.semantic.contract\",\"title\":\"Version semantic contracts\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.semantic.currency\",\"title\":\"Evaluate transitive dependency currency\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.semantic.history\",\"title\":\"Persist immutable task revisions and HEAD\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.semantic.reconcile\",\"title\":\"Require explicit reconciliation evidence\",\"lifecycle\":\"closed\",\"currency\":\"current\"}],\"instructions\":\"Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision.\"}}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "context",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"api\":\"taskctl.cli/alpha1\",\"command\":\"context\",\"repository\":\"C:\\\\Users\\\\developer\\\\AppData\\\\Local\\\\Temp\\\\taskctl cold selfhost 5dyo51wp\\\\repository\",\"result\":{\"repository_id\":\"brule-io.taskctl\",\"protocol\":\"taskctl.native/alpha2\",\"profile\":\"minimal/alpha1\",\"revision\":\"sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f\",\"tasks\":22,\"roadmaps\":4,\"epics\":2,\"required_capabilities_unavailable\":[],\"currency\":{\"current\":22,\"affected\":0,\"unresolved\":0},\"work\":[{\"id\":\"TASK.bootstrap.adopt\",\"title\":\"Self-host taskctl on its native graph\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.distribution.license\",\"title\":\"Ship Apache-2.0 licensing\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.distribution.parity\",\"title\":\"Prove native and JVM consumer parity\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.distribution.rpm\",\"title\":\"Package and test the canonical 0.3 Linux native artifact\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.document.fences\",\"title\":\"Harden Markdown example boundaries\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.migration.brule\",\"title\":\"Migrate and dogfood Brule Message Bus\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.daemon-descendants\",\"title\":\"Migrate DAEMON descendants before Meta\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.daemon-meta\",\"title\":\"Migrate DAEMON Meta last\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.divergent\",\"title\":\"Migrate a deliberately divergent specimen\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.dropzone\",\"title\":\"Migrate Dropzone after the protocol checkpoint\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.fantastikt\",\"title\":\"Migrate and dogfood Fantastikt\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.migration.loom\",\"title\":\"Migrate Loom after the protocol checkpoint\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.protocol.checkpoint\",\"title\":\"Reassess the native protocol after first migrations\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.protocol.idl\",\"title\":\"Prove one transport-neutral IDL projection\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.protocol.v1-candidate\",\"title\":\"Assess native v1 freeze readiness\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.release.alpha3\",\"title\":\"Publish canonical 0.3.0-alpha.1 archives\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.release.dogfood\",\"title\":\"Complete release consumer and self-host acceptance\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.remote.kernel\",\"title\":\"Pressure-test a remote ledger kernel\",\"lifecycle\":\"open\",\"currency\":\"current\"},{\"id\":\"TASK.semantic.contract\",\"title\":\"Version semantic contracts\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.semantic.currency\",\"title\":\"Evaluate transitive dependency currency\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.semantic.history\",\"title\":\"Persist immutable task revisions and HEAD\",\"lifecycle\":\"closed\",\"currency\":\"current\"},{\"id\":\"TASK.semantic.reconcile\",\"title\":\"Require explicit reconciliation evidence\",\"lifecycle\":\"closed\",\"currency\":\"current\"}],\"instructions\":\"Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision.\"}}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "frontier",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"api\":\"taskctl.cli/alpha1\",\"command\":\"frontier\",\"repository\":\"C:\\\\Users\\\\developer\\\\AppData\\\\Local\\\\Temp\\\\taskctl cold selfhost 5dyo51wp\\\\repository\",\"result\":{\"revision\":\"sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f\",\"tasks\":[\"TASK.distribution.rpm\"]}}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "status",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"api\":\"taskctl.cli/alpha1\",\"command\":\"status\",\"repository\":\"C:\\\\Users\\\\developer\\\\AppData\\\\Local\\\\Temp\\\\taskctl cold selfhost 5dyo51wp\\\\repository\",\"result\":{\"revision\":\"sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f\",\"tasks\":[{\"task\":\"TASK.bootstrap.adopt\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"closed\"},{\"task\":\"TASK.distribution.license\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"closed\"},{\"task\":\"TASK.distribution.parity\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"closed\"},{\"task\":\"TASK.distribution.rpm\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.document.fences\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"closed\"},{\"task\":\"TASK.migration.brule\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.migration.daemon-descendants\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.migration.daemon-meta\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.migration.divergent\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.migration.dropzone\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.migration.fantastikt\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.migration.loom\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.protocol.checkpoint\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.protocol.idl\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.protocol.v1-candidate\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.release.alpha3\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"closed\"},{\"task\":\"TASK.release.dogfood\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.remote.kernel\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"open\"},{\"task\":\"TASK.semantic.contract\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"closed\"},{\"task\":\"TASK.semantic.currency\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"closed\"},{\"task\":\"TASK.semantic.history\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"closed\"},{\"task\":\"TASK.semantic.reconcile\",\"currency\":\"current\",\"causes\":[],\"lifecycle\":\"closed\"}]}}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "affected",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"api\":\"taskctl.cli/alpha1\",\"command\":\"affected\",\"repository\":\"C:\\\\Users\\\\developer\\\\AppData\\\\Local\\\\Temp\\\\taskctl cold selfhost 5dyo51wp\\\\repository\",\"result\":{\"revision\":\"sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f\",\"tasks\":[]}}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "roadmap",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"api\":\"taskctl.cli/alpha1\",\"command\":\"roadmap\",\"repository\":\"C:\\\\Users\\\\developer\\\\AppData\\\\Local\\\\Temp\\\\taskctl cold selfhost 5dyo51wp\\\\repository\",\"result\":{\"revision\":\"sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f\",\"records\":[{\"kind\":\"roadmap\",\"id\":\"ROADMAP.delivery\",\"intent\":\"Ship usable pinned artifacts and operate taskctl through its own graph.\",\"protocol\":\"tasking/planning-draft-1\",\"title\":\"Tool delivery and dogfood\",\"tasks\":[\"TASK.bootstrap.adopt\",\"TASK.distribution.license\",\"TASK.distribution.parity\",\"TASK.release.alpha3\",\"TASK.distribution.rpm\",\"TASK.release.dogfood\"],\"required_extensions\":[],\"extensions\":{}},{\"kind\":\"roadmap\",\"id\":\"ROADMAP.migrations\",\"intent\":\"Exercise real legacy graphs in the authorized order.\",\"protocol\":\"tasking/planning-draft-1\",\"title\":\"Migration pressure tests\",\"tasks\":[\"TASK.migration.fantastikt\",\"TASK.migration.brule\",\"TASK.migration.divergent\",\"TASK.migration.loom\",\"TASK.migration.dropzone\",\"TASK.migration.daemon-descendants\",\"TASK.migration.daemon-meta\"],\"required_extensions\":[],\"extensions\":{}},{\"kind\":\"roadmap\",\"id\":\"ROADMAP.remote\",\"intent\":\"After the checkpoint, test the storage seam and one IDL projection.\",\"protocol\":\"tasking/planning-draft-1\",\"title\":\"Remote contract pressure tests\",\"tasks\":[\"TASK.remote.kernel\",\"TASK.protocol.idl\"],\"required_extensions\":[],\"extensions\":{}},{\"kind\":\"roadmap\",\"id\":\"ROADMAP.semantics\",\"intent\":\"Harden typed task contracts, currency and document boundaries.\",\"protocol\":\"tasking/planning-draft-1\",\"title\":\"Protocol semantics\",\"tasks\":[\"TASK.semantic.contract\",\"TASK.semantic.history\",\"TASK.semantic.currency\",\"TASK.semantic.reconcile\",\"TASK.document.fences\",\"TASK.protocol.checkpoint\",\"TASK.protocol.v1-candidate\"],\"required_extensions\":[],\"extensions\":{}}]}}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "epic",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"api\":\"taskctl.cli/alpha1\",\"command\":\"epic\",\"repository\":\"C:\\\\Users\\\\developer\\\\AppData\\\\Local\\\\Temp\\\\taskctl cold selfhost 5dyo51wp\\\\repository\",\"result\":{\"revision\":\"sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f\",\"records\":[{\"kind\":\"epic\",\"id\":\"EPIC.alpha3\",\"scope\":\"Complete M1-M4 without broad migration or service implementation.\",\"protocol\":\"tasking/planning-draft-1\",\"title\":\"0.3 semantic hardening and self-hosting\",\"tasks\":[\"TASK.semantic.contract\",\"TASK.semantic.history\",\"TASK.semantic.currency\",\"TASK.semantic.reconcile\",\"TASK.document.fences\",\"TASK.bootstrap.adopt\",\"TASK.distribution.license\",\"TASK.distribution.parity\",\"TASK.release.alpha3\",\"TASK.distribution.rpm\",\"TASK.release.dogfood\"],\"required_extensions\":[],\"extensions\":{}},{\"kind\":\"epic\",\"id\":\"EPIC.native-v1\",\"scope\":\"Validate native semantics through migration, storage and interoperability pressure before freezing.\",\"protocol\":\"tasking/planning-draft-1\",\"title\":\"A protocol proven across entry paths\",\"tasks\":[\"TASK.migration.fantastikt\",\"TASK.migration.brule\",\"TASK.migration.divergent\",\"TASK.protocol.checkpoint\",\"TASK.migration.loom\",\"TASK.migration.dropzone\",\"TASK.migration.daemon-descendants\",\"TASK.migration.daemon-meta\",\"TASK.remote.kernel\",\"TASK.protocol.idl\",\"TASK.protocol.v1-candidate\"],\"required_extensions\":[],\"extensions\":{}}]}}\n",
+      "stderr": ""
+    }
+  ],
+  "read_only": true,
+  "no_source_checkout": true,
+  "no_host_jvm": true,
+  "initial_cache_empty": true,
+  "offline_without_credentials": true,
+  "results": {
+    "info": {
+      "tool": "taskctl",
+      "version": "0.3.0-alpha.1",
+      "implementation": "native",
+      "java_runtime": "25.0.4.1+1-jvmci-25.3-b22",
+      "vm": "Substrate VM",
+      "native_v1": "not-frozen",
+      "build": {
+        "version": "0.3.0-alpha.1",
+        "platform": "windows-x86_64",
+        "implementation": "native",
+        "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+        "source_dirty": false,
+        "license": "Apache-2.0",
+        "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "native_v1": "not-frozen",
+        "launcher_contract": "taskctl.launcher/1",
+        "entrypoint": "taskctl.exe",
+        "build_identity": {
+          "implementation": "native",
+          "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+          "source_dirty": false,
+          "kotlin": "2.4.10",
+          "gradle": "9.6.0",
+          "libraries": {
+            "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+            "cli-0.3.0-alpha.1.jar": "21c0f66fd377ed4a2409268364a6981b8d6f8c23f15ada047e9597d28138476a",
+            "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+            "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+            "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+            "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+            "compatibility-0.3.0-alpha.1.jar": "dba17cd946942539b74631b2961c7c15f55d52de001d1c296b1f75c85c75a005",
+            "core-0.3.0-alpha.1.jar": "8fa8bc884dbb485f0180bfc073f6f4e93a7b175c2ab508458860bb3a7cf05e72",
+            "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+            "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+            "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+            "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+            "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+            "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+            "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+            "repository-0.3.0-alpha.1.jar": "504d7fad490ad68805408db03bc551e5efd72b9c3a8306843fa84917267d289b",
+            "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+          },
+          "graalvm": {
+            "distribution": "GraalVM Community",
+            "release": "graal-25.3.4.1",
+            "toolchain": {
+              "url": "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.3.4.1/graalvm-community-jdk-25i3-25.0.4.1_windows-x64_bin.zip",
+              "sha256": "770a0d78aba4c19bd40ee410ec82afbbee8e33fdd762e509006ac64e1007b4ce"
+            },
+            "native_image": "native-image 25.0.4.1 2026-08-18\nGraalVM Runtime Environment GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1-jvmci-25.3-b22)\nSubstrate VM GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1, serial gc, compressed references)",
+            "native_build_tools": "0.11.5",
+            "arguments": [
+              "--no-fallback",
+              "-march=compatibility",
+              "-J-Xmx5g"
+            ],
+            "resources": [
+              "VERSION"
+            ],
+            "executable_sha256": "e04be985d5e9d5cf7126bccbdf03f6477ee13c48711751d0ca72c41f6cb8a509"
+          }
+        }
+      }
+    },
+    "doctor": {
+      "repository_id": "brule-io.taskctl",
+      "protocol": "taskctl.native/alpha2",
+      "profile": "minimal/alpha1",
+      "revision": "sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f",
+      "tasks": 22,
+      "roadmaps": 4,
+      "epics": 2,
+      "required_capabilities_unavailable": [],
+      "currency": {
+        "current": 22,
+        "affected": 0,
+        "unresolved": 0
+      },
+      "work": [
+        {
+          "id": "TASK.bootstrap.adopt",
+          "title": "Self-host taskctl on its native graph",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.distribution.license",
+          "title": "Ship Apache-2.0 licensing",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.distribution.parity",
+          "title": "Prove native and JVM consumer parity",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.distribution.rpm",
+          "title": "Package and test the canonical 0.3 Linux native artifact",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.document.fences",
+          "title": "Harden Markdown example boundaries",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.brule",
+          "title": "Migrate and dogfood Brule Message Bus",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.daemon-descendants",
+          "title": "Migrate DAEMON descendants before Meta",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.daemon-meta",
+          "title": "Migrate DAEMON Meta last",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.divergent",
+          "title": "Migrate a deliberately divergent specimen",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.dropzone",
+          "title": "Migrate Dropzone after the protocol checkpoint",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.fantastikt",
+          "title": "Migrate and dogfood Fantastikt",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.loom",
+          "title": "Migrate Loom after the protocol checkpoint",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.protocol.checkpoint",
+          "title": "Reassess the native protocol after first migrations",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.protocol.idl",
+          "title": "Prove one transport-neutral IDL projection",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.protocol.v1-candidate",
+          "title": "Assess native v1 freeze readiness",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.release.alpha3",
+          "title": "Publish canonical 0.3.0-alpha.1 archives",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.release.dogfood",
+          "title": "Complete release consumer and self-host acceptance",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.remote.kernel",
+          "title": "Pressure-test a remote ledger kernel",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.semantic.contract",
+          "title": "Version semantic contracts",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.semantic.currency",
+          "title": "Evaluate transitive dependency currency",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.semantic.history",
+          "title": "Persist immutable task revisions and HEAD",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.semantic.reconcile",
+          "title": "Require explicit reconciliation evidence",
+          "lifecycle": "closed",
+          "currency": "current"
+        }
+      ],
+      "instructions": "Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision."
+    },
+    "context": {
+      "repository_id": "brule-io.taskctl",
+      "protocol": "taskctl.native/alpha2",
+      "profile": "minimal/alpha1",
+      "revision": "sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f",
+      "tasks": 22,
+      "roadmaps": 4,
+      "epics": 2,
+      "required_capabilities_unavailable": [],
+      "currency": {
+        "current": 22,
+        "affected": 0,
+        "unresolved": 0
+      },
+      "work": [
+        {
+          "id": "TASK.bootstrap.adopt",
+          "title": "Self-host taskctl on its native graph",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.distribution.license",
+          "title": "Ship Apache-2.0 licensing",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.distribution.parity",
+          "title": "Prove native and JVM consumer parity",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.distribution.rpm",
+          "title": "Package and test the canonical 0.3 Linux native artifact",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.document.fences",
+          "title": "Harden Markdown example boundaries",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.brule",
+          "title": "Migrate and dogfood Brule Message Bus",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.daemon-descendants",
+          "title": "Migrate DAEMON descendants before Meta",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.daemon-meta",
+          "title": "Migrate DAEMON Meta last",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.divergent",
+          "title": "Migrate a deliberately divergent specimen",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.dropzone",
+          "title": "Migrate Dropzone after the protocol checkpoint",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.fantastikt",
+          "title": "Migrate and dogfood Fantastikt",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.migration.loom",
+          "title": "Migrate Loom after the protocol checkpoint",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.protocol.checkpoint",
+          "title": "Reassess the native protocol after first migrations",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.protocol.idl",
+          "title": "Prove one transport-neutral IDL projection",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.protocol.v1-candidate",
+          "title": "Assess native v1 freeze readiness",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.release.alpha3",
+          "title": "Publish canonical 0.3.0-alpha.1 archives",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.release.dogfood",
+          "title": "Complete release consumer and self-host acceptance",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.remote.kernel",
+          "title": "Pressure-test a remote ledger kernel",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.semantic.contract",
+          "title": "Version semantic contracts",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.semantic.currency",
+          "title": "Evaluate transitive dependency currency",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.semantic.history",
+          "title": "Persist immutable task revisions and HEAD",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.semantic.reconcile",
+          "title": "Require explicit reconciliation evidence",
+          "lifecycle": "closed",
+          "currency": "current"
+        }
+      ],
+      "instructions": "Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision."
+    },
+    "frontier": {
+      "revision": "sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f",
+      "tasks": [
+        "TASK.distribution.rpm"
+      ]
+    },
+    "status": {
+      "revision": "sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f",
+      "tasks": [
+        {
+          "task": "TASK.bootstrap.adopt",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.distribution.license",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.distribution.parity",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.distribution.rpm",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.document.fences",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.migration.brule",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.migration.daemon-descendants",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.migration.daemon-meta",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.migration.divergent",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.migration.dropzone",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.migration.fantastikt",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.migration.loom",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.protocol.checkpoint",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.protocol.idl",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.protocol.v1-candidate",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.release.alpha3",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.release.dogfood",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.remote.kernel",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.semantic.contract",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.semantic.currency",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.semantic.history",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.semantic.reconcile",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        }
+      ]
+    },
+    "affected": {
+      "revision": "sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f",
+      "tasks": []
+    },
+    "roadmap": {
+      "revision": "sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f",
+      "records": [
+        {
+          "kind": "roadmap",
+          "id": "ROADMAP.delivery",
+          "intent": "Ship usable pinned artifacts and operate taskctl through its own graph.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "Tool delivery and dogfood",
+          "tasks": [
+            "TASK.bootstrap.adopt",
+            "TASK.distribution.license",
+            "TASK.distribution.parity",
+            "TASK.release.alpha3",
+            "TASK.distribution.rpm",
+            "TASK.release.dogfood"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        },
+        {
+          "kind": "roadmap",
+          "id": "ROADMAP.migrations",
+          "intent": "Exercise real legacy graphs in the authorized order.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "Migration pressure tests",
+          "tasks": [
+            "TASK.migration.fantastikt",
+            "TASK.migration.brule",
+            "TASK.migration.divergent",
+            "TASK.migration.loom",
+            "TASK.migration.dropzone",
+            "TASK.migration.daemon-descendants",
+            "TASK.migration.daemon-meta"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        },
+        {
+          "kind": "roadmap",
+          "id": "ROADMAP.remote",
+          "intent": "After the checkpoint, test the storage seam and one IDL projection.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "Remote contract pressure tests",
+          "tasks": [
+            "TASK.remote.kernel",
+            "TASK.protocol.idl"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        },
+        {
+          "kind": "roadmap",
+          "id": "ROADMAP.semantics",
+          "intent": "Harden typed task contracts, currency and document boundaries.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "Protocol semantics",
+          "tasks": [
+            "TASK.semantic.contract",
+            "TASK.semantic.history",
+            "TASK.semantic.currency",
+            "TASK.semantic.reconcile",
+            "TASK.document.fences",
+            "TASK.protocol.checkpoint",
+            "TASK.protocol.v1-candidate"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        }
+      ]
+    },
+    "epic": {
+      "revision": "sha256:18a95aa5ba162c3d31806846e4e3c77ba2c9c8c40ca2934ae02f0f21dd7c757f",
+      "records": [
+        {
+          "kind": "epic",
+          "id": "EPIC.alpha3",
+          "scope": "Complete M1-M4 without broad migration or service implementation.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "0.3 semantic hardening and self-hosting",
+          "tasks": [
+            "TASK.semantic.contract",
+            "TASK.semantic.history",
+            "TASK.semantic.currency",
+            "TASK.semantic.reconcile",
+            "TASK.document.fences",
+            "TASK.bootstrap.adopt",
+            "TASK.distribution.license",
+            "TASK.distribution.parity",
+            "TASK.release.alpha3",
+            "TASK.distribution.rpm",
+            "TASK.release.dogfood"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        },
+        {
+          "kind": "epic",
+          "id": "EPIC.native-v1",
+          "scope": "Validate native semantics through migration, storage and interoperability pressure before freezing.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "A protocol proven across entry paths",
+          "tasks": [
+            "TASK.migration.fantastikt",
+            "TASK.migration.brule",
+            "TASK.migration.divergent",
+            "TASK.protocol.checkpoint",
+            "TASK.migration.loom",
+            "TASK.migration.dropzone",
+            "TASK.migration.daemon-descendants",
+            "TASK.migration.daemon-meta",
+            "TASK.remote.kernel",
+            "TASK.protocol.idl",
+            "TASK.protocol.v1-candidate"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        }
+      ]
+    }
+  }
+}

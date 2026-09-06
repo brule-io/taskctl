@@ -1,0 +1,9 @@
+lockFormat=2
+wrapperVersion=3
+toolVersion=0.3.0-alpha.1
+windows-x86_64.url=https://api.github.com/repos/brule-io/taskctl/releases/assets/547570417
+windows-x86_64.sha256=391a8f19a032eb47d7cc0b59def1e3b845d44d95603dafba0e68a5e104158b62
+linux-x86_64.url=https://api.github.com/repos/brule-io/taskctl/releases/assets/547570419
+linux-x86_64.sha256=6b6aa76eefac4c364a949c245324c4cb1faa5924a0bcebb7812ef8764063aecf
+macos-aarch64.url=https://api.github.com/repos/brule-io/taskctl/releases/assets/547570418
+macos-aarch64.sha256=bd0a3b8824395226f44e6c0ad2d5217808f9a1f4a6ff8787c7c6f96afd735f1c

@@ -1,0 +1,7 @@
+121   +++ exited with 255 +++
+120   --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=121, si_uid=0, si_status=255, si_utime=0, si_stime=0} ---
+122   +++ exited with 0 +++
+124   +++ exited with 0 +++
+123   --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=124, si_uid=0, si_status=0, si_utime=0, si_stime=1 /* 0.01 s */} ---
+123   +++ exited with 0 +++
+120   +++ exited with 0 +++

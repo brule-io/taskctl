@@ -1,0 +1,342 @@
+{
+  "contract": "taskctl.release/alpha2",
+  "version": "0.3.0-alpha.1",
+  "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+  "repository": "brule-io/taskctl",
+  "license": "Apache-2.0",
+  "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+  "preferred_implementation": "native",
+  "artifacts": [
+    {
+      "version": "0.3.0-alpha.1",
+      "platform": "windows-x86_64",
+      "implementation": "native",
+      "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+      "source_dirty": false,
+      "license": "Apache-2.0",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "native_v1": "not-frozen",
+      "launcher_contract": "taskctl.launcher/1",
+      "entrypoint": "taskctl.exe",
+      "build_identity": {
+        "implementation": "native",
+        "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+        "source_dirty": false,
+        "kotlin": "2.4.10",
+        "gradle": "9.6.0",
+        "libraries": {
+          "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+          "cli-0.3.0-alpha.1.jar": "21c0f66fd377ed4a2409268364a6981b8d6f8c23f15ada047e9597d28138476a",
+          "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+          "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+          "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+          "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+          "compatibility-0.3.0-alpha.1.jar": "dba17cd946942539b74631b2961c7c15f55d52de001d1c296b1f75c85c75a005",
+          "core-0.3.0-alpha.1.jar": "8fa8bc884dbb485f0180bfc073f6f4e93a7b175c2ab508458860bb3a7cf05e72",
+          "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+          "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+          "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+          "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+          "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+          "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+          "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+          "repository-0.3.0-alpha.1.jar": "504d7fad490ad68805408db03bc551e5efd72b9c3a8306843fa84917267d289b",
+          "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+        },
+        "graalvm": {
+          "distribution": "GraalVM Community",
+          "release": "graal-25.3.4.1",
+          "toolchain": {
+            "url": "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.3.4.1/graalvm-community-jdk-25i3-25.0.4.1_windows-x64_bin.zip",
+            "sha256": "770a0d78aba4c19bd40ee410ec82afbbee8e33fdd762e509006ac64e1007b4ce"
+          },
+          "native_image": "native-image 25.0.4.1 2026-08-18\nGraalVM Runtime Environment GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1-jvmci-25.3-b22)\nSubstrate VM GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1, serial gc, compressed references)",
+          "native_build_tools": "0.11.5",
+          "arguments": [
+            "--no-fallback",
+            "-march=compatibility",
+            "-J-Xmx5g"
+          ],
+          "resources": [
+            "VERSION"
+          ],
+          "executable_sha256": "e04be985d5e9d5cf7126bccbdf03f6477ee13c48711751d0ca72c41f6cb8a509"
+        }
+      },
+      "file": "taskctl-0.3.0-alpha.1-native-windows-x86_64.zip",
+      "sha256": "391a8f19a032eb47d7cc0b59def1e3b845d44d95603dafba0e68a5e104158b62",
+      "bytes": 8202596
+    },
+    {
+      "version": "0.3.0-alpha.1",
+      "platform": "windows-x86_64",
+      "implementation": "jvm",
+      "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+      "source_dirty": false,
+      "license": "Apache-2.0",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "native_v1": "not-frozen",
+      "launcher_contract": "taskctl.launcher/1",
+      "entrypoint": "taskctl.ps1",
+      "build_identity": {
+        "implementation": "jvm",
+        "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+        "source_dirty": false,
+        "kotlin": "2.4.10",
+        "gradle": "9.6.0",
+        "libraries": {
+          "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+          "cli-0.3.0-alpha.1.jar": "21c0f66fd377ed4a2409268364a6981b8d6f8c23f15ada047e9597d28138476a",
+          "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+          "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+          "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+          "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+          "compatibility-0.3.0-alpha.1.jar": "dba17cd946942539b74631b2961c7c15f55d52de001d1c296b1f75c85c75a005",
+          "core-0.3.0-alpha.1.jar": "8fa8bc884dbb485f0180bfc073f6f4e93a7b175c2ab508458860bb3a7cf05e72",
+          "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+          "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+          "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+          "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+          "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+          "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+          "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+          "repository-0.3.0-alpha.1.jar": "504d7fad490ad68805408db03bc551e5efd72b9c3a8306843fa84917267d289b",
+          "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+        },
+        "java": "openjdk version \"21.0.11\" 2026-04-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.11+10 (build 21.0.11+10-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.11+10 (build 21.0.11+10-LTS, mixed mode)"
+      },
+      "file": "taskctl-0.3.0-alpha.1-jvm-windows-x86_64.zip",
+      "sha256": "9680ca29fdb916d3395ea6360117509053dee621fc40cdb79e2b77571ee7abaf",
+      "bytes": 26023454
+    },
+    {
+      "version": "0.3.0-alpha.1",
+      "platform": "linux-x86_64",
+      "implementation": "native",
+      "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+      "source_dirty": false,
+      "license": "Apache-2.0",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "native_v1": "not-frozen",
+      "launcher_contract": "taskctl.launcher/1",
+      "entrypoint": "taskctl",
+      "build_identity": {
+        "implementation": "native",
+        "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+        "source_dirty": false,
+        "kotlin": "2.4.10",
+        "gradle": "9.6.0",
+        "libraries": {
+          "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+          "cli-0.3.0-alpha.1.jar": "21c0f66fd377ed4a2409268364a6981b8d6f8c23f15ada047e9597d28138476a",
+          "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+          "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+          "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+          "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+          "compatibility-0.3.0-alpha.1.jar": "dba17cd946942539b74631b2961c7c15f55d52de001d1c296b1f75c85c75a005",
+          "core-0.3.0-alpha.1.jar": "8fa8bc884dbb485f0180bfc073f6f4e93a7b175c2ab508458860bb3a7cf05e72",
+          "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+          "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+          "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+          "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+          "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+          "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+          "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+          "repository-0.3.0-alpha.1.jar": "504d7fad490ad68805408db03bc551e5efd72b9c3a8306843fa84917267d289b",
+          "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+        },
+        "graalvm": {
+          "distribution": "GraalVM Community",
+          "release": "graal-25.3.4.1",
+          "toolchain": {
+            "url": "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.3.4.1/graalvm-community-jdk-25i3-25.0.4.1_linux-x64_bin.tar.gz",
+            "sha256": "b2bc38d0c4141426eb44d0eefa3cc172c96faf92727d703b61541699128b6fc7"
+          },
+          "native_image": "native-image 25.0.4.1 2026-08-18\nGraalVM Runtime Environment GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1-jvmci-25.3-b22)\nSubstrate VM GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1, serial gc, compressed references)",
+          "native_build_tools": "0.11.5",
+          "arguments": [
+            "--no-fallback",
+            "-march=compatibility",
+            "-J-Xmx5g"
+          ],
+          "resources": [
+            "VERSION"
+          ],
+          "executable_sha256": "d44daf7b88eb6010662941f24f2a055bf528d00d7a17627c8bbccfcf52112131"
+        }
+      },
+      "file": "taskctl-0.3.0-alpha.1-native-linux-x86_64.tar.gz",
+      "sha256": "6b6aa76eefac4c364a949c245324c4cb1faa5924a0bcebb7812ef8764063aecf",
+      "bytes": 8231145
+    },
+    {
+      "version": "0.3.0-alpha.1",
+      "platform": "linux-x86_64",
+      "implementation": "jvm",
+      "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+      "source_dirty": false,
+      "license": "Apache-2.0",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "native_v1": "not-frozen",
+      "launcher_contract": "taskctl.launcher/1",
+      "entrypoint": "taskctl",
+      "build_identity": {
+        "implementation": "jvm",
+        "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+        "source_dirty": false,
+        "kotlin": "2.4.10",
+        "gradle": "9.6.0",
+        "libraries": {
+          "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+          "cli-0.3.0-alpha.1.jar": "21c0f66fd377ed4a2409268364a6981b8d6f8c23f15ada047e9597d28138476a",
+          "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+          "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+          "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+          "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+          "compatibility-0.3.0-alpha.1.jar": "dba17cd946942539b74631b2961c7c15f55d52de001d1c296b1f75c85c75a005",
+          "core-0.3.0-alpha.1.jar": "8fa8bc884dbb485f0180bfc073f6f4e93a7b175c2ab508458860bb3a7cf05e72",
+          "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+          "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+          "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+          "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+          "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+          "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+          "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+          "repository-0.3.0-alpha.1.jar": "504d7fad490ad68805408db03bc551e5efd72b9c3a8306843fa84917267d289b",
+          "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+        },
+        "java": "openjdk version \"21.0.11\" 2026-04-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.11+10 (build 21.0.11+10-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.11+10 (build 21.0.11+10-LTS, mixed mode)"
+      },
+      "file": "taskctl-0.3.0-alpha.1-jvm-linux-x86_64.tar.gz",
+      "sha256": "74b10550d600af1baafeac4d58249eb20193c83ee55bc91f94afdbb578700acb",
+      "bytes": 28089563
+    },
+    {
+      "version": "0.3.0-alpha.1",
+      "platform": "macos-aarch64",
+      "implementation": "native",
+      "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+      "source_dirty": false,
+      "license": "Apache-2.0",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "native_v1": "not-frozen",
+      "launcher_contract": "taskctl.launcher/1",
+      "entrypoint": "taskctl",
+      "build_identity": {
+        "implementation": "native",
+        "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+        "source_dirty": false,
+        "kotlin": "2.4.10",
+        "gradle": "9.6.0",
+        "libraries": {
+          "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+          "cli-0.3.0-alpha.1.jar": "21c0f66fd377ed4a2409268364a6981b8d6f8c23f15ada047e9597d28138476a",
+          "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+          "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+          "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+          "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+          "compatibility-0.3.0-alpha.1.jar": "dba17cd946942539b74631b2961c7c15f55d52de001d1c296b1f75c85c75a005",
+          "core-0.3.0-alpha.1.jar": "8fa8bc884dbb485f0180bfc073f6f4e93a7b175c2ab508458860bb3a7cf05e72",
+          "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+          "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+          "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+          "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+          "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+          "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+          "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+          "repository-0.3.0-alpha.1.jar": "504d7fad490ad68805408db03bc551e5efd72b9c3a8306843fa84917267d289b",
+          "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+        },
+        "graalvm": {
+          "distribution": "GraalVM Community",
+          "release": "graal-25.3.4.1",
+          "toolchain": {
+            "url": "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.3.4.1/graalvm-community-jdk-25i3-25.0.4.1_macos-aarch64_bin.tar.gz",
+            "sha256": "ebfab1d74420f355a459076162012d6835fa6068bd9d2f230f1fcaf7ee0dd923"
+          },
+          "native_image": "native-image 25.0.4.1 2026-08-18\nGraalVM Runtime Environment GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1-jvmci-25.3-b22)\nSubstrate VM GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1, serial gc, compressed references)",
+          "native_build_tools": "0.11.5",
+          "arguments": [
+            "--no-fallback",
+            "-march=compatibility",
+            "-J-Xmx5g"
+          ],
+          "resources": [
+            "VERSION"
+          ],
+          "executable_sha256": "4824849f6082dede4da770336d949ea96a415bfbc3ca9bd136fb9c56619e6adb"
+        }
+      },
+      "file": "taskctl-0.3.0-alpha.1-native-macos-aarch64.tar.gz",
+      "sha256": "bd0a3b8824395226f44e6c0ad2d5217808f9a1f4a6ff8787c7c6f96afd735f1c",
+      "bytes": 8231235
+    },
+    {
+      "version": "0.3.0-alpha.1",
+      "platform": "macos-aarch64",
+      "implementation": "jvm",
+      "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+      "source_dirty": false,
+      "license": "Apache-2.0",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "native_v1": "not-frozen",
+      "launcher_contract": "taskctl.launcher/1",
+      "entrypoint": "taskctl",
+      "build_identity": {
+        "implementation": "jvm",
+        "source_revision": "73fa5fe61ad3ba2488800dc3456ad2838d2dbe71",
+        "source_dirty": false,
+        "kotlin": "2.4.10",
+        "gradle": "9.6.0",
+        "libraries": {
+          "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+          "cli-0.3.0-alpha.1.jar": "21c0f66fd377ed4a2409268364a6981b8d6f8c23f15ada047e9597d28138476a",
+          "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+          "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+          "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+          "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+          "compatibility-0.3.0-alpha.1.jar": "dba17cd946942539b74631b2961c7c15f55d52de001d1c296b1f75c85c75a005",
+          "core-0.3.0-alpha.1.jar": "8fa8bc884dbb485f0180bfc073f6f4e93a7b175c2ab508458860bb3a7cf05e72",
+          "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+          "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+          "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+          "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+          "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+          "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+          "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+          "repository-0.3.0-alpha.1.jar": "504d7fad490ad68805408db03bc551e5efd72b9c3a8306843fa84917267d289b",
+          "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+        },
+        "java": "openjdk version \"21.0.11\" 2026-04-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.11+10 (build 21.0.11+10-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.11+10 (build 21.0.11+10-LTS, mixed mode)"
+      },
+      "file": "taskctl-0.3.0-alpha.1-jvm-macos-aarch64.tar.gz",
+      "sha256": "be00f223f1eabd136bd3ede686307b922919cd78a08e4cb72775fecad50a8375",
+      "bytes": 24445399
+    }
+  ],
+  "toolchains": {
+    "toolchain.lock": "d4c4893b97b5b3837c2d633236aff7e77fcb186b16133b4001d59bb74d92b2b7",
+    "toolchain-jvm.lock": "a2fbe5137b819fe16a18580342154ec1a072e64ccba32303dd828f1d2674d526"
+  },
+  "evidence": {
+    "taskctl-0.3.0-alpha.1-native-windows-x86_64.zip.intoto.json": "7163b2e01419f61a0b4038715e8c98a2fe1758965bef080228bb58d6b6e1d977",
+    "taskctl-0.3.0-alpha.1-jvm-windows-x86_64.zip.intoto.json": "330921c48f10589ced584b4bb7a1492df19b22d777476cbde98a4080f09467a3",
+    "taskctl-0.3.0-alpha.1-native-linux-x86_64.tar.gz.intoto.json": "cef571323bc0614fce156cdac555a2312775e85959f1d4c749702f3d5ca560aa",
+    "taskctl-0.3.0-alpha.1-jvm-linux-x86_64.tar.gz.intoto.json": "b73f840644de30873c7937d45c4ef44059654c8fb9fa0c0c51fa0b68bd53ca8d",
+    "taskctl-0.3.0-alpha.1-native-macos-aarch64.tar.gz.intoto.json": "99a346de0549a1ef2b72a744b0c96adc3c42e3042c16f3b9c0ab21107807ea09",
+    "taskctl-0.3.0-alpha.1-jvm-macos-aarch64.tar.gz.intoto.json": "23d34a723f04e53a86b01eec5f553ca4e7c1f40b1f72603938756c65385dc666",
+    "selfhost-native-windows-x86_64.json": "67b3cf58dce16c34057ff27d4f03f8a03db7192efe92ac12b0460621d161a9d0",
+    "selfhost-jvm-windows-x86_64.json": "f11e12e922df9496e9f0335393ba564fe23aa30e1b34d87b97e46830ca2045ff",
+    "parity-windows-x86_64.json": "f50db07e0aa5b7c49b5c43035277c60c4f7daa785dc04686209178aac6d9455f",
+    "corpus-windows-x86_64.json": "21237ee1426ce6f7daba96e92737b4df1279e9abd7bbe7c76ef8da65b535907a",
+    "selfhost-native-linux-x86_64.json": "4b377903f645f7cac74b8c67421c59319db447495c797ad0fccee26c3470f774",
+    "selfhost-jvm-linux-x86_64.json": "a6b43c5cc6705cfaca574d8f09a162c8528b2596f4f1a67a74264818b48af7b0",
+    "parity-linux-x86_64.json": "eb94a17de42322010adbedf10148e2fb76d2972083fcc873d8b4c56d2968ed13",
+    "corpus-linux-x86_64.json": "e110f91b315facf8abb94a26f3a8841011307f7ab39cc6d8a320107b4889ec13",
+    "selfhost-native-macos-aarch64.json": "1e1ca5acec11906b3abc253b4a149f4dafd642f6a64e24f905d98e59f6d05d5b",
+    "selfhost-jvm-macos-aarch64.json": "07a90e1cf958e300550733eab74166b04915d60d84b5b434baa219a4993d704a",
+    "parity-macos-aarch64.json": "7f2d0d74e98d20b0b8c4d7f60a9a48be8a42ce36c4cb16e54acb491066d6d726",
+    "corpus-macos-aarch64.json": "312195fcca1460ab41ad98f50d78e0289ee170aa6ad3bfbb44110ba2854b0949"
+  },
+  "attestation": "Build provenance statements and parity evidence are assets bound by the signed immutable GitHub release attestation; no separate CI OIDC signature is claimed."
+}

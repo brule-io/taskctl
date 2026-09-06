@@ -1,0 +1,9 @@
+89    +++ exited with 255 +++
+88    --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=89, si_uid=0, si_status=255, si_utime=0, si_stime=0} ---
+90    +++ exited with 0 +++
+92    +++ exited with 0 +++
+91    --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=92, si_uid=0, si_status=0, si_utime=0, si_stime=1 /* 0.01 s */} ---
+93    +++ exited with 0 +++
+91    --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=93, si_uid=0, si_status=0, si_utime=0, si_stime=1 /* 0.01 s */} ---
+91    +++ exited with 0 +++
+88    +++ exited with 0 +++

@@ -36,23 +36,81 @@ existing contributor contract and source files. New file-ledger and packaged
 consumer checks cover adoption refusal/preservation and bounded writes.
 
 There is no additional task protocol change. The adoption receipt and graph are
-repository-local; this development bootstrap uses a temporary local candidate pin.
-The final published native lock and a cold consumer proof will replace it in M4.
-The cached candidate runs without the source checkout or a host JVM. The initial
-pin is not a claim of cross-platform release availability.
+repository-local. The initial development pin has been replaced with the published
+native 0.3.0-alpha.1 lock, SHA-256
+`d4c4893b97b5b3837c2d633236aff7e77fcb186b16133b4001d59bb74d92b2b7`.
+A cold Windows consumer containing only tasking state and launchers passed 14
+checks without a source checkout or host JVM. Version reporting leaves the cache
+absent; release acquisition and then credential-free offline reads succeed without
+changing repository bytes or mtimes. Evidence is in
+`docs/proof/productization/0.3.0-alpha.1/cold-selfhost-windows.json`.
 
 ## M3 — distribution hardening
 
-In progress: exact JVM/native corpus and process comparisons on Windows x86_64,
-Linux x86_64 and macOS aarch64; Apache-2.0 in artifacts and metadata; Fedora RPM
-from the canonical Linux artifact. Version aliases and release provenance remain
-required. No distribution is accepted from compilation alone.
+Complete. [Source CI](https://github.com/brule-io/taskctl/actions/runs/34052801534)
+passed 93 source tests, the same 90 behavioral tests on JVM and Native Image,
+90 packaged process comparisons, 23 consumer checks per implementation, and seven
+self-host read commands per implementation on Windows x86_64, Linux x86_64 and
+macOS aarch64. Native is the default lock; JVM remains an explicit reference lock.
+Artifacts include Apache-2.0, third-party notices and the task/reconciliation guide.
+
+[Fedora CI](https://github.com/brule-io/taskctl/actions/runs/34054585202) passed 11
+install/runtime/upgrade/erase checks in a clean Fedora 44 container. The executable
+matches the canonical Linux artifact byte for byte. Transactions made zero Internet
+socket calls and preserved project/user files, mtimes and modes; cached repository
+commands still worked after erase. The source RPM rebuilt offline with matching
+payload and dependency metadata. Rpmlint: zero errors, five documented warnings.
+The first test exposed the minimal container's `nodocs` default; the test now enables
+the normal documentation payload without changing package behavior or system config.
+
+```sh
+taskctl --version
+taskctl -V
+taskctl version --format json
+taskctl info --format json
+gh release verify rpm-v0.3.0-alpha.1-1 --repo brule-io/taskctl
+sudo dnf install ./taskctl-0.3.0-alpha.1-1.fc44.x86_64.rpm
+taskctl help
+sudo dnf remove taskctl
+```
+
+See [RPM usage](FEDORA-RPM.md) for download/checksum and init/upgrade commands, and
+[RPM evidence](proof/productization/rpm-0.3.0-alpha.1-1/README.md) for exact identities.
+These delivery changes add no protocol semantics. Native requires no host JVM;
+the reference archive bundles Java. System `taskctl` and pinned `./taskctl` remain
+independent. No license decision is outstanding; no CLA or extra trademark grant
+was added. No COPR or official Fedora inclusion is claimed.
 
 ## M4 — release
 
-Pending: clean-source canonical archives, real-transport smoke tests, immutable
-release attestations, canonical-artifact RPM proof, and the final self-host pin.
-The existing RPM pipeline consumes a signed published canonical release; its
-independent companion release follows archive publication and does not gate the
-tar.gz/wrapper channel. M3/M4 are complete only after both delivery paths and the
-final cold self-host consumer pass.
+Complete. [0.3.0-alpha.1](https://github.com/brule-io/taskctl/releases/tag/v0.3.0-alpha.1)
+was published from clean source `73fa5fe61ad3ba2488800dc3456ad2838d2dbe71` after
+[release transport CI](https://github.com/brule-io/taskctl/actions/runs/34054149302)
+passed 23 consumer checks per implementation and 90 process comparisons on every
+platform using real GitHub downloads. The signed immutable release binds all 28
+assets and the source tag. The independent RPM companion release binds 11 assets
+and packaging source `1b7a37e88538721f42bfb322dae37e423cc5f1f7`.
+
+```sh
+gh release verify v0.3.0-alpha.1 --repo brule-io/taskctl
+./taskctl doctor
+./taskctl context
+./taskctl frontier
+./taskctl status
+```
+
+Use `./taskctl.ps1` on Windows. The canonical repository commits the published
+native toolchain lock; the cache on this host is populated. A cold reconstruction
+outside the source checkout passed, and final read-only evidence follows closure
+of the release tasks. [Publication proof](proof/productization/0.3.0-alpha.1/README.md)
+includes exact hashes, raw signature verification, CI/transport/cold-consumer results
+and the final frontier. The release is usable without source, Java or Gradle.
+
+No additional protocol change was needed for release. Compatibility remains as
+described under M1. Native v1 is still unfrozen, and repository visibility remains
+private: fresh acquisition needs read access; a verified cache works offline without
+credentials. Release signatures attest publication of provenance/evidence, not an
+independent observation of every build step. No incompatible decision blocks this
+alpha. The next planned task is Fantastikt migration, followed by Brule Message Bus
+and the divergent specimen before the protocol checkpoint. No product migration
+or service implementation was performed in M1–M4.

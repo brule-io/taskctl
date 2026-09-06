@@ -1,5 +1,11 @@
 # Productization milestones
 
+The current completed release is **0.3.0-alpha.1**, with revision-aware currency,
+explicit reconciliation, self-hosting, Apache-2.0 and native/JVM/Fedora delivery.
+Read [its M1–M4 report](MILESTONES-0.3.md) and the repository-local task graph for
+current status. The entries below preserve the earlier release sequence and its
+then-current decisions; the former pending-license decision is now resolved.
+
 The initial release is an alpha. Publishing source or an archive does not freeze
 native v1. This work follows the owner's order:
 
@@ -185,3 +191,35 @@ The package grants no project license; its metadata explicitly records the pendi
 decision and includes existing third-party notices. No COPR project or official
 Fedora inclusion request was created. [RPM usage and maintenance](FEDORA-RPM.md)
 documents the global/pinned distinction and publication process.
+
+## 0.3.0-alpha.1 semantic hardening and self-hosting
+
+[The canonical release](https://github.com/brule-io/taskctl/releases/tag/v0.3.0-alpha.1)
+and [Fedora RPM](https://github.com/brule-io/taskctl/releases/tag/rpm-v0.3.0-alpha.1-1)
+are published immutably. Task revisions/HEAD, semantic contract v2, observed
+transitive inputs and explicit evidenced reconciliation distinguish lifecycle from
+currency while preserving historical receipts. Existing-code adoption and fenced
+Markdown parsing are covered by the same JVM/native behavioral corpus. Core
+transitions remain storage-neutral; roadmaps and epics remain orthogonal indexes.
+
+The canonical repository now uses its own published native pin and graph. Eleven
+release tasks are closed with actor assertions referring to actual tests and
+source identities. All 22 tasks are current; the frontier names Fantastikt migration.
+Cold reconstruction outside the source checkout works without Java or Gradle and
+supports credential-free cached inspection. Product migrations and service work
+remain subsequent tasks, and native v1 is not frozen.
+
+Every platform passed 93 source checks, the same 90 behavioral tests on both VMs,
+90 process comparisons and 23 consumer checks per implementation. Real-release
+transport repeated the consumer/process checks. Fedora passed 11 isolated package
+lifecycle checks, source-RPM rebuilding, and rpmlint with zero errors and five exact
+documented warnings. Apache-2.0 replaces the earlier pending-license state in source,
+JARs, archives, release metadata and RPMs. Publication signatures bind all 28
+canonical-release assets and all 11 RPM-release assets.
+
+[Milestone evidence and commands](MILESTONES-0.3.md),
+[canonical publication proof](proof/productization/0.3.0-alpha.1/README.md), and
+[RPM proof](proof/productization/rpm-0.3.0-alpha.1-1/README.md) retain source, artifact,
+toolchain, compatibility and verification details. Packaging source follows the
+canonical tool source only to enable documentation in the minimal Fedora test
+container; no released executable or protocol behavior was changed.
