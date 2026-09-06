@@ -5,7 +5,7 @@ acceptance, causal prerequisites and closure evidence. Roadmaps describe durable
 lines of advance; epics associate work by capability. Project state stays in the
 project repository; the implementation comes from an exact pinned release.
 
-**Release candidate: `0.3.0-alpha.1`. Native protocol v1 is not frozen.**
+**Version: `0.3.0-alpha.1` (prerelease). Native protocol v1 is not frozen.**
 Native executables and JVM reference archives are tested on Windows x86_64,
 Linux x86_64 and macOS arm64. Native is the default after behavioral parity passes.
 Fedora 44 users can also [install the optional native RPM](docs/FEDORA-RPM.md).

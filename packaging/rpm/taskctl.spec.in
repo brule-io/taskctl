@@ -62,6 +62,7 @@ done
 %files
 %license native/LICENSE native/NOTICE.md native/THIRD-PARTY-NOTICES.zip
 %doc support/README.rpm.md
+%doc native/README.md native/docs
 %{_bindir}/taskctl
 %dir %{_libexecdir}/taskctl
 %{_libexecdir}/taskctl/taskctl

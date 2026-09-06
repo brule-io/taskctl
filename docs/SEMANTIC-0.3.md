@@ -67,6 +67,31 @@ path. `status` includes current work. `history` shows immutable revisions and ol
 receipts. Currency does not corrupt the graph: doctor remains usable; tracked
 affected/unresolved work is excluded from frontier and cannot close.
 
+A minimal seed file for new work uses this shape:
+
+```json
+{
+  "contract": "taskctl.seed/alpha1",
+  "tasks": [{
+    "protocol": "tasking/core-draft-2",
+    "id": "TASK.example",
+    "title": "Persist the result",
+    "state": "open",
+    "intent": "Make accepted results survive a restart.",
+    "requires": [],
+    "requirements": ["Persist before acknowledging acceptance."],
+    "acceptance": ["An accepted result survives a process restart."],
+    "verification": ["restart-test"],
+    "required_extensions": [],
+    "extensions": {}
+  }]
+}
+```
+
+Inspect `doctor --format json` for the ledger revision, then use
+`seed --file seed.json --expect-revision REVISION --plan` and omit `--plan` to
+admit it. `verification` names evidence keys; it is not a command execution list.
+
 `reconcile --plan` is read-only and returns the exact HEAD and upstream observations
 to review. A review file has this shape (copy identities from the actual plan):
 

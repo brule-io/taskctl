@@ -76,6 +76,10 @@ def main():
             shutil.copyfile(ROOT/'packaging'/name,stage/'bootstrap'/name)
         shutil.copyfile(ROOT/'NOTICE.md',stage/'NOTICE.md')
         shutil.copyfile(ROOT/'LICENSE',stage/'LICENSE')
+        shutil.copyfile(ROOT/'README.md',stage/'README.md')
+        (stage/'docs').mkdir()
+        for name in ('SEMANTIC-0.3.md','BOOTSTRAP.md','NATIVE.md','EXTENSIONS.md','VERSIONING.md'):
+            shutil.copyfile(ROOT/'docs'/name,stage/'docs'/name)
         script = (ROOT/'packaging/distribution.ps1').read_text(encoding='utf-8')
         script = script.replace('__IMPLEMENTATION__',args.kind).replace('__LIBRARIES__',';'.join(p.name for p in libraries))
         (stage/'taskctl.ps1').write_text(script,encoding='utf-8',newline='\n')

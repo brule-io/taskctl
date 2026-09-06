@@ -34,6 +34,25 @@ to inspect without writing. The release's default native lock is installed at
 Inspect repository validity, context and executable work. Use
 .B --repo PATH
 or run in the repository. An empty frontier is successful.
+.TP
+.BR status ", " affected " [TASK]", " history " TASK"
+Inspect lifecycle separately from dependency currency and immutable task history.
+Closed historical tasks keep their receipts when upstream contracts change.
+.TP
+.B revise TASK --file RECORD --expect-revision REVISION
+Record an explicit task revision. Lifecycle cannot be changed by revision.
+.TP
+.B reconcile TASK --plan
+Inspect the exact task HEAD and upstream observations a review must address.
+.B reconcile TASK --file REVIEW --expect-revision REVISION
+records an explicit review outcome, rationale and evidence. It never runs tests.
+.TP
+.B adopt --repo PATH --id ID --toolchain LOCK
+Adopt existing code without tasking. Preserve existing source and AGENTS.md;
+refuse tasking or launcher collisions. Add --plan to inspect before writing.
+.PP
+Mutating seed, revise, close, track and reconcile --file commands accept --plan
+to report bounded writes with preimage and postimage digests. Reads are mutation-free.
 .SH EXAMPLE
 .nf
 taskctl init --repo ./my-project --id example.my-project \\
@@ -45,6 +64,8 @@ taskctl doctor
 .SH FILES
 .I /usr/share/doc/taskctl/README.rpm.md
 contains packaging, offline operation and upgrade details.
+.I /usr/share/doc/taskctl/docs/SEMANTIC-0.3.md
+documents task records, currency, review inputs and compatibility.
 .SH NOTES
 Repository wrappers may download their pinned artifact on first use. This is
 explicit command execution, not an RPM transaction. Private GitHub acquisition
