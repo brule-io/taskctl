@@ -1,0 +1,101 @@
+{
+  "recorded_at": "2026-09-06T22:42:45.220779+00:00",
+  "canonical_artifact_sha256": "2922f715e64f9f27e3cd0b2de5e48a6fc3e89f1dd19accc8cc1cc3096202d31d",
+  "removed_files": [
+    {
+      "path": "tooling/taskctl/README.md",
+      "sha256": "0778e40ff3b5bec64b5095554dd5af6cd80824fd9e2e221826905734ab402d8b"
+    },
+    {
+      "path": "tooling/taskctl/taskctl.cmd",
+      "sha256": "9b1523a1523c852aaf2f1c01938830bc0a68fbcf709efdd3f29c4e47a88425a9"
+    },
+    {
+      "path": "tooling/taskctl/taskctl.ps1",
+      "sha256": "19f6f5075d50cf1b6f97d7b2414a035e3d74d3ec0f5151e5562ce0440be7965d"
+    },
+    {
+      "path": "tooling/taskctl/taskctl.sh",
+      "sha256": "907fe3aa01254293dcfde651ab0e6b493052f208968840cdb3df84b44535552f"
+    },
+    {
+      "path": "tooling/workflow/src/main/kotlin/io/brule/workflow/task/ClosureReceipt.kt",
+      "sha256": "2db109ba44ce6be58c4098ecd3f2c76f71cd2addcdde15960932a8b6697d2451"
+    },
+    {
+      "path": "tooling/workflow/src/main/kotlin/io/brule/workflow/task/ClosureRequest.kt",
+      "sha256": "01a63eab0b08a5abe7038d80af24a97b5609c8ac439eb108c736f820c2a10010"
+    },
+    {
+      "path": "tooling/workflow/src/main/kotlin/io/brule/workflow/task/LedgerClosureTransaction.kt",
+      "sha256": "ef1a3955a724a36115b04246d33871dc9414d763da1dcf4ba51a0a647222ed60"
+    },
+    {
+      "path": "tooling/workflow/src/main/kotlin/io/brule/workflow/task/RoadmapClosureService.kt",
+      "sha256": "419e5a3b7132cf657a127686e7d5c97e64b200822b00b3317018baa71365a211"
+    },
+    {
+      "path": "tooling/workflow/src/main/kotlin/io/brule/workflow/task/TaskClosureService.kt",
+      "sha256": "aee38388ab98dd0ff0361ee5cbf6fa7dc6155312ffe41d4a80d846c993386cdf"
+    },
+    {
+      "path": "tooling/workflow/src/main/kotlin/io/brule/workflow/task/TaskGraph.kt",
+      "sha256": "b834539f8c829b3e9484e2b10ce6c76c7c50c58be5d8fa5e992f4d4b9dad8437"
+    },
+    {
+      "path": "tooling/workflow/src/main/kotlin/io/brule/workflow/task/TaskLedger.kt",
+      "sha256": "3467b6bedfe021323b897b4b59a137ffd334240fe901c726592ec93394e3e5f1"
+    },
+    {
+      "path": "tooling/workflow/src/main/kotlin/io/brule/workflow/task/TaskModel.kt",
+      "sha256": "2104ea8b5bc464a1bf3ebb52f3bed1b6c65049c4a78fbc32e22b38ef08bb03d0"
+    },
+    {
+      "path": "tooling/workflow/src/main/kotlin/io/brule/workflow/task/TaskRecordFileName.kt",
+      "sha256": "ef074f97863aa1e26ee1bca9d60dbaba6b4f7323e80566213152110f03e581c5"
+    },
+    {
+      "path": "tooling/workflow/src/test/kotlin/io/brule/workflow/task/RoadmapClosureServiceTest.kt",
+      "sha256": "42cb3ac27997a2da05efc45ce0463af31ea67665d0d8a02f557c56bcf7117d28"
+    },
+    {
+      "path": "tooling/workflow/src/test/kotlin/io/brule/workflow/task/TaskClosureServiceTest.kt",
+      "sha256": "e46779e5419fa299a92dc72f833c51fb74f75dbc53637a321dd7cd2419bda171"
+    },
+    {
+      "path": "tooling/workflow/src/test/kotlin/io/brule/workflow/task/TaskClosureTransactionInvariantTest.kt",
+      "sha256": "aca2bd3cde56b0540c385d5e6ea90ee7ad9639a0202f41d6e3f774f0456ae928"
+    },
+    {
+      "path": "tooling/workflow/src/test/kotlin/io/brule/workflow/task/TaskExpectedFrontierClosureTest.kt",
+      "sha256": "352e8559aac2de60b8a15f1d2df0bb2d01562051882b07a11132179d83d06e31"
+    },
+    {
+      "path": "tooling/workflow/src/test/kotlin/io/brule/workflow/task/TaskGraphTest.kt",
+      "sha256": "391aeca4e476c2c2518e56ed831d7d6789e525c954daf0e798d013bd2f85037e"
+    },
+    {
+      "path": "tooling/workflow/src/test/kotlin/io/brule/workflow/task/TaskLedgerCycleInvariantTest.kt",
+      "sha256": "3e21b3ccd10e9129b0ac11e53f23b9e2f20c0ca0bb246d60aac16894ee19122d"
+    },
+    {
+      "path": "tooling/workflow/src/test/kotlin/io/brule/workflow/task/TaskLedgerTest.kt",
+      "sha256": "a26bc46b0e76d88dab01eaef4ae336be94a62865dca3c270d2d1032b53a00d0a"
+    },
+    {
+      "path": "tooling/workflow/src/test/kotlin/io/brule/workflow/task/TaskRecordFileNameTest.kt",
+      "sha256": "0cfd76ea6b8744708b84665241ccee021578300ff807477af66a2d4268a8ef41"
+    },
+    {
+      "path": "tooling/workflow/src/main/kotlin/io/brule/workflow/cli/TaskCtl.kt",
+      "sha256": "7f93f445bcb4f9acfb1fbaf4ae56b00b84824a148488153aa9362b0850cb35dd"
+    },
+    {
+      "path": "tooling/workflow/src/test/kotlin/io/brule/workflow/model/TaskReferenceTest.kt",
+      "sha256": "c4e15c6ca6c04190722e422e7f20b2caa0986de47a9d5c33671b3e7f8bd75eb7"
+    }
+  ],
+  "removed_duplicated_tests": 44,
+  "expected_retained_tests": 143,
+  "adr_tooling_retained": true
+}

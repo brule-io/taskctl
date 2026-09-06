@@ -1,0 +1,1410 @@
+{
+  "release": "v0.3.0-alpha.2",
+  "artifact": {
+    "version": "0.3.0-alpha.2",
+    "platform": "windows-x86_64",
+    "implementation": "native",
+    "source_revision": "8933bac1c090d175dfc035d7d52a40d1101f5333",
+    "source_dirty": false,
+    "license": "Apache-2.0",
+    "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "native_v1": "not-frozen",
+    "launcher_contract": "taskctl.launcher/1",
+    "entrypoint": "taskctl.exe",
+    "build_identity": {
+      "implementation": "native",
+      "source_revision": "8933bac1c090d175dfc035d7d52a40d1101f5333",
+      "source_dirty": false,
+      "kotlin": "2.4.10",
+      "gradle": "9.6.0",
+      "libraries": {
+        "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+        "cli-0.3.0-alpha.2.jar": "5d426ae0cfb3b814e748bce4e5e99584db622cecd50dff0bdafe2bd8b5d00a1d",
+        "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+        "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+        "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+        "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+        "compatibility-0.3.0-alpha.2.jar": "6c607fc15e467e64cc5ab22cea53256391f1eb55a3d40cd5eec85859261b37d1",
+        "core-0.3.0-alpha.2.jar": "ac49e2dde8922376d4c5ec40b3b72cb8a92c30dfbca886894da9fbf0465b8350",
+        "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+        "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+        "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+        "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+        "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+        "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+        "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+        "repository-0.3.0-alpha.2.jar": "e300c4e6b95c285543812602343125f33bc30a7cc0616fcc6fc979139722e041",
+        "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+      },
+      "graalvm": {
+        "distribution": "GraalVM Community",
+        "release": "graal-25.3.4.1",
+        "toolchain": {
+          "url": "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.3.4.1/graalvm-community-jdk-25i3-25.0.4.1_windows-x64_bin.zip",
+          "sha256": "770a0d78aba4c19bd40ee410ec82afbbee8e33fdd762e509006ac64e1007b4ce"
+        },
+        "native_image": "native-image 25.0.4.1 2026-08-18\nGraalVM Runtime Environment GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1-jvmci-25.3-b22)\nSubstrate VM GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1, serial gc, compressed references)",
+        "native_build_tools": "0.11.5",
+        "arguments": [
+          "--no-fallback",
+          "-march=compatibility",
+          "-J-Xmx5g"
+        ],
+        "resources": [
+          "VERSION"
+        ],
+        "executable_sha256": "f84bb6720b197f832b1537b708d9d451eeecc7148551318f53c2c5ef3c064461"
+      }
+    },
+    "file": "taskctl-0.3.0-alpha.2-native-windows-x86_64.zip",
+    "sha256": "2922f715e64f9f27e3cd0b2de5e48a6fc3e89f1dd19accc8cc1cc3096202d31d",
+    "bytes": 8296134
+  },
+  "old_pin_sha256": "4dce9602323b4590cbbdbec854270ddd3c7ace6c0df700891dbe5757636dddf9",
+  "pin_sha256": "a73195736ee727f70608cfdcde58e4f07491abf5635e7fbffcc8725cad254f99",
+  "version": {
+    "api": "taskctl.cli/alpha1",
+    "command": "version",
+    "result": {
+      "tool": "taskctl",
+      "version": "0.3.0-alpha.2"
+    }
+  },
+  "info": {
+    "tool": "taskctl",
+    "version": "0.3.0-alpha.2",
+    "implementation": "native",
+    "java_runtime": "25.0.4.1+1-jvmci-25.3-b22",
+    "vm": "Substrate VM",
+    "native_v1": "not-frozen",
+    "build": {
+      "version": "0.3.0-alpha.2",
+      "platform": "windows-x86_64",
+      "implementation": "native",
+      "source_revision": "8933bac1c090d175dfc035d7d52a40d1101f5333",
+      "source_dirty": false,
+      "license": "Apache-2.0",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "native_v1": "not-frozen",
+      "launcher_contract": "taskctl.launcher/1",
+      "entrypoint": "taskctl.exe",
+      "build_identity": {
+        "implementation": "native",
+        "source_revision": "8933bac1c090d175dfc035d7d52a40d1101f5333",
+        "source_dirty": false,
+        "kotlin": "2.4.10",
+        "gradle": "9.6.0",
+        "libraries": {
+          "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+          "cli-0.3.0-alpha.2.jar": "5d426ae0cfb3b814e748bce4e5e99584db622cecd50dff0bdafe2bd8b5d00a1d",
+          "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+          "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+          "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+          "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+          "compatibility-0.3.0-alpha.2.jar": "6c607fc15e467e64cc5ab22cea53256391f1eb55a3d40cd5eec85859261b37d1",
+          "core-0.3.0-alpha.2.jar": "ac49e2dde8922376d4c5ec40b3b72cb8a92c30dfbca886894da9fbf0465b8350",
+          "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+          "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+          "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+          "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+          "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+          "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+          "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+          "repository-0.3.0-alpha.2.jar": "e300c4e6b95c285543812602343125f33bc30a7cc0616fcc6fc979139722e041",
+          "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+        },
+        "graalvm": {
+          "distribution": "GraalVM Community",
+          "release": "graal-25.3.4.1",
+          "toolchain": {
+            "url": "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.3.4.1/graalvm-community-jdk-25i3-25.0.4.1_windows-x64_bin.zip",
+            "sha256": "770a0d78aba4c19bd40ee410ec82afbbee8e33fdd762e509006ac64e1007b4ce"
+          },
+          "native_image": "native-image 25.0.4.1 2026-08-18\nGraalVM Runtime Environment GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1-jvmci-25.3-b22)\nSubstrate VM GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1, serial gc, compressed references)",
+          "native_build_tools": "0.11.5",
+          "arguments": [
+            "--no-fallback",
+            "-march=compatibility",
+            "-J-Xmx5g"
+          ],
+          "resources": [
+            "VERSION"
+          ],
+          "executable_sha256": "f84bb6720b197f832b1537b708d9d451eeecc7148551318f53c2c5ef3c064461"
+        }
+      }
+    }
+  },
+  "reads": {
+    "doctor": {
+      "repository_id": "fantastikt",
+      "protocol": "taskctl.native/alpha3",
+      "profile": "minimal/alpha1",
+      "revision": "sha256:f87e59341cbbfd22969ea269d143ccd00a9d19b4b5db8611ab4dac3b1afed468",
+      "tasks": 41,
+      "roadmaps": 2,
+      "epics": 2,
+      "required_capabilities_unavailable": [],
+      "currency": {
+        "current": 41,
+        "affected": 0,
+        "unresolved": 0
+      },
+      "work": [
+        {
+          "id": "TASK.draft-mvp.001",
+          "title": "TASK.draft-mvp.001: Admit the Sunday Draft specification and seed its ledger",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.002",
+          "title": "TASK.draft-mvp.002: Scaffold the strict Kotlin module graph",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.003",
+          "title": "TASK.draft-mvp.003: Provision durable local PostgreSQL",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.004",
+          "title": "TASK.draft-mvp.004: Define semantic domain value types",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.005",
+          "title": "TASK.draft-mvp.005: Define explicit ports and domain commands",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.006",
+          "title": "TASK.draft-mvp.006: Create Flyway foundation migrations",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.007",
+          "title": "TASK.draft-mvp.007: Implement the isolated PostgreSQL adapter",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.008",
+          "title": "TASK.draft-mvp.008: Build the ball CLI shell",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.009",
+          "title": "TASK.draft-mvp.009: Implement content-addressed artifact fetching",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.010",
+          "title": "TASK.draft-mvp.010: Orchestrate idempotent ETL runs",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.011",
+          "title": "TASK.draft-mvp.011: Persist canonical person identity",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.012",
+          "title": "TASK.draft-mvp.012: Create football vocabulary and jersey rules",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.013",
+          "title": "TASK.draft-mvp.013: Ingest the nflverse player corpus",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.014",
+          "title": "TASK.draft-mvp.014: Ingest and normalize NFL teams",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.015",
+          "title": "TASK.draft-mvp.015: Reconcile player identities without silent merges",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.016",
+          "title": "TASK.draft-mvp.016: Ingest nflverse season rosters",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.017",
+          "title": "TASK.draft-mvp.017: Ingest nflverse weekly rosters",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.018",
+          "title": "TASK.draft-mvp.018: Persist weekly aggregate statistic facts",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.019",
+          "title": "TASK.draft-mvp.019: Ingest nflverse weekly player statistics",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.020",
+          "title": "TASK.draft-mvp.020: Ingest the ffverse identity crosswalk",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.021",
+          "title": "TASK.draft-mvp.021: Persist fantasy assets, leagues, and economics",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.022",
+          "title": "TASK.draft-mvp.022: Load provenance-tracked league overrides",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.023",
+          "title": "TASK.draft-mvp.023: Build a credential-safe ESPN client",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.024",
+          "title": "TASK.draft-mvp.024: Ingest the ESPN league overlay",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.025",
+          "title": "TASK.draft-mvp.025: Account for the complete ESPN draftable pool",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.026",
+          "title": "TASK.draft-mvp.026: Ingest immutable FantasyPros forecasts",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.027",
+          "title": "TASK.draft-mvp.027: Ingest ffverse fallback rankings",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.028",
+          "title": "TASK.draft-mvp.028: Build snapshot-explicit strategy read models",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.029",
+          "title": "TASK.draft-mvp.029: Wire ETL and league verification commands",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.030",
+          "title": "TASK.draft-mvp.030: Implement ETL doctor and durability checks",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.031",
+          "title": "TASK.draft-mvp.031: Persist and replay the append-only draft ledger",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.032",
+          "title": "TASK.draft-mvp.032: Implement manual draft operations",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.033",
+          "title": "TASK.draft-mvp.033: Rank the league-adjusted static board",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.034",
+          "title": "TASK.draft-mvp.034: Model next-pick survival and opponent need",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.035",
+          "title": "TASK.draft-mvp.035: Simulate payout-aware speculative strategy",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.036",
+          "title": "TASK.draft-mvp.036: Run the offline live draft watch loop",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.037",
+          "title": "TASK.draft-mvp.037: Gate the experimental ESPN draft feed",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.038",
+          "title": "TASK.draft-mvp.038: Verify operator league configuration",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.039",
+          "title": "TASK.draft-mvp.039: Prove the full mock-draft acceptance gate",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.040",
+          "title": "TASK.draft-mvp.040: Execute the Sunday freeze runbook",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.tasking.001",
+          "title": "Integrate canonical pinned taskctl",
+          "lifecycle": "open",
+          "currency": "current"
+        }
+      ],
+      "instructions": "Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision."
+    },
+    "context": {
+      "repository_id": "fantastikt",
+      "protocol": "taskctl.native/alpha3",
+      "profile": "minimal/alpha1",
+      "revision": "sha256:f87e59341cbbfd22969ea269d143ccd00a9d19b4b5db8611ab4dac3b1afed468",
+      "tasks": 41,
+      "roadmaps": 2,
+      "epics": 2,
+      "required_capabilities_unavailable": [],
+      "currency": {
+        "current": 41,
+        "affected": 0,
+        "unresolved": 0
+      },
+      "work": [
+        {
+          "id": "TASK.draft-mvp.001",
+          "title": "TASK.draft-mvp.001: Admit the Sunday Draft specification and seed its ledger",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.002",
+          "title": "TASK.draft-mvp.002: Scaffold the strict Kotlin module graph",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.003",
+          "title": "TASK.draft-mvp.003: Provision durable local PostgreSQL",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.004",
+          "title": "TASK.draft-mvp.004: Define semantic domain value types",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.005",
+          "title": "TASK.draft-mvp.005: Define explicit ports and domain commands",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.006",
+          "title": "TASK.draft-mvp.006: Create Flyway foundation migrations",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.007",
+          "title": "TASK.draft-mvp.007: Implement the isolated PostgreSQL adapter",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.008",
+          "title": "TASK.draft-mvp.008: Build the ball CLI shell",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.009",
+          "title": "TASK.draft-mvp.009: Implement content-addressed artifact fetching",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.010",
+          "title": "TASK.draft-mvp.010: Orchestrate idempotent ETL runs",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.011",
+          "title": "TASK.draft-mvp.011: Persist canonical person identity",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.012",
+          "title": "TASK.draft-mvp.012: Create football vocabulary and jersey rules",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.013",
+          "title": "TASK.draft-mvp.013: Ingest the nflverse player corpus",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.014",
+          "title": "TASK.draft-mvp.014: Ingest and normalize NFL teams",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.015",
+          "title": "TASK.draft-mvp.015: Reconcile player identities without silent merges",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.016",
+          "title": "TASK.draft-mvp.016: Ingest nflverse season rosters",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.017",
+          "title": "TASK.draft-mvp.017: Ingest nflverse weekly rosters",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.018",
+          "title": "TASK.draft-mvp.018: Persist weekly aggregate statistic facts",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.019",
+          "title": "TASK.draft-mvp.019: Ingest nflverse weekly player statistics",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.020",
+          "title": "TASK.draft-mvp.020: Ingest the ffverse identity crosswalk",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.021",
+          "title": "TASK.draft-mvp.021: Persist fantasy assets, leagues, and economics",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.022",
+          "title": "TASK.draft-mvp.022: Load provenance-tracked league overrides",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.023",
+          "title": "TASK.draft-mvp.023: Build a credential-safe ESPN client",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.024",
+          "title": "TASK.draft-mvp.024: Ingest the ESPN league overlay",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.025",
+          "title": "TASK.draft-mvp.025: Account for the complete ESPN draftable pool",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.026",
+          "title": "TASK.draft-mvp.026: Ingest immutable FantasyPros forecasts",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.027",
+          "title": "TASK.draft-mvp.027: Ingest ffverse fallback rankings",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.028",
+          "title": "TASK.draft-mvp.028: Build snapshot-explicit strategy read models",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.029",
+          "title": "TASK.draft-mvp.029: Wire ETL and league verification commands",
+          "lifecycle": "closed",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.030",
+          "title": "TASK.draft-mvp.030: Implement ETL doctor and durability checks",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.031",
+          "title": "TASK.draft-mvp.031: Persist and replay the append-only draft ledger",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.032",
+          "title": "TASK.draft-mvp.032: Implement manual draft operations",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.033",
+          "title": "TASK.draft-mvp.033: Rank the league-adjusted static board",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.034",
+          "title": "TASK.draft-mvp.034: Model next-pick survival and opponent need",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.035",
+          "title": "TASK.draft-mvp.035: Simulate payout-aware speculative strategy",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.036",
+          "title": "TASK.draft-mvp.036: Run the offline live draft watch loop",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.037",
+          "title": "TASK.draft-mvp.037: Gate the experimental ESPN draft feed",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.038",
+          "title": "TASK.draft-mvp.038: Verify operator league configuration",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.039",
+          "title": "TASK.draft-mvp.039: Prove the full mock-draft acceptance gate",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.draft-mvp.040",
+          "title": "TASK.draft-mvp.040: Execute the Sunday freeze runbook",
+          "lifecycle": "open",
+          "currency": "current"
+        },
+        {
+          "id": "TASK.tasking.001",
+          "title": "Integrate canonical pinned taskctl",
+          "lifecycle": "open",
+          "currency": "current"
+        }
+      ],
+      "instructions": "Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision."
+    },
+    "frontier": {
+      "revision": "sha256:f87e59341cbbfd22969ea269d143ccd00a9d19b4b5db8611ab4dac3b1afed468",
+      "tasks": [
+        "TASK.draft-mvp.038",
+        "TASK.tasking.001"
+      ]
+    },
+    "status": {
+      "revision": "sha256:f87e59341cbbfd22969ea269d143ccd00a9d19b4b5db8611ab4dac3b1afed468",
+      "tasks": [
+        {
+          "task": "TASK.draft-mvp.001",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.002",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.003",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.004",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.005",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.006",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.007",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.008",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.009",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.010",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.011",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.012",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.013",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.014",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.015",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.016",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.017",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.018",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.019",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.020",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.021",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.022",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.023",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.024",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.025",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.026",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.027",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.028",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.029",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.draft-mvp.030",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.draft-mvp.031",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.draft-mvp.032",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.draft-mvp.033",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.draft-mvp.034",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.draft-mvp.035",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.draft-mvp.036",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.draft-mvp.037",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.draft-mvp.038",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.draft-mvp.039",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.draft-mvp.040",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.tasking.001",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        }
+      ]
+    },
+    "show": {
+      "protocol": "tasking/core-draft-2",
+      "id": "TASK.tasking.001",
+      "title": "Integrate canonical pinned taskctl",
+      "state": "open",
+      "intent": "Use canonical taskctl to complete the consumer migration, then retire the copied task commands while preserving ADR tooling.",
+      "requires": [],
+      "requirements": [
+        "Own .agents, .taskctl, root taskctl launchers, AGENTS.md, README.md, .gitattributes, root/build and tooling/workflow integration, docs/tasking and copied tooling/taskctl removal. Product implementation and operator configuration are outside this task.",
+        "Preserve all ancestral task identities, contracts, lifecycle facts, and exact source evidence; migration equivalence reviews remain separate from old closures.",
+        "Retain ADR lifecycle tooling and shared dependencies."
+      ],
+      "acceptance": [
+        "Published digest-pinned native taskctl performs normal reads, CAS rejection, evidenced transitions and offline cached execution before copied taskctl is removed.",
+        "Repository verify and retained ADR doctor/tests pass; exact report records removed legacy-tool tests separately from retained product tests.",
+        "After closure, only TASK.draft-mvp.038 remains ready; all 29 historical closures have source evidence without fabricated native receipts."
+      ],
+      "required_extensions": [],
+      "extensions": {},
+      "verification": [
+        "migration",
+        "integration"
+      ],
+      "contract_digest": "sha256:8c6d0f895f8d88f6cd2839e647bb22f76d769f1ddbd58af79ba43ad1aa642528",
+      "revision": "sha256:f87e59341cbbfd22969ea269d143ccd00a9d19b4b5db8611ab4dac3b1afed468",
+      "head": "sha256:45f4fd1013ed4cee000f441f1cae6d56f2e8cb78e20b5f805cca776ec422caf9",
+      "currency": {
+        "task": "TASK.tasking.001",
+        "currency": "current",
+        "causes": []
+      },
+      "roadmaps": [
+        "ROADMAP.tasking"
+      ],
+      "epics": [
+        "EPIC.tasking"
+      ]
+    },
+    "roadmap": {
+      "revision": "sha256:f87e59341cbbfd22969ea269d143ccd00a9d19b4b5db8611ab4dac3b1afed468",
+      "records": [
+        {
+          "kind": "roadmap",
+          "id": "ROADMAP.draft-mvp.001",
+          "intent": "## Description\n\nAdvance one dependency-ordered implementation graph from specification admission through skeleton, durable source ingestion, league verification, strategy, live draft operation, and the Sunday freeze gate.\n\n## Outcomes\n\n- The admitted specification is completely represented by owned, verifiable task boundaries.\n- Each milestone unlocks a usable vertical capability while preserving an actionable Kahn frontier.\n- Final readiness is established by an evidence-bearing offline mock draft and pre-draft runbook rehearsal.\n\n## Exit Criteria\n\n- [ ] Every P0 acceptance criterion in the admitted `SPEC.md` has exact task evidence.\n- [ ] `ball etl doctor` reports no draft-affecting failures or unresolved warnings.\n- [ ] A complete mock draft survives restart, deterministic replay, ESPN reconciliation, backup, and offline operation.\n- [ ] Static and speculative reranking meet the local-machine latency gates and expose source snapshot IDs.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "ROADMAP.draft-mvp.001: Reach Sunday draft readiness",
+          "tasks": [
+            "TASK.draft-mvp.001",
+            "TASK.draft-mvp.002",
+            "TASK.draft-mvp.003",
+            "TASK.draft-mvp.004",
+            "TASK.draft-mvp.005",
+            "TASK.draft-mvp.006",
+            "TASK.draft-mvp.007",
+            "TASK.draft-mvp.008",
+            "TASK.draft-mvp.009",
+            "TASK.draft-mvp.010",
+            "TASK.draft-mvp.011",
+            "TASK.draft-mvp.012",
+            "TASK.draft-mvp.013",
+            "TASK.draft-mvp.014",
+            "TASK.draft-mvp.015",
+            "TASK.draft-mvp.016",
+            "TASK.draft-mvp.017",
+            "TASK.draft-mvp.018",
+            "TASK.draft-mvp.019",
+            "TASK.draft-mvp.020",
+            "TASK.draft-mvp.021",
+            "TASK.draft-mvp.022",
+            "TASK.draft-mvp.023",
+            "TASK.draft-mvp.024",
+            "TASK.draft-mvp.025",
+            "TASK.draft-mvp.026",
+            "TASK.draft-mvp.027",
+            "TASK.draft-mvp.028",
+            "TASK.draft-mvp.029",
+            "TASK.draft-mvp.030",
+            "TASK.draft-mvp.031",
+            "TASK.draft-mvp.032",
+            "TASK.draft-mvp.033",
+            "TASK.draft-mvp.034",
+            "TASK.draft-mvp.035",
+            "TASK.draft-mvp.036",
+            "TASK.draft-mvp.037",
+            "TASK.draft-mvp.038",
+            "TASK.draft-mvp.039",
+            "TASK.draft-mvp.040"
+          ],
+          "required_extensions": [],
+          "extensions": {
+            "legacy.fantastikt/v1": {
+              "ordinal": 0,
+              "source_epic": "EPIC.draft-mvp.001",
+              "source_state": "open"
+            }
+          }
+        }
+      ]
+    },
+    "epic": {
+      "revision": "sha256:f87e59341cbbfd22969ea269d143ccd00a9d19b4b5db8611ab4dac3b1afed468",
+      "records": [
+        {
+          "kind": "epic",
+          "id": "EPIC.draft-mvp.001",
+          "scope": "## Description\n\nDeliver the P0 source federation and offline-capable terminal decision loop defined by the admitted Sunday Draft MVP specification.\n\n## Outcomes\n\n- Every ESPN-draftable asset is represented durably and recommendations are reproducible from explicit source snapshots.\n- A manual opponent pick updates availability, roster state, scarcity, survival estimates, and payout-aware rankings within the specification's latency gates.\n- The complete draft can be operated offline after pre-draft synchronization and reconstructed from PostgreSQL after restart.\n\n## Boundaries\n\n- PostgreSQL remains authoritative; Neo4j, play-by-play ingestion, web/mobile interfaces, and event brokers are outside P0.\n- Source facts retain their native semantics and provenance; identity, football observations, fantasy eligibility, forecasts, and derived scoring are not collapsed.\n- Production Kotlin obeys the module boundaries and strict type prohibitions in `SPEC.md`.\n- External writes and live platform activity require their own task and operator-supplied credentials or configuration.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "EPIC.draft-mvp.001: Operate the Sunday fantasy-football draft engine",
+          "tasks": [
+            "TASK.draft-mvp.001",
+            "TASK.draft-mvp.002",
+            "TASK.draft-mvp.003",
+            "TASK.draft-mvp.004",
+            "TASK.draft-mvp.005",
+            "TASK.draft-mvp.006",
+            "TASK.draft-mvp.007",
+            "TASK.draft-mvp.008",
+            "TASK.draft-mvp.009",
+            "TASK.draft-mvp.010",
+            "TASK.draft-mvp.011",
+            "TASK.draft-mvp.012",
+            "TASK.draft-mvp.013",
+            "TASK.draft-mvp.014",
+            "TASK.draft-mvp.015",
+            "TASK.draft-mvp.016",
+            "TASK.draft-mvp.017",
+            "TASK.draft-mvp.018",
+            "TASK.draft-mvp.019",
+            "TASK.draft-mvp.020",
+            "TASK.draft-mvp.021",
+            "TASK.draft-mvp.022",
+            "TASK.draft-mvp.023",
+            "TASK.draft-mvp.024",
+            "TASK.draft-mvp.025",
+            "TASK.draft-mvp.026",
+            "TASK.draft-mvp.027",
+            "TASK.draft-mvp.028",
+            "TASK.draft-mvp.029",
+            "TASK.draft-mvp.030",
+            "TASK.draft-mvp.031",
+            "TASK.draft-mvp.032",
+            "TASK.draft-mvp.033",
+            "TASK.draft-mvp.034",
+            "TASK.draft-mvp.035",
+            "TASK.draft-mvp.036",
+            "TASK.draft-mvp.037",
+            "TASK.draft-mvp.038",
+            "TASK.draft-mvp.039",
+            "TASK.draft-mvp.040"
+          ],
+          "required_extensions": [],
+          "extensions": {
+            "legacy.fantastikt/v1": {
+              "source_state": "open"
+            }
+          }
+        }
+      ]
+    },
+    "history": {
+      "revision": "sha256:f87e59341cbbfd22969ea269d143ccd00a9d19b4b5db8611ab4dac3b1afed468",
+      "origin_ledger_revision": "sha256:c94962984de6191393622d46f63754a1a65d4b34a9acb39cc0abd1221d7c2ceb",
+      "revisions": [
+        {
+          "revision": "sha256:d8391f75b999da2ead1a7b5e90f2f73cfb16d9ec9c277972d1825d0ae03d6cec",
+          "value": {
+            "protocol": "taskctl.task-revision/2",
+            "parent": "sha256:feda29ee1f2dd093481067edadd5f3682854d026e4b7436f6e22fa0e011d1fcc",
+            "record": {
+              "protocol": "tasking/core-draft-2",
+              "id": "TASK.draft-mvp.029",
+              "title": "TASK.draft-mvp.029: Wire ETL and league verification commands",
+              "state": "closed",
+              "intent": "Complete database, source-sync, run-history, and league display commands over the implemented ports, and compose the identity commands already owned by Task 015.",
+              "requires": [
+                "TASK.draft-mvp.008",
+                "TASK.draft-mvp.010",
+                "TASK.draft-mvp.022",
+                "TASK.draft-mvp.024",
+                "TASK.draft-mvp.025",
+                "TASK.draft-mvp.026",
+                "TASK.draft-mvp.027",
+                "TASK.draft-mvp.028"
+              ],
+              "requirements": [
+                "- Own concrete CLI handlers for `ball db migrate/status`, every `ball etl sync players/teams/rosters/weekly-rosters/stats/fantasypros/ffverse/espn/all` command, `ball etl runs`, and all Section 12.2 league views; preserve command names and season-range semantics.\n- Compose Task 015's implemented `ball etl reconcile/unresolved` handlers without taking their ownership. Keep Task 008's `ball etl doctor` registration visibly unimplemented until Task 030 supplies that handler and service.\n- `sync all` orders prerequisites safely, reports per-job artifact/snapshot IDs, counts, and outcomes, and supports useful rank-only degraded mode. A mid-pipeline failure retains completed independent runs but may promote a board snapshot selection only when Task 028 can prove it coherent; otherwise preserve the prior known-good selection or fail visibly.\n- League views display ESPN and active manual assertions side by side and require explicit snapshot selection where ambiguity exists."
+              ],
+              "acceptance": [
+                "- [x] Every owned or composed database/ETL/league command has a deterministic success, warning, and failure contract test, and `ball etl runs` exposes retained run/artifact/configuration fingerprints.\n- [x] `ball league show/scoring/slots/economics/assets --draftable` exposes all operator verification inputs and no silent conflict.\n- [x] From an empty database, a fixture `sync all` populates every source/league input and, with Task 028's injected fixture draft-state port, assembles a complete DraftBoardInput; real draft-state completion remains Task 031.\n- [x] A forced mid-pipeline failure leaves completed jobs durable, the failed run non-complete with evidence, and no partially refreshed or mixed board selection promoted."
+              ],
+              "required_extensions": [],
+              "extensions": {
+                "legacy.fantastikt/v1": {
+                  "effort": "HIGH",
+                  "impact": "HIGH",
+                  "roadmap": "ROADMAP.draft-mvp.001",
+                  "realizes": null
+                }
+              },
+              "verification": []
+            },
+            "contract": "sha256:9680fdb0413b36843f31bb85108541e5b0dfa86a8e286f4ea14ca10ab263d3c8",
+            "dependencies": [
+              {
+                "upstream": "TASK.draft-mvp.008",
+                "contract": "sha256:06e21eea32cec0ccef6abc1571082b762e807eb8b8032df7c8acdce1926e531b",
+                "revision": "sha256:7913711c681b3941a2017615c5b7c5df08ec6d917c28c66ad8fbd76af7baa64f",
+                "inputs": "sha256:a3d1185cf9cdc3e934bf8e67e52756b5ee9e914a9ca8a6e8db5a37cf29821f38"
+              },
+              {
+                "upstream": "TASK.draft-mvp.010",
+                "contract": "sha256:36c349c05aa4b0b20c34f1ee12bbdab49713452b2aaccd24d61c5cee86095c05",
+                "revision": "sha256:18a84c74d637a78f50e190376092e2cd7b2105a6e3d348c9b6ec48e0a6533359",
+                "inputs": "sha256:df8cee57a8e99953692411e135e2bc1b58a32d4e84e5fcf3a488a75e9b7d1bdd"
+              },
+              {
+                "upstream": "TASK.draft-mvp.022",
+                "contract": "sha256:907ebeb6090dc8e39569b266bd6265e55026fd3a9f54747f0b9cc5b01c8a1d9b",
+                "revision": "sha256:68331906b929703384fc08e7a5eb10381af47d32a586513267a5128f9319b1b7",
+                "inputs": "sha256:63df2588d577be6618a131ee7979bc7f0910f9f31898279b47a4638fe7fdc5f2"
+              },
+              {
+                "upstream": "TASK.draft-mvp.024",
+                "contract": "sha256:013128e5c6b2baf833457ea20bc71c9a15cc69ac75fdd65de8af845ac0cceaed",
+                "revision": "sha256:c236dc155db4683f6dcdf50fd692039475fcf2c6625d32dd3d4c476e3e6aee17",
+                "inputs": "sha256:c649f9c6ae797cc8051d95f24721cc9b9bb0f57e2af0af829d8679814fd0b2a3"
+              },
+              {
+                "upstream": "TASK.draft-mvp.025",
+                "contract": "sha256:bee2069177a7dd4867c9c89e6ac835c99ba9b5369a30d025e3144e3afceb7ee0",
+                "revision": "sha256:dcd0d9be54c9cabca1af32d991691bc1f6fe8cb33b354081dcc2ef241776b13e",
+                "inputs": "sha256:ddd0bf6e3b9895a9c6ccb0bfc4fcd4496abe8e80c53d7c1c6174eae8014db282"
+              },
+              {
+                "upstream": "TASK.draft-mvp.026",
+                "contract": "sha256:330f4f37ac4f8e501f58305437e47bba2fcbe17d3cb23a8812cc7fe6184217ec",
+                "revision": "sha256:c66d78a1e63b8f9e044b3e82350eeae4a61cca794ad510f5eeb6d64e0eed36b5",
+                "inputs": "sha256:e94dae514eec7c14a50966b6b7426742cda86be6cd01c76bc5edb6f79f3cf5d4"
+              },
+              {
+                "upstream": "TASK.draft-mvp.027",
+                "contract": "sha256:1ba3628c5ad183e0695db1a5a7e58eaf013b25686d11d3888bc45777d6a6f51d",
+                "revision": "sha256:c8630a9cea4d96d57b57c628c57e65cc36a3057937451a69a407db72a65c589c",
+                "inputs": "sha256:599d93935843e7505b51211e46d100603f2562a56f0c6fa2e9adec476262f291"
+              },
+              {
+                "upstream": "TASK.draft-mvp.028",
+                "contract": "sha256:e3a9e03a93f8517557c7621b24d0e40b7c3a597c83e494956b6335837e90055f",
+                "revision": "sha256:693effa1107ca369068cb7bcff9f1d9ab8c67760bb676f401a968b131bb3df30",
+                "inputs": "sha256:160a80ca5c7287f4c96b26ee07bb7550ec6998b7a7ea199a800405f3d7e4dd7c"
+              }
+            ],
+            "review": {
+              "protocol": "taskctl.reconciliation/1",
+              "classification": "actor-assertion",
+              "task": "TASK.draft-mvp.029",
+              "reviewed_head": "sha256:feda29ee1f2dd093481067edadd5f3682854d026e4b7436f6e22fa0e011d1fcc",
+              "outcome": "revalidated",
+              "observations": [
+                {
+                  "upstream": "TASK.draft-mvp.008",
+                  "contract": "sha256:06e21eea32cec0ccef6abc1571082b762e807eb8b8032df7c8acdce1926e531b",
+                  "revision": "sha256:7913711c681b3941a2017615c5b7c5df08ec6d917c28c66ad8fbd76af7baa64f",
+                  "inputs": "sha256:a3d1185cf9cdc3e934bf8e67e52756b5ee9e914a9ca8a6e8db5a37cf29821f38"
+                },
+                {
+                  "upstream": "TASK.draft-mvp.010",
+                  "contract": "sha256:36c349c05aa4b0b20c34f1ee12bbdab49713452b2aaccd24d61c5cee86095c05",
+                  "revision": "sha256:18a84c74d637a78f50e190376092e2cd7b2105a6e3d348c9b6ec48e0a6533359",
+                  "inputs": "sha256:df8cee57a8e99953692411e135e2bc1b58a32d4e84e5fcf3a488a75e9b7d1bdd"
+                },
+                {
+                  "upstream": "TASK.draft-mvp.022",
+                  "contract": "sha256:907ebeb6090dc8e39569b266bd6265e55026fd3a9f54747f0b9cc5b01c8a1d9b",
+                  "revision": "sha256:68331906b929703384fc08e7a5eb10381af47d32a586513267a5128f9319b1b7",
+                  "inputs": "sha256:63df2588d577be6618a131ee7979bc7f0910f9f31898279b47a4638fe7fdc5f2"
+                },
+                {
+                  "upstream": "TASK.draft-mvp.024",
+                  "contract": "sha256:013128e5c6b2baf833457ea20bc71c9a15cc69ac75fdd65de8af845ac0cceaed",
+                  "revision": "sha256:c236dc155db4683f6dcdf50fd692039475fcf2c6625d32dd3d4c476e3e6aee17",
+                  "inputs": "sha256:c649f9c6ae797cc8051d95f24721cc9b9bb0f57e2af0af829d8679814fd0b2a3"
+                },
+                {
+                  "upstream": "TASK.draft-mvp.025",
+                  "contract": "sha256:bee2069177a7dd4867c9c89e6ac835c99ba9b5369a30d025e3144e3afceb7ee0",
+                  "revision": "sha256:dcd0d9be54c9cabca1af32d991691bc1f6fe8cb33b354081dcc2ef241776b13e",
+                  "inputs": "sha256:ddd0bf6e3b9895a9c6ccb0bfc4fcd4496abe8e80c53d7c1c6174eae8014db282"
+                },
+                {
+                  "upstream": "TASK.draft-mvp.026",
+                  "contract": "sha256:330f4f37ac4f8e501f58305437e47bba2fcbe17d3cb23a8812cc7fe6184217ec",
+                  "revision": "sha256:c66d78a1e63b8f9e044b3e82350eeae4a61cca794ad510f5eeb6d64e0eed36b5",
+                  "inputs": "sha256:e94dae514eec7c14a50966b6b7426742cda86be6cd01c76bc5edb6f79f3cf5d4"
+                },
+                {
+                  "upstream": "TASK.draft-mvp.027",
+                  "contract": "sha256:1ba3628c5ad183e0695db1a5a7e58eaf013b25686d11d3888bc45777d6a6f51d",
+                  "revision": "sha256:c8630a9cea4d96d57b57c628c57e65cc36a3057937451a69a407db72a65c589c",
+                  "inputs": "sha256:599d93935843e7505b51211e46d100603f2562a56f0c6fa2e9adec476262f291"
+                },
+                {
+                  "upstream": "TASK.draft-mvp.028",
+                  "contract": "sha256:e3a9e03a93f8517557c7621b24d0e40b7c3a597c83e494956b6335837e90055f",
+                  "revision": "sha256:693effa1107ca369068cb7bcff9f1d9ab8c67760bb676f401a968b131bb3df30",
+                  "inputs": "sha256:160a80ca5c7287f4c96b26ee07bb7550ec6998b7a7ea199a800405f3d7e4dd7c"
+                }
+              ],
+              "actor": "Codex",
+              "recorded_at": "2026-09-06T22:14:18.396784+00:00",
+              "rationale": "Reviewed native contract and current prerequisite projection against exact ancestral b932b0e source. Intent, requirements, acceptance, lifecycle and prerequisite identities retain their source meanings. This is an explicit migration equivalence review; historical execution claims remain historical.",
+              "evidence": {
+                "mapping": "docs/tasking/migration-0.3/mapping-review.json: exact semantic-section and identity mapping for TASK.draft-mvp.029",
+                "baseline": "docs/tasking/migration-0.3/baseline-tests.json: current canonical source verification, 187 tests; does not claim all past external operations were repeated.",
+                "history": "Source closure and source/native contract digests remain bound by import manifest sha256:a4bc24ebede998705855d39457ffd3b4d53b49939446f803b93dfb094d8e4fa4."
+              },
+              "successor": null
+            },
+            "imported_from": "sha256:a4bc24ebede998705855d39457ffd3b4d53b49939446f803b93dfb094d8e4fa4"
+          }
+        },
+        {
+          "revision": "sha256:feda29ee1f2dd093481067edadd5f3682854d026e4b7436f6e22fa0e011d1fcc",
+          "value": {
+            "protocol": "taskctl.task-revision/2",
+            "parent": null,
+            "record": {
+              "protocol": "tasking/core-draft-2",
+              "id": "TASK.draft-mvp.029",
+              "title": "TASK.draft-mvp.029: Wire ETL and league verification commands",
+              "state": "closed",
+              "intent": "Complete database, source-sync, run-history, and league display commands over the implemented ports, and compose the identity commands already owned by Task 015.",
+              "requires": [
+                "TASK.draft-mvp.008",
+                "TASK.draft-mvp.010",
+                "TASK.draft-mvp.022",
+                "TASK.draft-mvp.024",
+                "TASK.draft-mvp.025",
+                "TASK.draft-mvp.026",
+                "TASK.draft-mvp.027",
+                "TASK.draft-mvp.028"
+              ],
+              "requirements": [
+                "- Own concrete CLI handlers for `ball db migrate/status`, every `ball etl sync players/teams/rosters/weekly-rosters/stats/fantasypros/ffverse/espn/all` command, `ball etl runs`, and all Section 12.2 league views; preserve command names and season-range semantics.\n- Compose Task 015's implemented `ball etl reconcile/unresolved` handlers without taking their ownership. Keep Task 008's `ball etl doctor` registration visibly unimplemented until Task 030 supplies that handler and service.\n- `sync all` orders prerequisites safely, reports per-job artifact/snapshot IDs, counts, and outcomes, and supports useful rank-only degraded mode. A mid-pipeline failure retains completed independent runs but may promote a board snapshot selection only when Task 028 can prove it coherent; otherwise preserve the prior known-good selection or fail visibly.\n- League views display ESPN and active manual assertions side by side and require explicit snapshot selection where ambiguity exists."
+              ],
+              "acceptance": [
+                "- [x] Every owned or composed database/ETL/league command has a deterministic success, warning, and failure contract test, and `ball etl runs` exposes retained run/artifact/configuration fingerprints.\n- [x] `ball league show/scoring/slots/economics/assets --draftable` exposes all operator verification inputs and no silent conflict.\n- [x] From an empty database, a fixture `sync all` populates every source/league input and, with Task 028's injected fixture draft-state port, assembles a complete DraftBoardInput; real draft-state completion remains Task 031.\n- [x] A forced mid-pipeline failure leaves completed jobs durable, the failed run non-complete with evidence, and no partially refreshed or mixed board selection promoted."
+              ],
+              "required_extensions": [],
+              "extensions": {
+                "legacy.fantastikt/v1": {
+                  "effort": "HIGH",
+                  "impact": "HIGH",
+                  "roadmap": "ROADMAP.draft-mvp.001",
+                  "realizes": null
+                }
+              },
+              "verification": []
+            },
+            "contract": "sha256:9680fdb0413b36843f31bb85108541e5b0dfa86a8e286f4ea14ca10ab263d3c8",
+            "dependencies": [
+              {
+                "upstream": "TASK.draft-mvp.008",
+                "contract": null,
+                "revision": null,
+                "inputs": null
+              },
+              {
+                "upstream": "TASK.draft-mvp.010",
+                "contract": null,
+                "revision": null,
+                "inputs": null
+              },
+              {
+                "upstream": "TASK.draft-mvp.022",
+                "contract": null,
+                "revision": null,
+                "inputs": null
+              },
+              {
+                "upstream": "TASK.draft-mvp.024",
+                "contract": null,
+                "revision": null,
+                "inputs": null
+              },
+              {
+                "upstream": "TASK.draft-mvp.025",
+                "contract": null,
+                "revision": null,
+                "inputs": null
+              },
+              {
+                "upstream": "TASK.draft-mvp.026",
+                "contract": null,
+                "revision": null,
+                "inputs": null
+              },
+              {
+                "upstream": "TASK.draft-mvp.027",
+                "contract": null,
+                "revision": null,
+                "inputs": null
+              },
+              {
+                "upstream": "TASK.draft-mvp.028",
+                "contract": null,
+                "revision": null,
+                "inputs": null
+              }
+            ],
+            "review": null,
+            "imported_from": "sha256:a4bc24ebede998705855d39457ffd3b4d53b49939446f803b93dfb094d8e4fa4"
+          }
+        }
+      ],
+      "receipts": [],
+      "imports": [
+        {
+          "manifest_id": "sha256:a4bc24ebede998705855d39457ffd3b4d53b49939446f803b93dfb094d8e4fa4",
+          "source_repository": "fantastikt",
+          "source_revision": "b932b0eecbc2b6053b3f2235ad2963fd31fbb4c4",
+          "adapter": "fantastikt-loom-agent-2026",
+          "adapter_version": "0.2.0",
+          "source_path": ".agents/tasks/closed/TASK.draft-mvp.029.wire-etl-league-cli.md",
+          "source_sha256": "526bb128f9e709f3d5b91121fa68288f1d55217ee8f131cb1fe921e873e15ea2",
+          "source_contract": "sha256:55305eaa2724da9980a9f504da094f291d25b81f8f3cce2655fa65d69985cd43",
+          "source_native_protocol": null,
+          "classification": "historical-narrative-unverified",
+          "source_text": "---\nkind: task\nschema: loom.agent/v1\nref: TASK.draft-mvp.029\nroadmap: ROADMAP.draft-mvp.001\neffort: HIGH\nimpact: HIGH\ndepends:\n  - TASK.draft-mvp.008\n  - TASK.draft-mvp.010\n  - TASK.draft-mvp.022\n  - TASK.draft-mvp.024\n  - TASK.draft-mvp.025\n  - TASK.draft-mvp.026\n  - TASK.draft-mvp.027\n  - TASK.draft-mvp.028\n---\n\n# TASK.draft-mvp.029: Wire ETL and league verification commands\n\n## Description\n\nComplete database, source-sync, run-history, and league display commands over the implemented ports, and compose the identity commands already owned by Task 015.\n\n## Requirements\n\n- Own concrete CLI handlers for `ball db migrate/status`, every `ball etl sync players/teams/rosters/weekly-rosters/stats/fantasypros/ffverse/espn/all` command, `ball etl runs`, and all Section 12.2 league views; preserve command names and season-range semantics.\n- Compose Task 015's implemented `ball etl reconcile/unresolved` handlers without taking their ownership. Keep Task 008's `ball etl doctor` registration visibly unimplemented until Task 030 supplies that handler and service.\n- `sync all` orders prerequisites safely, reports per-job artifact/snapshot IDs, counts, and outcomes, and supports useful rank-only degraded mode. A mid-pipeline failure retains completed independent runs but may promote a board snapshot selection only when Task 028 can prove it coherent; otherwise preserve the prior known-good selection or fail visibly.\n- League views display ESPN and active manual assertions side by side and require explicit snapshot selection where ambiguity exists.\n\n## Deliverables\n\n- [x] Every owned or composed database/ETL/league command has a deterministic success, warning, and failure contract test, and `ball etl runs` exposes retained run/artifact/configuration fingerprints.\n- [x] `ball league show/scoring/slots/economics/assets --draftable` exposes all operator verification inputs and no silent conflict.\n- [x] From an empty database, a fixture `sync all` populates every source/league input and, with Task 028's injected fixture draft-state port, assembles a complete DraftBoardInput; real draft-state completion remains Task 031.\n- [x] A forced mid-pipeline failure leaves completed jobs durable, the failed run non-complete with evidence, and no partially refreshed or mixed board selection promoted.\n\n## Closure\n\n```yaml\nclosed_at: 2026-09-03T06:29:13.658001500Z\nclosed_by: codex\nsummary: Implemented typed database, ETL sync, run-history, and explicit-snapshot league command handlers; composed identity handlers while leaving ETL doctor unimplemented; added prerequisite-ordered coherent board-selection promotion and PostgreSQL run evidence.\nverification:\n  - .\\\\gradlew.bat verify --rerun-tasks => BUILD SUCCESSFUL; 187 tests, 0 failures, 0 errors, 0 skipped; 81 product files conform.\n  - OperationalCommandsTest => all nine sync commands render deterministic success/warning/failure contracts with exact season parsing, IDs/counts/outcomes; database, run-history, and five league views cover success, warning, usage, and unavailable paths with explicit snapshot inputs.\n  - OrderedSourceSyncCoordinator + DraftBoardReadModelIntegrationTest => empty PostgreSQL fixture ran players/teams/rosters/weekly-rosters/stats/espn/ffverse/fantasypros order, retained rank-only ffverse warning, proved complete DraftBoardInput coherence, promoted exactly one selection, and reconstructed identical bytes after restart.\n  - Forced mid-pipeline failure test => completed reports remained visible, failed report retained artifact evidence with run_completed=false, proof/promotion were not called; no-candidate path visibly warned and preserved the prior known-good selection.\n  - PostgresFoundationAdapterTest => ball etl runs backing query returned source, run status, configuration fingerprint, artifact UUID and SHA-256; rolled-back artifact remained absent.\nfollow_ups:\n  - none\n```\n",
+          "review": {
+            "protocol": "taskctl.import-review/1",
+            "classification": "actor-assertion",
+            "manifest": "sha256:a4bc24ebede998705855d39457ffd3b4d53b49939446f803b93dfb094d8e4fa4",
+            "actor": "Codex",
+            "recorded_at": "2026-09-06T22:12:11.432960+00:00",
+            "rationale": "Reviewed exact b932b0e source checkout, 53 source witnesses, all 40 stable task identities and lifecycle states, exact Description/Requirements/Deliverables mappings, causal edges, independent roadmap/epic membership, and structural frontier TASK.draft-mvp.038. Historical closure narratives remain unverified source assertions; this review does not claim prior external operations were repeated. Native current inputs require separate reconciliation."
+          }
+        }
+      ]
+    }
+  },
+  "read_mutations": 0,
+  "consumer_path": "C:\\WINDOWS\\System32",
+  "cold_github_acquisition": true,
+  "offline_after_acquisition": true,
+  "copied_tools_still_present": true,
+  "review": {
+    "protocol": "taskctl.reconciliation/1",
+    "classification": "actor-assertion",
+    "task": "TASK.tasking.001",
+    "reviewed_head": "sha256:45f4fd1013ed4cee000f441f1cae6d56f2e8cb78e20b5f805cca776ec422caf9",
+    "observations": [],
+    "outcome": "revalidated",
+    "actor": "Codex",
+    "recorded_at": "2026-09-06T22:42:21.113018+00:00",
+    "rationale": "Reviewed integration scope using the published canonical artifact before copied task-tool retirement.",
+    "evidence": {
+      "migration": "Exact 53 source witnesses and 40 historical task mappings retained; native alpha3 imports and explicit equivalence reviews inspected.",
+      "integration": "Integrated pre-retirement gradlew verify passed all 187 tests. Published native cold GitHub acquisition and offline read checks preserve repository bytes/mtimes; no Java/Gradle/Git/Python on consumer PATH."
+    },
+    "successor": null
+  },
+  "transition": {
+    "api": "taskctl.cli/alpha1",
+    "command": "reconcile",
+    "repository": "C:\\projects\\fantastikt-taskctl-migration",
+    "result": {
+      "revision": "sha256:426d0ceb9307690c5cac517126dec690b23b76c3a833a0a37914f2df8517bb2d",
+      "changed": [
+        "TASK.tasking.001"
+      ]
+    }
+  },
+  "changed_paths": [
+    ".agents/history/heads.json",
+    ".agents/history/revisions/97aafaa217afa1deea85bb4847f4197f268dc53470d4d6e1ad604e1b2e72a070.json"
+  ],
+  "stale_rejection": {
+    "api": "taskctl.cli/alpha1",
+    "error": {
+      "code": 4,
+      "message": "stale ledger revision; inspect again before applying"
+    }
+  }
+}

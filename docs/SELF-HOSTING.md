@@ -27,7 +27,7 @@ preserving the existing AGENTS.md. The initial candidate archive SHA-256 was
 `bed2012c86030012e150f7340d9da163d7c058800d2db74767efca62e7e228e1`.
 This was an explicitly dirty development build, not a published release claim.
 The release milestone replaced that temporary local pin with the canonical
-released native lock from v0.3.0-alpha.1. Its SHA-256 is
+released native lock from v0.3.0-alpha.1. That historical lock's SHA-256 is
 `d4c4893b97b5b3837c2d633236aff7e77fcb186b16133b4001d59bb74d92b2b7`, and the tool's
 source is `73fa5fe61ad3ba2488800dc3456ad2838d2dbe71`.
 That pin necessarily follows the source commit used to build
@@ -47,6 +47,15 @@ release transport, RPM transaction tests and final consumer acceptance remain
 separate evidence requirements. Later product migrations and service work are
 planned here but are not part of this release's implementation.
 
-The 0.3 release slice is complete: 11 tasks are closed, and all 22 tasks are current.
-`frontier` now selects `TASK.migration.fantastikt`. The preserved cold-consumer
-observations distinguish progress during release from the final graph state.
+The current pin is the published native **v0.3.0-alpha.2** lock, SHA-256
+`a73195736ee727f70608cfdcde58e4f07491abf5635e7fbffcc8725cad254f99`, from source
+`8933bac1c090d175dfc035d7d52a40d1101f5333`. Its
+[publication proof](proof/productization/0.3.0-alpha.2/README.md) records all-platform
+JVM/native behavior and real-release transport validation.
+
+Fantastikt migration is complete: 12 tasks are closed, and all 22 tasks are current.
+`frontier` now selects `TASK.migration.brule`; that migration has not begun.
+[Consumer migration evidence](MIGRATION-FANTASTIKT.md) includes normal canonical
+usage before copied-tool retirement and reconstruction from committed files.
+The preserved observations distinguish progress during release and migration from
+the [final producer graph](proof/migration/fantastikt-0.3/producer-final.json).

@@ -1,9 +1,10 @@
 # Productization milestones
 
-The current completed release is **0.3.0-alpha.1**, with revision-aware currency,
-explicit reconciliation, self-hosting, Apache-2.0 and native/JVM/Fedora delivery.
-Read [its M1–M4 report](MILESTONES-0.3.md) and the repository-local task graph for
-current status. The entries below preserve the earlier release sequence and its
+The current completed release is **0.3.0-alpha.2**, adding reviewed ancestral import
+to revision-aware currency and native/JVM delivery. [Fantastikt migration](MIGRATION-FANTASTIKT.md)
+is complete. The optional Fedora RPM remains at the separately proven alpha.1.
+Read [the 0.3 milestone report](MILESTONES-0.3.md) and the repository-local task graph
+for current status. The entries below preserve the earlier release sequence and its
 then-current decisions; the former pending-license decision is now resolved.
 
 The initial release is an alpha. Publishing source or an archive does not freeze
@@ -223,3 +224,25 @@ canonical-release assets and all 11 RPM-release assets.
 toolchain, compatibility and verification details. Packaging source follows the
 canonical tool source only to enable documentation in the minimal Fedora test
 container; no released executable or protocol behavior was changed.
+
+## 0.3.0-alpha.2 reviewed import and Fantastikt migration
+
+[The immutable release](https://github.com/brule-io/taskctl/releases/tag/v0.3.0-alpha.2)
+adds explicit inspect/plan/review/apply import, exact source witnesses and durable
+import admissions. Historical closure remains historical; subsequent actor reviews
+and receipts are separate evidence. Imported ledgers use native alpha3 and
+origin-bearing task-revision/2; existing digests and envelopes retain their meanings.
+
+The three release platforms passed 95 shared JVM/native behavioral tests, 111 process
+comparisons and 25 bootstrap checks per implementation. Real GitHub transport passed
+the same consumer checks. Publication verification covered all 28 signed release
+assets. The [publication proof](proof/productization/0.3.0-alpha.2/README.md) contains
+the source, artifact, build and lock identities. No new RPM is claimed for this release.
+
+Fantastikt now uses the published native pin. It preserves 40 ancestral tasks and
+29 historical closures, has one separately evidenced integration closure, and retains
+the original product frontier. Normal canonical usage preceded retirement of 23
+copied-tool files. The rebuilt consumer passed all 143 retained product/ADR tests;
+committed reconstruction passed 11 offline reads without file mutations. Twelve
+producer tasks are closed; Brule migration is next and unstarted. Native v1 remains
+unfrozen and service work remains gated. See [the migration report](MIGRATION-FANTASTIKT.md).

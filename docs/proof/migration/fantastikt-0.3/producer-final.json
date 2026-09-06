@@ -1,0 +1,510 @@
+{
+  "info": {
+    "tool": "taskctl",
+    "version": "0.3.0-alpha.2",
+    "implementation": "native",
+    "java_runtime": "25.0.4.1+1-jvmci-25.3-b22",
+    "vm": "Substrate VM",
+    "native_v1": "not-frozen",
+    "build": {
+      "version": "0.3.0-alpha.2",
+      "platform": "windows-x86_64",
+      "implementation": "native",
+      "source_revision": "8933bac1c090d175dfc035d7d52a40d1101f5333",
+      "source_dirty": false,
+      "license": "Apache-2.0",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "native_v1": "not-frozen",
+      "launcher_contract": "taskctl.launcher/1",
+      "entrypoint": "taskctl.exe",
+      "build_identity": {
+        "implementation": "native",
+        "source_revision": "8933bac1c090d175dfc035d7d52a40d1101f5333",
+        "source_dirty": false,
+        "kotlin": "2.4.10",
+        "gradle": "9.6.0",
+        "libraries": {
+          "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+          "cli-0.3.0-alpha.2.jar": "5d426ae0cfb3b814e748bce4e5e99584db622cecd50dff0bdafe2bd8b5d00a1d",
+          "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+          "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+          "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+          "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+          "compatibility-0.3.0-alpha.2.jar": "6c607fc15e467e64cc5ab22cea53256391f1eb55a3d40cd5eec85859261b37d1",
+          "core-0.3.0-alpha.2.jar": "ac49e2dde8922376d4c5ec40b3b72cb8a92c30dfbca886894da9fbf0465b8350",
+          "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+          "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+          "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+          "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+          "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+          "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+          "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+          "repository-0.3.0-alpha.2.jar": "e300c4e6b95c285543812602343125f33bc30a7cc0616fcc6fc979139722e041",
+          "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+        },
+        "graalvm": {
+          "distribution": "GraalVM Community",
+          "release": "graal-25.3.4.1",
+          "toolchain": {
+            "url": "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.3.4.1/graalvm-community-jdk-25i3-25.0.4.1_windows-x64_bin.zip",
+            "sha256": "770a0d78aba4c19bd40ee410ec82afbbee8e33fdd762e509006ac64e1007b4ce"
+          },
+          "native_image": "native-image 25.0.4.1 2026-08-18\nGraalVM Runtime Environment GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1-jvmci-25.3-b22)\nSubstrate VM GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1, serial gc, compressed references)",
+          "native_build_tools": "0.11.5",
+          "arguments": [
+            "--no-fallback",
+            "-march=compatibility",
+            "-J-Xmx5g"
+          ],
+          "resources": [
+            "VERSION"
+          ],
+          "executable_sha256": "f84bb6720b197f832b1537b708d9d451eeecc7148551318f53c2c5ef3c064461"
+        }
+      }
+    }
+  },
+  "doctor": {
+    "repository_id": "brule-io.taskctl",
+    "protocol": "taskctl.native/alpha2",
+    "profile": "minimal/alpha1",
+    "revision": "sha256:f499ce474aab2587118d3aa7a89890c0764a2c37556f549469af1db86ed2aa1e",
+    "tasks": 22,
+    "roadmaps": 4,
+    "epics": 2,
+    "required_capabilities_unavailable": [],
+    "currency": {
+      "current": 22,
+      "affected": 0,
+      "unresolved": 0
+    },
+    "work": [
+      {
+        "id": "TASK.bootstrap.adopt",
+        "title": "Self-host taskctl on its native graph",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.distribution.license",
+        "title": "Ship Apache-2.0 licensing",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.distribution.parity",
+        "title": "Prove native and JVM consumer parity",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.distribution.rpm",
+        "title": "Package and test the canonical 0.3 Linux native artifact",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.document.fences",
+        "title": "Harden Markdown example boundaries",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.brule",
+        "title": "Migrate and dogfood Brule Message Bus",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.daemon-descendants",
+        "title": "Migrate DAEMON descendants before Meta",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.daemon-meta",
+        "title": "Migrate DAEMON Meta last",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.divergent",
+        "title": "Migrate a deliberately divergent specimen",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.dropzone",
+        "title": "Migrate Dropzone after the protocol checkpoint",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.fantastikt",
+        "title": "Migrate and dogfood Fantastikt",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.loom",
+        "title": "Migrate Loom after the protocol checkpoint",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.protocol.checkpoint",
+        "title": "Reassess the native protocol after first migrations",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.protocol.idl",
+        "title": "Prove one transport-neutral IDL projection",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.protocol.v1-candidate",
+        "title": "Assess native v1 freeze readiness",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.release.alpha3",
+        "title": "Publish canonical 0.3.0-alpha.1 archives",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.release.dogfood",
+        "title": "Complete release consumer and self-host acceptance",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.remote.kernel",
+        "title": "Pressure-test a remote ledger kernel",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.semantic.contract",
+        "title": "Version semantic contracts",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.semantic.currency",
+        "title": "Evaluate transitive dependency currency",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.semantic.history",
+        "title": "Persist immutable task revisions and HEAD",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.semantic.reconcile",
+        "title": "Require explicit reconciliation evidence",
+        "lifecycle": "closed",
+        "currency": "current"
+      }
+    ],
+    "instructions": "Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision."
+  },
+  "context": {
+    "repository_id": "brule-io.taskctl",
+    "protocol": "taskctl.native/alpha2",
+    "profile": "minimal/alpha1",
+    "revision": "sha256:f499ce474aab2587118d3aa7a89890c0764a2c37556f549469af1db86ed2aa1e",
+    "tasks": 22,
+    "roadmaps": 4,
+    "epics": 2,
+    "required_capabilities_unavailable": [],
+    "currency": {
+      "current": 22,
+      "affected": 0,
+      "unresolved": 0
+    },
+    "work": [
+      {
+        "id": "TASK.bootstrap.adopt",
+        "title": "Self-host taskctl on its native graph",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.distribution.license",
+        "title": "Ship Apache-2.0 licensing",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.distribution.parity",
+        "title": "Prove native and JVM consumer parity",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.distribution.rpm",
+        "title": "Package and test the canonical 0.3 Linux native artifact",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.document.fences",
+        "title": "Harden Markdown example boundaries",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.brule",
+        "title": "Migrate and dogfood Brule Message Bus",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.daemon-descendants",
+        "title": "Migrate DAEMON descendants before Meta",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.daemon-meta",
+        "title": "Migrate DAEMON Meta last",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.divergent",
+        "title": "Migrate a deliberately divergent specimen",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.dropzone",
+        "title": "Migrate Dropzone after the protocol checkpoint",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.fantastikt",
+        "title": "Migrate and dogfood Fantastikt",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.loom",
+        "title": "Migrate Loom after the protocol checkpoint",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.protocol.checkpoint",
+        "title": "Reassess the native protocol after first migrations",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.protocol.idl",
+        "title": "Prove one transport-neutral IDL projection",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.protocol.v1-candidate",
+        "title": "Assess native v1 freeze readiness",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.release.alpha3",
+        "title": "Publish canonical 0.3.0-alpha.1 archives",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.release.dogfood",
+        "title": "Complete release consumer and self-host acceptance",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.remote.kernel",
+        "title": "Pressure-test a remote ledger kernel",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.semantic.contract",
+        "title": "Version semantic contracts",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.semantic.currency",
+        "title": "Evaluate transitive dependency currency",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.semantic.history",
+        "title": "Persist immutable task revisions and HEAD",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.semantic.reconcile",
+        "title": "Require explicit reconciliation evidence",
+        "lifecycle": "closed",
+        "currency": "current"
+      }
+    ],
+    "instructions": "Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision."
+  },
+  "frontier": {
+    "revision": "sha256:f499ce474aab2587118d3aa7a89890c0764a2c37556f549469af1db86ed2aa1e",
+    "tasks": [
+      "TASK.migration.brule"
+    ]
+  },
+  "status": {
+    "revision": "sha256:f499ce474aab2587118d3aa7a89890c0764a2c37556f549469af1db86ed2aa1e",
+    "tasks": [
+      {
+        "task": "TASK.bootstrap.adopt",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.distribution.license",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.distribution.parity",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.distribution.rpm",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.document.fences",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.migration.brule",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.migration.daemon-descendants",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.migration.daemon-meta",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.migration.divergent",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.migration.dropzone",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.migration.fantastikt",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.migration.loom",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.protocol.checkpoint",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.protocol.idl",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.protocol.v1-candidate",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.release.alpha3",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.release.dogfood",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.remote.kernel",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.semantic.contract",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.semantic.currency",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.semantic.history",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.semantic.reconcile",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      }
+    ]
+  }
+}

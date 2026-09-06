@@ -1,11 +1,11 @@
 # taskctl contributor operating contract
 
-The current slice is Fantastikt migration and its 0.3.0-alpha.2 import distribution,
-following the verified 0.3.0-alpha.1 release. Read `docs/SEMANTIC-0.3.md`, `docs/IMPORT.md`
+Fantastikt migration and its 0.3.0-alpha.2 import distribution are complete.
+Read `docs/SEMANTIC-0.3.md`, `docs/IMPORT.md`, `docs/MIGRATION-FANTASTIKT.md`
 and the repository-local task graph. Start with `./taskctl doctor`, `context`,
 `frontier`, and `status` (Windows: `./taskctl.bat` or `./taskctl.ps1`). Development
 from adoption onward is tracked here. Publishing to brule-io/taskctl is authorized.
-First consumer migrations follow this release; broad migrations and service work
+The frontier now names Brule Message Bus migration; it has not begun. Broad migrations and service work
 remain gated by the recorded protocol checkpoint. No service implementation yet.
 
 Core owns the top-level record namespace. Specialized data lives only under

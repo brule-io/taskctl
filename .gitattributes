@@ -5,6 +5,8 @@
 # Historical witnesses are source bytes, not authored text to normalize.
 conformance/src/test/resources/** -text
 # Release evidence is hashed; preserve raw bytes and tool-emitted whitespace.
-docs/proof/productization/** -text
+docs/proof/productization/** -text whitespace=cr-at-eol
 docs/proof/productization/**/*.log -whitespace
 docs/proof/productization/**/rpmlint.txt -whitespace
+# Consumer receipts retain the same bytes as their committed source evidence.
+docs/proof/migration/** -text whitespace=cr-at-eol

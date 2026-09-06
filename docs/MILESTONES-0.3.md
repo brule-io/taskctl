@@ -1,5 +1,10 @@
 # 0.3.0-alpha.1 milestone evidence
 
+The M1–M4 sections preserve alpha.1 evidence. The subsequent alpha.2 import release
+and first completed consumer migration are recorded in
+[the Fantastikt migration report](MIGRATION-FANTASTIKT.md) and
+[alpha.2 publication proof](proof/productization/0.3.0-alpha.2/README.md).
+
 ## M1 — semantic model
 
 The candidate exposes immutable task revisions/HEAD, versioned semantic contracts,

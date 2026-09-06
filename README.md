@@ -118,6 +118,8 @@ requires an empty directory (an existing `.git` is allowed). Neither command run
 [Reviewed Fantastikt import](docs/IMPORT.md) provides an explicit inspect/plan/apply
 path with exact source witnesses and historical evidence classification. It needs
 an isolated target without existing tasking state; it never removes legacy tooling.
+The [completed Fantastikt migration](docs/MIGRATION-FANTASTIKT.md) records exact
+provenance, canonical usage before copied-tool retirement, and consumer acceptance.
 
 ## Contributing
 

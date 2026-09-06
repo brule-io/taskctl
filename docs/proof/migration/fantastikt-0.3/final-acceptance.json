@@ -1,0 +1,767 @@
+{
+  "recorded_at": "2026-09-06T22:49:40.320874+00:00",
+  "implementation_commit": "94f3176a78e3ce5a2c7d76c399c055ae69a02b46",
+  "receipt": {
+    "protocol": "taskctl.receipt/alpha1",
+    "classification": "actor-assertion",
+    "task": "TASK.tasking.001",
+    "contract": "sha256:8c6d0f895f8d88f6cd2839e647bb22f76d769f1ddbd58af79ba43ad1aa642528",
+    "actor": "Codex",
+    "recorded_at": "2026-09-06T22:48:54.567240+00:00",
+    "evidence": {
+      "migration": "Implementation commit 94f3176a78e3ce5a2c7d76c399c055ae69a02b46. Import manifest sha256:a4bc24ebede998705855d39457ffd3b4d53b49939446f803b93dfb094d8e4fa4 binds 53 exact witnesses at Fantastikt b932b0eecbc2b6053b3f2235ad2963fd31fbb4c4. All 40 source tasks, 29 historical closures, roadmap/epic memberships and original frontier preserved. Forty explicit migration-equivalence reviews establish current inputs without fabricating historical native receipts. See docs/tasking/migration-0.3/mapping-review.json and migration-reviews.json.",
+      "integration": "At implementation commit 94f3176a78e3ce5a2c7d76c399c055ae69a02b46, full rebuilt gradlew :tooling:workflow:clean verify --rerun-tasks --max-workers=2 passed 143 tests (133 product, 10 ADR), zero failures/errors/skips. 23 copied-tool files and 44 duplicated tests retired only after published native taskctl v0.3.0-alpha.2 source 8933bac1c090d175dfc035d7d52a40d1101f5333 archive SHA-256 2922f715e64f9f27e3cd0b2de5e48a6fc3e89f1dd19accc8cc1cc3096202d31d performed cold GitHub acquisition, eight read-only commands, offline operation, evidenced reconciliation and stale-CAS rejection. See canonical-before-retirement.json, retirement-result.json, after-retirement-tests.json and verify log. Product Git diff is empty; 154 product/specification file digests preserved. Closure plan must leave only TASK.draft-mvp.038 ready."
+    }
+  },
+  "doctor": {
+    "repository_id": "fantastikt",
+    "protocol": "taskctl.native/alpha3",
+    "profile": "minimal/alpha1",
+    "revision": "sha256:efaced30dbe3e3fd2bf70ee0143620b7a113690bd986aa3296b4a548421dc238",
+    "tasks": 41,
+    "roadmaps": 2,
+    "epics": 2,
+    "required_capabilities_unavailable": [],
+    "currency": {
+      "current": 41,
+      "affected": 0,
+      "unresolved": 0
+    },
+    "work": [
+      {
+        "id": "TASK.draft-mvp.001",
+        "title": "TASK.draft-mvp.001: Admit the Sunday Draft specification and seed its ledger",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.002",
+        "title": "TASK.draft-mvp.002: Scaffold the strict Kotlin module graph",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.003",
+        "title": "TASK.draft-mvp.003: Provision durable local PostgreSQL",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.004",
+        "title": "TASK.draft-mvp.004: Define semantic domain value types",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.005",
+        "title": "TASK.draft-mvp.005: Define explicit ports and domain commands",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.006",
+        "title": "TASK.draft-mvp.006: Create Flyway foundation migrations",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.007",
+        "title": "TASK.draft-mvp.007: Implement the isolated PostgreSQL adapter",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.008",
+        "title": "TASK.draft-mvp.008: Build the ball CLI shell",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.009",
+        "title": "TASK.draft-mvp.009: Implement content-addressed artifact fetching",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.010",
+        "title": "TASK.draft-mvp.010: Orchestrate idempotent ETL runs",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.011",
+        "title": "TASK.draft-mvp.011: Persist canonical person identity",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.012",
+        "title": "TASK.draft-mvp.012: Create football vocabulary and jersey rules",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.013",
+        "title": "TASK.draft-mvp.013: Ingest the nflverse player corpus",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.014",
+        "title": "TASK.draft-mvp.014: Ingest and normalize NFL teams",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.015",
+        "title": "TASK.draft-mvp.015: Reconcile player identities without silent merges",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.016",
+        "title": "TASK.draft-mvp.016: Ingest nflverse season rosters",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.017",
+        "title": "TASK.draft-mvp.017: Ingest nflverse weekly rosters",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.018",
+        "title": "TASK.draft-mvp.018: Persist weekly aggregate statistic facts",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.019",
+        "title": "TASK.draft-mvp.019: Ingest nflverse weekly player statistics",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.020",
+        "title": "TASK.draft-mvp.020: Ingest the ffverse identity crosswalk",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.021",
+        "title": "TASK.draft-mvp.021: Persist fantasy assets, leagues, and economics",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.022",
+        "title": "TASK.draft-mvp.022: Load provenance-tracked league overrides",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.023",
+        "title": "TASK.draft-mvp.023: Build a credential-safe ESPN client",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.024",
+        "title": "TASK.draft-mvp.024: Ingest the ESPN league overlay",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.025",
+        "title": "TASK.draft-mvp.025: Account for the complete ESPN draftable pool",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.026",
+        "title": "TASK.draft-mvp.026: Ingest immutable FantasyPros forecasts",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.027",
+        "title": "TASK.draft-mvp.027: Ingest ffverse fallback rankings",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.028",
+        "title": "TASK.draft-mvp.028: Build snapshot-explicit strategy read models",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.029",
+        "title": "TASK.draft-mvp.029: Wire ETL and league verification commands",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.030",
+        "title": "TASK.draft-mvp.030: Implement ETL doctor and durability checks",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.031",
+        "title": "TASK.draft-mvp.031: Persist and replay the append-only draft ledger",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.032",
+        "title": "TASK.draft-mvp.032: Implement manual draft operations",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.033",
+        "title": "TASK.draft-mvp.033: Rank the league-adjusted static board",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.034",
+        "title": "TASK.draft-mvp.034: Model next-pick survival and opponent need",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.035",
+        "title": "TASK.draft-mvp.035: Simulate payout-aware speculative strategy",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.036",
+        "title": "TASK.draft-mvp.036: Run the offline live draft watch loop",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.037",
+        "title": "TASK.draft-mvp.037: Gate the experimental ESPN draft feed",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.038",
+        "title": "TASK.draft-mvp.038: Verify operator league configuration",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.039",
+        "title": "TASK.draft-mvp.039: Prove the full mock-draft acceptance gate",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.draft-mvp.040",
+        "title": "TASK.draft-mvp.040: Execute the Sunday freeze runbook",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.tasking.001",
+        "title": "Integrate canonical pinned taskctl",
+        "lifecycle": "closed",
+        "currency": "current"
+      }
+    ],
+    "instructions": "Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision."
+  },
+  "status": {
+    "revision": "sha256:efaced30dbe3e3fd2bf70ee0143620b7a113690bd986aa3296b4a548421dc238",
+    "tasks": [
+      {
+        "task": "TASK.draft-mvp.001",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.002",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.003",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.004",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.005",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.006",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.007",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.008",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.009",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.010",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.011",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.012",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.013",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.014",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.015",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.016",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.017",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.018",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.019",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.020",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.021",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.022",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.023",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.024",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.025",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.026",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.027",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.028",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.029",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.draft-mvp.030",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.draft-mvp.031",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.draft-mvp.032",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.draft-mvp.033",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.draft-mvp.034",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.draft-mvp.035",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.draft-mvp.036",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.draft-mvp.037",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.draft-mvp.038",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.draft-mvp.039",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.draft-mvp.040",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.tasking.001",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      }
+    ]
+  },
+  "frontier": {
+    "revision": "sha256:efaced30dbe3e3fd2bf70ee0143620b7a113690bd986aa3296b4a548421dc238",
+    "tasks": [
+      "TASK.draft-mvp.038"
+    ]
+  },
+  "integration": {
+    "protocol": "tasking/core-draft-2",
+    "id": "TASK.tasking.001",
+    "title": "Integrate canonical pinned taskctl",
+    "state": "closed",
+    "intent": "Use canonical taskctl to complete the consumer migration, then retire the copied task commands while preserving ADR tooling.",
+    "requires": [],
+    "requirements": [
+      "Own .agents, .taskctl, root taskctl launchers, AGENTS.md, README.md, .gitattributes, root/build and tooling/workflow integration, docs/tasking and copied tooling/taskctl removal. Product implementation and operator configuration are outside this task.",
+      "Preserve all ancestral task identities, contracts, lifecycle facts, and exact source evidence; migration equivalence reviews remain separate from old closures.",
+      "Retain ADR lifecycle tooling and shared dependencies."
+    ],
+    "acceptance": [
+      "Published digest-pinned native taskctl performs normal reads, CAS rejection, evidenced transitions and offline cached execution before copied taskctl is removed.",
+      "Repository verify and retained ADR doctor/tests pass; exact report records removed legacy-tool tests separately from retained product tests.",
+      "After closure, only TASK.draft-mvp.038 remains ready; all 29 historical closures have source evidence without fabricated native receipts."
+    ],
+    "required_extensions": [],
+    "extensions": {},
+    "verification": [
+      "migration",
+      "integration"
+    ],
+    "contract_digest": "sha256:8c6d0f895f8d88f6cd2839e647bb22f76d769f1ddbd58af79ba43ad1aa642528",
+    "revision": "sha256:efaced30dbe3e3fd2bf70ee0143620b7a113690bd986aa3296b4a548421dc238",
+    "head": "sha256:3cf1472050e06dd580d20a69c27ac76cd168de4d16653b1eb7115558bb14866e",
+    "currency": {
+      "task": "TASK.tasking.001",
+      "currency": "current",
+      "causes": []
+    },
+    "roadmaps": [
+      "ROADMAP.tasking"
+    ],
+    "epics": [
+      "EPIC.tasking"
+    ]
+  },
+  "integration_history": {
+    "revision": "sha256:efaced30dbe3e3fd2bf70ee0143620b7a113690bd986aa3296b4a548421dc238",
+    "origin_ledger_revision": "sha256:c94962984de6191393622d46f63754a1a65d4b34a9acb39cc0abd1221d7c2ceb",
+    "revisions": [
+      {
+        "revision": "sha256:3cf1472050e06dd580d20a69c27ac76cd168de4d16653b1eb7115558bb14866e",
+        "value": {
+          "protocol": "taskctl.task-revision/1",
+          "parent": "sha256:97aafaa217afa1deea85bb4847f4197f268dc53470d4d6e1ad604e1b2e72a070",
+          "record": {
+            "protocol": "tasking/core-draft-2",
+            "id": "TASK.tasking.001",
+            "title": "Integrate canonical pinned taskctl",
+            "state": "closed",
+            "intent": "Use canonical taskctl to complete the consumer migration, then retire the copied task commands while preserving ADR tooling.",
+            "requires": [],
+            "requirements": [
+              "Own .agents, .taskctl, root taskctl launchers, AGENTS.md, README.md, .gitattributes, root/build and tooling/workflow integration, docs/tasking and copied tooling/taskctl removal. Product implementation and operator configuration are outside this task.",
+              "Preserve all ancestral task identities, contracts, lifecycle facts, and exact source evidence; migration equivalence reviews remain separate from old closures.",
+              "Retain ADR lifecycle tooling and shared dependencies."
+            ],
+            "acceptance": [
+              "Published digest-pinned native taskctl performs normal reads, CAS rejection, evidenced transitions and offline cached execution before copied taskctl is removed.",
+              "Repository verify and retained ADR doctor/tests pass; exact report records removed legacy-tool tests separately from retained product tests.",
+              "After closure, only TASK.draft-mvp.038 remains ready; all 29 historical closures have source evidence without fabricated native receipts."
+            ],
+            "required_extensions": [],
+            "extensions": {},
+            "verification": [
+              "migration",
+              "integration"
+            ]
+          },
+          "contract": "sha256:8c6d0f895f8d88f6cd2839e647bb22f76d769f1ddbd58af79ba43ad1aa642528",
+          "dependencies": [],
+          "review": {
+            "protocol": "taskctl.reconciliation/1",
+            "classification": "actor-assertion",
+            "task": "TASK.tasking.001",
+            "reviewed_head": "sha256:45f4fd1013ed4cee000f441f1cae6d56f2e8cb78e20b5f805cca776ec422caf9",
+            "outcome": "revalidated",
+            "observations": [],
+            "actor": "Codex",
+            "recorded_at": "2026-09-06T22:42:21.113018+00:00",
+            "rationale": "Reviewed integration scope using the published canonical artifact before copied task-tool retirement.",
+            "evidence": {
+              "migration": "Exact 53 source witnesses and 40 historical task mappings retained; native alpha3 imports and explicit equivalence reviews inspected.",
+              "integration": "Integrated pre-retirement gradlew verify passed all 187 tests. Published native cold GitHub acquisition and offline read checks preserve repository bytes/mtimes; no Java/Gradle/Git/Python on consumer PATH."
+            },
+            "successor": null
+          }
+        }
+      },
+      {
+        "revision": "sha256:97aafaa217afa1deea85bb4847f4197f268dc53470d4d6e1ad604e1b2e72a070",
+        "value": {
+          "protocol": "taskctl.task-revision/1",
+          "parent": "sha256:45f4fd1013ed4cee000f441f1cae6d56f2e8cb78e20b5f805cca776ec422caf9",
+          "record": {
+            "protocol": "tasking/core-draft-2",
+            "id": "TASK.tasking.001",
+            "title": "Integrate canonical pinned taskctl",
+            "state": "open",
+            "intent": "Use canonical taskctl to complete the consumer migration, then retire the copied task commands while preserving ADR tooling.",
+            "requires": [],
+            "requirements": [
+              "Own .agents, .taskctl, root taskctl launchers, AGENTS.md, README.md, .gitattributes, root/build and tooling/workflow integration, docs/tasking and copied tooling/taskctl removal. Product implementation and operator configuration are outside this task.",
+              "Preserve all ancestral task identities, contracts, lifecycle facts, and exact source evidence; migration equivalence reviews remain separate from old closures.",
+              "Retain ADR lifecycle tooling and shared dependencies."
+            ],
+            "acceptance": [
+              "Published digest-pinned native taskctl performs normal reads, CAS rejection, evidenced transitions and offline cached execution before copied taskctl is removed.",
+              "Repository verify and retained ADR doctor/tests pass; exact report records removed legacy-tool tests separately from retained product tests.",
+              "After closure, only TASK.draft-mvp.038 remains ready; all 29 historical closures have source evidence without fabricated native receipts."
+            ],
+            "required_extensions": [],
+            "extensions": {},
+            "verification": [
+              "migration",
+              "integration"
+            ]
+          },
+          "contract": "sha256:8c6d0f895f8d88f6cd2839e647bb22f76d769f1ddbd58af79ba43ad1aa642528",
+          "dependencies": [],
+          "review": {
+            "protocol": "taskctl.reconciliation/1",
+            "classification": "actor-assertion",
+            "task": "TASK.tasking.001",
+            "reviewed_head": "sha256:45f4fd1013ed4cee000f441f1cae6d56f2e8cb78e20b5f805cca776ec422caf9",
+            "outcome": "revalidated",
+            "observations": [],
+            "actor": "Codex",
+            "recorded_at": "2026-09-06T22:42:21.113018+00:00",
+            "rationale": "Reviewed integration scope using the published canonical artifact before copied task-tool retirement.",
+            "evidence": {
+              "migration": "Exact 53 source witnesses and 40 historical task mappings retained; native alpha3 imports and explicit equivalence reviews inspected.",
+              "integration": "Integrated pre-retirement gradlew verify passed all 187 tests. Published native cold GitHub acquisition and offline read checks preserve repository bytes/mtimes; no Java/Gradle/Git/Python on consumer PATH."
+            },
+            "successor": null
+          }
+        }
+      },
+      {
+        "revision": "sha256:45f4fd1013ed4cee000f441f1cae6d56f2e8cb78e20b5f805cca776ec422caf9",
+        "value": {
+          "protocol": "taskctl.task-revision/1",
+          "parent": "sha256:4e6feae99a1800dba9f68e7119a78bba125b1ac540ea626a231d9107262f1d21",
+          "record": {
+            "protocol": "tasking/core-draft-2",
+            "id": "TASK.tasking.001",
+            "title": "Integrate canonical pinned taskctl",
+            "state": "open",
+            "intent": "Use canonical taskctl to complete the consumer migration, then retire the copied task commands while preserving ADR tooling.",
+            "requires": [],
+            "requirements": [
+              "Own .agents, .taskctl, root taskctl launchers, AGENTS.md, README.md, .gitattributes, root/build and tooling/workflow integration, docs/tasking and copied tooling/taskctl removal. Product implementation and operator configuration are outside this task.",
+              "Preserve all ancestral task identities, contracts, lifecycle facts, and exact source evidence; migration equivalence reviews remain separate from old closures.",
+              "Retain ADR lifecycle tooling and shared dependencies."
+            ],
+            "acceptance": [
+              "Published digest-pinned native taskctl performs normal reads, CAS rejection, evidenced transitions and offline cached execution before copied taskctl is removed.",
+              "Repository verify and retained ADR doctor/tests pass; exact report records removed legacy-tool tests separately from retained product tests.",
+              "After closure, only TASK.draft-mvp.038 remains ready; all 29 historical closures have source evidence without fabricated native receipts."
+            ],
+            "required_extensions": [],
+            "extensions": {},
+            "verification": [
+              "migration",
+              "integration"
+            ]
+          },
+          "contract": "sha256:8c6d0f895f8d88f6cd2839e647bb22f76d769f1ddbd58af79ba43ad1aa642528",
+          "dependencies": [],
+          "review": null
+        }
+      },
+      {
+        "revision": "sha256:4e6feae99a1800dba9f68e7119a78bba125b1ac540ea626a231d9107262f1d21",
+        "value": {
+          "protocol": "taskctl.task-revision/1",
+          "parent": null,
+          "record": {
+            "protocol": "tasking/core-draft-2",
+            "id": "TASK.tasking.001",
+            "title": "Integrate canonical pinned taskctl",
+            "state": "open",
+            "intent": "Use canonical taskctl to complete the consumer migration, then retire the copied task commands while preserving ADR tooling.",
+            "requires": [],
+            "requirements": [
+              "Own .agents, .taskctl, root taskctl launchers, AGENTS.md, README.md, .gitattributes, root/build and tooling/workflow integration, docs/tasking and copied tooling/taskctl removal. Product implementation and operator configuration are outside this task.",
+              "Preserve all ancestral task identities, contracts, lifecycle facts, and exact source evidence; migration equivalence reviews remain separate from old closures.",
+              "Retain ADR lifecycle tooling and shared dependencies."
+            ],
+            "acceptance": [
+              "Published digest-pinned native taskctl performs normal reads, CAS rejection, verify/close and offline cached execution before copied taskctl is removed.",
+              "Repository verify and retained ADR doctor/tests pass; exact report records removed legacy-tool tests separately from retained product tests.",
+              "After closure, only TASK.draft-mvp.038 remains ready; all 29 historical closures have source evidence without fabricated native receipts."
+            ],
+            "required_extensions": [],
+            "extensions": {},
+            "verification": [
+              "migration",
+              "integration"
+            ]
+          },
+          "contract": "sha256:693adabfe9784a46aa34256f31b50a866f9ed7006527f0df9b384cc2e0e918e8",
+          "dependencies": [],
+          "review": null
+        }
+      }
+    ],
+    "receipts": [
+      {
+        "protocol": "taskctl.receipt/alpha1",
+        "classification": "actor-assertion",
+        "task": "TASK.tasking.001",
+        "contract": "sha256:8c6d0f895f8d88f6cd2839e647bb22f76d769f1ddbd58af79ba43ad1aa642528",
+        "actor": "Codex",
+        "recorded_at": "2026-09-06T22:48:54.567240+00:00",
+        "evidence": {
+          "migration": "Implementation commit 94f3176a78e3ce5a2c7d76c399c055ae69a02b46. Import manifest sha256:a4bc24ebede998705855d39457ffd3b4d53b49939446f803b93dfb094d8e4fa4 binds 53 exact witnesses at Fantastikt b932b0eecbc2b6053b3f2235ad2963fd31fbb4c4. All 40 source tasks, 29 historical closures, roadmap/epic memberships and original frontier preserved. Forty explicit migration-equivalence reviews establish current inputs without fabricating historical native receipts. See docs/tasking/migration-0.3/mapping-review.json and migration-reviews.json.",
+          "integration": "At implementation commit 94f3176a78e3ce5a2c7d76c399c055ae69a02b46, full rebuilt gradlew :tooling:workflow:clean verify --rerun-tasks --max-workers=2 passed 143 tests (133 product, 10 ADR), zero failures/errors/skips. 23 copied-tool files and 44 duplicated tests retired only after published native taskctl v0.3.0-alpha.2 source 8933bac1c090d175dfc035d7d52a40d1101f5333 archive SHA-256 2922f715e64f9f27e3cd0b2de5e48a6fc3e89f1dd19accc8cc1cc3096202d31d performed cold GitHub acquisition, eight read-only commands, offline operation, evidenced reconciliation and stale-CAS rejection. See canonical-before-retirement.json, retirement-result.json, after-retirement-tests.json and verify log. Product Git diff is empty; 154 product/specification file digests preserved. Closure plan must leave only TASK.draft-mvp.038 ready."
+        }
+      }
+    ],
+    "imports": []
+  },
+  "imported_origin_tasks_preserved": 40,
+  "historical_closures": 29,
+  "historical_native_receipts": 0,
+  "integration_native_receipts": 1,
+  "import_and_archive_bytes_unchanged": true
+}
