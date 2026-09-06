@@ -16,8 +16,8 @@ data class Reconciliation(
 }
 
 data class TaskRevision(val parent: TaskRevisionId?, val record: DraftRecord,
-                        val dependencies: List<Dependency>, val review: Reconciliation? = null) {
-    val id: TaskRevisionId get() = TaskRevisionId.parseOrThrow(Canonical.digest("taskctl.task-revision/1", HistoryCodec.revision(this)))
+                        val dependencies: List<Dependency>, val review: Reconciliation? = null, val importedFrom: ImportId? = null) {
+    val id: TaskRevisionId get() = TaskRevisionId.parseOrThrow(Canonical.digest(if (importedFrom == null) "taskctl.task-revision/1" else "taskctl.task-revision/2", HistoryCodec.revision(this)))
 }
 
 /** Explicit origin binds history adoption to its original ledger; it never
@@ -117,11 +117,16 @@ fun LedgerSnapshot.closureProblems(evidence: ClosureEvidence): List<String> =
     dependencyProblems() + universe.closureProblems(evidence.receipt.taskId, evidence.receipt) +
         if (history != null && currency()[evidence.receipt.taskId]?.state != Currency.CURRENT) listOf("task currency is not current; reconcile its inputs before closure") else emptyList()
 
-fun TaskHistory.validate(universe: DraftUniverse, receipts: List<ClosureEvidence>) {
+fun TaskHistory.validate(universe: DraftUniverse, receipts: List<ClosureEvidence>, imports: List<ImportAdmission> = emptyList()) {
     val history = this
     require(history.heads.keys == universe.tasks.map { it.id }.toSet()) { "task identities and history HEADs disagree" }
     history.revisions.forEach { (id, value) ->
         require(id == value.id) { "revision identity mismatch" }
+        value.importedFrom?.let { origin ->
+            val manifest = imports.singleOrNull { it.manifest.id == origin }?.manifest ?: error("import manifest absent from history")
+            val projected = manifest.universe.tasks.singleOrNull { it.id == value.record.id } ?: error("imported identity absent from manifest")
+            require(DraftLifecycle.contract(projected) == DraftLifecycle.contract(value.record)) { "import projection contract mismatch" }
+        }
         require(value.dependencies.map { it.upstream }.toSet() == value.record.requires.toSet() && value.dependencies.distinctBy { it.upstream }.size == value.dependencies.size) { "revision dependencies disagree" }
         value.parent?.let { parent -> require(history.revisions[parent]?.record?.id == value.record.id) { "missing or wrong task revision parent" } }
         value.dependencies.forEach { edge -> edge.observedRevision?.let { observed ->
@@ -141,8 +146,12 @@ fun TaskHistory.validate(universe: DraftUniverse, receipts: List<ClosureEvidence
             current = current.parent?.let { history.revisions.getValue(it) }
         }
         if (task.state == "closed") require(ancestors.any { revision ->
-            val historical = history.revisions.getValue(revision).record
-            historical.state == "closed" && receipts.any { DraftLifecycle.addresses(it.receipt, historical) }
+            val value = history.revisions.getValue(revision)
+            val historical = value.record
+            historical.state == "closed" && (receipts.any { DraftLifecycle.addresses(it.receipt, historical) } ||
+                imports.any { it.manifest.id == value.importedFrom && it.manifest.universe.tasks.any { task ->
+                    task.id == historical.id && task.state == "closed" && DraftLifecycle.contract(task) == DraftLifecycle.contract(historical)
+                } })
         }) { "closed task lacks historical closure evidence: ${task.id}" }
     }
 }

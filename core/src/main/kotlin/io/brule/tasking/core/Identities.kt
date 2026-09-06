@@ -6,6 +6,17 @@ private fun <T> parseIdentity(value: String, pattern: Regex, construct: (String)
     if (pattern.matches(value)) construct(value) else null
 
 @JvmInline
+value class ImportId private constructor(val value: String) {
+    init { require(PATTERN.matches(value)) { "Invalid ImportId: $value" } }
+    override fun toString(): String = value
+    companion object {
+        private val PATTERN = Regex("sha256:[0-9a-f]{64}")
+        fun parse(value: String): ImportId? = parseIdentity(value, PATTERN, ::ImportId)
+        fun parseOrThrow(value: String): ImportId = parse(value) ?: error("Invalid ImportId: $value")
+    }
+}
+
+@JvmInline
 value class TaskId private constructor(override val value: String) : RecordId, Comparable<TaskId> {
     init { require(PATTERN.matches(value)) { "Invalid TaskId: $value" } }
     override fun compareTo(other: TaskId): Int = value.compareTo(other.value)

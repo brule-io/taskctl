@@ -18,7 +18,7 @@ interface TaskLedger {
 data class LedgerSnapshot(val repositoryId: String, val revision: Revision, val universe: DraftUniverse,
                           val receipts: List<ClosureEvidence> = emptyList(),
                           val dependencyBindings: Map<TaskId, List<Dependency>> = emptyMap(),
-                          val history: TaskHistory? = null)
+                          val history: TaskHistory? = null, val imports: List<ImportAdmission> = emptyList())
 data class FrontierQuery(val roadmap: RoadmapId? = null, val epic: EpicId? = null)
 data class Frontier(val revision: Revision, val tasks: List<TaskId>)
 data class TransitionResult(val revision: Revision, val changed: List<RecordId>)
@@ -37,15 +37,21 @@ sealed interface Transition {
     data class ReviseTask(val record: DraftRecord) : Transition
     data class ReconcileTask(val review: Reconciliation) : Transition
     data object TrackHistory : Transition
+    data class ImportRecords(val admission: ImportAdmission) : Transition
 }
 
 /** Every adapter uses this reducer. Storage only persists the validated result. */
 object LedgerTransitions {
     fun reduce(snapshot: LedgerSnapshot, transition: Transition): DraftUniverse {
-        snapshot.history?.validate(snapshot.universe, snapshot.receipts)
+        snapshot.history?.validate(snapshot.universe, snapshot.receipts, snapshot.imports)
         require(snapshot.dependencyProblems().isEmpty()) { snapshot.dependencyProblems().joinToString("\n") }
         val universe = snapshot.universe
         val updated = when (transition) {
+            is Transition.ImportRecords -> {
+                require(universe.tasks.isEmpty() && universe.roadmaps.isEmpty() && universe.epics.isEmpty() && snapshot.receipts.isEmpty() && snapshot.imports.isEmpty()) { "import requires an empty target ledger" }
+                require(snapshot.history != null && snapshot.history.revisions.isEmpty()) { "import requires fresh tracked history" }
+                transition.admission.manifest.universe
+            }
             is Transition.AddRecords -> {
                 require(transition.tasks.all { it.state == "open" }) { "new tasks must be open; use the closure transition for evidence" }
                 universe.copy(tasks = universe.tasks + transition.tasks, roadmaps = universe.roadmaps + transition.roadmaps,
@@ -84,6 +90,11 @@ object LedgerTransitions {
         } else if (history != null) {
             val observations = CurrencyEvaluation.observations(snapshot.copy(universe = universe))
             when (transition) {
+                is Transition.ImportRecords -> {
+                    universe.tasks.sortedBy { it.id }.forEach { task ->
+                        history = requireNotNull(history).append(TaskRevision(null, task, task.requires.sorted().map { Dependency(it) }, importedFrom = transition.admission.manifest.id))
+                    }
+                }
                 is Transition.AddRecords -> {
                     // Construct upstream revisions first so observed revision IDs exist.
                     val pending = transition.tasks.associateBy { it.id }
@@ -116,6 +127,7 @@ object LedgerTransitions {
             }
         }
         return snapshot.copy(universe = universe, history = history,
+            imports = snapshot.imports + if (transition is Transition.ImportRecords) listOf(transition.admission) else emptyList(),
             receipts = snapshot.receipts + if (transition is Transition.CloseTask) listOf(transition.evidence) else emptyList())
     }
 

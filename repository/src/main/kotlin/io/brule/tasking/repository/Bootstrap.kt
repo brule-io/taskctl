@@ -18,7 +18,7 @@ object Bootstrap {
     private const val JOURNAL = ".taskctl/bootstrap-journal.json"
 
     fun plan(repository: Path, repositoryId: String, version: String, distribution: Path, lock: String,
-             seed: Transition.AddRecords = Transition.AddRecords(), adopt: Boolean = false): InitializationPlan {
+             seed: Transition.AddRecords = Transition.AddRecords(), adopt: Boolean = false, imported: ImportAdmission? = null): InitializationPlan {
         val root = NativeFiles.repositoryRoot(repository)
         require(repositoryId.isNotBlank()) { "repository identity is required" }
         if (Files.exists(root)) {
@@ -31,7 +31,9 @@ object Bootstrap {
             }
         }
         validateLock(lock, version)
-        val snapshot = LedgerTransitions.evolve(LedgerSnapshot(repositoryId, Revision.initial(), DraftUniverse(emptyList()), history = TaskHistory(Revision.initial())), seed)
+        require(imported == null || seed == Transition.AddRecords()) { "import and seed are separate operations" }
+        val snapshot = LedgerTransitions.evolve(LedgerSnapshot(repositoryId, Revision.initial(), DraftUniverse(emptyList()), history = TaskHistory(Revision.initial())),
+            imported?.let { Transition.ImportRecords(it) } ?: seed)
         val universe = snapshot.universe
         val files = linkedMapOf(
             ".taskctl/toolchain.lock" to lock.replace("\r\n", "\n"),
@@ -50,6 +52,10 @@ object Bootstrap {
         universe.roadmaps.forEach { files[".agents/roadmaps/" + NativeFiles.fileName(it.id.value)] = Json.encode(PlanningRecordCodec.encode(it)) + "\n" }
         universe.epics.forEach { files[".agents/epics/" + NativeFiles.fileName(it.id.value)] = Json.encode(PlanningRecordCodec.encode(it)) + "\n" }
         val history = requireNotNull(snapshot.history)
+        imported?.let {
+            files[".agents/config.toml"] = files.getValue(".agents/config.toml").replace("taskctl.native/alpha2", "taskctl.native/alpha3")
+            files[".agents/imports/${it.manifest.id.value.removePrefix("sha256:")}.json"] = Json.encode(ImportCodec.admission(it)) + "\n"
+        }
         files[".agents/history/heads.json"] = Json.encode(HistoryCodec.heads(history)) + "\n"
         history.revisions.forEach { (id, value) -> files[".agents/history/revisions/${id.value.removePrefix("sha256:")}.json"] = Json.encode(HistoryCodec.revision(value)) + "\n" }
         files.keys.forEach { NativeFiles.locate(root, it) }
@@ -87,6 +93,7 @@ object Bootstrap {
         val fixed = setOf(".taskctl/toolchain.lock", ".taskctl/.gitignore", ".agents/config.toml", ".agents/policy.toml", ".agents/.gitignore", ".agents/README.md", "AGENTS.md", "taskctl", "taskctl.ps1", "taskctl.bat")
         for ((relative, content) in files) {
             require(relative in fixed || Regex("^\\.agents/(tasks|roadmaps|epics)/[A-Za-z0-9._-]+\\.yaml$").matches(relative) ||
+                Regex("^\\.agents/imports/[a-f0-9]{64}\\.json$").matches(relative) ||
                 relative == ".agents/history/heads.json" || Regex("^\\.agents/history/revisions/[a-f0-9]{64}\\.json$").matches(relative)) { "bootstrap path outside declared scope" }
             val path = NativeFiles.locate(root, relative)
             require(!Files.exists(path) || Files.readString(path) == content) { "external change conflicts with bootstrap: $relative" }

@@ -165,12 +165,34 @@ def main():
         launcher=[str(shell),'-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',str(generated/'taskctl.ps1')] if windows else [str(generated/'taskctl')]
         assert json.loads(run(['doctor','--format','json']).stdout)['result']['tasks']==2
         assert json.loads(run(['frontier','--format','json']).stdout)['result']['tasks']==['TASK.api']
+        # Imported history also survives source-free cached execution. The test
+        # harness supplies witnesses, but the consumer PATH still has no tools.
+        fixture=ROOT/'conformance/src/test/resources/fantastikt-import'
+        ancestral=work/'ancestral source'; shutil.copytree(fixture/'.agents',ancestral/'.agents')
+        origin=json.loads((fixture/'sources.json').read_text(encoding='utf-8'))
+        source_before=fingerprint(ancestral)
+        planned=json.loads(standalone(['import','plan','--source',ancestral,'--source-repository',origin['repository'],
+            '--source-revision',origin['revision'],'--adapter','fantastikt-loom-agent-2026','--format','json']).stdout)['result']
+        import_plan=work/'import-plan.json'; import_plan.write_text(json.dumps(planned),encoding='utf-8')
+        import_review=work/'import-review.json'
+        import_review.write_text(json.dumps(dict(protocol='taskctl.import-review/1',classification='actor-assertion',manifest=planned['manifest_id'],
+            actor='bootstrap-test',recorded_at='2026-09-06T00:00:00Z',rationale='Fixture mapping review; historical evidence is not a modern receipt.')),encoding='utf-8')
+        imported=work/'imported project'
+        standalone(['import','apply','--source',ancestral,'--file',import_plan,'--review',import_review,'--repo',imported,'--id','test.import','--toolchain',lock_path])
+        assert fingerprint(ancestral)==source_before
+        launcher=[str(shell),'-NoLogo','-NoProfile','-ExecutionPolicy','Bypass','-File',str(imported/'taskctl.ps1')] if windows else [str(imported/'taskctl')]
+        imported_before=fingerprint(imported)
+        for command in (['doctor'],['context'],['frontier'],['history','TASK.draft-mvp.029']):
+            run(command+['--format','json'],extra={'TASKCTL_OFFLINE':'1'})
+        assert fingerprint(imported)==imported_before
+        assert not list((imported/'.agents/receipts').iterdir())
         result=dict(platform=system,implementation=args.kind,version=metadata['version'],archive_sha256=metadata['sha256'],transport='release' if args.lock else 'file',
             checks=['version aliases without cache acquisition or repository discovery','cold acquisition','warm offline operation','no Java/Gradle/Git/Python on consumer PATH','consumer bytes and mtimes unchanged',
                     'explicit repository launcher from unrelated cwd','wrong version rejected','corrupt cached executable or library rejected','unlisted JAR ignored','wrong archive digest rejected',
                     'mutation-free init plan and deterministic apply','greenfield init from standalone distribution','empty native doctor and frontier','committed-only checkout reconstruction',
                     'seed admission with revision CAS','global prerequisite evaluation before roadmap filter','read-only evidence validation and evidenced closure',
-                    'warm offline native commands','mutation-free cached currency and review inspection','evidenced offline reconciliation and history','existing source and repeated-init refusal','invalid seed rejected before writes','reference generator composition without copied templates'])
+                    'warm offline native commands','mutation-free cached currency and review inspection','evidenced offline reconciliation and history','existing source and repeated-init refusal','invalid seed rejected before writes','reference generator composition without copied templates',
+                    'reviewed ancestral import preserves source witnesses','imported history runs offline without build tools or fabricated receipts'])
         (output/f'bootstrap-{args.kind}-{system}.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8',newline='\n')
         print(json.dumps(result))
 if __name__=='__main__': main()

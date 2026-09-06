@@ -1,7 +1,7 @@
 # taskctl contributor operating contract
 
-The current authorized release is 0.3.0-alpha.1: semantic hardening, self-hosting,
-distribution/license hardening, then verified release. Read `docs/SEMANTIC-0.3.md`
+The current slice is Fantastikt migration and its 0.3.0-alpha.2 import distribution,
+following the verified 0.3.0-alpha.1 release. Read `docs/SEMANTIC-0.3.md`, `docs/IMPORT.md`
 and the repository-local task graph. Start with `./taskctl doctor`, `context`,
 `frontier`, and `status` (Windows: `./taskctl.bat` or `./taskctl.ps1`). Development
 from adoption onward is tracked here. Publishing to brule-io/taskctl is authorized.

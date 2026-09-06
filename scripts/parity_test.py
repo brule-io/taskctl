@@ -201,6 +201,61 @@ def main():
         assert (repo/'AGENTS.md').read_text(encoding='utf-8')=='Existing contributor authority.\n'
         json_pair('adopted doctor',['doctor'])
         json_pair('adoption collision refusal',adoption,code=2)
+        # Exact ancestral bytes, including 29 historical closures. These are
+        # never silently converted into modern closure receipts.
+        restore(None); repo.mkdir()
+        (repo/'source.txt').write_text('Existing product source.\n',encoding='utf-8')
+        (repo/'AGENTS.md').write_text('Preserved contributor authority.\n',encoding='utf-8')
+        source=work/'ancestral source'
+        fixture=ROOT/'conformance/src/test/resources/fantastikt-import'
+        shutil.copytree(fixture/'.agents',source/'.agents')
+        def source_image():
+            return {p.relative_to(source).as_posix():(p.read_bytes(),p.stat().st_mtime_ns) for p in source.rglob('*') if p.is_file()}
+        source_before=source_image()
+        origin=json.loads((fixture/'sources.json').read_text(encoding='utf-8'))
+        inspect=['--source',source,'--source-repository',origin['repository'],'--source-revision',origin['revision'],'--adapter','fantastikt-loom-agent-2026']
+        summary=json_pair('ancestral import inspection',['import','inspect',*inspect])['result']
+        assert summary['tasks']==40 and summary['closed_tasks']==29
+        planned=json_pair('ancestral import plan',['import','plan',*inspect])['result']
+        assert planned['structural_frontier']==['TASK.draft-mvp.038']
+        import_plan=write('import-plan.json',planned)
+        admission=dict(protocol='taskctl.import-review/1',classification='actor-assertion',manifest=planned['manifest_id'],
+            actor='parity-test',recorded_at='2026-09-06T00:00:00Z',rationale='Reviewed mapping, preserving historical evidence classification.')
+        import_review=write('import-review.json',admission)
+        importing=['import','apply','--source',source,'--file',import_plan,'--review',import_review,'--repo',repo,'--id','test.import','--toolchain',lock]
+        json_pair('import bounded write plan',[*importing,'--plan'])
+        assert not (repo/'.agents').exists()
+        old_source=(source/'.agents/README.md').read_bytes()
+        (source/'.agents/README.md').write_bytes(old_source+b'\nSource changed.\n')
+        json_pair('import source drift refusal',importing,code=4)
+        (source/'.agents/README.md').write_bytes(old_source)
+        stamp=source_before['.agents/README.md'][1]; os.utime(source/'.agents/README.md',ns=(stamp,stamp))
+        write('import-plan.json',planned|dict(structural_frontier=[]))
+        json_pair('import forged plan refusal',importing,code=4)
+        write('import-plan.json',planned)
+        write('import-review.json',admission|dict(manifest='sha256:'+'0'*64))
+        json_pair('import wrong manifest review refusal',importing,code=2)
+        write('import-review.json',admission)
+        json_pair('reviewed ancestral import',importing,mutation=True,initialization=True)
+        assert source_image()==source_before
+        assert (repo/'source.txt').read_text(encoding='utf-8')=='Existing product source.\n'
+        assert (repo/'AGENTS.md').read_text(encoding='utf-8')=='Preserved contributor authority.\n'
+        assert not list((repo/'.agents/receipts').glob('*'))
+        imported=json_pair('imported doctor',['doctor'])['result']
+        assert imported['protocol']=='taskctl.native/alpha3' and imported['tasks']==40
+        for command in ('context','snapshot','status','frontier','roadmap','epic'):
+            json_pair('imported '+command,[command])
+        assert not json_pair('import is not current proof',['frontier'])['result']['tasks']
+        historical=json_pair('imported historical closure',['history','TASK.draft-mvp.029'])['result']
+        assert historical['imports'] and not historical['receipts']
+        json_pair('import collision refusal',importing,code=2)
+        root_plan=json_pair('import root review plan',['reconcile','TASK.draft-mvp.001','--plan'])['result']
+        review=review_file(root_plan)
+        json_pair('import explicit root revalidation',['reconcile','TASK.draft-mvp.001','--file',review,'--expect-revision',root_plan['revision']],mutation=True)
+        json_pair('import stale review CAS',['reconcile','TASK.draft-mvp.001','--file',review,'--expect-revision',root_plan['revision']],code=4)
+        assert not list((repo/'.agents/receipts').glob('*'))
+        json_pair('import reviewed history',['history','TASK.draft-mvp.001'])
+        assert source_image()==source_before
     result=dict(contract='taskctl.parity/alpha1',platform=system,version=native['version'],
         artifacts={kind:meta['sha256'] for kind,meta in metadata.items()},cases=checks,
         allowed_differences={'info.result':['implementation','java_runtime','vm','build']},

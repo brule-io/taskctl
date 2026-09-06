@@ -8,7 +8,7 @@ import java.nio.file.Path
 
 internal object NativeCommands {
     val version: String get() = ToolRuntime.version
-    private class Arguments(args: List<String>) {
+    internal class Arguments(args: List<String>) {
         val options = linkedMapOf<String, String>()
         val positional = mutableListOf<String>()
         init {
@@ -40,6 +40,8 @@ internal object NativeCommands {
                 taskctl $version — standalone native alpha (v1 not frozen)
                 init --repo PATH --id ID --toolchain LOCK [--seed FILE] [--plan]
                 adopt --repo PATH --id ID --toolchain LOCK [--seed FILE] [--plan]
+                import inspect|plan --source PATH --source-repository ID --source-revision SHA --adapter ID
+                import apply --source PATH --file PLAN --review REVIEW --repo TARGET --id ID --toolchain LOCK [--plan]
                 doctor | context | snapshot | frontier [--roadmap ID] [--epic ID]
                 show TASK | roadmap [ID] | epic [ID]
                 status | affected [TASK] | history TASK
@@ -57,6 +59,7 @@ internal object NativeCommands {
             return 0
         }
         val result = when (command) {
+            "import" -> ImportCommands.run(options)
             "info" -> { options.allow(); ToolRuntime.info() }
             "init", "adopt" -> {
                 options.allow("--id", "--toolchain", "--profile", "--seed", "--plan", "--contract")
@@ -137,7 +140,7 @@ internal object NativeCommands {
         val currency = snapshot.currency()
         return when (command) {
             "doctor", "context", "snapshot" -> obj(
-                "repository_id" to StringValue(snapshot.repositoryId), "protocol" to StringValue(if (snapshot.history == null) "taskctl.native/alpha1" else "taskctl.native/alpha2"),
+                "repository_id" to StringValue(snapshot.repositoryId), "protocol" to StringValue(if (snapshot.imports.isNotEmpty()) "taskctl.native/alpha3" else if (snapshot.history == null) "taskctl.native/alpha1" else "taskctl.native/alpha2"),
                 "profile" to StringValue("minimal/alpha1"), "revision" to StringValue(snapshot.revision.value),
                 "tasks" to integer(universe.tasks.size), "roadmaps" to integer(universe.roadmaps.size), "epics" to integer(universe.epics.size),
                 "required_capabilities_unavailable" to strings((universe.tasks.flatMap { it.requiredExtensions } + universe.roadmaps.flatMap { it.requiredExtensions } + universe.epics.flatMap { it.requiredExtensions }).distinct().sorted()),
@@ -166,7 +169,16 @@ internal object NativeCommands {
                     head = value.parent
                 }
                 obj("revision" to StringValue(snapshot.revision.value), "origin_ledger_revision" to StringValue(history.origin.value), "revisions" to ArrayValue(revisions),
-                    "receipts" to ArrayValue(snapshot.receipts.filter { it.receipt.taskId == id }.map(NativeCodec::evidence)))
+                    "receipts" to ArrayValue(snapshot.receipts.filter { it.receipt.taskId == id }.map(NativeCodec::evidence)),
+                    "imports" to ArrayValue(snapshot.imports.filter { admission -> admission.manifest.universe.tasks.any { it.id == id } }.map { admission ->
+                        val source = admission.manifest.sources.single { it.id == id }
+                        obj("manifest_id" to StringValue(admission.manifest.id.value), "source_repository" to StringValue(admission.manifest.repository),
+                            "source_revision" to StringValue(admission.manifest.revision), "adapter" to StringValue(admission.manifest.adapter),
+                            "adapter_version" to StringValue(admission.manifest.adapterVersion), "source_path" to StringValue(source.path),
+                            "source_sha256" to StringValue(source.sha256), "source_contract" to optionalString(source.contract?.value),
+                            "source_native_protocol" to NullValue, "classification" to StringValue("historical-narrative-unverified"),
+                            "source_text" to StringValue(admission.manifest.files.getValue(source.path)), "review" to ImportCodec.review(admission.review))
+                    }))
             }
             "reconcile" -> {
                 require("--plan" in args.options) { "reconcile requires --plan or --file REVIEW; no review was recorded" }

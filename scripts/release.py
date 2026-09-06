@@ -54,7 +54,7 @@ def main():
     args.output.mkdir(parents=True,exist_ok=True)
     tag='v'+args.version
     notes=args.output/'release-notes.md'
-    notes.write_text(f'''taskctl {args.version}: semantic hardening and self-hosting alpha.
+    notes.write_text(f'''taskctl {args.version}: reviewed ancestral import alpha.
 
 Native executables and JVM reference runtimes: Windows x86_64, Linux x86_64,
 macOS arm64. toolchain.lock selects native after corpus/process parity passed;
@@ -62,6 +62,13 @@ toolchain-jvm.lock explicitly selects the JVM reference. No fallback is implicit
 Version aliases work without acquisition. Immutable task revisions, transitive
 dependency currency, explicit evidenced reconciliation, and bounded existing-code
 adoption are available. See docs/SEMANTIC-0.3.md for compatibility and commands.
+
+Fantastikt import now has explicit inspect/plan/apply commands with source revision,
+adapter/version, exact source witnesses and a reviewed manifest. Imported closures
+retain their historical classification; no native receipts or current dependency
+observations are invented. Native alpha3 gates origin-bearing history from older
+writers. Existing alpha1/alpha2 contracts and revision digests are unchanged.
+See docs/IMPORT.md for the bounded migration and explicit reconciliation workflow.
 
 Native v1 is not frozen. Historical adapters remain explicit compatibility paths.
 Apache-2.0 covers the protocol and reference tooling. Existing third-party licenses remain.

@@ -1,6 +1,6 @@
 # Native repository contract (alpha)
 
-The released 0.3.0-alpha.1 initializer creates history-backed
+The 0.3 initializer creates history-backed
 `taskctl.native/alpha2` repositories. New tasks use `tasking/core-draft-2`;
 roadmap/epic records use `tasking/planning-draft-1`. The configuration envelope
 itself remains `taskctl.repository/alpha1`. These are separate versioned contracts,
@@ -13,6 +13,12 @@ and changes the repository marker to alpha2; it does not change old record diale
 invent missing observations, or relabel old evidence. Older writers reject alpha2.
 Planning history, group completion/archival and persisted provider capabilities
 remain [pre-freeze decisions](PRE-V1.md).
+
+Reviewed ancestral import in 0.3.0-alpha.2 uses `taskctl.native/alpha3`, with
+content-addressed source manifests and origin-bearing revision/2 objects. Older
+writers reject this marker. Historical closures remain separate from native
+receipts and current review assertions. See [IMPORT.md](IMPORT.md); ordinary
+initialization and existing revision/contract digests retain their meanings.
 
 `.agents/config.toml` declares repository identity, protocol and profile. The
 initial `minimal/alpha1` profile has no behavioral providers. `policy.toml` names
@@ -42,7 +48,7 @@ the same operations in conformance; no service or HTTP adapter is implemented.
 The interface is not a supported public Kotlin API in this alpha.
 
 Native `TaskId`, `RoadmapId`, `EpicId`, `Revision`, `TaskRevisionId`, `ContractDigest`
-and `InputDigest` have private
+`InputDigest` and `ImportId` have private
 constructors and symmetric `parse` / `parseOrThrow` boundaries. Task records,
 prerequisite edges and receipts carry nominal types, not interchangeable strings.
 `RecordId` is the closed sum of task/roadmap/epic identities for mixed results.

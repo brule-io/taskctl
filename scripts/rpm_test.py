@@ -52,7 +52,8 @@ with tarfile.open(root/meta['upstream']['file']) as archive:
     destinations={'taskctl':'/usr/libexec/taskctl/taskctl','LICENSE':'/usr/share/licenses/taskctl/LICENSE','NOTICE.md':'/usr/share/licenses/taskctl/NOTICE.md',
         'THIRD-PARTY-NOTICES.zip':'/usr/share/licenses/taskctl/THIRD-PARTY-NOTICES.zip'}
     destinations.update({name:'/usr/share/taskctl/'+name for name in ('bootstrap/taskctl','bootstrap/taskctl.ps1','bootstrap/taskctl.bat','distribution.json','distribution.properties')})
-    destinations.update({name:'/usr/share/doc/taskctl/'+name for name in ('README.md','docs/SEMANTIC-0.3.md','docs/BOOTSTRAP.md','docs/NATIVE.md','docs/EXTENSIONS.md','docs/VERSIONING.md')})
+    documents=['README.md']+[entry.name for entry in archive.getmembers() if entry.isfile() and entry.name.startswith('docs/')]
+    destinations.update({name:'/usr/share/doc/taskctl/'+name for name in documents})
     for original,destination in destinations.items():
         digest=hashlib.sha256(archive.extractfile(original).read()).hexdigest()
         assert sha(Path(destination))==digest,destination

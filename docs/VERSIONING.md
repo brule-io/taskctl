@@ -35,8 +35,9 @@ platform runtime itself necessarily differs. Other platforms have no implied sup
 
 Tool upgrades never silently rewrite repository state. Native alpha consumers
 must review the selected release's contract support before changing their lock.
-No native-version migration is shipped yet. Historical imports remain explicit
-future inspect/plan/apply operations with exact source revision, adapter/version,
+Reviewed Fantastikt import in 0.3.0-alpha.2 adds native alpha3 for source manifests
+and origin-bearing task revisions. [Import](IMPORT.md) is an explicit
+inspect/plan/apply operation with exact source revision, adapter/version,
 identity mapping, evidence classification, unsupported semantics and manifest digest.
 Imported history must never be retrospectively relabeled as native execution.
 

@@ -36,19 +36,22 @@ object HistoryCodec {
             value.nullableText("successor")?.let(TaskId::parseOrThrow))
     }
     fun revision(value: TaskRevision): ObjectValue = obj(
-        "protocol" to StringValue("taskctl.task-revision/1"), "parent" to optionalString(value.parent?.value),
+        "protocol" to StringValue(if (value.importedFrom == null) "taskctl.task-revision/1" else "taskctl.task-revision/2"), "parent" to optionalString(value.parent?.value),
         "record" to NativeCodec.task(value.record), "contract" to StringValue(DraftLifecycle.contract(value.record).value),
         "dependencies" to ArrayValue(value.dependencies.sortedBy { it.upstream }.map(::dependency)),
         "review" to (value.review?.let(::review) ?: NullValue),
-    )
+    ).let { if (value.importedFrom == null) it else ObjectValue(it.fields + ("imported_from" to StringValue(value.importedFrom.value))) }
     fun decodeRevision(value: ObjectValue): TaskRevision {
-        value.exact("protocol", "parent", "record", "contract", "dependencies", "review")
-        require(value.requiredString("protocol") == "taskctl.task-revision/1") { "unsupported task revision" }
+        val imported = when (value.requiredString("protocol")) {
+            "taskctl.task-revision/1" -> { value.exact("protocol", "parent", "record", "contract", "dependencies", "review"); null }
+            "taskctl.task-revision/2" -> { value.exact("protocol", "parent", "record", "contract", "dependencies", "review", "imported_from"); ImportId.parseOrThrow(value.requiredString("imported_from")) }
+            else -> error("unsupported task revision")
+        }
         val record = DraftDocument.parse(Json.encode(value.objectAt("record"))).record
         require(DraftLifecycle.contract(record).value == value.requiredString("contract")) { "revision contract digest mismatch" }
         return TaskRevision(value.nullableText("parent")?.let(TaskRevisionId::parseOrThrow), record,
             value.requiredArray("dependencies").map { decodeDependency(it as? ObjectValue ?: error("dependency object required")) },
-            if (value.fields["review"] == NullValue) null else decodeReview(value.objectAt("review")))
+            if (value.fields["review"] == NullValue) null else decodeReview(value.objectAt("review")), imported)
     }
     fun heads(value: TaskHistory): ObjectValue = obj(
         "protocol" to StringValue("taskctl.history/1"), "origin_ledger_revision" to StringValue(value.origin.value),
