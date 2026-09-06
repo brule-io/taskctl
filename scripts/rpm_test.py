@@ -15,6 +15,9 @@ def run(args,code=0,cwd=root,env=None,**identity):
     assert p.returncode==code,(args,p.returncode,p.stdout,p.stderr)
     return p.stdout
 checks=[]; observations={}; traces={}
+# The minimal Fedora container sets tsflags=nodocs. Clear only this transaction
+# option so the ordinary %doc payload can be verified; leave host config alone.
+transaction_options=['--disable-repo=*','--setopt=tsflags=']
 def checked(name): checks.append(name); print('PASS:',name,flush=True)
 
 assert Path('/etc/os-release').read_text().find('VERSION_ID=44')>=0
@@ -33,7 +36,7 @@ def user(args,cwd=home): return run(args,cwd=cwd,env=env,user=account.pw_uid,gro
 def transaction(action,path,label):
     before=fingerprint(home)
     trace=output/(label+'-network.trace')
-    log=run(['strace','-f','-e','trace=%network','-o',trace,'dnf','-y','--disable-repo=*',action,path])
+    log=run(['strace','-f','-e','trace=%network','-o',trace,'dnf','-y',*transaction_options,action,path])
     (output/(label+'.log')).write_text(log)
     network=trace.read_text()
     assert not re.search(r'(?:socket\(AF_INET6?|sa_family=AF_INET6?)\b',network),network
@@ -118,5 +121,6 @@ proof=dict(contract='taskctl.rpm-test/alpha1',passed=True,platform='fedora-44-x8
     canonical_executable_unchanged=True,canonical_files=canonical_files,canonical_executable_sha256=expected_binary,upstream_archive_sha256=meta['upstream']['sha256'],
     rpm_sha256=sha(binary),upgrade=dict(from_evr=baseline,to_evr=upgraded,kind='packaging-release upgrade of the same canonical executable'),
     unprivileged_commands=True,checks=checks,observations=observations,transaction_traces=traces,
+    transaction_options=transaction_options,container_dnf_configuration=Path('/etc/dnf/dnf.conf').read_text(),
     os_release=Path('/etc/os-release').read_text(),dnf=run(['rpm','-q','dnf5']),runtime_packages=run(['rpm','-qa']).splitlines())
 (output/'rpm-test.json').write_text(json.dumps(proof,indent=2)+'\n')
