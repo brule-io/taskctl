@@ -35,6 +35,12 @@ def main():
             assert attestation['predicate']['buildDefinition']['internalParameters']==meta['build_identity']
             records.append(meta); archives.append(archive); statements.append(statement)
             platform_records[kind]=meta['sha256']
+            dogfood=list(args.artifacts.rglob(f'selfhost-{kind}-{platform}.json'))
+            assert len(dogfood)==1
+            inspected=json.loads(dogfood[0].read_text(encoding='utf-8'))
+            assert inspected['artifact_sha256']==meta['sha256'] and inspected['source_revision']==args.revision
+            assert inspected['read_only'] and inspected['repository_id']=='brule-io.taskctl'
+            parity.append(dogfood[0])
         proofs=list(args.artifacts.rglob('parity-'+platform+'.json'))
         assert len(proofs)==1
         comparison=json.loads(proofs[0].read_text(encoding='utf-8'))

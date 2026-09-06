@@ -1,0 +1,1 @@
+{"api":"taskctl.cli/alpha1","command":"frontier","repository":"C:\\projects\\tasking","result":{"revision":"sha256:265ae98604abfc2af7352d59d12967b27eff6f313887231ea689012964a2fbc1","tasks":["TASK.distribution.license","TASK.document.fences","TASK.semantic.contract"]}}

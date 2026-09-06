@@ -1,0 +1,18 @@
+{
+  "license": "Apache-2.0",
+  "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+  "artifacts": {
+    "native": {
+      "file": "taskctl-0.3.0-alpha.1-native-windows-x86_64.zip",
+      "sha256": "5d7c260e78c36cb2966b330133ea147110a8b39b219015dbc95483e221820d5a",
+      "source_revision": "26cc768f53fb8165ac5f3fc41b79121135a70fe9",
+      "source_dirty": true
+    },
+    "jvm": {
+      "file": "taskctl-0.3.0-alpha.1-jvm-windows-x86_64.zip",
+      "sha256": "ab30aaaac47e51c0c9540f93c57f889b09a5dc080f13d754b8c4537cf8ed475e",
+      "source_revision": "26cc768f53fb8165ac5f3fc41b79121135a70fe9",
+      "source_dirty": true
+    }
+  }
+}

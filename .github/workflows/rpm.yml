@@ -5,12 +5,12 @@ on:
       upstream_tag:
         description: Canonical release with successful Linux native/JVM parity
         required: true
-        default: v0.2.0-alpha.2
+        default: v0.3.0-alpha.1
         type: string
       packaging_release:
         description: Positive RPM packaging revision (does not rebuild taskctl)
         required: true
-        default: '2'
+        default: '1'
         type: string
 permissions:
   contents: read

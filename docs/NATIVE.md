@@ -1,5 +1,10 @@
 # Native repository contract (alpha)
 
+The 0.3 candidate adds history-backed native alpha2, core-draft-2 semantic
+contracts, observed dependency currency, and explicit reconciliation. See
+[SEMANTIC-0.3.md](SEMANTIC-0.3.md) for the current changes and compatibility rules;
+older draft examples below retain their original versioned meaning.
+
 The repository envelope is `taskctl.native/alpha1`; task records retain
 `tasking/core-draft-1`, and roadmap/epic records retain `tasking/planning-draft-1`.
 None is relabeled v1. The alpha gives the happy path an executable target while

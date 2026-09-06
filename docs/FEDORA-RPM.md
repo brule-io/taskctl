@@ -57,7 +57,7 @@ key installation, downloads or project initialization. It owns only these paths:
 | `/usr/libexec/taskctl/taskctl` | Unchanged canonical native executable |
 | `/usr/share/taskctl/` | Canonical bootstrap templates/build identity and release lock |
 | `/usr/share/doc/taskctl/` | RPM usage documentation |
-| `/usr/share/licenses/taskctl/` | Pending-license notice and original third-party notices |
+| `/usr/share/licenses/taskctl/` | Apache-2.0 LICENSE and original third-party notices |
 | `/usr/share/man/man1/taskctl.1.gz` | Manual page |
 
 The RPM owns no `.agents`, `.taskctl`, repository launchers, home directories or
@@ -110,18 +110,16 @@ publication; it is not an independent CI build signature or SLSA-level claim.
 
 ## License decision and future COPR seam
 
-The owner has not selected a project license. `LicenseRef-taskctl-license-pending`
-states that fact without granting a license. Replace it with the settled SPDX
-expression and include the selected license text as `%license` when decided;
-retain third-party notices. The temporary tag is an explicit rpmlint exception,
-not a claim of Fedora licensing eligibility.
+taskctl is licensed under Apache-2.0. The RPM carries LICENSE as `%license`,
+records Apache-2.0 in its metadata, and retains the original third-party notice
+bundle. The former pending-license rpmlint exception has been removed.
 
 The source RPM includes the spec, checksummed canonical native archive and support
 sources. `rpmbuild --rebuild PACKAGE.src.rpm` requires no GitHub credentials or
 compiler and performs no downloads. This is a repackaging source RPM, not an
 archive of the Kotlin sources. The spec uses normal Source/BuildRequires/files
 sections and independent Version/Release fields so a later COPR job can consume
-the same SRPM after licensing and service eligibility are settled. No COPR project
+the same SRPM subject to service eligibility. No COPR project
 or official Fedora inclusion request is made now.
 
 The build gate also runs `rpmbuild --rebuild` on the generated SRPM in a separate

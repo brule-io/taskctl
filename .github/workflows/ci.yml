@@ -54,6 +54,10 @@ jobs:
           python scripts/bootstrap_test.py --kind native
       - name: Compare process outputs exit codes and repository effects
         run: python scripts/parity_test.py
+      - name: Inspect the actual self-host graph without mutations
+        run: |
+          python scripts/selfhost_test.py --kind native
+          python scripts/selfhost_test.py --kind jvm
       - uses: actions/upload-artifact@v4
         with:
           name: distribution-${{ matrix.os }}

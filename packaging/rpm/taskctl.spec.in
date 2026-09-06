@@ -69,5 +69,5 @@ done
 %{_mandir}/man1/taskctl.1*
 
 %changelog
-* Sat Sep 05 2026 taskctl maintainers - @RPM_VERSION@-@RPM_RELEASE@
+* Sun Sep 06 2026 taskctl maintainers - @RPM_VERSION@-@RPM_RELEASE@
 - Package the canonical Linux native artifact without rebuilding it.

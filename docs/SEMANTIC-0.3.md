@@ -111,6 +111,8 @@ An alpha1 repository keeps its identity-only execution rules until explicit
 `taskctl track --expect-revision ...` adopts immutable history. Its currency is
 reported honestly as unresolved where old observations are absent. Tracking
 does not reinterpret core-draft-1 receipt digests or invent prior revisions.
+It atomically changes the repository protocol marker to alpha2 so older writers
+cannot bypass the new history/currency rules.
 `tasking/core-draft-2` adds `verification` and the new semantic projection. A
 record changes dialect only through an explicit revision, with its old record
 retained in history. Old taskctl binaries reject alpha2 repositories/records;

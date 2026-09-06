@@ -1,5 +1,10 @@
 # Bootstrap composition contract
 
+The 0.3 candidate adds history-backed native alpha2, core-draft-2 semantic
+contracts, observed dependency currency, and explicit reconciliation. See
+[SEMANTIC-0.3.md](SEMANTIC-0.3.md) for the current changes and compatibility rules;
+older draft examples below retain their original versioned meaning.
+
 The loose coupling boundary is the executable command, not a public Kotlin API:
 
 ```text

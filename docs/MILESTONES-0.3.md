@@ -12,9 +12,12 @@ review inputs and mutation-plan commands.
 Local verification: `./gradlew.bat check :cli:installDist` passes 93 source tests,
 including a 24-level diamond graph, persistent history/recovery, stale revisions,
 review evidence, fenced Markdown examples and type/storage architecture policies.
-The aggregate JVM suite contains the same 90 behavioral tests used by Native Image.
-`python scripts/bootstrap_test.py --kind jvm` passed 23 source-free consumer checks
-on the initial packaged candidate, including offline cached reconciliation.
+The aggregate JVM and Windows Native Image suites passed the same 90 behavioral
+tests. `python scripts/parity_test.py` passed 90 packaged process comparisons.
+`python scripts/bootstrap_test.py --kind jvm` and `--kind native` each passed 23
+source-free Windows consumer checks, including offline cached reconciliation.
+Local proofs are in `docs/proof/productization/0.3.0-alpha.1/local/`; development
+artifact metadata explicitly records dirty source and does not claim release status.
 
 Protocol changes are explicit: core-draft-2 and semantic-contract/2; history,
 task-revision, transitive-input, and reconciliation version 1 envelopes; native

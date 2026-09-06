@@ -1,5 +1,10 @@
 # Versions, releases and migration
 
+The 0.3 candidate adds history-backed native alpha2, core-draft-2 semantic
+contracts, observed dependency currency, and explicit reconciliation. See
+[SEMANTIC-0.3.md](SEMANTIC-0.3.md) for the current changes and compatibility rules;
+older draft examples below retain their original versioned meaning.
+
 Tool releases use exact semantic versions. `0.2.0-alpha.2` adds native executables while
 retaining the JVM reference; the native task protocol remains unfrozen. Repository, task, planning, receipt, CLI and
 initializer contracts have explicit identities. The public integration boundary

@@ -5,7 +5,7 @@ acceptance, causal prerequisites and closure evidence. Roadmaps describe durable
 lines of advance; epics associate work by capability. Project state stays in the
 project repository; the implementation comes from an exact pinned release.
 
-**Release: `0.2.0-alpha.2`. Native protocol v1 is not frozen.**
+**Release candidate: `0.3.0-alpha.1`. Native protocol v1 is not frozen.**
 Native executables and JVM reference archives are tested on Windows x86_64,
 Linux x86_64 and macOS arm64. Native is the default after behavioral parity passes.
 Fedora 44 users can also [install the optional native RPM](docs/FEDORA-RPM.md).
@@ -13,7 +13,7 @@ The system command and repository-pinned `./taskctl` remain independent.
 
 ## 60-second greenfield quick start
 
-Download the [release](https://github.com/brule-io/taskctl/releases/tag/v0.2.0-alpha.2)
+Download the [release](https://github.com/brule-io/taskctl/releases/tag/v0.3.0-alpha.1)
 native archive for your platform and `toolchain.lock`. Native needs no JVM.
 The optional JVM reference archives use `toolchain-jvm.lock` and bundle Java.
 For this initially private repository, authenticate `gh` with repository read access.
@@ -22,9 +22,9 @@ Windows PowerShell (no Java, Gradle or taskctl installation):
 
 ```powershell
 $download = Join-Path $env:TEMP ('taskctl-' + [Guid]::NewGuid().ToString('N'))
-gh release download v0.2.0-alpha.2 --repo brule-io/taskctl --pattern '*native-windows-x86_64.zip' --pattern toolchain.lock --dir $download
+gh release download v0.3.0-alpha.1 --repo brule-io/taskctl --pattern '*native-windows-x86_64.zip' --pattern toolchain.lock --dir $download
 $pin = ConvertFrom-StringData (Get-Content -Raw "$download/toolchain.lock")
-$archive = "$download/taskctl-0.2.0-alpha.2-native-windows-x86_64.zip"
+$archive = "$download/taskctl-0.3.0-alpha.1-native-windows-x86_64.zip"
 if ((Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne $pin['windows-x86_64.sha256']) { throw 'Checksum mismatch' }
 Expand-Archive $archive "$download/tool"
 & "$download/tool/taskctl.exe" init --repo ./my-project --id brule.my-project --toolchain "$download/toolchain.lock"
@@ -40,8 +40,8 @@ Linux/macOS shell (`TARGET=macos-aarch64` on Apple Silicon):
 ```sh
 TARGET=linux-x86_64
 DOWNLOAD=$(mktemp -d)
-gh release download v0.2.0-alpha.2 --repo brule-io/taskctl --pattern "*native-$TARGET.tar.gz" --pattern toolchain.lock --dir "$DOWNLOAD"
-ARCHIVE="$DOWNLOAD/taskctl-0.2.0-alpha.2-native-$TARGET.tar.gz"
+gh release download v0.3.0-alpha.1 --repo brule-io/taskctl --pattern "*native-$TARGET.tar.gz" --pattern toolchain.lock --dir "$DOWNLOAD"
+ARCHIVE="$DOWNLOAD/taskctl-0.3.0-alpha.1-native-$TARGET.tar.gz"
 EXPECTED=$(sed -n "s/^$TARGET.sha256=//p" "$DOWNLOAD/toolchain.lock")
 ACTUAL=$(shasum -a 256 "$ARCHIVE"); test "${ACTUAL%% *}" = "$EXPECTED" || exit 1
 tar -xzf "$ARCHIVE" -C "$DOWNLOAD"
@@ -94,6 +94,8 @@ last inspected. `verify` validates supplied evidence without running project cod
 
 ## Contracts and composition
 
+- [Revision-aware currency and reconciliation](docs/SEMANTIC-0.3.md)
+- [Self-hosting](docs/SELF-HOSTING.md) and [0.3 milestone evidence](docs/MILESTONES-0.3.md)
 - [Native repository, ledger seam, lifecycle and evidence](docs/NATIVE.md)
 - [Extensions and provider boundaries](docs/EXTENSIONS.md)
 - [Releases, pins, versioning and migrations](docs/VERSIONING.md)
@@ -109,9 +111,10 @@ profile, seed and release lock inputs. Public Kotlin APIs are not required.
 
 ## Existing repositories
 
-Existing-code adoption follows the working greenfield path; plain `init` currently
-requires an empty directory (an existing `.git` is allowed). It refuses unrelated
-source and never initializes or mutates Git itself. Legacy import is the advanced
+Use `taskctl adopt --repo PATH --id ID --toolchain LOCK --plan` to inspect bounded
+existing-code adoption, then omit `--plan` to apply it. Existing AGENTS.md and source
+are preserved; existing tasking or conflicting launchers are refused. Plain `init`
+requires an empty directory (an existing `.git` is allowed). Neither command runs Git. Legacy import is the advanced
 path after adoption. Historical compatibility code and provenance fixtures exist,
 but native inspect/plan/apply migrations are not shipped in this alpha.
 
@@ -122,8 +125,8 @@ on Windows). `python scripts/package.py` packages the build using `JAVA_HOME`;
 `python scripts/bootstrap_test.py --kind jvm` exercises a generated consumer with build tools
 removed from PATH. CI also requires byte-identical repackaging. Read [AGENTS.md](AGENTS.md).
 The typed value algebra and no-top-type architecture policy are enforced in CI.
-Native delivery additionally runs the same 79 behavioral tests as native code and
-49 process comparisons, plus 21 bootstrap checks per implementation. Native build
+Native delivery additionally runs the same 90 behavioral tests as native code and
+90 process comparisons, plus 23 bootstrap checks per implementation. Native build
 commands and the exact GraalVM pin are in [NATIVE-IMAGE.md](docs/NATIVE-IMAGE.md).
 
 ## License

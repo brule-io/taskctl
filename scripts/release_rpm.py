@@ -55,13 +55,12 @@ doctor/frontier, a packaging-release upgrade, and erase with networking disabled
 Transactions preserved project/user bytes, mtimes and modes. Cached `./taskctl`
 remained operational after erase. Package-content checks and rpmlint ran; raw
 findings and documented exceptions are attached. The native executable is kept
-unstripped to preserve its proven digest. The license decision remains pending:
-`LicenseRef-taskctl-license-pending` grants no project license. Existing
-third-party notices are included. No shell completions currently exist upstream.
+unstripped to preserve its proven digest. taskctl is licensed under Apache-2.0;
+the canonical LICENSE and existing third-party notices are included. No shell completions currently exist upstream.
 
 The source RPM contains the standard spec and the original binary archive: it
 repackages the proven artifact, not the Kotlin sources. It provides the future
-COPR build seam once licensing/publishing eligibility is settled. No COPR project
+COPR build seam subject to publishing eligibility. No COPR project
 or official Fedora submission is created by this release.
 
 Packaging source: `{meta['packaging_revision']}`.

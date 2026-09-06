@@ -11,7 +11,7 @@ classification, graph rule or lifecycle transition differs by implementation.
 `taskctl version --format json` returns:
 
 ```json
-{"api":"taskctl.cli/alpha1","command":"version","result":{"tool":"taskctl","version":"0.2.0-alpha.2"}}
+{"api":"taskctl.cli/alpha1","command":"version","result":{"tool":"taskctl","version":"0.3.0-alpha.1"}}
 ```
 
 These commands do not discover or read a task repository. In a generated launcher,

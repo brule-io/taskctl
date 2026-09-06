@@ -1,0 +1,6 @@
+{
+  "revision": "sha256:b563517dd05c99e6cb382bc7d81c10545300a955ad0fd023811397b56af13532",
+  "tasks": [
+    "TASK.distribution.parity"
+  ]
+}
