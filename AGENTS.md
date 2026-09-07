@@ -7,8 +7,9 @@ and the repository-local task graph. Start with `./taskctl doctor`, `context`,
 of the general-purpose protocol/tooling is tracked here. Publishing to
 brule-io/taskctl is authorized. Operational consumer migrations belong in their
 consumer repositories, including local adapters, integration work and evidence.
-The next compatibility task exercises a divergent specimen in isolation; it
-does not authorize migration of another repository. Existing protocol-checkpoint,
+The divergent isolated specimen passed the three-platform JVM/native corpus and
+process parity; see `docs/DIVERGENT-IMPORT.md` and its exact closure evidence.
+The next task is the explicit protocol checkpoint. Consumer migration,
 remote-kernel and native-v1 gates remain in place. No service implementation yet.
 
 Core owns the top-level record namespace. Specialized data lives only under

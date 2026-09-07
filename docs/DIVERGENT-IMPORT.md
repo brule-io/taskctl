@@ -81,6 +81,10 @@ CI workflow runs the complete sequence and the existing bootstrap/reproducibilit
 checks on Linux x86_64, Windows x86_64 and macOS aarch64. A successful compiler
 invocation alone does not complete this task.
 
+The completed [closure evidence](proof/divergent-import/README.md) records the
+exact successful three-platform run, 102 shared behavioral identities and 144
+packaged process cases per platform.
+
 ## Checkpoint findings and adoption limits
 
 **Schema strings are not adapter identities.** A different structure with the

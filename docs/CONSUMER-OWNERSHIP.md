@@ -44,7 +44,8 @@ migration was marked complete, deleted, renamed, or falsely handed off as done.
 | `TASK.migration.daemon-descendants` | Related-ledger provenance and revision-observation conformance |
 | `TASK.migration.daemon-meta` | Legacy authority identities and historical-contract conformance |
 
-All five remain open. The existing prerequisite edges are unchanged: divergent
+All five were open at the ownership correction. The existing prerequisite edges
+are unchanged: divergent
 compatibility precedes the protocol checkpoint; planning and capability cases
 precede related-ledger cases, which precede historical-authority cases. The
 native-v1 assessment still requires this chain and IDL/remote evidence. The
@@ -68,4 +69,7 @@ Seven read commands produced identical results through the existing packaged
 [native](proof/consumer-ownership/selfhost-native.json) and
 [JVM](proof/consumer-ownership/selfhost-jvm.json) implementations without writes.
 `TASK.product.consumer-ownership` records and closes this organizational change.
-The remaining public frontier is the divergent compatibility specimen.
+The divergent compatibility specimen has since passed its bounded import and
+three-platform JVM/native checks; see [the evidence](proof/divergent-import/README.md).
+The next public frontier is the protocol checkpoint. The four later compatibility
+tasks remain open, and unsupported stateful consumer adoptions remain gated.
