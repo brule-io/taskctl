@@ -13,7 +13,7 @@ def cases(paths):
     assert result and len(result)==len(set(result)), 'Missing or duplicate test results'
     return sorted(result)
 
-original=cases(p for module in ('core','repository','compatibility','conformance')
+original=cases(p for module in ('core','repository','compatibility','conformance','cli')
     for p in (ROOT/module/'build/test-results/test').glob('TEST-*.xml'))
 excluded=[name for name in original if name.startswith('io.brule.tasking.conformance.ArchitecturePolicyTest#')]
 expected=[name for name in original if name not in excluded]

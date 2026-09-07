@@ -72,7 +72,9 @@ def main():
             assert observations[0]==observations[1],(label,'JVM/native mismatch',observations[0][:3],observations[1][:3])
             checks.append(dict(case=label,exit_code=code,stdout_sha256=hashlib.sha256(observations[0][1].encode()).hexdigest(),
                 stderr_sha256=hashlib.sha256(observations[0][2].encode()).hexdigest(),files_equal=True,read_only=not mutation))
-            return json.loads(result.stdout) if '--format' in args and 'json' in args else result.stdout
+            # Protocol numbers must not become binary floats even in test code.
+            # Fixture writes containing decimals must preserve exact source tokens.
+            return json.loads(result.stdout,parse_float=Decimal) if '--format' in args and 'json' in args else result.stdout
         def json_pair(label,args,**options): return pair(label,[*args,'--format','json'],**options)
         for spelling in ('--version','-V','version'):
             assert pair('version '+spelling,[spelling])==f'taskctl {native["version"]}\n'
@@ -90,8 +92,10 @@ def main():
         (repo/'source.txt').write_text('Unrelated source must remain byte-identical.\n',encoding='utf-8')
         (repo/'.git').mkdir(); (repo/'.git/sentinel').write_text('No implicit Git operation.\n',encoding='utf-8')
         first=json_pair('empty doctor',['doctor'])['result']
+        assert first['contract']=='taskctl.doctor/alpha1' and first['health']=='ok' and 'work' not in first
         for command in ('context','snapshot','frontier','roadmap','epic'):
-            json_pair('empty '+command,[command])
+            inspected=json_pair('empty '+command,[command])['result']
+            if command in ('context','snapshot'): assert inspected['contract']==f'taskctl.{command}/alpha1'
         pair('empty frontier text',['frontier'])
         json_pair('repeat initialization refusal',initialize,code=2)
         def write(name,value):
@@ -189,6 +193,9 @@ def main():
         required=write('required.json',dict(contract='taskctl.seed/alpha1',tasks=[a|dict(id='TASK.required',required_extensions=['test.provider/v1'])]))
         json_pair('store unsupported required feature',['seed','--file',required,'--expect-revision',current['revision']],mutation=True)
         json_pair('inspect unsupported feature',['doctor'])
+        restricted=json_pair('blocked provider context',['context'])['result']
+        assert restricted['counts']['ready']==0 and restricted['counts']['required_capabilities_unavailable']>0
+        assert json_pair('blocked provider snapshot',['snapshot'])['result']['derived']['frontier']==[]
         json_pair('required provider blocks readiness',['frontier'],code=3)
         pair('diagnostic stderr exit code',['show','banana'],code=2)
         # Adoption has an explicit entry point; init still refuses existing code.
@@ -314,6 +321,38 @@ def main():
         assert receipts=={p.name:p.read_bytes() for p in (repo/'.agents/receipts').iterdir()}
         json_pair('divergent retained native and import history',['history','TASK.specimen.WORK-2'])
         assert (repo/'source.txt').read_text(encoding='utf-8')=='Divergent consumer source remains untouched.\n'
+        # Read projections must remain useful when ordinary records are much
+        # larger than the agent briefing. The complete snapshot retains all
+        # typed state and exact imported values; no second semantic decoder.
+        current=json_pair('before large read-model specimen',['doctor'])['result']
+        large=[d|dict(id=f'TASK.briefing.{n:03}',title='🧬'*400,intent='Bounded work. '*900,requires=[]) for n in range(48)]
+        long_id='TASK.'+'long'*600
+        large.append(d|dict(id=long_id,title='Complete identity remains available',requires=[]))
+        large_seed=write('large-read-model-seed.json',dict(contract='taskctl.seed/alpha1',tasks=large))
+        json_pair('seed large read-model specimen',['seed','--file',large_seed,'--expect-revision',current['revision']],mutation=True)
+        diagnostics=json_pair('distinct large doctor',['doctor'])['result']
+        assert diagnostics['contract']=='taskctl.doctor/alpha1' and diagnostics['tasks']==52 and 'work' not in diagnostics
+        briefing=json_pair('bounded large context',['context'])['result']
+        assert briefing['contract']=='taskctl.context/alpha1' and briefing['truncated'] and not briefing['complete_ledger']
+        assert len(briefing['work'])==12 and briefing['omitted_items']>0 and briefing['omitted_overlong_identities']==1
+        assert briefing['counts']['tasks']==52
+        assert len(json.dumps(briefing,ensure_ascii=False,separators=(',',':')).encode())<=briefing['limits']['max_result_utf8_bytes']==32768
+        assert all(item['id']!=long_id for item in briefing['work'])
+        full=json_pair('complete large typed snapshot',['snapshot'])['result']
+        assert full['contract']=='taskctl.snapshot/alpha1'
+        records={record['id']:record for record in full['records']['tasks']}
+        assert len(records)==52 and records[long_id]['id']==long_id
+        assert records['TASK.briefing.000']['title']=='🧬'*400
+        labels=records['TASK.specimen.WORK-1']['extensions']['legacy.object-work/v1']['labels']
+        assert labels['exact_integer']==900719925474099312345678901234567890
+        assert labels['exact_decimal']==Decimal('0.123456789012345678901234567890')
+        assert len(full['history']['revisions'])>52 and full['imports'] and full['receipts']
+        assert full['imports'][0]['manifest']['source_revision']==projection['source_revision']
+        assert full['imports'][0]['manifest']['evidence_classification']=='historical-narrative-unverified'
+        assert full['revision']==briefing['revision']==diagnostics['revision']
+        pair('bounded context text',['context'])
+        pair('diagnostic text',['doctor'])
+        json_pair('invalid context option',['context','--limit','unbounded'],code=2)
     result=dict(contract='taskctl.parity/alpha1',platform=system,version=native['version'],
         artifacts={kind:meta['sha256'] for kind,meta in metadata.items()},cases=checks,
         allowed_differences={'info.result':['implementation','java_runtime','vm','build']},
