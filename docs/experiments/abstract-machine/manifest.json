@@ -1,0 +1,98 @@
+{
+  "format": "taskctl.abstract-machine-evidence/lab1",
+  "inspected_public_commit": "54603099da2fbb33eede4011f4fb8cf45a9ef48f",
+  "published_alpha2_source_commit": "8933bac1c090d175dfc035d7d52a40d1101f5333",
+  "production_semantics_changed": false,
+  "runtime": {
+    "os": "Windows x86_64",
+    "java": "Temurin 21.0.11+10",
+    "gradle": "9.6.0"
+  },
+  "execution": {
+    "programs": [
+      "transfer",
+      "branch-heavy",
+      "resume-cas"
+    ],
+    "fresh_process_invocations": 32,
+    "retired_instructions": 31,
+    "successful_instruction_cas": 59,
+    "laboratory_tests": 8,
+    "fresh_conformance_tests": 18
+  },
+  "test_commands": [
+    {
+      "command": "gradlew.bat :conformance:abstractMachineTest --console=plain",
+      "result": "passed; 8 tests executed"
+    },
+    {
+      "command": "gradlew.bat check --console=plain",
+      "result": "passed; 18 conformance tests executed; other unchanged module tests up-to-date"
+    }
+  ],
+  "laboratory_source_sha256": {
+    "conformance/build.gradle.kts": "3ccc5d09ade84f4a2097f5980dfb4f1824cf73c6458599a09002c33d860ad395",
+    "conformance/src/abstractMachine/kotlin/io/brule/tasking/experiment/AbstractMachineTest.kt": "635d40d84c923a261439050e9ea5adc226d4d161a90a11e5a1396025b7b9ecbc",
+    "conformance/src/abstractMachine/kotlin/io/brule/tasking/experiment/FixedMachine.kt": "5681ff6c42254bd07721b621625ce26d4bad19b5d7f747e515ed381a49c86312"
+  },
+  "production_source_sha256": {
+    "core/src/main/kotlin/io/brule/tasking/core/Canonical.kt": "6dc1554d010be5b3698c946e72be421fb438c73a31259539708c23ec89440356",
+    "core/src/main/kotlin/io/brule/tasking/core/Dependency.kt": "7fd6c9fb45ce43aa0bbfa0305e5e90e8f5d7d941ff66d6ebe98ccb67c55d6a8b",
+    "core/src/main/kotlin/io/brule/tasking/core/DraftLifecycle.kt": "5fafb15273ab6f069a873ff14102807b0dca622c21e205c3a423a195a798b460",
+    "core/src/main/kotlin/io/brule/tasking/core/DraftRecord.kt": "70820f5dc429fa3cbdec3a608364131b337259d9fa6a8174458130ac4e434e46",
+    "core/src/main/kotlin/io/brule/tasking/core/DraftUniverse.kt": "a5aa28a71b33b63263033eed9ba576c4a4f592570e85e98b28238533dd37a30b",
+    "core/src/main/kotlin/io/brule/tasking/core/HistoricalImport.kt": "6efd6a3670a1a1dadb2ac4d8cb0b82974ad6b1b855983abd0e037b271972c2fe",
+    "core/src/main/kotlin/io/brule/tasking/core/HistoryCodec.kt": "6abbe55738f21a639e861c7db72db89c581688afb28416a3498251bbaca2e8c0",
+    "core/src/main/kotlin/io/brule/tasking/core/Identities.kt": "34397ec0f063c9d48cfe38344597ce9d85ebbaba2164182a58d0ad5ea28d9587",
+    "core/src/main/kotlin/io/brule/tasking/core/ImportManifest.kt": "8f28ab5e69e4b41283111ebaaed6b29819eb42e5748bd91c541e4653b2cfc746",
+    "core/src/main/kotlin/io/brule/tasking/core/NativeCodec.kt": "4bc918cfa5ae4d002e7f49a5b17e911ebe64ea68d5bfe42814588160bcfd9b42",
+    "core/src/main/kotlin/io/brule/tasking/core/PlanningRecord.kt": "ee0826456bb5cced7f005daeb699a27fd8bbf92e05360e3a7942184a6f230568",
+    "core/src/main/kotlin/io/brule/tasking/core/SemanticMarkdown.kt": "67abcb5649aeedeb5bc43b6f541a42a1574b2588b7d10aaa6512b2c84e3f37b4",
+    "core/src/main/kotlin/io/brule/tasking/core/TaskHistory.kt": "1812ec0578c8b922c732939296eabf33210d34e63df1f8d22a8266537421e232",
+    "core/src/main/kotlin/io/brule/tasking/core/TaskLedger.kt": "2f90ee06cac0cf5e9fa90fe3edfa91682bfa64906f648ed6d959504d8abe5729",
+    "core/src/main/kotlin/io/brule/tasking/core/Value.kt": "7241c3d77dd478d7f539c14eecb0f8423f5ea3607558ba057b7c02a390fa6bd9",
+    "core/src/main/kotlin/io/brule/tasking/core/YamlValues.kt": "236c6bd857147d6f4b63aa410eb5ddac0890a3a15c0a62dd5304808ad400beff",
+    "repository/src/main/kotlin/io/brule/tasking/repository/Bootstrap.kt": "59e2ff8c140cfa75345a2609f2bbca73e73b77ec64c9345b34866aec40158537",
+    "repository/src/main/kotlin/io/brule/tasking/repository/FileTaskLedger.kt": "7c884a20f77751517859fa5ffacb2684db45d66fdf3853213374cfda3b0d037d",
+    "repository/src/main/kotlin/io/brule/tasking/repository/NativeFiles.kt": "3626b9c41d7984c3627ce2e59690feb0d3066afe94bb1fbfaff4800253e68d16",
+    "compatibility/src/main/kotlin/io/brule/tasking/compatibility/FantastiktImport.kt": "744a865529d731e9d8e2d351c04a19a866ef496fdec45185067ab7ffa9e50a5f",
+    "compatibility/src/main/kotlin/io/brule/tasking/compatibility/HistoricalImport.kt": "5d0c8ba0c830b1243afce221d7d41336e7f74cca1a1cf92aea5837aa596b8a11",
+    "compatibility/src/main/kotlin/io/brule/tasking/compatibility/SemanticSnapshot.kt": "33827a58ecf607755f4b00aebaced31e713cf2dc7b85ecaa6414dd49363a44a9",
+    "compatibility/src/main/kotlin/io/brule/workflow/cli/RepositoryCommand.kt": "e59a338d41c2e5feafaa641da8ec25b89e5be2025f9d9f51b73c856cd104b5f5",
+    "compatibility/src/main/kotlin/io/brule/workflow/cli/TaskCtl.kt": "6cbf60b6c38425011cd2012d1e03a0017db0a171d764fa1285ebf5be52102db2",
+    "compatibility/src/main/kotlin/io/brule/workflow/diagnostics/Diagnostic.kt": "cd06e60b860b3a376b154559ce714e56bed7d50f5093f2c9ef63c343baecb14f",
+    "compatibility/src/main/kotlin/io/brule/workflow/document/FrontMatter.kt": "19bdc3fd988e21e28d2027d5e9a0d20a6dd28436ace8a682b766bfe96a8c5998",
+    "compatibility/src/main/kotlin/io/brule/workflow/document/MarkdownDocument.kt": "dd9192bfe270b63c16a07d297bef31ab44fff1e5a6e8de5687ec0a495ba8c50e",
+    "compatibility/src/main/kotlin/io/brule/workflow/document/TypedFields.kt": "3ea5f198c9234f2015c9c988feae93736beb222837e9118e0f42a4842363de18",
+    "compatibility/src/main/kotlin/io/brule/workflow/io/AtomicTextFile.kt": "94b297359d8507677bd403a2932f90f295a191b1b0cc5f73447f57ccbc5cbd70",
+    "compatibility/src/main/kotlin/io/brule/workflow/io/RepositoryLayout.kt": "dcd558e4aad7f67c74bfd6256c1ef6b3a4788eb712ee7d3a1a040add546bef9c",
+    "compatibility/src/main/kotlin/io/brule/workflow/model/References.kt": "09a72a3c8e8933445654eec74911276e09a27641750bbf2ed0448aae8b5bd207",
+    "compatibility/src/main/kotlin/io/brule/workflow/task/ClosureReceipt.kt": "2db109ba44ce6be58c4098ecd3f2c76f71cd2addcdde15960932a8b6697d2451",
+    "compatibility/src/main/kotlin/io/brule/workflow/task/ClosureRequest.kt": "01a63eab0b08a5abe7038d80af24a97b5609c8ac439eb108c736f820c2a10010",
+    "compatibility/src/main/kotlin/io/brule/workflow/task/LedgerClosureTransaction.kt": "ef1a3955a724a36115b04246d33871dc9414d763da1dcf4ba51a0a647222ed60",
+    "compatibility/src/main/kotlin/io/brule/workflow/task/RecordSnapshot.kt": "6455869648976a898b40e0586c515c692c1cbf61498fe77fdb4b32ab594b0a8a",
+    "compatibility/src/main/kotlin/io/brule/workflow/task/RoadmapClosureService.kt": "e5c21b46b0334d9869248bcc62566b722714746d8c77413903b0ebfbdd6210f6",
+    "compatibility/src/main/kotlin/io/brule/workflow/task/TaskClosureService.kt": "4e64d9173ffbc8d164739c184009028d4b09a066f4622eeb9edcbf008ccf603e",
+    "compatibility/src/main/kotlin/io/brule/workflow/task/TaskGraph.kt": "b834539f8c829b3e9484e2b10ce6c76c7c50c58be5d8fa5e992f4d4b9dad8437",
+    "compatibility/src/main/kotlin/io/brule/workflow/task/TaskLedger.kt": "3a2ce247a9ee0d8a9e7226d2e3073d7553746893dcedca696ad123da2029ca03",
+    "compatibility/src/main/kotlin/io/brule/workflow/task/TaskModel.kt": "2104ea8b5bc464a1bf3ebb52f3bed1b6c65049c4a78fbc32e22b38ef08bb03d0",
+    "compatibility/src/main/kotlin/io/brule/workflow/task/TaskRecordFileName.kt": "ef074f97863aa1e26ee1bca9d60dbaba6b4f7323e80566213152110f03e581c5",
+    "cli/src/main/kotlin/io/brule/tasking/cli/ImportCommands.kt": "87e960662c446a59cc2c073938abfc379b74a261b617009e40286027a27ae2b5",
+    "cli/src/main/kotlin/io/brule/tasking/cli/Main.kt": "72d2ed2d7cfa0d6ef63b6b74d431d55b19d7fe5cec22560d8ad88ffc1def380c",
+    "cli/src/main/kotlin/io/brule/tasking/cli/NativeCommands.kt": "0464b37a9148ce5b3ed907b32e34fdc83b3dcabaf2867f647f0a28549bafb786",
+    "cli/src/main/kotlin/io/brule/tasking/cli/ToolRuntime.kt": "28c2bebd82a1dc1fd6b6c5b931a759b9042c391a30490519a0d0b8669048b8d9"
+  },
+  "evidence_sha256": {
+    "branch-heavy.json": "eb1f69c182a9601bf2162d31d756243f79083f8234a62e8bc5270c3c1c8cacc2",
+    "conformance-tests.json": "81bffc662f9fcfe0e149cbc48e98e1ac80f72812b10ac884219c62182d131c07",
+    "cycle-multifrontier.json": "7ba92e1c174607eb7875090aca63ddc9140cdee286dc5c1f2f66399bdd6527c2",
+    "laboratory-tests.json": "621c0d12d4bbaa679b69dbf16935cde23dc9bef934c59c3415361d7a04f078cb",
+    "optional-authority.json": "9de8fff5c935520098c84375f3c4a7e42039febf9cfa4b30cc5d4ae9fdd167bf",
+    "required-provider.json": "47802980512625c1a0c800b68540a158c80326c3ab7a57f3f1ed56c7682d3474",
+    "resume-cas.json": "d5ad7393f5cc1cc2e377c8fa901e99131fc47978ac089e79afcfc2a0046fe285",
+    "storage-boundary.json": "7dd953a4f516e00085acf1faad0efa751b0154e412143d60bb2f36de3ebbd257",
+    "transfer.json": "85ef09fed11dc90b3a03375925ad1de645e06d86b0419f21f65f7832db65cc1d"
+  },
+  "capture_note": "Evidence copied byte-for-byte from the successful test outputs. XML test results projected to JSON. Receipt timestamps vary on rerun. This manifest is a local research record, not a signed release attestation.",
+  "source_hash_encoding": "UTF-8 source bytes with CRLF normalized to LF; evidence hashes use exact file bytes."
+}

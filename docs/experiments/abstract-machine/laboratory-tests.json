@@ -1,0 +1,54 @@
+{
+  "suite": {
+    "name": "io.brule.tasking.experiment.AbstractMachineTest",
+    "tests": "8",
+    "skipped": "0",
+    "failures": "0",
+    "errors": "0",
+    "timestamp": "2026-09-07T18:48:48.814Z",
+    "hostname": "WORKSTATION",
+    "time": "102.237"
+  },
+  "tests": [
+    {
+      "name": "current decoder rejects a valid natural literal despite additional storage()",
+      "classname": "io.brule.tasking.experiment.AbstractMachineTest",
+      "time": "0.589"
+    },
+    {
+      "name": "frame decoder rejects negative fractional and unknown instruction payloads()",
+      "classname": "io.brule.tasking.experiment.AbstractMachineTest",
+      "time": "0.006"
+    },
+    {
+      "name": "required namespace without provider blocks execution and closure()",
+      "classname": "io.brule.tasking.experiment.AbstractMachineTest",
+      "time": "0.219"
+    },
+    {
+      "name": "cycle rejection and multiple frontier require no hidden scheduler()",
+      "classname": "io.brule.tasking.experiment.AbstractMachineTest",
+      "time": "0.285"
+    },
+    {
+      "name": "prepared successor survives process exit and stale CAS cannot duplicate arithmetic()",
+      "classname": "io.brule.tasking.experiment.AbstractMachineTest",
+      "time": "3.446"
+    },
+    {
+      "name": "transfer unrolls twelve instruction instances across fresh processes()",
+      "classname": "io.brule.tasking.experiment.AbstractMachineTest",
+      "time": "33.235"
+    },
+    {
+      "name": "optional payload is revision bound but not contract bound or a core arithmetic proof()",
+      "classname": "io.brule.tasking.experiment.AbstractMachineTest",
+      "time": "0.384"
+    },
+    {
+      "name": "branch heavy machine exercises both registers and both DECJZ outcomes()",
+      "classname": "io.brule.tasking.experiment.AbstractMachineTest",
+      "time": "64.053"
+    }
+  ]
+}

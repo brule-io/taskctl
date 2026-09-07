@@ -1,0 +1,1 @@
+{"valid_natural_literal_digits":1000001,"document_characters":1000567,"document_sha256":"64194277de9cff412848391bab9fce7036504f74d6931a6d3ff1b389205af9ea","error":"The incoming YAML document exceeds the limit: 1000000 code points.","read_mutated_files":false}

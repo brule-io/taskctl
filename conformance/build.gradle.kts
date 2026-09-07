@@ -21,3 +21,19 @@ tasks.register<Jar>("proofJar") {
     archiveClassifier.set("proof")
     from(sourceSets.test.get().output.classesDirs)
 }
+
+// Opt-in research laboratory; not part of the released JVM/native parity corpus.
+val abstractMachine = sourceSets.create("abstractMachine")
+configurations[abstractMachine.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
+configurations[abstractMachine.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
+tasks.register<Test>("abstractMachineTest") {
+    description = "Falsification specimens for the fixed two-counter execution unit"
+    group = "verification"
+    testClassesDirs = abstractMachine.output.classesDirs
+    classpath = abstractMachine.runtimeClasspath
+    useJUnitPlatform()
+    systemProperty("tasking.root", rootProject.projectDir.absolutePath)
+    systemProperty("tasking.machine.classpath", abstractMachine.runtimeClasspath.asPath)
+    systemProperty("tasking.machine.output", layout.buildDirectory.dir("abstract-machine-evidence").get().asFile.absolutePath)
+    outputs.dir(layout.buildDirectory.dir("abstract-machine-evidence"))
+}

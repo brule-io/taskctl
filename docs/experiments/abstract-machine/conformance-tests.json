@@ -1,0 +1,162 @@
+[
+  {
+    "suite": {
+      "name": "io.brule.tasking.conformance.ArchitecturePolicyTest",
+      "tests": "3",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-09-07T18:50:45.229Z",
+      "hostname": "WORKSTATION",
+      "time": "1.509"
+    },
+    "tests": [
+      {
+        "name": "repository has no untyped protocol state or unchecked cast escapes()",
+        "classname": "io.brule.tasking.conformance.ArchitecturePolicyTest",
+        "time": "1.396"
+      },
+      {
+        "name": "policy detects generic nullable qualified and aliased escapes without flagging prose()",
+        "classname": "io.brule.tasking.conformance.ArchitecturePolicyTest",
+        "time": "0.048"
+      },
+      {
+        "name": "policy rejects public nominal identity constructors()",
+        "classname": "io.brule.tasking.conformance.ArchitecturePolicyTest",
+        "time": "0.051"
+      }
+    ]
+  },
+  {
+    "suite": {
+      "name": "io.brule.tasking.conformance.FantastiktImportConformanceTest",
+      "tests": "5",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-09-07T18:50:46.745Z",
+      "hostname": "WORKSTATION",
+      "time": "8.395"
+    },
+    "tests": [
+      {
+        "name": "file bootstrap persists imported history and refuses overwrite without source mutation()",
+        "classname": "io.brule.tasking.conformance.FantastiktImportConformanceTest",
+        "time": "3.856"
+      },
+      {
+        "name": "realization prerequisites lower to causal edges without planning ownership()",
+        "classname": "io.brule.tasking.conformance.FantastiktImportConformanceTest",
+        "time": "0.209"
+      },
+      {
+        "name": "import preserves closure without fabricating receipts and review is a separate transition()",
+        "classname": "io.brule.tasking.conformance.FantastiktImportConformanceTest",
+        "time": "3.744"
+      },
+      {
+        "name": "real source preserves forty identities historical bytes and orthogonal planning()",
+        "classname": "io.brule.tasking.conformance.FantastiktImportConformanceTest",
+        "time": "0.233"
+      },
+      {
+        "name": "drift forged classification and mismatched reviews are rejected()",
+        "classname": "io.brule.tasking.conformance.FantastiktImportConformanceTest",
+        "time": "0.352"
+      }
+    ]
+  },
+  {
+    "suite": {
+      "name": "io.brule.tasking.conformance.HistoricalConformanceTest",
+      "tests": "3",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-09-07T18:50:55.141Z",
+      "hostname": "WORKSTATION",
+      "time": "0.037"
+    },
+    "tests": [
+      {
+        "name": "unchecked historical acceptance does not erase closure or create native evidence()",
+        "classname": "io.brule.tasking.conformance.HistoricalConformanceTest",
+        "time": "0.022"
+      },
+      {
+        "name": "conversion provenance changes manifest identity without altering semantic contract()",
+        "classname": "io.brule.tasking.conformance.HistoricalConformanceTest",
+        "time": "0.006"
+      },
+      {
+        "name": "DAEMON complete filename identity retains duplicate numeric prefixes()",
+        "classname": "io.brule.tasking.conformance.HistoricalConformanceTest",
+        "time": "0.008"
+      }
+    ]
+  },
+  {
+    "suite": {
+      "name": "io.brule.tasking.conformance.PlanningHistoryTest",
+      "tests": "4",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-09-07T18:50:55.179Z",
+      "hostname": "WORKSTATION",
+      "time": "0.283"
+    },
+    "tests": [
+      {
+        "name": "Geist roadmap contains tasks associated with two separate epic scopes()",
+        "classname": "io.brule.tasking.conformance.PlanningHistoryTest",
+        "time": "0.01"
+      },
+      {
+        "name": "observed repositories include both many-roadmap and roadmap-free task universes()",
+        "classname": "io.brule.tasking.conformance.PlanningHistoryTest",
+        "time": "0.26"
+      },
+      {
+        "name": "historical roadmap overlap and active-lane exclusivity are distinguishable()",
+        "classname": "io.brule.tasking.conformance.PlanningHistoryTest",
+        "time": "0.006"
+      },
+      {
+        "name": "every planning witness binds exact source revision and source bytes()",
+        "classname": "io.brule.tasking.conformance.PlanningHistoryTest",
+        "time": "0.007"
+      }
+    ]
+  },
+  {
+    "suite": {
+      "name": "io.brule.tasking.conformance.ReadBoundaryTest",
+      "tests": "3",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-09-07T18:50:55.463Z",
+      "hostname": "WORKSTATION",
+      "time": "0.029"
+    },
+    "tests": [
+      {
+        "name": "read waits for a cooperating writer without making consumer writes()",
+        "classname": "io.brule.tasking.conformance.ReadBoundaryTest",
+        "time": "0.014"
+      },
+      {
+        "name": "empty consumer inspection creates neither ledger nor lock()",
+        "classname": "io.brule.tasking.conformance.ReadBoundaryTest",
+        "time": "0.003"
+      },
+      {
+        "name": "read rechecks under existing lock when first writer appeared()",
+        "classname": "io.brule.tasking.conformance.ReadBoundaryTest",
+        "time": "0.01"
+      }
+    ]
+  }
+]
