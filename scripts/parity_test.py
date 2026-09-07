@@ -122,6 +122,19 @@ def main():
         task_path.write_text('protocol: tasking/core-draft-1\nid: TASK.api\ntitle: Durable API 🧬\nstate: open\nintent: Persist results.\nrequirements: [Durable]\nacceptance: [Restart succeeds.]\n'+opaque,encoding='utf-8',newline='\n')
         shown=json_pair('show exact semantic contract',['show','TASK.api'])['result']
         evidence=dict(protocol='taskctl.receipt/alpha1',classification='actor-assertion',task='TASK.api',contract=shown['contract_digest'],actor='parity-test',recorded_at='2026-09-05T00:00:00Z',evidence={'integration':'Caller assertion; taskctl did not run a test.'})
+        def occurrence(value):
+            versions={'taskctl.receipt/alpha1':'taskctl.receipt/alpha2','taskctl.reconciliation/1':'taskctl.reconciliation/2','taskctl.import-review/1':'taskctl.import-review/2'}
+            return {k:v for k,v in value.items() if k!='recorded_at'}|dict(protocol=versions[value['protocol']],occurred_at='2026-09-07T16:15:00.123456789-07:00')
+        modern=occurrence(evidence)
+        json_pair('verify typed occurrence receipt',['verify','TASK.api','--receipt',write('time-receipt.json',modern)])
+        json_pair('verify arbitrary legacy recorded text',['verify','TASK.api','--receipt',write('time-receipt.json',evidence|dict(recorded_at='  after lunch\nunknown offset  '))])
+        for label,change in [('ambiguous',dict(occurred_at='2026-09-07T23:15:00')),('invalid date',dict(occurred_at='2026-02-29T23:15:00Z')),
+                             ('lossy precision',dict(occurred_at='2026-09-07T23:15:00.1234567890Z')),('unknown offset',dict(occurred_at='2026-09-07T23:15:00-00:00')),
+                             ('spoofed acceptance',dict(accepted_at='2026-09-07T23:16:00Z')),('mixed legacy',dict(recorded_at='yesterday'))]:
+            bad_time=write('time-receipt.json',modern|change)
+            json_pair('reject receipt '+label,['verify','TASK.api','--receipt',bad_time],code=2)
+        bad_time=write('time-receipt.json',modern|dict(accepted_at='2026-09-07T23:16:00Z'))
+        json_pair('reject close with actor acceptance time',['close','TASK.api','--receipt',bad_time,'--expect-revision',shown['revision']],code=2)
         receipt=write('receipt.json',evidence)
         json_pair('verify evidence',['verify','TASK.api','--receipt',receipt])
         wrong=write('wrong.json',evidence|dict(contract='sha256:'+'0'*64))
@@ -149,7 +162,7 @@ def main():
         json_pair('revision seed',['seed','--file',revision_seed,'--expect-revision',current['revision']],mutation=True)
         for task in (d,e2,f):
             shown=json_pair('revision show '+task['id'],['show',task['id']])['result']
-            asserted=write('revision-receipt.json',evidence|dict(task=task['id'],contract=shown['contract_digest']))
+            asserted=write('revision-receipt.json',(modern if task==d else evidence)|dict(task=task['id'],contract=shown['contract_digest']))
             json_pair('revision close '+task['id'],['close',task['id'],'--receipt',asserted,'--expect-revision',shown['revision']],mutation=True)
         receipts={p.name:p.read_bytes() for p in (repo/'.agents/receipts').iterdir()}
         shown=json_pair('closed revision before edit',['show',d['id']])['result']
@@ -164,11 +177,17 @@ def main():
         json_pair('closed immutable history',['history',d['id']])
         json_pair('reconcile without explicit review',['reconcile',d['id']],code=2)
         plan=json_pair('review current inputs',['reconcile',d['id'],'--plan'])['result']
-        def review_file(plan,outcome='revalidated',evidence_data=None):
-            return write('review.json',dict(protocol='taskctl.reconciliation/1',classification='actor-assertion',
+        def review_file(plan,outcome='revalidated',evidence_data=None,typed_time=False):
+            value=dict(protocol='taskctl.reconciliation/1',classification='actor-assertion',
                 task=plan['task'],reviewed_head=plan['reviewed_head'],observations=plan['observations'],outcome=outcome,
                 actor='parity-test',recorded_at='2026-09-06T00:00:00Z',rationale='Reviewed against current inputs.',
-                evidence={'integration':'Explicit caller revalidation assertion.'} if evidence_data is None else evidence_data,successor=None))
+                evidence={'integration':'Explicit caller revalidation assertion.'} if evidence_data is None else evidence_data,successor=None)
+            return write('review.json',occurrence(value) if typed_time else value)
+        review=review_file(plan,typed_time=True)
+        valid_review=json.loads(review.read_text(encoding='utf-8'))
+        for label,change in [('malformed occurrence',dict(occurred_at='yesterday')),('spoofed acceptance',dict(accepted_at='2026-09-07T23:16:00Z'))]:
+            write('review.json',valid_review|change)
+            json_pair('reject review '+label,['reconcile',d['id'],'--file',review,'--expect-revision',plan['revision']],code=2)
         missing=review_file(plan,evidence_data={})
         json_pair('reject evidence-free revalidation',['reconcile',d['id'],'--file',missing,'--expect-revision',plan['revision']],code=2)
         review=review_file(plan,outcome='unresolved')
@@ -179,7 +198,7 @@ def main():
         json_pair('reject review over unresolved upstream',['reconcile',e2['id'],'--file',blocked,'--expect-revision',downstream_plan['revision']],code=2)
         for task in (d,e2,f):
             plan=json_pair('reconcile inputs '+task['id'],['reconcile',task['id'],'--plan'])['result']
-            review=review_file(plan)
+            review=review_file(plan,typed_time=task==d)
             json_pair('review mutation plan '+task['id'],['reconcile',task['id'],'--file',review,'--expect-revision',plan['revision'],'--plan'])
             json_pair('evidenced reconciliation '+task['id'],['reconcile',task['id'],'--file',review,'--expect-revision',plan['revision']],mutation=True)
             json_pair('stale reconciliation CAS '+task['id'],['reconcile',task['id'],'--file',review,'--expect-revision',plan['revision']],code=4)
@@ -188,6 +207,9 @@ def main():
                 assert f['id'] in {t['task'] for t in remains}
         assert not json_pair('all revised tasks current',['affected'])['result']['tasks']
         assert receipts=={p.name:p.read_bytes() for p in (repo/'.agents/receipts').iterdir()}
+        typed_history=json_pair('typed evidence and review survive cold history',['history',d['id']])['result']
+        assert any(item['protocol']=='taskctl.receipt/alpha2' and item['occurred_at']==modern['occurred_at'] for item in typed_history['receipts'])
+        assert any(item['value']['review'] and item['value']['review']['protocol']=='taskctl.reconciliation/2' for item in typed_history['revisions'])
         current=json_pair('revision doctor after reconciliations',['doctor'])['result']
         bad=write('dangling.json',dict(contract='taskctl.seed/alpha1',tasks=[a|dict(id='TASK.dangling',requires=['TASK.absent'])]))
         json_pair('reject dangling dependency',['seed','--file',bad,'--expect-revision',current['revision']],code=2)
@@ -246,7 +268,15 @@ def main():
         write('import-review.json',admission|dict(manifest='sha256:'+'0'*64))
         json_pair('import wrong manifest review refusal',importing,code=2)
         write('import-review.json',admission)
+        current_admission=occurrence(admission)
+        for label,change in [('malformed occurrence',dict(occurred_at='after lunch')),('spoofed acceptance',dict(accepted_at='2026-09-07T23:16:00Z'))]:
+            write('import-review.json',current_admission|change)
+            json_pair('reject import review '+label,importing,code=2)
+        write('import-review.json',current_admission)
+        json_pair('typed import review bounded write plan',[*importing,'--plan'])
         json_pair('reviewed ancestral import',importing,mutation=True,initialization=True)
+        stored_admission=json.loads(next((repo/'.agents/imports').glob('*.json')).read_text(encoding='utf-8'))
+        assert stored_admission['review']==current_admission and stored_admission['manifest']['source_revision']==origin['revision']
         assert source_image()==source_before
         assert (repo/'source.txt').read_text(encoding='utf-8')=='Existing product source.\n'
         assert (repo/'AGENTS.md').read_text(encoding='utf-8')=='Preserved contributor authority.\n'

@@ -19,19 +19,20 @@ object HistoryCodec {
             value.nullableText("revision")?.let(TaskRevisionId::parseOrThrow), value.nullableText("inputs")?.let(InputDigest::parseOrThrow))
     }
     fun review(value: Reconciliation): ObjectValue = obj(
-        "protocol" to StringValue("taskctl.reconciliation/1"), "classification" to StringValue("actor-assertion"),
+        "protocol" to StringValue(value.time.version.protocol("taskctl.reconciliation/1", "taskctl.reconciliation/2")), "classification" to StringValue("actor-assertion"),
         "task" to StringValue(value.task.value), "reviewed_head" to StringValue(value.reviewedHead.value),
         "outcome" to StringValue(value.outcome.name.lowercase()), "observations" to ArrayValue(value.observations.sortedBy { it.upstream }.map(::dependency)),
-        "actor" to StringValue(value.actor), "recorded_at" to StringValue(value.recordedAt),
+        "actor" to StringValue(value.actor), value.time.version.field to StringValue(value.time.value),
         "rationale" to StringValue(value.rationale), "evidence" to stringMap(value.evidence), "successor" to optionalString(value.successor?.value),
     )
     fun decodeReview(value: ObjectValue): Reconciliation {
-        value.exact("protocol", "classification", "task", "reviewed_head", "outcome", "observations", "actor", "recorded_at", "rationale", "evidence", "successor")
-        require(value.requiredString("protocol") == "taskctl.reconciliation/1" && value.requiredString("classification") == "actor-assertion") { "unsupported reconciliation" }
+        val time = AssertionTimeVersion.select(value.requiredString("protocol"), "taskctl.reconciliation/1", "taskctl.reconciliation/2")
+        value.exact("protocol", "classification", "task", "reviewed_head", "outcome", "observations", "actor", time.field, "rationale", "evidence", "successor")
+        require(value.requiredString("classification") == "actor-assertion") { "unsupported reconciliation" }
         return Reconciliation(TaskId.parseOrThrow(value.requiredString("task")), TaskRevisionId.parseOrThrow(value.requiredString("reviewed_head")),
             ReviewOutcome.entries.singleOrNull { it.name.lowercase() == value.requiredString("outcome") } ?: error("unknown reconciliation outcome"),
             value.requiredArray("observations").map { decodeDependency(it as? ObjectValue ?: error("observation object required")) },
-            value.requiredString("actor"), value.requiredString("recorded_at"), value.requiredString("rationale"),
+            value.requiredString("actor"), time.decode(value), value.requiredString("rationale"),
             value.objectAt("evidence").fields.mapValues { (it.value as? StringValue)?.value ?: error("evidence string required") },
             value.nullableText("successor")?.let(TaskId::parseOrThrow))
     }

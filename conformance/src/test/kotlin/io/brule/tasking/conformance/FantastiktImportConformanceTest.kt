@@ -24,7 +24,24 @@ class FantastiktImportConformanceTest {
         return root
     }
     private fun inspect(root: Path) = FantastiktImport.inspect(root, "fantastikt", "b932b0eecbc2b6053b3f2235ad2963fd31fbb4c4")
-    private fun admission(manifest: ImportManifest) = ImportAdmission(manifest, ImportReview(manifest.id, "test reviewer", "2026-09-06T00:00:00Z", "Reviewed conversion and retained historical classification."))
+    private fun admission(manifest: ImportManifest) = ImportAdmission(manifest, ImportReview(manifest.id, "test reviewer", LegacyRecordedAt.parseOrThrow("2026-09-06T00:00:00Z"), "Reviewed conversion and retained historical classification."))
+    @Test fun `new import review time preserves exact source manifest and historical classification`() {
+        val manifest = inspect(source())
+        val legacy = admission(manifest)
+        val updated = legacy.copy(review = legacy.review.copy(time = OccurredAt.parseOrThrow("2026-09-07T23:15:00.123456789Z")))
+        assertEquals(legacy.manifest.id, updated.manifest.id)
+        assertEquals(legacy.manifest, updated.manifest)
+        val encoded = ImportCodec.admission(updated)
+        assertEquals(updated, ImportCodec.decodeAdmission(encoded))
+        assertEquals("taskctl.import-review/2", (encoded.fields.getValue("review") as ObjectValue).requiredString("protocol"))
+        val imported = LedgerTransitions.evolve(empty(), Transition.ImportRecords(updated))
+        assertEquals(updated, imported.imports.single())
+        assertTrue(imported.receipts.isEmpty())
+        val oldImported = LedgerTransitions.evolve(empty(), Transition.ImportRecords(legacy))
+        assertEquals(oldImported.currency(), imported.currency())
+        assertTrue(imported.frontier().tasks.isEmpty())
+    }
+
     private fun empty() = LedgerSnapshot("target", Revision.initial(), DraftUniverse(emptyList()), history = TaskHistory(Revision.initial()))
     private fun inventory(root: Path) = Files.walk(root).use { paths -> paths.filter { Files.isRegularFile(it) }.toList().associate {
         root.relativize(it).toString() to Pair(Canonical.sha256(Files.readAllBytes(it)), Files.getLastModifiedTime(it))
@@ -32,7 +49,7 @@ class FantastiktImportConformanceTest {
     private fun review(snapshot: LedgerSnapshot, task: DraftRecord): Reconciliation {
         val observations = CurrencyEvaluation.observations(snapshot)
         return Reconciliation(task.id, snapshot.history!!.heads.getValue(task.id), ReviewOutcome.REVALIDATED,
-            task.requires.sorted().map { observations.getValue(it) }, "test reviewer", "2026-09-06T00:00:00Z",
+            task.requires.sorted().map { observations.getValue(it) }, "test reviewer", LegacyRecordedAt.parseOrThrow("2026-09-06T00:00:00Z"),
             "Reviewed projection and current inputs; original closure remains historical.", mapOf("mapping" to "Explicit test assertion about contract/input correspondence."))
     }
     @Test fun `real source preserves forty identities historical bytes and orthogonal planning`() {

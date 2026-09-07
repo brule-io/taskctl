@@ -22,13 +22,13 @@ class CurrencyConformanceTest {
     private fun TaskLedger.apply(value: Transition) = apply(snapshot().revision, value)
     private fun TaskLedger.close(id: TaskId) {
         val record = requireNotNull(task(id))
-        apply(Transition.CloseTask(ClosureEvidence(Receipt(id, DraftLifecycle.contract(record), mapOf("test" to "test harness assertion")), "tester", "2026-09-06T00:00:00Z")))
+        apply(Transition.CloseTask(ClosureEvidence(Receipt(id, DraftLifecycle.contract(record), mapOf("test" to "test harness assertion")), "tester", LegacyRecordedAt.parseOrThrow("2026-09-06T00:00:00Z"))))
     }
     private fun TaskLedger.review(id: TaskId, outcome: ReviewOutcome = ReviewOutcome.REVALIDATED): Reconciliation {
         val snapshot = snapshot()
         val observations = CurrencyEvaluation.observations(snapshot)
         return Reconciliation(id, requireNotNull(snapshot.history).heads.getValue(id), outcome,
-            requireNotNull(task(id)).requires.sorted().map { observations.getValue(it) }, "tester", "2026-09-06T00:00:00Z", "Reviewed changed inputs.", mapOf("test" to "Revalidation passed."))
+            requireNotNull(task(id)).requires.sorted().map { observations.getValue(it) }, "tester", LegacyRecordedAt.parseOrThrow("2026-09-06T00:00:00Z"), "Reviewed changed inputs.", mapOf("test" to "Revalidation passed."))
     }
     @Test fun `transitive invalidation survives intermediate reconciliation and preserves closed history`() {
         val ledger: TaskLedger = MemoryLedger()

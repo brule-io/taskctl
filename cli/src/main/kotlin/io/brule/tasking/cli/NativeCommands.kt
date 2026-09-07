@@ -187,7 +187,7 @@ internal object NativeCommands {
                     "observations" to ArrayValue(task.requires.sorted().map { HistoryCodec.dependency(observations.getValue(it)) }),
                     "required_evidence" to strings(task.verification),
                     "outcomes" to strings(ReviewOutcome.entries.map { it.name.lowercase() }),
-                    "instructions" to StringValue("Submit taskctl.reconciliation/1 actor-assertion with these exact inputs, outcome, actor, recorded_at, rationale, evidence and successor (null except successor outcome). No review has been recorded."))
+                    "instructions" to StringValue("Submit taskctl.reconciliation/2 actor-assertion with these exact inputs, outcome, actor, occurred_at (explicit offset timestamp), rationale, evidence and successor (null except successor outcome). Legacy /1 recorded_at remains historical text. No review has been recorded."))
             }
             "show" -> {
                 val task = universe.tasks.singleOrNull { it.id == TaskId.parseOrThrow(args.positional.single()) } ?: error("unknown task: ${args.positional.single()}")

@@ -23,7 +23,7 @@ class TaskLedgerSeamTest {
         assertEquals(listOf(TaskId.parseOrThrow("TASK.a")), ledger.frontier().tasks)
         assertTrue(ledger.frontier(FrontierQuery(roadmap = RoadmapId.parseOrThrow("ROADMAP.r"))).tasks.isEmpty())
         assertFailsWith<RevisionConflict> { ledger.apply(initial, Transition.AddRecords()) }
-        ledger.apply(added.revision, Transition.CloseTask(ClosureEvidence(Receipt(TaskId.parseOrThrow("TASK.a"), DraftLifecycle.contract(a), mapOf("test" to "passed")), "actor", "2026-09-05T00:00:00Z")))
+        ledger.apply(added.revision, Transition.CloseTask(ClosureEvidence(Receipt(TaskId.parseOrThrow("TASK.a"), DraftLifecycle.contract(a), mapOf("test" to "passed")), "actor", LegacyRecordedAt.parseOrThrow("2026-09-05T00:00:00Z"))))
         assertEquals(listOf(TaskId.parseOrThrow("TASK.b")), ledger.frontier(FrontierQuery(roadmap = RoadmapId.parseOrThrow("ROADMAP.r"))).tasks)
     }
     @Test fun `observed dependency contracts can fence readiness and closure independently of identity`() {

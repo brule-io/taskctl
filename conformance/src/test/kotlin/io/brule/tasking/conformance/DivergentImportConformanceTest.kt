@@ -34,7 +34,7 @@ class DivergentImportConformanceTest {
         root.relativize(it).toString() to Pair(Canonical.sha256(Files.readAllBytes(it)), Files.getLastModifiedTime(it))
     } }
     private fun admission(manifest: ImportManifest) = ImportAdmission(manifest, ImportReview(manifest.id, "specimen reviewer",
-        "2026-09-07T00:00:00Z", "Reviewed the fictional bounded mapping; no historical test execution is claimed."))
+        LegacyRecordedAt.parseOrThrow("2026-09-07T00:00:00Z"), "Reviewed the fictional bounded mapping; no historical test execution is claimed."))
     private fun bootstrap(manifest: ImportManifest): FileTaskLedger {
         val distribution = directory.resolve("distribution/bootstrap")
         Files.createDirectories(distribution)
@@ -58,7 +58,7 @@ class DivergentImportConformanceTest {
         val record = snapshot.universe.tasks.single { it.id == task }
         val observations = CurrencyEvaluation.observations(snapshot)
         val review = Reconciliation(task, snapshot.history!!.heads.getValue(task), ReviewOutcome.REVALIDATED,
-            record.requires.sorted().map { observations.getValue(it) }, "specimen reviewer", "2026-09-07T00:00:00Z",
+            record.requires.sorted().map { observations.getValue(it) }, "specimen reviewer", LegacyRecordedAt.parseOrThrow("2026-09-07T00:00:00Z"),
             "Explicitly reviewed current fictional contract and inputs; retained historical narrative unchanged.", mapOf("specimen" to "Bounded conformance assertion."))
         ledger.apply(snapshot.revision, Transition.ReconcileTask(review))
     }
@@ -100,7 +100,7 @@ class DivergentImportConformanceTest {
         assertEquals(listOf(id("WORK-2")), ledger.frontier().tasks)
         val current = ledger.snapshot(); val task = ledger.task(id("WORK-2"))!!
         val receipt = ClosureEvidence(Receipt(task.id, DraftLifecycle.contract(task), mapOf("specimen" to "Current fictional check verified.")),
-            "specimen reviewer", "2026-09-07T00:00:00Z")
+            "specimen reviewer", LegacyRecordedAt.parseOrThrow("2026-09-07T00:00:00Z"))
         val writesBefore = inventory(ledger.root)
         assertTrue(ledger.plan(current.revision, Transition.CloseTask(receipt)).requiredArray("writes").isNotEmpty())
         assertEquals(writesBefore, inventory(ledger.root))
