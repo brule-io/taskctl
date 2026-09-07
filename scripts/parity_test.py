@@ -93,6 +93,7 @@ def main():
         (repo/'.git').mkdir(); (repo/'.git/sentinel').write_text('No implicit Git operation.\n',encoding='utf-8')
         first=json_pair('empty doctor',['doctor'])['result']
         assert first['contract']=='taskctl.doctor/alpha1' and first['health']=='ok' and 'work' not in first
+        assert pair('healthy doctor text',['doctor']).startswith('doctor: ok\n')
         for command in ('context','snapshot','frontier','roadmap','epic'):
             inspected=json_pair('empty '+command,[command])['result']
             if command in ('context','snapshot'): assert inspected['contract']==f'taskctl.{command}/alpha1'
@@ -195,6 +196,7 @@ def main():
         json_pair('inspect unsupported feature',['doctor'])
         restricted=json_pair('blocked provider context',['context'])['result']
         assert restricted['counts']['ready']==0 and restricted['counts']['required_capabilities_unavailable']>0
+        assert pair('blocked doctor text',['doctor']).startswith('doctor: blocked\n')
         assert json_pair('blocked provider snapshot',['snapshot'])['result']['derived']['frontier']==[]
         json_pair('required provider blocks readiness',['frontier'],code=3)
         pair('diagnostic stderr exit code',['show','banana'],code=2)
@@ -354,7 +356,7 @@ def main():
         assert full['imports'][0]['manifest']['evidence_classification']=='historical-narrative-unverified'
         assert full['revision']==briefing['revision']==diagnostics['revision']
         pair('bounded context text',['context'])
-        pair('diagnostic text',['doctor'])
+        assert pair('diagnostic text',['doctor']).startswith('doctor: attention\n')
         json_pair('invalid context option',['context','--limit','unbounded'],code=2)
     result=dict(contract='taskctl.parity/alpha1',platform=system,version=native['version'],
         artifacts={kind:meta['sha256'] for kind,meta in metadata.items()},cases=checks,

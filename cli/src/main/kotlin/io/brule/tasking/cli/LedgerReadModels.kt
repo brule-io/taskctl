@@ -24,11 +24,9 @@ internal object LedgerReadModels {
         state.name.lowercase() to integer(currency.values.count { it.state == state })
     })
 
-    private fun ready(value: LedgerSnapshot, currency: Map<TaskId, TaskCurrency>): Set<TaskId> {
+    private fun ready(value: LedgerSnapshot): Set<TaskId> {
         require(value.dependencyProblems().isEmpty()) { value.dependencyProblems().joinToString("\n") }
-        return if (unavailable(value).isNotEmpty()) emptySet() else value.universe.frontier().filter {
-            value.history == null || currency.getValue(it).state == Currency.CURRENT
-        }.toSet()
+        return if (unavailable(value).isNotEmpty()) emptySet() else value.frontier().tasks.toSet()
     }
 
     fun doctor(value: LedgerSnapshot): ObjectValue {
@@ -68,7 +66,7 @@ internal object LedgerReadModels {
 
     fun context(value: LedgerSnapshot): ObjectValue {
         val currency = value.currency()
-        val ready = ready(value, currency)
+        val ready = ready(value)
         val candidates = value.universe.tasks.mapNotNull { task ->
             val category = when {
                 task.id in ready -> Category.READY
@@ -136,7 +134,7 @@ internal object LedgerReadModels {
             }),
             "history" to history, "imports" to ArrayValue(value.imports.sortedBy { it.manifest.id.value }.map(ImportCodec::admission)),
             "required_capabilities_unavailable" to strings(unavailable(value)),
-            "derived" to obj("frontier" to strings(ready(value, currency).sorted().map { it.value }),
+            "derived" to obj("frontier" to strings(ready(value).sorted().map { it.value }),
                 "currency" to ArrayValue(currency.values.sortedBy { it.task }.map(HistoryCodec::currency))),
         )
     }

@@ -215,6 +215,10 @@ internal object NativeCommands {
                 println("Revision: ${result.requiredString("revision")}")
             }
             "info" -> { println("taskctl $version (${ToolRuntime.implementation}; protocol v1 not frozen)"); result.fields.forEach { (key, value) -> println("$key: " + Json.encode(value)) } }
+            "doctor" -> {
+                println("doctor: ${result.requiredString("health")}")
+                result.fields.filterKeys { it != "health" }.forEach { (key, value) -> println("$key: " + Json.encode(value)) }
+            }
             "status", "affected" -> {
                 result.requiredArray("tasks").forEach { value ->
                     val task = value as ObjectValue

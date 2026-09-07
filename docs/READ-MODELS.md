@@ -22,6 +22,8 @@ have unavailable capabilities or affected work: doctor exits zero and reports
 `health: blocked` or `health: attention`. `valid: true` means its structural load
 succeeded, not that every task is executable. Frontier and closure still enforce
 their normal guards.
+Text output leads with `doctor: ok`, `doctor: attention` or `doctor: blocked` so
+the inspection's status is visible before the details.
 
 ## Bounded context
 

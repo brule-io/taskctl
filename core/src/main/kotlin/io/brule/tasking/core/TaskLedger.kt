@@ -4,15 +4,17 @@ package io.brule.tasking.core
 interface TaskLedger {
     fun snapshot(): LedgerSnapshot
     fun task(id: TaskId): DraftRecord? = snapshot().universe.tasks.singleOrNull { it.id == id }
-    fun frontier(query: FrontierQuery = FrontierQuery()): Frontier {
-        val snapshot = snapshot()
-        require(snapshot.dependencyProblems().isEmpty()) { snapshot.dependencyProblems().joinToString("\n") }
-        val currency = snapshot.currency()
-        return Frontier(snapshot.revision, snapshot.universe.frontier(query.roadmap, query.epic).filter {
-            snapshot.history == null || currency.getValue(it).state == Currency.CURRENT
-        })
-    }
+    fun frontier(query: FrontierQuery = FrontierQuery()): Frontier = snapshot().frontier(query)
     fun apply(expectedRevision: Revision, transition: Transition): TransitionResult
+}
+
+/** One pure readiness query for ledger adapters and application projections. */
+fun LedgerSnapshot.frontier(query: FrontierQuery = FrontierQuery()): Frontier {
+    require(dependencyProblems().isEmpty()) { dependencyProblems().joinToString("\n") }
+    val currency = currency()
+    return Frontier(revision, universe.frontier(query.roadmap, query.epic).filter {
+        history == null || currency.getValue(it).state == Currency.CURRENT
+    })
 }
 
 data class LedgerSnapshot(val repositoryId: String, val revision: Revision, val universe: DraftUniverse,
