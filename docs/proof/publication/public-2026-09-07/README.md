@@ -47,3 +47,6 @@ The exact conclusion and job steps are recorded in [ci-main.json](ci-main.json).
 No cross-repository secret or consumer workflow change was introduced.
 
 Native v1 remains unfrozen. Brule migration and service work remain separate tasks.
+`TASK.release.public` is closed with a contract-bound actor assertion. The
+[final producer state](producer-final.json) has 23 current tasks and 13 closures;
+only `TASK.migration.brule` is ready.

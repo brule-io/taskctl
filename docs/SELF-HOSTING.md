@@ -61,6 +61,7 @@ usage before copied-tool retirement and reconstruction from committed files.
 The preserved observations distinguish progress during release and migration from
 the [final producer graph](proof/migration/fantastikt-0.3/producer-final.json).
 
-Public Apache-2.0 publication adds `TASK.release.public` as an independently scoped
-administrative task. Its [public-access proof](proof/publication/public-2026-09-07/README.md)
+Public Apache-2.0 publication is recorded in the closed `TASK.release.public`.
+The repository now has 23 current tasks and 13 closures; Brule migration remains
+the only frontier task. Its [public-access proof](proof/publication/public-2026-09-07/README.md)
 records anonymous native/RPM downloads, bootstrap and hosted consumer verification.

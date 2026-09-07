@@ -1,0 +1,342 @@
+{
+  "status": {
+    "revision": "sha256:7931df91371be59ebc1f17dbd6b0c7cf7de3a74f46f0c6171ed546f5dc4370a9",
+    "tasks": [
+      {
+        "task": "TASK.bootstrap.adopt",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.distribution.license",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.distribution.parity",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.distribution.rpm",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.document.fences",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.migration.brule",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.migration.daemon-descendants",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.migration.daemon-meta",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.migration.divergent",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.migration.dropzone",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.migration.fantastikt",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.migration.loom",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.protocol.checkpoint",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.protocol.idl",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.protocol.v1-candidate",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.release.alpha3",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.release.dogfood",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.release.public",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.remote.kernel",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "open"
+      },
+      {
+        "task": "TASK.semantic.contract",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.semantic.currency",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.semantic.history",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      },
+      {
+        "task": "TASK.semantic.reconcile",
+        "currency": "current",
+        "causes": [],
+        "lifecycle": "closed"
+      }
+    ]
+  },
+  "frontier": {
+    "revision": "sha256:7931df91371be59ebc1f17dbd6b0c7cf7de3a74f46f0c6171ed546f5dc4370a9",
+    "tasks": [
+      "TASK.migration.brule"
+    ]
+  },
+  "publication_task": {
+    "protocol": "tasking/core-draft-2",
+    "id": "TASK.release.public",
+    "title": "Publish taskctl as public Apache-2.0 software",
+    "state": "closed",
+    "intent": "Make the canonical taskctl repository and existing releases publicly usable under Apache-2.0, with anonymous consumer verification.",
+    "requires": [],
+    "requirements": [
+      "Own brule-io/taskctl visibility, current onboarding documentation, native task record and publication evidence. Preserve release artifact digests and historical provenance.",
+      "Only taskctl becomes public. Fantastikt and other source repositories retain their visibility.",
+      "Check Git history and retained CI logs for credentials before public exposure; inspect scanner findings."
+    ],
+    "acceptance": [
+      "GitHub reports brule-io/taskctl public and Apache-2.0; current quick starts require no GitHub credential.",
+      "Anonymous release acquisition passes digest checks and pinned native commands; cached execution works offline.",
+      "Fantastikt main verification succeeds using the existing pin and workflow without adding a cross-repository secret."
+    ],
+    "required_extensions": [],
+    "extensions": {},
+    "verification": [
+      "audit",
+      "access",
+      "consumer"
+    ],
+    "contract_digest": "sha256:2574cb813aaba38b4511d830ccc40a2c29fb68be1dccab1144bc36af32a4fba5",
+    "revision": "sha256:7931df91371be59ebc1f17dbd6b0c7cf7de3a74f46f0c6171ed546f5dc4370a9",
+    "head": "sha256:aa3e7907a1a17d8309d976c6c7e7278b7b399fd0fa263bb016e1dac43b57eb57",
+    "currency": {
+      "task": "TASK.release.public",
+      "currency": "current",
+      "causes": []
+    },
+    "roadmaps": [],
+    "epics": []
+  },
+  "doctor": {
+    "repository_id": "brule-io.taskctl",
+    "protocol": "taskctl.native/alpha2",
+    "profile": "minimal/alpha1",
+    "revision": "sha256:7931df91371be59ebc1f17dbd6b0c7cf7de3a74f46f0c6171ed546f5dc4370a9",
+    "tasks": 23,
+    "roadmaps": 4,
+    "epics": 2,
+    "required_capabilities_unavailable": [],
+    "currency": {
+      "current": 23,
+      "affected": 0,
+      "unresolved": 0
+    },
+    "work": [
+      {
+        "id": "TASK.bootstrap.adopt",
+        "title": "Self-host taskctl on its native graph",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.distribution.license",
+        "title": "Ship Apache-2.0 licensing",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.distribution.parity",
+        "title": "Prove native and JVM consumer parity",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.distribution.rpm",
+        "title": "Package and test the canonical 0.3 Linux native artifact",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.document.fences",
+        "title": "Harden Markdown example boundaries",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.brule",
+        "title": "Migrate and dogfood Brule Message Bus",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.daemon-descendants",
+        "title": "Migrate DAEMON descendants before Meta",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.daemon-meta",
+        "title": "Migrate DAEMON Meta last",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.divergent",
+        "title": "Migrate a deliberately divergent specimen",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.dropzone",
+        "title": "Migrate Dropzone after the protocol checkpoint",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.fantastikt",
+        "title": "Migrate and dogfood Fantastikt",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.migration.loom",
+        "title": "Migrate Loom after the protocol checkpoint",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.protocol.checkpoint",
+        "title": "Reassess the native protocol after first migrations",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.protocol.idl",
+        "title": "Prove one transport-neutral IDL projection",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.protocol.v1-candidate",
+        "title": "Assess native v1 freeze readiness",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.release.alpha3",
+        "title": "Publish canonical 0.3.0-alpha.1 archives",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.release.dogfood",
+        "title": "Complete release consumer and self-host acceptance",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.release.public",
+        "title": "Publish taskctl as public Apache-2.0 software",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.remote.kernel",
+        "title": "Pressure-test a remote ledger kernel",
+        "lifecycle": "open",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.semantic.contract",
+        "title": "Version semantic contracts",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.semantic.currency",
+        "title": "Evaluate transitive dependency currency",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.semantic.history",
+        "title": "Persist immutable task revisions and HEAD",
+        "lifecycle": "closed",
+        "currency": "current"
+      },
+      {
+        "id": "TASK.semantic.reconcile",
+        "title": "Require explicit reconciliation evidence",
+        "lifecycle": "closed",
+        "currency": "current"
+      }
+    ],
+    "instructions": "Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision."
+  }
+}
