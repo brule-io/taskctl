@@ -1,0 +1,550 @@
+{
+  "classification": "explicit-contract-rescope-not-consumer-migration-completion",
+  "revisions": [
+    {
+      "task": "TASK.migration.divergent",
+      "old_contract": "sha256:9f6f35cedaa1b1d8b78f486ee8f642e21d6575cc683167e52fc214fec41219e8",
+      "old_head": "sha256:e5eceb022b9606da9a72d1c0bb8b87744a0ec4e9ebe976e905cd56852f098bcc",
+      "new_contract": "sha256:4cedb680b3d6c591545b0a7a870f5e9d13c35ffbc96181e4a69666facdb08d5a",
+      "requires": [
+        "TASK.migration.brule"
+      ],
+      "old_title": "Migrate a deliberately divergent specimen",
+      "new_title": "Validate a divergent legacy dialect",
+      "plan": {
+        "revision": "sha256:b2964c5f261836935da0c93a82a851470a3e82bc1760e13b6bbf5ca574a7144c",
+        "writes": [
+          {
+            "path": ".agents/tasks/TASK.migration.divergent-c66d7efa77b68856.yaml",
+            "before_sha256": "561cbc43bc4b36e551d987c796dbf513b43225c41ba5b999ee9ecfda587b2188",
+            "after_sha256": "4187c7c90a7e869d20d11e49e9ab6be32d5ac5e53221e008ac4267d2dcb566e2"
+          },
+          {
+            "path": ".agents/history/heads.json",
+            "before_sha256": "c2bda98d5ef80e94e028e0590c0d3b3fdb30a51035fdc0326ae4be0ced70e054",
+            "after_sha256": "4fc138c1b3a20419eeab40bdc91d00814134e62e172241c144e39135831846e1"
+          },
+          {
+            "path": ".agents/history/revisions/d62e6d14482b7f64cb6b0fcc45330126d9d6ef9433639e4483c26cda19cf25a4.json",
+            "before_sha256": null,
+            "after_sha256": "55927bb02557939a89a5b28960d89af3526480bba0374fbae817184381941b95"
+          }
+        ],
+        "transaction_paths": [
+          ".agents/runtime/lock",
+          ".agents/runtime/transaction.json",
+          ".agents/runtime/.taskctl-*.tmp"
+        ]
+      },
+      "result": {
+        "revision": "sha256:08a17207e46cd116a1faf7e9594f0b34b5240e470d1ad84342c66ab3d2f8b8ac",
+        "changed": [
+          "TASK.migration.divergent"
+        ]
+      }
+    },
+    {
+      "task": "TASK.migration.loom",
+      "old_contract": "sha256:c0c70af76fc9f12913f5fc4afa9edf28ef5c7b92d663453eb455a8412514deca",
+      "old_head": "sha256:1a8b3fe977415891191391a6ff0c5569c15456685e61389db5ad47ac61e075f2",
+      "new_contract": "sha256:2f2a7e63b9fd2e863e109ffc3e1492f53f6daaa0cac747c8bae0452076ebf772",
+      "requires": [
+        "TASK.protocol.checkpoint"
+      ],
+      "old_title": "Migrate Loom after the protocol checkpoint",
+      "new_title": "Prove complex planning and historical-evidence conformance",
+      "plan": {
+        "revision": "sha256:08a17207e46cd116a1faf7e9594f0b34b5240e470d1ad84342c66ab3d2f8b8ac",
+        "writes": [
+          {
+            "path": ".agents/tasks/TASK.migration.loom-63549375e7ea5c95.yaml",
+            "before_sha256": "4b7995240cf95c2a5b060c6275e816bfd5ee853ff46f861d41cd33b254c27e14",
+            "after_sha256": "15a80696fb8d283efdb4a214305c7d1d3da93dd17f873e05181a2a4fed0ec8ae"
+          },
+          {
+            "path": ".agents/history/heads.json",
+            "before_sha256": "4fc138c1b3a20419eeab40bdc91d00814134e62e172241c144e39135831846e1",
+            "after_sha256": "910571cdefad8917f46385d1bac6e6af246b05b817b0c8c04058f6d5acd11192"
+          },
+          {
+            "path": ".agents/history/revisions/bd92d8106ab9e10f3320726ffea782c3bf1d997495fad574eb28ec19e4fc3f07.json",
+            "before_sha256": null,
+            "after_sha256": "785ad1fb13e1d167df761347e7563b0b8646186677c0f0032b1eefce551fe3bd"
+          }
+        ],
+        "transaction_paths": [
+          ".agents/runtime/lock",
+          ".agents/runtime/transaction.json",
+          ".agents/runtime/.taskctl-*.tmp"
+        ]
+      },
+      "result": {
+        "revision": "sha256:6f13bd3d21c62d4e7997a23e9df99b7461594a865ed6fd871b723dad6cc723c9",
+        "changed": [
+          "TASK.migration.loom"
+        ]
+      }
+    },
+    {
+      "task": "TASK.migration.dropzone",
+      "old_contract": "sha256:49a949a056add787dfaf953aab776a656471933ece0ae4b3a2bcead1f20c6ed0",
+      "old_head": "sha256:138f4d40be3c6a28f5ec71c5234c53aea8877440390aafe834b36038419a409f",
+      "new_contract": "sha256:a6fb347f2be65da17f508ed761a3d5a1ed1962b009c465fa127cba0f9ca321c1",
+      "requires": [
+        "TASK.protocol.checkpoint"
+      ],
+      "old_title": "Migrate Dropzone after the protocol checkpoint",
+      "new_title": "Prove workspace and environment capability conformance",
+      "plan": {
+        "revision": "sha256:6f13bd3d21c62d4e7997a23e9df99b7461594a865ed6fd871b723dad6cc723c9",
+        "writes": [
+          {
+            "path": ".agents/tasks/TASK.migration.dropzone-90ff8be4cf86fe4c.yaml",
+            "before_sha256": "2e8b20f7bcfb7f0b5cbf6c2a0e98ee519e30e556b696e60511f2abc98c1d2154",
+            "after_sha256": "a0ce72c7f09ebc04a6c6b603a829b2973648be4c9454e746f36713f4112f5d72"
+          },
+          {
+            "path": ".agents/history/heads.json",
+            "before_sha256": "910571cdefad8917f46385d1bac6e6af246b05b817b0c8c04058f6d5acd11192",
+            "after_sha256": "0f8599e7263f5e2e45eb39d8ca8e2fd95bc9536d7725aad3d1a135073893c132"
+          },
+          {
+            "path": ".agents/history/revisions/5e06291b9a57b7f4fe7d0951df3a12f74ef156352932178fc63499203884be93.json",
+            "before_sha256": null,
+            "after_sha256": "bb1a77a929a435b0c3481b62061e5d53c751235d7624d97469c42664ac3ac724"
+          }
+        ],
+        "transaction_paths": [
+          ".agents/runtime/lock",
+          ".agents/runtime/transaction.json",
+          ".agents/runtime/.taskctl-*.tmp"
+        ]
+      },
+      "result": {
+        "revision": "sha256:7fc2d450d0f77a8476ab50141ed24db2b81c0f5500bf1818416b2cd58ad9b9e1",
+        "changed": [
+          "TASK.migration.dropzone"
+        ]
+      }
+    },
+    {
+      "task": "TASK.migration.daemon-descendants",
+      "old_contract": "sha256:d03f722e49a007d5f398608050649137551dd29ca8214da658ecd9de842eb15e",
+      "old_head": "sha256:440f780c2ed8e0707c088a26d2932f5b430acd857b0a5610dcf7de97430e433b",
+      "new_contract": "sha256:5f4657fd91048dde332486ab310b3ae2a4cc319fa8c9eb9154af11f7d5a9cf07",
+      "requires": [
+        "TASK.migration.loom",
+        "TASK.migration.dropzone"
+      ],
+      "old_title": "Migrate DAEMON descendants before Meta",
+      "new_title": "Prove revision observations across related ledger specimens",
+      "plan": {
+        "revision": "sha256:7fc2d450d0f77a8476ab50141ed24db2b81c0f5500bf1818416b2cd58ad9b9e1",
+        "writes": [
+          {
+            "path": ".agents/tasks/TASK.migration.daemon-descendants-a7f829bd45d0703a.yaml",
+            "before_sha256": "73fd88142b46ef84d6fcf569d99ab7bb1972097177ea3e092adb411b25bd7581",
+            "after_sha256": "05a40c46bce69d2abaf584ae4a75a766dc7b7d1ae7411f57233578a03c683760"
+          },
+          {
+            "path": ".agents/history/heads.json",
+            "before_sha256": "0f8599e7263f5e2e45eb39d8ca8e2fd95bc9536d7725aad3d1a135073893c132",
+            "after_sha256": "e7a54d0c2521b0cb06a3d550be1e6b65f9fb3f97f788d411b22e16d865409697"
+          },
+          {
+            "path": ".agents/history/revisions/a587f7ccf1375e66d7e0d21eebbe10c60ab7774610d3f4f3ac057729843b023d.json",
+            "before_sha256": null,
+            "after_sha256": "45c2e05a9d8358e8d4364ee0c234398bfdd1486a523a21ed38baf2e04ec81e7d"
+          }
+        ],
+        "transaction_paths": [
+          ".agents/runtime/lock",
+          ".agents/runtime/transaction.json",
+          ".agents/runtime/.taskctl-*.tmp"
+        ]
+      },
+      "result": {
+        "revision": "sha256:ca3af3281e9219c82c2327f26f071addc24f07887567e970c4e6628a59b30a1f",
+        "changed": [
+          "TASK.migration.daemon-descendants"
+        ]
+      }
+    },
+    {
+      "task": "TASK.migration.daemon-meta",
+      "old_contract": "sha256:4cc2257cea4c5fbbb6127ee48af689f8bddaff8056ced837c2803c4f78152865",
+      "old_head": "sha256:f050e6d3dfd01c255e84aa3eabc498c21ad324afaf29788c38eed9a134e3e17d",
+      "new_contract": "sha256:0932278e28bca20b565dd99bc74e6c31eb55dcc2e63d4552130d2c29f8dfeb19",
+      "requires": [
+        "TASK.migration.daemon-descendants"
+      ],
+      "old_title": "Migrate DAEMON Meta last",
+      "new_title": "Prove legacy authority identity and historical-contract conformance",
+      "plan": {
+        "revision": "sha256:ca3af3281e9219c82c2327f26f071addc24f07887567e970c4e6628a59b30a1f",
+        "writes": [
+          {
+            "path": ".agents/tasks/TASK.migration.daemon-meta-db7f6f3e05931df1.yaml",
+            "before_sha256": "5db9a74c034166c37a44deded64212375fe7f7b5a5e576cba701bab7f01bab0e",
+            "after_sha256": "fa6d53edc8a89ea475b06783160c76b3240ea076fe1f76df0782a83a48f94bb9"
+          },
+          {
+            "path": ".agents/history/heads.json",
+            "before_sha256": "e7a54d0c2521b0cb06a3d550be1e6b65f9fb3f97f788d411b22e16d865409697",
+            "after_sha256": "d6116bdd061d230a47d3c18db32cb60db514bb0cf4e86c152b78f28ab9370cc1"
+          },
+          {
+            "path": ".agents/history/revisions/70443d390683d4fee968c492f04b0e2280f877159b1efa802c3584f263f33961.json",
+            "before_sha256": null,
+            "after_sha256": "60db78371745b41e13d75a2d3e05527ea45207ca47f893526cc72022286c86ea"
+          }
+        ],
+        "transaction_paths": [
+          ".agents/runtime/lock",
+          ".agents/runtime/transaction.json",
+          ".agents/runtime/.taskctl-*.tmp"
+        ]
+      },
+      "result": {
+        "revision": "sha256:487cb84d15fb8c5e36993ae1a17bbeefa6d01aa3aa996dcce6fce9b935a2dbc8",
+        "changed": [
+          "TASK.migration.daemon-meta"
+        ]
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "task": "TASK.migration.divergent",
+      "review": {
+        "protocol": "taskctl.reconciliation/1",
+        "classification": "actor-assertion",
+        "task": "TASK.migration.divergent",
+        "reviewed_head": "sha256:d62e6d14482b7f64cb6b0fcc45330126d9d6ef9433639e4483c26cda19cf25a4",
+        "observations": [
+          {
+            "upstream": "TASK.migration.brule",
+            "contract": "sha256:af76ff3eccbaf08646ec424ac6f174413989e8ff35c9064a16bb0afadbfe942e",
+            "revision": "sha256:91960e10f3a8f379e9d5d3a4533f01dc12086424924c49f642581771ad1d9e5a",
+            "inputs": "sha256:47102da5c82a58f151d8d4865711bd6f6ca627186228430c9e476e91bc19b2ed"
+          }
+        ],
+        "outcome": "revalidated",
+        "actor": "Codex",
+        "recorded_at": "2026-09-07T19:40:14.038876+00:00",
+        "rationale": "Reviewed the still-open work definition and prerequisite observations after explicit consumer-ownership rescoping. Existing prerequisite edges are unchanged. This review acknowledges the plan, not implementation, migration, conformance completion, checkpoint approval or protocol freeze.",
+        "evidence": {
+          "conformance": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete.",
+          "review": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete."
+        },
+        "successor": null
+      },
+      "result": {
+        "revision": "sha256:4e3e2979ac2b96e2eec0e5d8cbd02b90e76a8cd0e81bf932bded8106834fafe2",
+        "changed": [
+          "TASK.migration.divergent"
+        ]
+      }
+    },
+    {
+      "task": "TASK.product.consumer-ownership",
+      "review": {
+        "protocol": "taskctl.reconciliation/1",
+        "classification": "actor-assertion",
+        "task": "TASK.product.consumer-ownership",
+        "reviewed_head": "sha256:8648786ec597bd95e34fde9e1dc6bd173e726bb0ba8165eb7902de47a10d1103",
+        "observations": [
+          {
+            "upstream": "TASK.migration.brule",
+            "contract": "sha256:af76ff3eccbaf08646ec424ac6f174413989e8ff35c9064a16bb0afadbfe942e",
+            "revision": "sha256:91960e10f3a8f379e9d5d3a4533f01dc12086424924c49f642581771ad1d9e5a",
+            "inputs": "sha256:47102da5c82a58f151d8d4865711bd6f6ca627186228430c9e476e91bc19b2ed"
+          }
+        ],
+        "outcome": "revalidated",
+        "actor": "Codex",
+        "recorded_at": "2026-09-07T19:40:15.960493+00:00",
+        "rationale": "Reviewed the still-open work definition and prerequisite observations after explicit consumer-ownership rescoping. Existing prerequisite edges are unchanged. This review acknowledges the plan, not implementation, migration, conformance completion, checkpoint approval or protocol freeze.",
+        "evidence": {
+          "ownership": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete.",
+          "validation": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete."
+        },
+        "successor": null
+      },
+      "result": {
+        "revision": "sha256:6b053b1e61c61a5b3dc37acf02dfcff61554015ec9e935f4f107bfc47042c41a",
+        "changed": [
+          "TASK.product.consumer-ownership"
+        ]
+      }
+    },
+    {
+      "task": "TASK.protocol.checkpoint",
+      "review": {
+        "protocol": "taskctl.reconciliation/1",
+        "classification": "actor-assertion",
+        "task": "TASK.protocol.checkpoint",
+        "reviewed_head": "sha256:5369599673b21ea67857a379c34acd85431790fbc96e211c27b2bbd89ae09abc",
+        "observations": [
+          {
+            "upstream": "TASK.migration.divergent",
+            "contract": "sha256:4cedb680b3d6c591545b0a7a870f5e9d13c35ffbc96181e4a69666facdb08d5a",
+            "revision": "sha256:12be6ffaf69b1088ec0ad0ebd54468f4cf2f87620a3c10d93ecac694d42272fe",
+            "inputs": "sha256:d4f578dfeb903f8b2518e7b22c80820431e468f2bb16e8026d5b29136382d36f"
+          }
+        ],
+        "outcome": "revalidated",
+        "actor": "Codex",
+        "recorded_at": "2026-09-07T19:40:17.888923+00:00",
+        "rationale": "Reviewed the still-open work definition and prerequisite observations after explicit consumer-ownership rescoping. Existing prerequisite edges are unchanged. This review acknowledges the plan, not implementation, migration, conformance completion, checkpoint approval or protocol freeze.",
+        "evidence": {
+          "checkpoint": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete."
+        },
+        "successor": null
+      },
+      "result": {
+        "revision": "sha256:a7bd8685ded126f98d46c3e6fe2041a943f029c8275e0ca7d30962488db18fc5",
+        "changed": [
+          "TASK.protocol.checkpoint"
+        ]
+      }
+    },
+    {
+      "task": "TASK.migration.dropzone",
+      "review": {
+        "protocol": "taskctl.reconciliation/1",
+        "classification": "actor-assertion",
+        "task": "TASK.migration.dropzone",
+        "reviewed_head": "sha256:5e06291b9a57b7f4fe7d0951df3a12f74ef156352932178fc63499203884be93",
+        "observations": [
+          {
+            "upstream": "TASK.protocol.checkpoint",
+            "contract": "sha256:b4c1ff6fb09590af1ca029fd780386234b1dbf2033dce9740b0528c6083e3834",
+            "revision": "sha256:271e431ac79e6d3bcf120856d25402bb80e2563681305a20ea85c765adae96ca",
+            "inputs": "sha256:aa0206c0427e81cd28ddc6f8ce84549c94e9136a9141181b09dae65b84eb7978"
+          }
+        ],
+        "outcome": "revalidated",
+        "actor": "Codex",
+        "recorded_at": "2026-09-07T19:40:19.836925+00:00",
+        "rationale": "Reviewed the still-open work definition and prerequisite observations after explicit consumer-ownership rescoping. Existing prerequisite edges are unchanged. This review acknowledges the plan, not implementation, migration, conformance completion, checkpoint approval or protocol freeze.",
+        "evidence": {
+          "conformance": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete.",
+          "review": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete."
+        },
+        "successor": null
+      },
+      "result": {
+        "revision": "sha256:02b93128b9db48a07dd0694f60e17ee57d0c79f2b7cbb28761f646fb182de9b9",
+        "changed": [
+          "TASK.migration.dropzone"
+        ]
+      }
+    },
+    {
+      "task": "TASK.migration.loom",
+      "review": {
+        "protocol": "taskctl.reconciliation/1",
+        "classification": "actor-assertion",
+        "task": "TASK.migration.loom",
+        "reviewed_head": "sha256:bd92d8106ab9e10f3320726ffea782c3bf1d997495fad574eb28ec19e4fc3f07",
+        "observations": [
+          {
+            "upstream": "TASK.protocol.checkpoint",
+            "contract": "sha256:b4c1ff6fb09590af1ca029fd780386234b1dbf2033dce9740b0528c6083e3834",
+            "revision": "sha256:271e431ac79e6d3bcf120856d25402bb80e2563681305a20ea85c765adae96ca",
+            "inputs": "sha256:aa0206c0427e81cd28ddc6f8ce84549c94e9136a9141181b09dae65b84eb7978"
+          }
+        ],
+        "outcome": "revalidated",
+        "actor": "Codex",
+        "recorded_at": "2026-09-07T19:40:21.790174+00:00",
+        "rationale": "Reviewed the still-open work definition and prerequisite observations after explicit consumer-ownership rescoping. Existing prerequisite edges are unchanged. This review acknowledges the plan, not implementation, migration, conformance completion, checkpoint approval or protocol freeze.",
+        "evidence": {
+          "conformance": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete.",
+          "review": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete."
+        },
+        "successor": null
+      },
+      "result": {
+        "revision": "sha256:2afe50adb116ec42222f03b460d61bca22d43eb158d016e5b282c85e669dd48b",
+        "changed": [
+          "TASK.migration.loom"
+        ]
+      }
+    },
+    {
+      "task": "TASK.remote.kernel",
+      "review": {
+        "protocol": "taskctl.reconciliation/1",
+        "classification": "actor-assertion",
+        "task": "TASK.remote.kernel",
+        "reviewed_head": "sha256:2bda480eced3946162ca851e74ddb4e6fdb2c7876a3789653539e1bc3b3330da",
+        "observations": [
+          {
+            "upstream": "TASK.protocol.checkpoint",
+            "contract": "sha256:b4c1ff6fb09590af1ca029fd780386234b1dbf2033dce9740b0528c6083e3834",
+            "revision": "sha256:271e431ac79e6d3bcf120856d25402bb80e2563681305a20ea85c765adae96ca",
+            "inputs": "sha256:aa0206c0427e81cd28ddc6f8ce84549c94e9136a9141181b09dae65b84eb7978"
+          }
+        ],
+        "outcome": "revalidated",
+        "actor": "Codex",
+        "recorded_at": "2026-09-07T19:40:23.752713+00:00",
+        "rationale": "Reviewed the still-open work definition and prerequisite observations after explicit consumer-ownership rescoping. Existing prerequisite edges are unchanged. This review acknowledges the plan, not implementation, migration, conformance completion, checkpoint approval or protocol freeze.",
+        "evidence": {
+          "conformance": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete.",
+          "kernel": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete."
+        },
+        "successor": null
+      },
+      "result": {
+        "revision": "sha256:18c29118bea1640e46fba6adc27d836ac267f81478b7cbd2e732610ba611d720",
+        "changed": [
+          "TASK.remote.kernel"
+        ]
+      }
+    },
+    {
+      "task": "TASK.migration.daemon-descendants",
+      "review": {
+        "protocol": "taskctl.reconciliation/1",
+        "classification": "actor-assertion",
+        "task": "TASK.migration.daemon-descendants",
+        "reviewed_head": "sha256:a587f7ccf1375e66d7e0d21eebbe10c60ab7774610d3f4f3ac057729843b023d",
+        "observations": [
+          {
+            "upstream": "TASK.migration.dropzone",
+            "contract": "sha256:a6fb347f2be65da17f508ed761a3d5a1ed1962b009c465fa127cba0f9ca321c1",
+            "revision": "sha256:3d7af7759f56cf1eb021eafd68b5eaa5c5863bd67e218771af73af1ac348276a",
+            "inputs": "sha256:9e5e618d0949f51b468b93394188e14206a04e4558fb540c99e3a8e05bf17405"
+          },
+          {
+            "upstream": "TASK.migration.loom",
+            "contract": "sha256:2f2a7e63b9fd2e863e109ffc3e1492f53f6daaa0cac747c8bae0452076ebf772",
+            "revision": "sha256:abb4e95a0c28a443dcc498d874c0b6838fef4334f79a557ffc85741f39de7519",
+            "inputs": "sha256:39316e27d42ae6946a72cdf627bb933a8c90b5c1bca4008f9dec291858ee9df0"
+          }
+        ],
+        "outcome": "revalidated",
+        "actor": "Codex",
+        "recorded_at": "2026-09-07T19:40:25.732106+00:00",
+        "rationale": "Reviewed the still-open work definition and prerequisite observations after explicit consumer-ownership rescoping. Existing prerequisite edges are unchanged. This review acknowledges the plan, not implementation, migration, conformance completion, checkpoint approval or protocol freeze.",
+        "evidence": {
+          "conformance": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete.",
+          "review": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete."
+        },
+        "successor": null
+      },
+      "result": {
+        "revision": "sha256:7a845a5920957079683599fd320fcb7baabb4bfda1e824ce9362a9feef009c60",
+        "changed": [
+          "TASK.migration.daemon-descendants"
+        ]
+      }
+    },
+    {
+      "task": "TASK.protocol.idl",
+      "review": {
+        "protocol": "taskctl.reconciliation/1",
+        "classification": "actor-assertion",
+        "task": "TASK.protocol.idl",
+        "reviewed_head": "sha256:68ab87a1e02f27b7ebbfdedb0e110e2526d47aca7ef77c2df6862d68aec67286",
+        "observations": [
+          {
+            "upstream": "TASK.remote.kernel",
+            "contract": "sha256:160ca37032796d40136e7475888108f4e68454c71e80b6ae05666652bc5fdc41",
+            "revision": "sha256:a2e7a8b06a2d940ab579a4b81cee27470930a9a250f4e8631008e5f871f006ed",
+            "inputs": "sha256:6366e3fb092ca02768d723b195baa7be7fbd21342c09a122cdfcfd6d387eb494"
+          }
+        ],
+        "outcome": "revalidated",
+        "actor": "Codex",
+        "recorded_at": "2026-09-07T19:40:27.743393+00:00",
+        "rationale": "Reviewed the still-open work definition and prerequisite observations after explicit consumer-ownership rescoping. Existing prerequisite edges are unchanged. This review acknowledges the plan, not implementation, migration, conformance completion, checkpoint approval or protocol freeze.",
+        "evidence": {
+          "projection": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete.",
+          "integration": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete."
+        },
+        "successor": null
+      },
+      "result": {
+        "revision": "sha256:ecc199ff11814a72f205af8a3a5d7ddb68b367650c9c529d75a0a8540786c7db",
+        "changed": [
+          "TASK.protocol.idl"
+        ]
+      }
+    },
+    {
+      "task": "TASK.migration.daemon-meta",
+      "review": {
+        "protocol": "taskctl.reconciliation/1",
+        "classification": "actor-assertion",
+        "task": "TASK.migration.daemon-meta",
+        "reviewed_head": "sha256:70443d390683d4fee968c492f04b0e2280f877159b1efa802c3584f263f33961",
+        "observations": [
+          {
+            "upstream": "TASK.migration.daemon-descendants",
+            "contract": "sha256:5f4657fd91048dde332486ab310b3ae2a4cc319fa8c9eb9154af11f7d5a9cf07",
+            "revision": "sha256:dadd1107c259a539e167a49877d1a03e092757fbabb2faf79a9ee541d719558e",
+            "inputs": "sha256:4552abf473f53d0f8112ff339473ea9e483a88cea1f4b7ddf5df3d631fb11554"
+          }
+        ],
+        "outcome": "revalidated",
+        "actor": "Codex",
+        "recorded_at": "2026-09-07T19:40:29.752039+00:00",
+        "rationale": "Reviewed the still-open work definition and prerequisite observations after explicit consumer-ownership rescoping. Existing prerequisite edges are unchanged. This review acknowledges the plan, not implementation, migration, conformance completion, checkpoint approval or protocol freeze.",
+        "evidence": {
+          "conformance": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete.",
+          "review": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete."
+        },
+        "successor": null
+      },
+      "result": {
+        "revision": "sha256:80b9f79de6418b2915b0403df57c2d7bea0571fb86de58d813655576220fbed1",
+        "changed": [
+          "TASK.migration.daemon-meta"
+        ]
+      }
+    },
+    {
+      "task": "TASK.protocol.v1-candidate",
+      "review": {
+        "protocol": "taskctl.reconciliation/1",
+        "classification": "actor-assertion",
+        "task": "TASK.protocol.v1-candidate",
+        "reviewed_head": "sha256:3cf97e320ac41b49ae504199cdb5ff8d884963e8ea2848825f39e2163a54f57a",
+        "observations": [
+          {
+            "upstream": "TASK.migration.daemon-meta",
+            "contract": "sha256:0932278e28bca20b565dd99bc74e6c31eb55dcc2e63d4552130d2c29f8dfeb19",
+            "revision": "sha256:d07b3e8d6a722604e5e60591cebdda89f2d3e791de079e9fe0575cee6f8ef3f6",
+            "inputs": "sha256:be7c11daf76aaa6d7980d21880e0f54c10549026b8f3a59d796ad71db8e21ac8"
+          },
+          {
+            "upstream": "TASK.protocol.idl",
+            "contract": "sha256:bfbdaed574b61c1010c54d530d4df80d04313a6c1ca451c85854ded09143353a",
+            "revision": "sha256:d1677a413042edb90db3e63e15460b10b2f354f52fe08071e0de43fa975837b8",
+            "inputs": "sha256:4269085103a7e8c29a382d1e8797c435b901d37586b7a2bfebe7eb7a439cc5bd"
+          }
+        ],
+        "outcome": "revalidated",
+        "actor": "Codex",
+        "recorded_at": "2026-09-07T19:40:31.767766+00:00",
+        "rationale": "Reviewed the still-open work definition and prerequisite observations after explicit consumer-ownership rescoping. Existing prerequisite edges are unchanged. This review acknowledges the plan, not implementation, migration, conformance completion, checkpoint approval or protocol freeze.",
+        "evidence": {
+          "checkpoint": "docs/CONSUMER-OWNERSHIP.md and docs/proof/consumer-ownership/revisions.json: scope/causal-order review only; this task remains open and its acceptance work is not claimed complete."
+        },
+        "successor": null
+      },
+      "result": {
+        "revision": "sha256:816474248d1022c7497a8adea639cc383a476b45d894df5599578eb59382568b",
+        "changed": [
+          "TASK.protocol.v1-candidate"
+        ]
+      }
+    }
+  ],
+  "original_prerequisite_edges_unchanged": true,
+  "original_lifecycle_states_unchanged": true
+}

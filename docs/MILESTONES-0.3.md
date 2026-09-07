@@ -4,6 +4,8 @@ The M1–M4 sections preserve alpha.1 evidence. The subsequent alpha.2 import re
 and first completed consumer migration are recorded in
 [the Fantastikt migration report](MIGRATION-FANTASTIKT.md) and
 [alpha.2 publication proof](proof/productization/0.3.0-alpha.2/README.md).
+The roadmap descriptions below are historical. Current public-backlog ownership
+and compatibility gates are described in [consumer ownership](CONSUMER-OWNERSHIP.md).
 
 ## M1 — semantic model
 

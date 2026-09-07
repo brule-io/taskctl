@@ -1,12 +1,15 @@
 # taskctl contributor operating contract
 
-Fantastikt migration and its 0.3.0-alpha.2 import distribution are complete.
-Read `docs/SEMANTIC-0.3.md`, `docs/IMPORT.md`, `docs/MIGRATION-FANTASTIKT.md`
+Fantastikt and Brule have exercised the 0.3.0-alpha.2 import distribution.
+Read `docs/SEMANTIC-0.3.md`, `docs/IMPORT.md`, `docs/CONSUMER-OWNERSHIP.md`
 and the repository-local task graph. Start with `./taskctl doctor`, `context`,
 `frontier`, and `status` (Windows: `./taskctl.bat` or `./taskctl.ps1`). Development
-from adoption onward is tracked here. Publishing to brule-io/taskctl is authorized.
-The frontier now names Brule Message Bus migration; it has not begun. Broad migrations and service work
-remain gated by the recorded protocol checkpoint. No service implementation yet.
+of the general-purpose protocol/tooling is tracked here. Publishing to
+brule-io/taskctl is authorized. Operational consumer migrations belong in their
+consumer repositories, including local adapters, integration work and evidence.
+The next compatibility task exercises a divergent specimen in isolation; it
+does not authorize migration of another repository. Existing protocol-checkpoint,
+remote-kernel and native-v1 gates remain in place. No service implementation yet.
 
 Core owns the top-level record namespace. Specialized data lives only under
 `extensions`, with independently readable required extension identities. Unknown
@@ -34,3 +37,6 @@ receipts. Use `revise` and explicit `reconcile` evidence with CAS; never hand-ed
 HEAD/history to clear affected work. New tasks use `tasking/core-draft-2` and named
 verification evidence requirements. Add `--plan` to inspect mutation file digests.
 See `.agents/README.md` for the generated tasking operating contract.
+Historical `TASK.migration.*` identities remain stable. Their current open
+contracts describe general compatibility work; old consumer-specific contracts
+remain in immutable history and are not marked completed by a scope change.
