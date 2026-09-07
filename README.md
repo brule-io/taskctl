@@ -126,6 +126,9 @@ path with exact source witnesses and historical evidence classification. It need
 an isolated target without existing tasking state; it never removes legacy tooling.
 The [completed Fantastikt migration](docs/MIGRATION-FANTASTIKT.md) records exact
 provenance, canonical usage before copied-tool retirement, and consumer acceptance.
+Operational migrations are [owned by their consumer repositories](docs/CONSUMER-OWNERSHIP.md).
+This public project's backlog covers reusable protocol, tooling and compatibility
+work; it does not dispatch changes into consumer repositories.
 
 ## Contributing
 

@@ -1,0 +1,11 @@
+{
+  "prior_tasks": 24,
+  "current_tasks": 25,
+  "all_original_prerequisites_preserved": true,
+  "all_previously_closed_records_unchanged": true,
+  "all_prior_history_and_receipt_files_unchanged": true,
+  "only_original_lifecycle_change": "TASK.migration.brule: open -> closed with consumer evidence",
+  "native_and_jvm_read_results_equal": true,
+  "commands_per_implementation": 7,
+  "source_code_changes": []
+}

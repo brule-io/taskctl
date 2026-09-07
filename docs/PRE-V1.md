@@ -1,8 +1,10 @@
 # Decisions to revisit before native v1
 
-These findings come from review of 0.3 current main. They do not block the first
-Fantastikt migration. `TASK.protocol.checkpoint` should reassess them after the
-first three migration specimens; later kernel work should pressure-test the
+These findings come from review of 0.3 current main. Fantastikt and Brule have
+exercised consumer adoption. `TASK.protocol.checkpoint` should reassess these
+findings after a third, divergent compatibility specimen; that specimen may run
+in an isolated test repository. Operational migrations are consumer-owned (see
+[ownership](CONSUMER-OWNERSHIP.md)). Later kernel work should pressure-test the
 service-related choices. This board does not authorize implementation early.
 
 - Separate `doctor` diagnostics, a bounded `context` briefing, and a complete
