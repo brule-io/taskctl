@@ -71,5 +71,6 @@ Seven read commands produced identical results through the existing packaged
 `TASK.product.consumer-ownership` records and closes this organizational change.
 The divergent compatibility specimen has since passed its bounded import and
 three-platform JVM/native checks; see [the evidence](proof/divergent-import/README.md).
-The next public frontier is the protocol checkpoint. The four later compatibility
-tasks remain open, and unsupported stateful consumer adoptions remain gated.
+The [protocol checkpoint](PROTOCOL-CHECKPOINT-2026-09.md) records the next
+implementation gates. The four later compatibility tasks remain open, and
+unsupported stateful consumer adoptions remain gated.

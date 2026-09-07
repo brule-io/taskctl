@@ -12,7 +12,8 @@ remain readable with their original meanings. Explicit `track` adopts history
 and changes the repository marker to alpha2; it does not change old record dialects,
 invent missing observations, or relabel old evidence. Older writers reject alpha2.
 Planning history, group completion/archival and persisted provider capabilities
-remain [pre-freeze decisions](PRE-V1.md).
+remain unimplemented; the [checkpoint](PROTOCOL-CHECKPOINT-2026-09.md) records
+their design decisions and prerequisite implementation tasks.
 
 Reviewed ancestral import in 0.3.0-alpha.2 uses `taskctl.native/alpha3`, with
 content-addressed source manifests and origin-bearing revision/2 objects. Older

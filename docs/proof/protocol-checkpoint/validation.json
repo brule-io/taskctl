@@ -1,0 +1,17 @@
+{
+  "classification": "observed-local-read-parity-and-graph-audit",
+  "observed_at": "2026-09-07T22:53:14.049307+00:00",
+  "read_commands_each_implementation": 7,
+  "command_results_equal": true,
+  "read_only": true,
+  "ledger_revision": "sha256:24704937e79ce2e26d663a85bf44fc7d859a8ce311882945fa777ca471a0e36c",
+  "frontier": [
+    "TASK.protocol.evidence-time",
+    "TASK.protocol.planning-history",
+    "TASK.protocol.provider-profile",
+    "TASK.protocol.read-models"
+  ],
+  "affected": [],
+  "runtime_limit": "Local preexisting development archives at e1769e57f9da2d3c3bbdde4277c89aebb3c81467; source_dirty=true. This is a task-graph/documentation change; no runtime code changed. CI separately rebuilds the submitted candidate.",
+  "baseline_commit": "0425fe426c56c85e5752a5b29d9f7dd15daae820"
+}

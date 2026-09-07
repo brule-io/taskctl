@@ -1,11 +1,17 @@
-# Decisions to revisit before native v1
+# Pre-v1 review and implementation gates
+
+The [2026-09-07 checkpoint](PROTOCOL-CHECKPOINT-2026-09.md) records the decisions
+for this review. Its four correction tasks and strengthened compatibility/kernel
+prerequisites make the remaining implementation explicit. The findings below
+describe the reviewed alpha implementation; recording a decision does not claim
+that the corresponding implementation is already available.
 
 These findings come from review of 0.3 current main. Fantastikt and Brule have
-exercised consumer adoption. `TASK.protocol.checkpoint` should reassess these
-findings after a third, divergent compatibility specimen; that specimen may run
-in an isolated test repository. Operational migrations are consumer-owned (see
+exercised consumer adoption. `TASK.protocol.checkpoint` reassesses these
+findings after the successful third, divergent compatibility specimen in an
+isolated test repository. Operational migrations are consumer-owned (see
 [ownership](CONSUMER-OWNERSHIP.md)). Later kernel work should pressure-test the
-service-related choices. This board does not authorize implementation early.
+service-related choices under the checkpoint's strengthened task prerequisites.
 
 - Separate `doctor` diagnostics, a bounded `context` briefing, and a complete
   machine-oriented `snapshot`. They currently expose substantially the same data.
