@@ -1,21 +1,19 @@
 # A bounded falsification of the taskctl abstract-machine construction
 
-The current lifecycle operations successfully execute a fixed two-counter machine.
-They do not execute it unaided: a fixed three-instruction execution unit supplies
-increment, decrement/zero-test, and branch selection. No new frame type, provider,
-expression language, or protocol transition was needed for the specimens.
+**RESULT: CURRENT CONSTRUCTION SUFFICIENT**, under the standard unbounded-storage
+abstraction.
 
-The stronger claim about the **literal current implementation with arbitrarily
-much disk** fails. Its checked document limit and finite identity/locator spaces
-prevent arbitrarily large frames and arbitrarily long append-only executions.
-With an idealized unbounded, exact revisioned store, the same construction admits
-the reduction below. These are different claims; the finite runs establish the
-first, not an unconditional universality result for the shipped binary.
+Computationally, the current taskctl lifecycle, together with the deliberately
+fixed INC/DECJZ/HALT execution unit, is sufficient for a universal two-counter-machine
+construction under the standard unbounded-storage abstraction. No missing
+arithmetic or control-flow operation exists. The shipped implementation has finite
+representational bounds, so it is not literally an unbounded machine.[^representation]
 
-**RESULT: MINIMUM PRIMITIVE REQUIRED: unbounded exact revisioned state/instance
-storage, for a literal unbounded-computation construction.** This is a storage and
-identity capability, not a missing arithmetic or control-flow operation. Do not
-add it to production merely to obtain a universality theorem.
+Taskctl does not execute the program unaided: the fixed unit supplies increment,
+decrement/zero-test, and branch selection. No new frame type, provider, expression
+language, or protocol transition was needed. The finite runs test this encoding;
+the reduction below supplies the general argument under the stated abstraction.
+No production change is required by this finding.
 
 ## Scope and source identity
 
@@ -294,7 +292,7 @@ properties. Our language directly embeds CM2: at position `p`, map increment to
 an explicit HALT label. Thus this construction does not rely on an ambiguous use
 of the name “Minsky machine.” [Dudenhefner, FSCD 2022](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.FSCD.2022.16).
 
-### Why the literal current backend does not discharge the assumptions
+### Implementation bounds under a literal reading
 
 1. **Fixed document ceiling.** `YamlValues.parse` explicitly sets
    `codePointLimit = 1_000_000` [S9]. More disk cannot make the rejected natural
@@ -320,20 +318,20 @@ Ordinary JVM/OS/physical-memory limits are additional implementation limits; the
 ones above are explicit checked encodings that survive an assumption of unlimited
 disk. Resource exhaustion or a rejected admission is **not HALT**.
 
-If “ordinary unbounded storage” is intended to abstract away all scalar/index
-limits **and** treat identities as exact and indefinitely fresh, the answer at
-that abstraction level is **current lifecycle construction sufficient**. No new
-computational operation is missing. For an exact theorem about current encodings,
-those additional abstractions cannot be silently assumed.
+Under the conventional unbounded-storage abstraction, scalar/index storage is
+indefinitely extensible and identities are exact and indefinitely fresh. At that
+level, **current lifecycle construction is sufficient**. The bounds above qualify
+an exact theorem about the concrete encodings; they do not identify a missing
+computational operation in the lifecycle model.
 
-### Minimum capability, not a production proposal
+### Scope of the storage idealization, not a production proposal
 
-The missing capability for the literal stronger claim is an **unbounded exact
-revisioned store**: arbitrary finite typed frames/programs; indefinitely fresh,
+An **unbounded exact revisioned store** names the idealized storage assumed by the
+construction: arbitrary finite typed frames/programs; indefinitely fresh,
 non-aliasing instance and revision identities; retained immutable values; and
-exact expected-revision CAS. Existing AddRecords/CloseTask and the fixed ALU then
-supply the entire reduction. This names the necessary storage capability, not a
-claim of a unique or byte-minimal implementation.
+exact expected-revision CAS. Existing AddRecords/CloseTask and the fixed ALU supply
+the entire reduction. This clarifies the abstraction rather than proposing an
+additional computational primitive or a uniquely minimal implementation.
 
 A `MachineFrame` object with the present decoder ceiling and finite identity space
 would not fix the obstruction. Conversely, no general expression evaluator is
@@ -452,3 +450,14 @@ existing verify/close CAS path. It does not close a migration task.
 - **S10 — shared decoder and bounded generated locators:** [NativeFiles.kt, lines 21–62](https://github.com/brule-io/taskctl/blob/54603099da2fbb33eede4011f4fb8cf45a9ef48f/repository/src/main/kotlin/io/brule/tasking/repository/NativeFiles.kt#L21-L62).
 - **S11 — full record in revision identity and monolithic HEAD map:** [HistoryCodec.kt, lines 38–68](https://github.com/brule-io/taskctl/blob/54603099da2fbb33eede4011f4fb8cf45a9ef48f/core/src/main/kotlin/io/brule/tasking/core/HistoryCodec.kt#L38-L68); [NativeCodec.kt, lines 5–17](https://github.com/brule-io/taskctl/blob/54603099da2fbb33eede4011f4fb8cf45a9ef48f/core/src/main/kotlin/io/brule/tasking/core/NativeCodec.kt#L5-L17).
 - **S12 — current command vocabulary:** [NativeCommands.kt, lines 36–101](https://github.com/brule-io/taskctl/blob/54603099da2fbb33eede4011f4fb8cf45a9ef48f/cli/src/main/kotlin/io/brule/tasking/cli/NativeCommands.kt#L36-L101).
+
+[^representation]: The original report labeled the result “MINIMUM PRIMITIVE
+    REQUIRED” by applying a literal standard to the shipped implementation, even
+    with unlimited disk. That classification elevated finite representation limits
+    into the headline. Conventional universality claims about programming languages
+    instead idealize memory as indefinitely extensible. Under that same abstraction,
+    this construction needs no additional computational primitive. The checked YAML
+    limit, monolithic HEAD representation, finite SHA-256 identities and generated
+    locator space remain real implementation bounds, documented above; neither they
+    nor the finite memory of a deployed machine invalidate the abstract reduction.
+    This clarification changes the framing, not the experiment or its evidence.
