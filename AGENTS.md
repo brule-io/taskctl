@@ -9,8 +9,11 @@ brule-io/taskctl is authorized. Operational consumer migrations belong in their
 consumer repositories, including local adapters, integration work and evidence.
 The divergent isolated specimen passed the three-platform JVM/native corpus and
 process parity; see `docs/DIVERGENT-IMPORT.md` and its exact closure evidence.
-The next task is the explicit protocol checkpoint. Consumer migration,
-remote-kernel and native-v1 gates remain in place. No service implementation yet.
+The explicit checkpoint is recorded in `docs/PROTOCOL-CHECKPOINT-2026-09.md`.
+Select the current canonical frontier. Four correction tasks cover distinct read
+models, planning history, provider/profile identity and evidence time. Complex
+compatibility and the bounded kernel have additional prerequisites; respect them.
+Consumer migrations, deployment and native-v1 freeze remain separately gated.
 
 Core owns the top-level record namespace. Specialized data lives only under
 `extensions`, with independently readable required extension identities. Unknown

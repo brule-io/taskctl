@@ -1,0 +1,730 @@
+{
+  "classification": "checkpoint-admission-and-open-plan-review-not-implementation-completion",
+  "reviewed_source_commit": "0425fe426c56c85e5752a5b29d9f7dd15daae820",
+  "new_records": {
+    "contract": "taskctl.seed/alpha1",
+    "tasks": [
+      {
+        "protocol": "tasking/core-draft-2",
+        "id": "TASK.protocol.read-models",
+        "title": "Separate diagnostics, bounded context and complete snapshots",
+        "state": "open",
+        "intent": "Give agents and machine consumers distinct read contracts without changing ledger semantics.",
+        "requires": [
+          "TASK.protocol.checkpoint"
+        ],
+        "requirements": [
+          "Doctor supplies diagnostic status and counts; context supplies a deterministic bounded actionable briefing with explicit truncation and follow-up locators; snapshot exposes the complete typed ledger view.",
+          "Bound context across both record count and large record text. Read operations preserve repository files and timestamps and do not run Git, commands, network or environment probes.",
+          "Version changed result contracts explicitly; retain exact identities and opaque typed values in the complete snapshot."
+        ],
+        "acceptance": [
+          "Large-graph and large-text cases prove the context bound, deterministic selection and explicit incompleteness while the snapshot retains all records and evidence.",
+          "Source tests and packaged JVM/native process parity cover distinct outputs, errors, exit codes and zero repository mutations."
+        ],
+        "verification": [
+          "conformance",
+          "parity"
+        ],
+        "required_extensions": [],
+        "extensions": {}
+      },
+      {
+        "protocol": "tasking/core-draft-2",
+        "id": "TASK.protocol.planning-history",
+        "title": "Audit planning revisions and explicit assessments",
+        "state": "open",
+        "intent": "Give native roadmaps and epics immutable amendment history, explicit archival and scope-bound acceptance assessment without executable planning lifecycle.",
+        "requires": [
+          "TASK.protocol.checkpoint"
+        ],
+        "requirements": [
+          "Use separately typed planning revision identities, parent history and CAS amendments with actor/reason evidence; bind legacy baseline adoption without inventing prior native history.",
+          "Archival preserves identity and members and does not change task readiness. Optional acceptance and explicit assessments bind an exact planning scope/revision and observed task contracts/inputs; old assessments remain historical after changes.",
+          "Preserve orthogonal planning membership, required-capability boundaries, exact opaque extension values and every existing task contract, prerequisite and receipt meaning.",
+          "Version the new planning/storage envelopes explicitly; all prior planning records and native alpha histories retain their original interpretation."
+        ],
+        "acceptance": [
+          "Core and file-ledger cases prove stale CAS rejection, cold reconstruction, immutable history, explicit assessment currency and bounded atomic writes.",
+          "Changing or archiving a roadmap/epic never rewrites task contracts, creates task prerequisites or falsely claims group acceptance from task closure.",
+          "JVM/native corpus and packaged planning command parity pass."
+        ],
+        "verification": [
+          "conformance",
+          "parity",
+          "review"
+        ],
+        "required_extensions": [],
+        "extensions": {}
+      },
+      {
+        "protocol": "tasking/core-draft-2",
+        "id": "TASK.protocol.provider-profile",
+        "title": "Persist effective provider identity and causal inputs",
+        "state": "open",
+        "intent": "Make deterministic provider/profile semantics reconstructable through contracts, history, currency and storage before activating required capabilities.",
+        "requires": [
+          "TASK.protocol.checkpoint"
+        ],
+        "requirements": [
+          "Persist exact effective profile and provider pins with separately typed validated identities; retain old empty-profile semantic contract and historical evidence meaning through explicit versioning.",
+          "The shared reducer evaluates the complete effective prerequisite graph and persists revision-aware contributed-input observations; transitive provider/input drift must remain visible until explicit review.",
+          "Providers contribute validation, prerequisite/readiness predicates and evidence requirements/verification, never lifecycle transitions. Missing, unpinned, mismatched or failed required providers fail closed.",
+          "Keep environment probes separate from deterministic evaluation; any probe result used for eligibility must be supplied as explicit bound evidence. No arbitrary runtime loader, network read or placeholder approval provider.",
+          "Optional unknown extensions remain losslessly preserved and inactive. Stateful legacy imports remain blocked until their exact preserving provider mapping is proved."
+        ],
+        "acceptance": [
+          "Core and cold file-ledger conformance agree on effective contracts, observations, readiness, evidence validation, cycles and transitive currency, including provider drift and absence.",
+          "Provider code cannot bypass core identity, graph, lifecycle, acceptance or stale-revision checks; read/probe separation and exact opaque values are proved.",
+          "Existing historical contracts retain identities; new behavior passes JVM/native corpus and process parity."
+        ],
+        "verification": [
+          "conformance",
+          "parity",
+          "review"
+        ],
+        "required_extensions": [],
+        "extensions": {}
+      },
+      {
+        "protocol": "tasking/core-draft-2",
+        "id": "TASK.protocol.evidence-time",
+        "title": "Type actor occurrence and storage acceptance time",
+        "state": "open",
+        "intent": "Distinguish validated new occurrence timestamps, preserved legacy time strings and authoritative storage acceptance time.",
+        "requires": [
+          "TASK.protocol.checkpoint"
+        ],
+        "requirements": [
+          "Introduce validated nominal timestamp types and a distinct legacy representation; preserve every historical nonblank recorded_at string and its original receipt/revision digest.",
+          "New assertion envelopes validate occurrence timestamps through a versioned decoding boundary. An actor cannot assert an authoritative accepted-at value.",
+          "Storage acceptance time is separately typed and supplied only by the accepting boundary; domain evaluation has no ambient clock and uses revisions rather than actor time for ordering and CAS."
+        ],
+        "acceptance": [
+          "Malformed, ambiguous and spoofed timestamp inputs are rejected for new envelopes, while old arbitrary nonblank strings reconstruct unchanged as historical values.",
+          "Receipt, reconciliation and import review round trips preserve their original protocol identities; JVM/native corpus and process parity pass."
+        ],
+        "verification": [
+          "conformance",
+          "parity",
+          "review"
+        ],
+        "required_extensions": [],
+        "extensions": {}
+      }
+    ],
+    "roadmaps": [
+      {
+        "protocol": "tasking/planning-draft-1",
+        "kind": "roadmap",
+        "id": "ROADMAP.pre-v1-corrections",
+        "title": "Pre-v1 semantic corrections",
+        "intent": "Resolve the explicit checkpoint findings through versioned and tested native contracts.",
+        "tasks": [
+          "TASK.protocol.read-models",
+          "TASK.protocol.planning-history",
+          "TASK.protocol.provider-profile",
+          "TASK.protocol.evidence-time"
+        ],
+        "required_extensions": [],
+        "extensions": {}
+      }
+    ],
+    "epics": []
+  },
+  "seed_plan": {
+    "revision": "sha256:0810d2e22aca6c9356f17a3dc20b2137e4c52eb6d13f21350960c57724f77f14",
+    "writes": [
+      {
+        "path": ".agents/tasks/TASK.protocol.read-models-876f151122ed2b18.yaml",
+        "before_sha256": null,
+        "after_sha256": "9a83b17884d9b73409d30f7b9947fa64ed32f8fe5b2b8ee64c2983a11f559553"
+      },
+      {
+        "path": ".agents/tasks/TASK.protocol.planning-history-0b89ec4c4a20dec2.yaml",
+        "before_sha256": null,
+        "after_sha256": "a95fc89067935146a6c0f2ae424ca20564f2d8bd7d05d36b4807ce2cc8758635"
+      },
+      {
+        "path": ".agents/tasks/TASK.protocol.provider-profile-4edad2777f400230.yaml",
+        "before_sha256": null,
+        "after_sha256": "5385ea6223a414694cb81b32b008ebb48ff790ad901dfe3345ac7fb15cfc63e1"
+      },
+      {
+        "path": ".agents/tasks/TASK.protocol.evidence-time-130fa02b4ec85b32.yaml",
+        "before_sha256": null,
+        "after_sha256": "f4dcacbe88ddae2b9e939635535a4485fc88970bf127ad0626abb6c2f49a8cf7"
+      },
+      {
+        "path": ".agents/roadmaps/ROADMAP.pre-v1-corrections-d9146a40bf6dcb53.yaml",
+        "before_sha256": null,
+        "after_sha256": "6a27b9f3249886b455b4d9d78552f17b411874116bf8e5cba937db71061a4cac"
+      },
+      {
+        "path": ".agents/history/heads.json",
+        "before_sha256": "9a903836269987199eac8298d18923b9e7ec029910e1228a28634f3f33ef068a",
+        "after_sha256": "95073013a1843b74bde896aebabd684b8628612c39e51b4f42632416312afba1"
+      },
+      {
+        "path": ".agents/history/revisions/ad4106896cc52d160702f6f8d6fdcf93706233367c364ab4ac90208e41b0d2d0.json",
+        "before_sha256": null,
+        "after_sha256": "0bc0f3f1f10c7aaf1732ddeb79c466cdb7e92b42afb63afb0c71ca08fdd6056f"
+      },
+      {
+        "path": ".agents/history/revisions/a1248c644528f55ebe8d0e1e17bcc107d981aa8b676bbdc56a80feb083f8e023.json",
+        "before_sha256": null,
+        "after_sha256": "6e574c19f122b31fdaa64807c784fd11a77bb5c2b202b48cd5e0588f45c57f18"
+      },
+      {
+        "path": ".agents/history/revisions/28f8589bbcee62df1817cad391b45e4202f5d2809097ec81e4bc5f80ff65246a.json",
+        "before_sha256": null,
+        "after_sha256": "ef87bd9b2afb314f8e39b848a04ac8dee39b6a50acd2fe27661e74c7ee73b396"
+      },
+      {
+        "path": ".agents/history/revisions/0d9d8a00137459ea17af6e91949aa1668ffcb04a3760356ca0aabad6804ff690.json",
+        "before_sha256": null,
+        "after_sha256": "37a588526c412ea14ba34dede4986277645712ee04da7ad484d491031c034af1"
+      }
+    ],
+    "transaction_paths": [
+      ".agents/runtime/lock",
+      ".agents/runtime/transaction.json",
+      ".agents/runtime/.taskctl-*.tmp"
+    ]
+  },
+  "strengthened_contracts": [
+    {
+      "task": "TASK.migration.loom",
+      "old_head": "sha256:abb4e95a0c28a443dcc498d874c0b6838fef4334f79a557ffc85741f39de7519",
+      "old_contract": "sha256:2f2a7e63b9fd2e863e109ffc3e1492f53f6daaa0cac747c8bae0452076ebf772",
+      "old_requires": [
+        "TASK.protocol.checkpoint"
+      ],
+      "new_head": "sha256:fbd7fff2dccc5164b0b5eaf2137251588211cdc7dd896b70aab6ce8ce766bec7",
+      "new_contract": "sha256:6dd926709ffe1f1d1f8d71d8d28cc143cb5706429eefa89a4a8ea74e716f6c87",
+      "new_requires": [
+        "TASK.protocol.checkpoint",
+        "TASK.protocol.planning-history"
+      ],
+      "plan": {
+        "revision": "sha256:da4e63e99e2db33fefd74b968acfcdfb30b93f19dccf0727772f96a6263b5abd",
+        "writes": [
+          {
+            "path": ".agents/tasks/TASK.migration.loom-63549375e7ea5c95.yaml",
+            "before_sha256": "15a80696fb8d283efdb4a214305c7d1d3da93dd17f873e05181a2a4fed0ec8ae",
+            "after_sha256": "e202a780b9f10c171cd9e5954b8a309333ee3b2f27e20bd8d9462da2506622ce"
+          },
+          {
+            "path": ".agents/history/heads.json",
+            "before_sha256": "95073013a1843b74bde896aebabd684b8628612c39e51b4f42632416312afba1",
+            "after_sha256": "2f9fa48450ce11fb0294fdb9a3addb68e59de11b6976ac4241356128bc0be9ab"
+          },
+          {
+            "path": ".agents/history/revisions/fbd7fff2dccc5164b0b5eaf2137251588211cdc7dd896b70aab6ce8ce766bec7.json",
+            "before_sha256": null,
+            "after_sha256": "876c7d7fecb4fe987993c3acd7a2cf383bdb181b50f4fc04d5c7011c7e343fd1"
+          }
+        ],
+        "transaction_paths": [
+          ".agents/runtime/lock",
+          ".agents/runtime/transaction.json",
+          ".agents/runtime/.taskctl-*.tmp"
+        ]
+      }
+    },
+    {
+      "task": "TASK.migration.dropzone",
+      "old_head": "sha256:3d7af7759f56cf1eb021eafd68b5eaa5c5863bd67e218771af73af1ac348276a",
+      "old_contract": "sha256:a6fb347f2be65da17f508ed761a3d5a1ed1962b009c465fa127cba0f9ca321c1",
+      "old_requires": [
+        "TASK.protocol.checkpoint"
+      ],
+      "new_head": "sha256:a06df1ae0dd0b1a68b2eccb54f879e3021de8ba8906e461d6b2cdb263c539a44",
+      "new_contract": "sha256:5b7af5e6c3bded90e41eddc893c43d321ce94e28923a0584858d1c58740d53f9",
+      "new_requires": [
+        "TASK.protocol.checkpoint",
+        "TASK.protocol.provider-profile"
+      ],
+      "plan": {
+        "revision": "sha256:ad4d8e1685896dcdc1a60769295a4c240da6cecfd8a2045b947588adb0651a68",
+        "writes": [
+          {
+            "path": ".agents/tasks/TASK.migration.dropzone-90ff8be4cf86fe4c.yaml",
+            "before_sha256": "a0ce72c7f09ebc04a6c6b603a829b2973648be4c9454e746f36713f4112f5d72",
+            "after_sha256": "d0a42f95bfa22d8e7ad86c9286b056c21d341445cd86f8720e7b65140814da67"
+          },
+          {
+            "path": ".agents/history/heads.json",
+            "before_sha256": "2f9fa48450ce11fb0294fdb9a3addb68e59de11b6976ac4241356128bc0be9ab",
+            "after_sha256": "b81f526ab859552b9916036161e750bf24ea69048937cbf44d759f847770dfbe"
+          },
+          {
+            "path": ".agents/history/revisions/a06df1ae0dd0b1a68b2eccb54f879e3021de8ba8906e461d6b2cdb263c539a44.json",
+            "before_sha256": null,
+            "after_sha256": "d416ab751fc4f49a07b8378258ed16711556bcb6d308befb2e5723f098e5d0d7"
+          }
+        ],
+        "transaction_paths": [
+          ".agents/runtime/lock",
+          ".agents/runtime/transaction.json",
+          ".agents/runtime/.taskctl-*.tmp"
+        ]
+      }
+    },
+    {
+      "task": "TASK.remote.kernel",
+      "old_head": "sha256:a2e7a8b06a2d940ab579a4b81cee27470930a9a250f4e8631008e5f871f006ed",
+      "old_contract": "sha256:160ca37032796d40136e7475888108f4e68454c71e80b6ae05666652bc5fdc41",
+      "old_requires": [
+        "TASK.protocol.checkpoint"
+      ],
+      "new_head": "sha256:3e0c2babde63dfebb710ea5b9d6b526cf84f4584ccdd2ee734836317881239fe",
+      "new_contract": "sha256:a4359b2d70132863a94c7deb9bab00bdc96e1d6929c54a71383dc184e897d0df",
+      "new_requires": [
+        "TASK.protocol.checkpoint",
+        "TASK.protocol.evidence-time",
+        "TASK.protocol.planning-history"
+      ],
+      "plan": {
+        "revision": "sha256:5d0987ac12614502c6bc7be784103b0dc6c5b7bfac72ef100b159d80ab00e62d",
+        "writes": [
+          {
+            "path": ".agents/tasks/TASK.remote.kernel-47cf2c0181561f87.yaml",
+            "before_sha256": "7cc9157a1d596e807106dbdf0907895e7a3f2e39f116b42c454c65e77de7f6aa",
+            "after_sha256": "2cf4f270a054a306ec9dc95e76c26645120cb378585292f704b26c84044f46a6"
+          },
+          {
+            "path": ".agents/history/heads.json",
+            "before_sha256": "b81f526ab859552b9916036161e750bf24ea69048937cbf44d759f847770dfbe",
+            "after_sha256": "7a528126ef62ea9b1c3b3cd50aa96aadd62b1e4ef8a8a7d49b82f75f840c4d3b"
+          },
+          {
+            "path": ".agents/history/revisions/3e0c2babde63dfebb710ea5b9d6b526cf84f4584ccdd2ee734836317881239fe.json",
+            "before_sha256": null,
+            "after_sha256": "2f2fbbb36ea4704c97f19bf0dfe6bbb076ebc2f21d7e63b94bf89b07e8fc8310"
+          }
+        ],
+        "transaction_paths": [
+          ".agents/runtime/lock",
+          ".agents/runtime/transaction.json",
+          ".agents/runtime/.taskctl-*.tmp"
+        ]
+      }
+    },
+    {
+      "task": "TASK.protocol.v1-candidate",
+      "old_head": "sha256:df577d7fc2c89e3be1a69b6e6d2daf7dd5d798dec11a0649501b80603d6c744c",
+      "old_contract": "sha256:089ce70c31327f68f843817eed1a43b47230e414a13d1dc72f5b2ed8e16a0766",
+      "old_requires": [
+        "TASK.migration.daemon-meta",
+        "TASK.protocol.idl"
+      ],
+      "new_head": "sha256:19bea2b649c38bd3c3abdedbc8d64d3823a5c779575ee9dd5f45e0fea22e79eb",
+      "new_contract": "sha256:653230a0dba8bf066e995a89eebbb9d7b30c59ff445a817730a369eebf058628",
+      "new_requires": [
+        "TASK.migration.daemon-meta",
+        "TASK.protocol.idl",
+        "TASK.protocol.read-models"
+      ],
+      "plan": {
+        "revision": "sha256:13a790955b1a210b993822789e64fcefb4cd8162beb59e9c04e7043b5fec959e",
+        "writes": [
+          {
+            "path": ".agents/tasks/TASK.protocol.v1-candidate-93756252331b8676.yaml",
+            "before_sha256": "a4f6799c9c043b2603428689dd763e0083ab9f5fd9b8697b9bc3ab7943ec8daf",
+            "after_sha256": "89200eb6a07e2b36d3c5282a60ca06a3a6cd9808fd54b8c37faa9e7c1f740823"
+          },
+          {
+            "path": ".agents/history/heads.json",
+            "before_sha256": "7a528126ef62ea9b1c3b3cd50aa96aadd62b1e4ef8a8a7d49b82f75f840c4d3b",
+            "after_sha256": "208114d143cd44f2bc7931fd280da5a22b280652b94bf29bb21496117ab542ac"
+          },
+          {
+            "path": ".agents/history/revisions/19bea2b649c38bd3c3abdedbc8d64d3823a5c779575ee9dd5f45e0fea22e79eb.json",
+            "before_sha256": null,
+            "after_sha256": "67473a67a2d0fae424104e550450ae7be03749042957c9a45bc2d0fd53610353"
+          }
+        ],
+        "transaction_paths": [
+          ".agents/runtime/lock",
+          ".agents/runtime/transaction.json",
+          ".agents/runtime/.taskctl-*.tmp"
+        ]
+      }
+    }
+  ],
+  "open_plan_reviews": [
+    {
+      "protocol": "taskctl.reconciliation/1",
+      "classification": "actor-assertion",
+      "task": "TASK.migration.dropzone",
+      "reviewed_head": "sha256:a06df1ae0dd0b1a68b2eccb54f879e3021de8ba8906e461d6b2cdb263c539a44",
+      "outcome": "revalidated",
+      "observations": [
+        {
+          "upstream": "TASK.protocol.checkpoint",
+          "contract": "sha256:b4c1ff6fb09590af1ca029fd780386234b1dbf2033dce9740b0528c6083e3834",
+          "revision": "sha256:271e431ac79e6d3bcf120856d25402bb80e2563681305a20ea85c765adae96ca",
+          "inputs": "sha256:aa0206c0427e81cd28ddc6f8ce84549c94e9136a9141181b09dae65b84eb7978"
+        },
+        {
+          "upstream": "TASK.protocol.provider-profile",
+          "contract": "sha256:74f29d2a99c360126d672486153220006551aa4d0a8f241d7058fed16c4604e5",
+          "revision": "sha256:28f8589bbcee62df1817cad391b45e4202f5d2809097ec81e4bc5f80ff65246a",
+          "inputs": "sha256:c8ccd05eea263b8d5148c5a5cb8bda1eeca44b857cd5bedddd187aab55be4996"
+        }
+      ],
+      "actor": "Codex",
+      "recorded_at": "2026-09-07T22:51:08.037134+00:00",
+      "rationale": "The checkpoint strengthens prerequisite gates. This open task remains the admitted future work under those exact inputs; no implementation, migration or gate is claimed complete.",
+      "evidence": {
+        "conformance": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution.",
+        "review": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution."
+      },
+      "successor": null
+    },
+    {
+      "protocol": "taskctl.reconciliation/1",
+      "classification": "actor-assertion",
+      "task": "TASK.migration.loom",
+      "reviewed_head": "sha256:fbd7fff2dccc5164b0b5eaf2137251588211cdc7dd896b70aab6ce8ce766bec7",
+      "outcome": "revalidated",
+      "observations": [
+        {
+          "upstream": "TASK.protocol.checkpoint",
+          "contract": "sha256:b4c1ff6fb09590af1ca029fd780386234b1dbf2033dce9740b0528c6083e3834",
+          "revision": "sha256:271e431ac79e6d3bcf120856d25402bb80e2563681305a20ea85c765adae96ca",
+          "inputs": "sha256:aa0206c0427e81cd28ddc6f8ce84549c94e9136a9141181b09dae65b84eb7978"
+        },
+        {
+          "upstream": "TASK.protocol.planning-history",
+          "contract": "sha256:a2b72fa8b8251300c16fe6cc86921872ff5589c73d9a008aab560fa3d4c3d687",
+          "revision": "sha256:a1248c644528f55ebe8d0e1e17bcc107d981aa8b676bbdc56a80feb083f8e023",
+          "inputs": "sha256:883340f6b861fb3fc2bc53a94c593d64489ce0eee1e6ff6e8528e5fba1c54b1c"
+        }
+      ],
+      "actor": "Codex",
+      "recorded_at": "2026-09-07T22:51:14.952615+00:00",
+      "rationale": "The checkpoint strengthens prerequisite gates. This open task remains the admitted future work under those exact inputs; no implementation, migration or gate is claimed complete.",
+      "evidence": {
+        "conformance": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution.",
+        "review": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution."
+      },
+      "successor": null
+    },
+    {
+      "protocol": "taskctl.reconciliation/1",
+      "classification": "actor-assertion",
+      "task": "TASK.migration.daemon-descendants",
+      "reviewed_head": "sha256:dadd1107c259a539e167a49877d1a03e092757fbabb2faf79a9ee541d719558e",
+      "outcome": "revalidated",
+      "observations": [
+        {
+          "upstream": "TASK.migration.dropzone",
+          "contract": "sha256:5b7af5e6c3bded90e41eddc893c43d321ce94e28923a0584858d1c58740d53f9",
+          "revision": "sha256:54927a63f53feb467bac4ba21843f2fd65420a21c03aaed2787c77e80794356f",
+          "inputs": "sha256:e6cd235d9ad363995b9c7f862eec463673aaa7e0c7416be8bbeddb38d99e3d6a"
+        },
+        {
+          "upstream": "TASK.migration.loom",
+          "contract": "sha256:6dd926709ffe1f1d1f8d71d8d28cc143cb5706429eefa89a4a8ea74e716f6c87",
+          "revision": "sha256:c25d12145c486231fb3ca8c2a7758a608cce5cd3ae062ba7acc3657dd5dafb25",
+          "inputs": "sha256:4ee3237afcb2479f11619a4cd124e7425e7a6517e9c76236d9b40fca62a62e7e"
+        }
+      ],
+      "actor": "Codex",
+      "recorded_at": "2026-09-07T22:51:19.467462+00:00",
+      "rationale": "The checkpoint strengthens prerequisite gates. This open task remains the admitted future work under those exact inputs; no implementation, migration or gate is claimed complete.",
+      "evidence": {
+        "conformance": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution.",
+        "review": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution."
+      },
+      "successor": null
+    },
+    {
+      "protocol": "taskctl.reconciliation/1",
+      "classification": "actor-assertion",
+      "task": "TASK.migration.daemon-meta",
+      "reviewed_head": "sha256:d07b3e8d6a722604e5e60591cebdda89f2d3e791de079e9fe0575cee6f8ef3f6",
+      "outcome": "revalidated",
+      "observations": [
+        {
+          "upstream": "TASK.migration.daemon-descendants",
+          "contract": "sha256:5f4657fd91048dde332486ab310b3ae2a4cc319fa8c9eb9154af11f7d5a9cf07",
+          "revision": "sha256:5aa911aadf516a40a2e911794a00eba879a38f68fa247fa8dea83202de572b0a",
+          "inputs": "sha256:9b10f746d6c777a88f161bc3bc76a94582760fed53aa2007b6fc92b8f6310558"
+        }
+      ],
+      "actor": "Codex",
+      "recorded_at": "2026-09-07T22:51:23.420586+00:00",
+      "rationale": "The checkpoint strengthens prerequisite gates. This open task remains the admitted future work under those exact inputs; no implementation, migration or gate is claimed complete.",
+      "evidence": {
+        "conformance": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution.",
+        "review": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution."
+      },
+      "successor": null
+    },
+    {
+      "protocol": "taskctl.reconciliation/1",
+      "classification": "actor-assertion",
+      "task": "TASK.remote.kernel",
+      "reviewed_head": "sha256:3e0c2babde63dfebb710ea5b9d6b526cf84f4584ccdd2ee734836317881239fe",
+      "outcome": "revalidated",
+      "observations": [
+        {
+          "upstream": "TASK.protocol.checkpoint",
+          "contract": "sha256:b4c1ff6fb09590af1ca029fd780386234b1dbf2033dce9740b0528c6083e3834",
+          "revision": "sha256:271e431ac79e6d3bcf120856d25402bb80e2563681305a20ea85c765adae96ca",
+          "inputs": "sha256:aa0206c0427e81cd28ddc6f8ce84549c94e9136a9141181b09dae65b84eb7978"
+        },
+        {
+          "upstream": "TASK.protocol.evidence-time",
+          "contract": "sha256:960413e017bac0f86be97fe451e8a7e44fa37f45adfc246a4fc45723aa81fd8e",
+          "revision": "sha256:ad4106896cc52d160702f6f8d6fdcf93706233367c364ab4ac90208e41b0d2d0",
+          "inputs": "sha256:b2481cb3dfe72598f3f2a2e3f0abf4ade5dad39112ff487e0454b951d00c8cab"
+        },
+        {
+          "upstream": "TASK.protocol.planning-history",
+          "contract": "sha256:a2b72fa8b8251300c16fe6cc86921872ff5589c73d9a008aab560fa3d4c3d687",
+          "revision": "sha256:a1248c644528f55ebe8d0e1e17bcc107d981aa8b676bbdc56a80feb083f8e023",
+          "inputs": "sha256:883340f6b861fb3fc2bc53a94c593d64489ce0eee1e6ff6e8528e5fba1c54b1c"
+        }
+      ],
+      "actor": "Codex",
+      "recorded_at": "2026-09-07T22:51:31.636013+00:00",
+      "rationale": "The checkpoint strengthens prerequisite gates. This open task remains the admitted future work under those exact inputs; no implementation, migration or gate is claimed complete.",
+      "evidence": {
+        "conformance": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution.",
+        "kernel": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution."
+      },
+      "successor": null
+    },
+    {
+      "protocol": "taskctl.reconciliation/1",
+      "classification": "actor-assertion",
+      "task": "TASK.protocol.idl",
+      "reviewed_head": "sha256:d1677a413042edb90db3e63e15460b10b2f354f52fe08071e0de43fa975837b8",
+      "outcome": "revalidated",
+      "observations": [
+        {
+          "upstream": "TASK.remote.kernel",
+          "contract": "sha256:a4359b2d70132863a94c7deb9bab00bdc96e1d6929c54a71383dc184e897d0df",
+          "revision": "sha256:78dd0fc6230d1b81146859009b5c675bd65e8ca420e83e2bc89c83aa0caad292",
+          "inputs": "sha256:c1702bc5cf4be3d8adaad13f200563c62801e21680223cca2f71712d15659302"
+        }
+      ],
+      "actor": "Codex",
+      "recorded_at": "2026-09-07T22:51:35.594383+00:00",
+      "rationale": "The checkpoint strengthens prerequisite gates. This open task remains the admitted future work under those exact inputs; no implementation, migration or gate is claimed complete.",
+      "evidence": {
+        "projection": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution.",
+        "integration": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution."
+      },
+      "successor": null
+    },
+    {
+      "protocol": "taskctl.reconciliation/1",
+      "classification": "actor-assertion",
+      "task": "TASK.protocol.v1-candidate",
+      "reviewed_head": "sha256:19bea2b649c38bd3c3abdedbc8d64d3823a5c779575ee9dd5f45e0fea22e79eb",
+      "outcome": "revalidated",
+      "observations": [
+        {
+          "upstream": "TASK.migration.daemon-meta",
+          "contract": "sha256:0932278e28bca20b565dd99bc74e6c31eb55dcc2e63d4552130d2c29f8dfeb19",
+          "revision": "sha256:b618be5c369fbed6cb97d9bc104ce79f0cba465a23c8ef2442713f4215a95992",
+          "inputs": "sha256:926be8f102c81e9e5f47c6953d4dad290c746bcfb3a635252ac559f58248aa7f"
+        },
+        {
+          "upstream": "TASK.protocol.idl",
+          "contract": "sha256:bfbdaed574b61c1010c54d530d4df80d04313a6c1ca451c85854ded09143353a",
+          "revision": "sha256:3076dfb9f3f20f094448b0160d93686ae8ba3ceb49b32b52fa5f24a7711dab07",
+          "inputs": "sha256:4dcd0e940413ccd2d20595481572de7a730749cbd02f3f14740ba9fa23643630"
+        },
+        {
+          "upstream": "TASK.protocol.read-models",
+          "contract": "sha256:0a743dcdcba0aa55bcd7faea270bc6a997bf730d08d34485e917d78c01bd894e",
+          "revision": "sha256:0d9d8a00137459ea17af6e91949aa1668ffcb04a3760356ca0aabad6804ff690",
+          "inputs": "sha256:ec15ae16579a4f6dc4051adf53db84bd221e644c376b43a514a7415c4fdc0989"
+        }
+      ],
+      "actor": "Codex",
+      "recorded_at": "2026-09-07T22:51:40.871979+00:00",
+      "rationale": "The checkpoint strengthens prerequisite gates. This open task remains the admitted future work under those exact inputs; no implementation, migration or gate is claimed complete.",
+      "evidence": {
+        "checkpoint": "Reviewed the still-open bounded plan against docs/PROTOCOL-CHECKPOINT-2026-09.md and its exact current prerequisite contracts; this acknowledges planning correspondence, not completed execution."
+      },
+      "successor": null
+    }
+  ],
+  "previous_prerequisites_preserved": true,
+  "previous_closed_task_heads_preserved": true,
+  "affected": {
+    "revision": "sha256:c5c84b2bc20190cb87ba99927672d1082607addd14539604f197c20f8c58e89f",
+    "tasks": []
+  },
+  "frontier_before_checkpoint_closure": {
+    "revision": "sha256:c5c84b2bc20190cb87ba99927672d1082607addd14539604f197c20f8c58e89f",
+    "tasks": [
+      "TASK.protocol.checkpoint"
+    ]
+  },
+  "new_task_identities": [
+    {
+      "protocol": "tasking/core-draft-2",
+      "id": "TASK.protocol.read-models",
+      "title": "Separate diagnostics, bounded context and complete snapshots",
+      "state": "open",
+      "intent": "Give agents and machine consumers distinct read contracts without changing ledger semantics.",
+      "requires": [
+        "TASK.protocol.checkpoint"
+      ],
+      "requirements": [
+        "Doctor supplies diagnostic status and counts; context supplies a deterministic bounded actionable briefing with explicit truncation and follow-up locators; snapshot exposes the complete typed ledger view.",
+        "Bound context across both record count and large record text. Read operations preserve repository files and timestamps and do not run Git, commands, network or environment probes.",
+        "Version changed result contracts explicitly; retain exact identities and opaque typed values in the complete snapshot."
+      ],
+      "acceptance": [
+        "Large-graph and large-text cases prove the context bound, deterministic selection and explicit incompleteness while the snapshot retains all records and evidence.",
+        "Source tests and packaged JVM/native process parity cover distinct outputs, errors, exit codes and zero repository mutations."
+      ],
+      "required_extensions": [],
+      "extensions": {},
+      "verification": [
+        "conformance",
+        "parity"
+      ],
+      "contract_digest": "sha256:0a743dcdcba0aa55bcd7faea270bc6a997bf730d08d34485e917d78c01bd894e",
+      "revision": "sha256:c5c84b2bc20190cb87ba99927672d1082607addd14539604f197c20f8c58e89f",
+      "head": "sha256:0d9d8a00137459ea17af6e91949aa1668ffcb04a3760356ca0aabad6804ff690",
+      "currency": {
+        "task": "TASK.protocol.read-models",
+        "currency": "current",
+        "causes": []
+      },
+      "roadmaps": [
+        "ROADMAP.pre-v1-corrections"
+      ],
+      "epics": []
+    },
+    {
+      "protocol": "tasking/core-draft-2",
+      "id": "TASK.protocol.planning-history",
+      "title": "Audit planning revisions and explicit assessments",
+      "state": "open",
+      "intent": "Give native roadmaps and epics immutable amendment history, explicit archival and scope-bound acceptance assessment without executable planning lifecycle.",
+      "requires": [
+        "TASK.protocol.checkpoint"
+      ],
+      "requirements": [
+        "Use separately typed planning revision identities, parent history and CAS amendments with actor/reason evidence; bind legacy baseline adoption without inventing prior native history.",
+        "Archival preserves identity and members and does not change task readiness. Optional acceptance and explicit assessments bind an exact planning scope/revision and observed task contracts/inputs; old assessments remain historical after changes.",
+        "Preserve orthogonal planning membership, required-capability boundaries, exact opaque extension values and every existing task contract, prerequisite and receipt meaning.",
+        "Version the new planning/storage envelopes explicitly; all prior planning records and native alpha histories retain their original interpretation."
+      ],
+      "acceptance": [
+        "Core and file-ledger cases prove stale CAS rejection, cold reconstruction, immutable history, explicit assessment currency and bounded atomic writes.",
+        "Changing or archiving a roadmap/epic never rewrites task contracts, creates task prerequisites or falsely claims group acceptance from task closure.",
+        "JVM/native corpus and packaged planning command parity pass."
+      ],
+      "required_extensions": [],
+      "extensions": {},
+      "verification": [
+        "conformance",
+        "parity",
+        "review"
+      ],
+      "contract_digest": "sha256:a2b72fa8b8251300c16fe6cc86921872ff5589c73d9a008aab560fa3d4c3d687",
+      "revision": "sha256:c5c84b2bc20190cb87ba99927672d1082607addd14539604f197c20f8c58e89f",
+      "head": "sha256:a1248c644528f55ebe8d0e1e17bcc107d981aa8b676bbdc56a80feb083f8e023",
+      "currency": {
+        "task": "TASK.protocol.planning-history",
+        "currency": "current",
+        "causes": []
+      },
+      "roadmaps": [
+        "ROADMAP.pre-v1-corrections"
+      ],
+      "epics": []
+    },
+    {
+      "protocol": "tasking/core-draft-2",
+      "id": "TASK.protocol.provider-profile",
+      "title": "Persist effective provider identity and causal inputs",
+      "state": "open",
+      "intent": "Make deterministic provider/profile semantics reconstructable through contracts, history, currency and storage before activating required capabilities.",
+      "requires": [
+        "TASK.protocol.checkpoint"
+      ],
+      "requirements": [
+        "Persist exact effective profile and provider pins with separately typed validated identities; retain old empty-profile semantic contract and historical evidence meaning through explicit versioning.",
+        "The shared reducer evaluates the complete effective prerequisite graph and persists revision-aware contributed-input observations; transitive provider/input drift must remain visible until explicit review.",
+        "Providers contribute validation, prerequisite/readiness predicates and evidence requirements/verification, never lifecycle transitions. Missing, unpinned, mismatched or failed required providers fail closed.",
+        "Keep environment probes separate from deterministic evaluation; any probe result used for eligibility must be supplied as explicit bound evidence. No arbitrary runtime loader, network read or placeholder approval provider.",
+        "Optional unknown extensions remain losslessly preserved and inactive. Stateful legacy imports remain blocked until their exact preserving provider mapping is proved."
+      ],
+      "acceptance": [
+        "Core and cold file-ledger conformance agree on effective contracts, observations, readiness, evidence validation, cycles and transitive currency, including provider drift and absence.",
+        "Provider code cannot bypass core identity, graph, lifecycle, acceptance or stale-revision checks; read/probe separation and exact opaque values are proved.",
+        "Existing historical contracts retain identities; new behavior passes JVM/native corpus and process parity."
+      ],
+      "required_extensions": [],
+      "extensions": {},
+      "verification": [
+        "conformance",
+        "parity",
+        "review"
+      ],
+      "contract_digest": "sha256:74f29d2a99c360126d672486153220006551aa4d0a8f241d7058fed16c4604e5",
+      "revision": "sha256:c5c84b2bc20190cb87ba99927672d1082607addd14539604f197c20f8c58e89f",
+      "head": "sha256:28f8589bbcee62df1817cad391b45e4202f5d2809097ec81e4bc5f80ff65246a",
+      "currency": {
+        "task": "TASK.protocol.provider-profile",
+        "currency": "current",
+        "causes": []
+      },
+      "roadmaps": [
+        "ROADMAP.pre-v1-corrections"
+      ],
+      "epics": []
+    },
+    {
+      "protocol": "tasking/core-draft-2",
+      "id": "TASK.protocol.evidence-time",
+      "title": "Type actor occurrence and storage acceptance time",
+      "state": "open",
+      "intent": "Distinguish validated new occurrence timestamps, preserved legacy time strings and authoritative storage acceptance time.",
+      "requires": [
+        "TASK.protocol.checkpoint"
+      ],
+      "requirements": [
+        "Introduce validated nominal timestamp types and a distinct legacy representation; preserve every historical nonblank recorded_at string and its original receipt/revision digest.",
+        "New assertion envelopes validate occurrence timestamps through a versioned decoding boundary. An actor cannot assert an authoritative accepted-at value.",
+        "Storage acceptance time is separately typed and supplied only by the accepting boundary; domain evaluation has no ambient clock and uses revisions rather than actor time for ordering and CAS."
+      ],
+      "acceptance": [
+        "Malformed, ambiguous and spoofed timestamp inputs are rejected for new envelopes, while old arbitrary nonblank strings reconstruct unchanged as historical values.",
+        "Receipt, reconciliation and import review round trips preserve their original protocol identities; JVM/native corpus and process parity pass."
+      ],
+      "required_extensions": [],
+      "extensions": {},
+      "verification": [
+        "conformance",
+        "parity",
+        "review"
+      ],
+      "contract_digest": "sha256:960413e017bac0f86be97fe451e8a7e44fa37f45adfc246a4fc45723aa81fd8e",
+      "revision": "sha256:c5c84b2bc20190cb87ba99927672d1082607addd14539604f197c20f8c58e89f",
+      "head": "sha256:ad4106896cc52d160702f6f8d6fdcf93706233367c364ab4ac90208e41b0d2d0",
+      "currency": {
+        "task": "TASK.protocol.evidence-time",
+        "currency": "current",
+        "causes": []
+      },
+      "roadmaps": [
+        "ROADMAP.pre-v1-corrections"
+      ],
+      "epics": []
+    }
+  ]
+}
