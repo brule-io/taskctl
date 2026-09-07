@@ -63,7 +63,7 @@ class LedgerReadModelsTest {
     }
 
     @Test fun `escaped text and long valid identities respect the encoded byte budget`() {
-        val tasks = (1..20).map { task("TASK." + "a".repeat(1_010) + it.toString().padStart(2, '0')).copy(
+        val tasks = (1..20).map { task("TASK." + "a".repeat(500) + it.toString().padStart(2, '0')).copy(
             title = "\u0000".repeat(160), intent = "\u0000".repeat(240)) }
         val value = LedgerTransitions.evolve(empty(), Transition.AddRecords(tasks))
         val briefing = context(value)

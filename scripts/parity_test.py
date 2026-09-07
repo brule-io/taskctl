@@ -326,7 +326,10 @@ def main():
         # typed state and exact imported values; no second semantic decoder.
         current=json_pair('before large read-model specimen',['doctor'])['result']
         large=[d|dict(id=f'TASK.briefing.{n:03}',title='🧬'*400,intent='Bounded work. '*900,requires=[]) for n in range(48)]
-        long_id='TASK.'+'long'*600
+        # Stay within the existing file codec's YAML mapping-key bound while
+        # exceeding the briefing's smaller display allowance. Core-only tests
+        # also cover much longer identities without asserting file support.
+        long_id='TASK.'+'long'*200
         large.append(d|dict(id=long_id,title='Complete identity remains available',requires=[]))
         large_seed=write('large-read-model-seed.json',dict(contract='taskctl.seed/alpha1',tasks=large))
         json_pair('seed large read-model specimen',['seed','--file',large_seed,'--expect-revision',current['revision']],mutation=True)

@@ -7,7 +7,7 @@ import io.brule.tasking.core.*
 internal object LedgerReadModels {
     const val CONTEXT_MAX_BYTES = 32_768
     const val CONTEXT_MAX_ITEMS = 12
-    private const val MAX_ID_UNITS = 1_024
+    private const val MAX_ID_UNITS = 512
     private const val TITLE_POINTS = 160
     private const val INTENT_POINTS = 240
 

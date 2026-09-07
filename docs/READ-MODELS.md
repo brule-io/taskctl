@@ -1,5 +1,8 @@
 # Native read projections
 
+This describes development after the published `0.3.0-alpha.2` distribution;
+existing release pins keep their shipped behavior until explicitly upgraded.
+
 Native `doctor`, `context` and `snapshot` have distinct result contracts. The
 outer JSON envelope remains `taskctl.cli/alpha1`; consumers should inspect the
 result's `contract` field. This replaces the earlier alpha implementation in
@@ -37,7 +40,7 @@ the briefing.
 Titles are limited to 160 Unicode code points and intent to 240, without splitting
 a surrogate pair. `text_truncated` identifies each shortened preview. Repository
 display text has its own explicit truncation flag. Task identities are always
-complete: an identity over 1,024 UTF-16 units is omitted instead of being shortened
+complete: an identity over 512 UTF-16 units is omitted instead of being shortened
 into a misleading locator. Items that cannot fit the byte budget are also omitted.
 
 `omitted_items`, `omitted_overlong_identities`, `truncated`, and `limits` expose
