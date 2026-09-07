@@ -1,5 +1,7 @@
 # taskctl
 
+Open-source tasking infrastructure, licensed under [Apache-2.0](LICENSE).
+
 A standalone tasking tool for humans and coding agents. Tasks hold bounded intent,
 acceptance, causal prerequisites and closure evidence. Roadmaps describe durable
 lines of advance; epics associate work by capability. Project state stays in the
@@ -16,19 +18,22 @@ The system command and repository-pinned `./taskctl` remain independent.
 Download the [release](https://github.com/brule-io/taskctl/releases/tag/v0.3.0-alpha.2)
 native archive for your platform and `toolchain.lock`. Native needs no JVM.
 The optional JVM reference archives use `toolchain-jvm.lock` and bundle Java.
-For this initially private repository, authenticate `gh` with repository read access.
+The repository and published releases are public. No GitHub account or token is
+needed for these downloads or the generated wrapper.
 
 Windows PowerShell (no Java, Gradle or taskctl installation):
 
 ```powershell
 $download = Join-Path $env:TEMP ('taskctl-' + [Guid]::NewGuid().ToString('N'))
-gh release download v0.3.0-alpha.2 --repo brule-io/taskctl --pattern '*native-windows-x86_64.zip' --pattern toolchain.lock --dir $download
+New-Item -ItemType Directory -Path $download | Out-Null
+$release = 'https://github.com/brule-io/taskctl/releases/download/v0.3.0-alpha.2'
+Invoke-WebRequest -UseBasicParsing "$release/toolchain.lock" -OutFile "$download/toolchain.lock"
+Invoke-WebRequest -UseBasicParsing "$release/taskctl-0.3.0-alpha.2-native-windows-x86_64.zip" -OutFile "$download/taskctl-0.3.0-alpha.2-native-windows-x86_64.zip"
 $pin = ConvertFrom-StringData (Get-Content -Raw "$download/toolchain.lock")
 $archive = "$download/taskctl-0.3.0-alpha.2-native-windows-x86_64.zip"
 if ((Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne $pin['windows-x86_64.sha256']) { throw 'Checksum mismatch' }
 Expand-Archive $archive "$download/tool"
 & "$download/tool/taskctl.exe" init --repo ./my-project --id brule.my-project --toolchain "$download/toolchain.lock"
-$env:TASKCTL_GITHUB_TOKEN = gh auth token
 cd my-project
 ./taskctl.ps1 --version
 ./taskctl.ps1 doctor
@@ -40,13 +45,14 @@ Linux/macOS shell (`TARGET=macos-aarch64` on Apple Silicon):
 ```sh
 TARGET=linux-x86_64
 DOWNLOAD=$(mktemp -d)
-gh release download v0.3.0-alpha.2 --repo brule-io/taskctl --pattern "*native-$TARGET.tar.gz" --pattern toolchain.lock --dir "$DOWNLOAD"
+RELEASE=https://github.com/brule-io/taskctl/releases/download/v0.3.0-alpha.2
+curl -fL "$RELEASE/toolchain.lock" -o "$DOWNLOAD/toolchain.lock"
+curl -fL "$RELEASE/taskctl-0.3.0-alpha.2-native-$TARGET.tar.gz" -o "$DOWNLOAD/taskctl-0.3.0-alpha.2-native-$TARGET.tar.gz"
 ARCHIVE="$DOWNLOAD/taskctl-0.3.0-alpha.2-native-$TARGET.tar.gz"
 EXPECTED=$(sed -n "s/^$TARGET.sha256=//p" "$DOWNLOAD/toolchain.lock")
 ACTUAL=$(shasum -a 256 "$ARCHIVE"); test "${ACTUAL%% *}" = "$EXPECTED" || exit 1
 tar -xzf "$ARCHIVE" -C "$DOWNLOAD"
 "$DOWNLOAD/taskctl" init --repo ./my-project --id brule.my-project --toolchain "$DOWNLOAD/toolchain.lock"
-export TASKCTL_GITHUB_TOKEN=$(gh auth token)
 cd my-project
 ./taskctl --version
 ./taskctl doctor
@@ -83,8 +89,8 @@ platform archive in `toolchain.lock`, verifies SHA-256, caches it outside your
 project and checks its manifest on every run. No consumer build is invoked.
 The verified artifact owns its entry point, whether native or JVM. Version queries
 work even before the first acquisition. Use `TASKCTL_OFFLINE=1` to require cached
-operation. Private downloads need an
-explicit contents-read credential; no credential is stored in the project.
+operation. Published taskctl releases work without credentials. Private mirrors
+can use an explicit contents-read credential; no credential is stored in the project.
 
 An agent starts with the generated `AGENTS.md`, `taskctl context`, `doctor`, and
 `frontier`. Repository commands accept `--repo PATH` and `--format json`. The local
@@ -137,3 +143,5 @@ commands and the exact GraalVM pin are in [NATIVE-IMAGE.md](docs/NATIVE-IMAGE.md
 Licensed under [Apache-2.0](LICENSE). See [NOTICE.md](NOTICE.md) for scope and
 third-party notices. No CLA is required. A separate future hosted service is not
 part of this repository; code licensing grants no additional trademark rights.
+The [public-access proof](docs/proof/publication/public-2026-09-07/README.md) records
+anonymous downloads and consumer verification for the existing releases.

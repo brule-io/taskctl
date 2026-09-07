@@ -1,0 +1,97 @@
+{
+  "attempt": 2,
+  "conclusion": "success",
+  "headBranch": "main",
+  "headSha": "9b8b4c91aa3991c8a82dfa7d09591fcfbd53c74e",
+  "jobs": [
+    {
+      "completedAt": "2026-09-07T18:30:06Z",
+      "conclusion": "success",
+      "databaseId": 101835069739,
+      "name": "verify",
+      "startedAt": "2026-09-07T18:27:03Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-07T18:27:07Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-07T18:27:04Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-07T18:27:08Z",
+          "conclusion": "success",
+          "name": "Check out exact source revision",
+          "number": 2,
+          "startedAt": "2026-09-07T18:27:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-07T18:27:08Z",
+          "conclusion": "success",
+          "name": "Set up Java 21",
+          "number": 3,
+          "startedAt": "2026-09-07T18:27:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-07T18:27:14Z",
+          "conclusion": "success",
+          "name": "Set up Gradle",
+          "number": 4,
+          "startedAt": "2026-09-07T18:27:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-07T18:30:00Z",
+          "conclusion": "success",
+          "name": "Verify repository",
+          "number": 5,
+          "startedAt": "2026-09-07T18:27:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-07T18:30:02Z",
+          "conclusion": "success",
+          "name": "Post Set up Gradle",
+          "number": 8,
+          "startedAt": "2026-09-07T18:30:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-07T18:30:03Z",
+          "conclusion": "success",
+          "name": "Post Set up Java 21",
+          "number": 9,
+          "startedAt": "2026-09-07T18:30:02Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-07T18:30:03Z",
+          "conclusion": "success",
+          "name": "Post Check out exact source revision",
+          "number": 10,
+          "startedAt": "2026-09-07T18:30:03Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-07T18:30:03Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-09-07T18:30:03Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/brule-io/fantastikt/actions/runs/34151320268/job/101835069739"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/brule-io/fantastikt/actions/runs/34151320268",
+  "log_sha256": "52427f48297e4d20929aaf5ccf07b5deda746a9dfceb9e51b198a8870c66f603",
+  "task_ledger_verified": true,
+  "workflow_unchanged": true,
+  "cross_repository_secret_added": false
+}

@@ -1,5 +1,9 @@
 # Productization milestones
 
+The owner authorized public Apache-2.0 publication on 2026-09-07. Current releases
+and existing wrapper pins now support anonymous acquisition. Historical entries
+below retain their original private-publication and licensing context.
+
 The current completed release is **0.3.0-alpha.2**, adding reviewed ancestral import
 to revision-aware currency and native/JVM delivery. [Fantastikt migration](MIGRATION-FANTASTIKT.md)
 is complete. The optional Fedora RPM remains at the separately proven alpha.1.

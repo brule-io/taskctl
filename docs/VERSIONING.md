@@ -23,7 +23,9 @@ under an existing release identity. `scripts/release.py` assembles the draft fro
 matching clean CI artifacts and their bootstrap proof. `SHA256SUMS`, the release
 manifest, GitHub asset digests and the toolchain lock identify the same archives.
 
-The lock uses GitHub's asset API transport. Private downloads require an explicit
+The lock uses GitHub's asset API transport. Published taskctl releases are public
+and require no credential; changing visibility did not change any artifact digest
+or consumer pin. Private mirrors require an explicit
 `TASKCTL_GITHUB_TOKEN` or `GH_TOKEN` with repository contents-read permission.
 Credentials are not written into a project or lock. The launcher sends them only
 to the GitHub API origin, not redirect destinations. Public repositories can use

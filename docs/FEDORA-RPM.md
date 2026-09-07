@@ -17,12 +17,15 @@ are generated from the ELF rather than guessed or replaced by a JVM dependency.
 Download the binary `*.x86_64.rpm`, `RPM-SHA256SUMS`, and associated evidence from
 the RPM GitHub release. Verify the release attestation and the package checksum
 before installing; these initial packages are not signed with a separate RPM key.
-The repository remains private, so release downloads require read access.
+The repository and release downloads are public. Download through the release page
+or the anonymous URLs below; `gh release verify` remains available for signature
+verification when using an authenticated GitHub CLI.
 
 ```sh
 gh release verify rpm-v0.3.0-alpha.1-1 --repo brule-io/taskctl
-gh release download rpm-v0.3.0-alpha.1-1 --repo brule-io/taskctl \
-  --pattern '*.x86_64.rpm' --pattern RPM-SHA256SUMS
+RELEASE=https://github.com/brule-io/taskctl/releases/download/rpm-v0.3.0-alpha.1-1
+curl -fL "$RELEASE/taskctl-0.3.0-alpha.1-1.fc44.x86_64.rpm" -o taskctl-0.3.0-alpha.1-1.fc44.x86_64.rpm
+curl -fL "$RELEASE/RPM-SHA256SUMS" -o RPM-SHA256SUMS
 sha256sum --check --ignore-missing RPM-SHA256SUMS
 sudo dnf install ./taskctl-0.3.0-alpha.1-1.fc44.x86_64.rpm
 taskctl --version
@@ -38,8 +41,9 @@ taskctl frontier
 `taskctl` uses the system package and the current directory or explicit `--repo`.
 `./taskctl` uses that repository's exact committed pin. A global upgrade never
 changes the pin, and a pinned wrapper never falls back to the global executable.
-The generated wrapper may acquire its own archive on first use; private downloads
-use `TASKCTL_GITHUB_TOKEN` or `GH_TOKEN`. `TASKCTL_OFFLINE=1` requires its cache.
+The generated wrapper may acquire its own public archive on first use without
+credentials. Private mirrors can use `TASKCTL_GITHUB_TOKEN` or `GH_TOKEN`.
+`TASKCTL_OFFLINE=1` requires its cache.
 
 ```sh
 sudo dnf upgrade ./taskctl-NEW-VERSION-RELEASE.fc44.x86_64.rpm

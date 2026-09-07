@@ -38,8 +38,9 @@ claimed.
 The [publication and cold-consumer proof](proof/productization/0.3.0-alpha.1/README.md)
 records an initially empty cache, no source checkout or host JVM, and successful
 credential-free offline inspection after acquiring the released native artifact.
-Private release acquisition requires an explicit contents-read credential; no
-credential is committed. The default cache on this host has also been populated.
+Those original downloads required an explicit contents-read credential; no
+credential was committed. Since public publication on 2026-09-07, the same pins
+acquire releases anonymously. The default cache on this host has also been populated.
 
 Task closure is recorded only after its acceptance is met. Receipts describe
 actual checks and source identities as actor assertions. Distribution parity,
@@ -53,9 +54,13 @@ The current pin is the published native **v0.3.0-alpha.2** lock, SHA-256
 [publication proof](proof/productization/0.3.0-alpha.2/README.md) records all-platform
 JVM/native behavior and real-release transport validation.
 
-Fantastikt migration is complete: 12 tasks are closed, and all 22 tasks are current.
+Fantastikt migration completed with 12 closed tasks and all 22 tasks current.
 `frontier` now selects `TASK.migration.brule`; that migration has not begun.
 [Consumer migration evidence](MIGRATION-FANTASTIKT.md) includes normal canonical
 usage before copied-tool retirement and reconstruction from committed files.
 The preserved observations distinguish progress during release and migration from
 the [final producer graph](proof/migration/fantastikt-0.3/producer-final.json).
+
+Public Apache-2.0 publication adds `TASK.release.public` as an independently scoped
+administrative task. Its [public-access proof](proof/publication/public-2026-09-07/README.md)
+records anonymous native/RPM downloads, bootstrap and hosted consumer verification.

@@ -1,0 +1,296 @@
+{
+  "recorded_at": "2026-09-07T18:26:11.474005+00:00",
+  "source_revision": "78bad127a819fad50e4e45c1bdd134195ad2d7e3",
+  "scanner": "gitleaks 8.30.1",
+  "scanner_archive_sha256": "d29144deff3a68aa93ced33dddf84b7fdc26070add4aa0f4513094c8332afc4e",
+  "git_scan": "all reachable refs including six fetched release tags; 28 commits",
+  "git_findings": 56,
+  "reviewed_false_positives": [
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/migration/fantastikt-0.3/producer-final.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/migration/fantastikt-0.3/canonical-before-retirement.json:generic-api-key:37",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/migration/fantastikt-0.3/canonical-before-retirement.json:generic-api-key:114",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/selfhost-pin.json:generic-api-key:47",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/migration/fantastikt-0.3/cold-committed-checkout.json:generic-api-key:67",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/migration/fantastikt-0.3/cold-committed-checkout.json:generic-api-key:1608",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/taskctl-0.3.0-alpha.2-jvm-macos-aarch64.tar.gz.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/taskctl-0.3.0-alpha.2-jvm-linux-x86_64.tar.gz.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/taskctl-0.3.0-alpha.2-jvm-windows-x86_64.zip.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/taskctl-0.3.0-alpha.2-native-linux-x86_64.tar.gz.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/taskctl-0.3.0-alpha.2-native-macos-aarch64.tar.gz.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/release-manifest.json:generic-api-key:44",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/release-manifest.json:generic-api-key:104",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/release-manifest.json:generic-api-key:146",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/release-manifest.json:generic-api-key:206",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/release-manifest.json:generic-api-key:248",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/release-manifest.json:generic-api-key:308",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "78bad127a819fad50e4e45c1bdd134195ad2d7e3:docs/proof/productization/0.3.0-alpha.2/taskctl-0.3.0-alpha.2-native-windows-x86_64.zip.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/cold-selfhost-windows-final.json:generic-api-key:525",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/cold-selfhost-windows.json:generic-api-key:509",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/release-manifest.json:generic-api-key:44",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/release-manifest.json:generic-api-key:104",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/release-manifest.json:generic-api-key:146",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/release-manifest.json:generic-api-key:206",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/release-manifest.json:generic-api-key:248",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/release-manifest.json:generic-api-key:308",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/taskctl-0.3.0-alpha.1-jvm-linux-x86_64.tar.gz.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/taskctl-0.3.0-alpha.1-jvm-windows-x86_64.zip.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/taskctl-0.3.0-alpha.1-jvm-macos-aarch64.tar.gz.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/taskctl-0.3.0-alpha.1-native-linux-x86_64.tar.gz.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/taskctl-0.3.0-alpha.1-native-macos-aarch64.tar.gz.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/0.3.0-alpha.1/taskctl-0.3.0-alpha.1-native-windows-x86_64.zip.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/rpm-0.3.0-alpha.1-1/rpm-test.json:generic-api-key:101",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/rpm-0.3.0-alpha.1-1/taskctl-0.3.0-alpha.1-1.fc44.src.rpm.intoto.json:generic-api-key:63",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/rpm-0.3.0-alpha.1-1/taskctl-0.3.0-alpha.1-1.fc44.x86_64.rpm.intoto.json:generic-api-key:63",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/rpm-0.3.0-alpha.1-1/rpm-manifest.json:generic-api-key:44",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "62ba8281b5c42bed6cd4ddf986c5c40c99f3eae1:docs/proof/productization/rpm-0.3.0-alpha.1-1/rpm-manifest.json:generic-api-key:578",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "4505ddb35d2defad02ae88691d3839ae6d8a1820:docs/proof/productization/rpm-0.2.0-alpha.2-2/taskctl-0.2.0-alpha.2-2.fc44.src.rpm.intoto.json:generic-api-key:59",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "4505ddb35d2defad02ae88691d3839ae6d8a1820:docs/proof/productization/rpm-0.2.0-alpha.2-2/taskctl-0.2.0-alpha.2-2.fc44.x86_64.rpm.intoto.json:generic-api-key:59",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "4505ddb35d2defad02ae88691d3839ae6d8a1820:docs/proof/productization/rpm-0.2.0-alpha.2-2/rpm-test.json:generic-api-key:92",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/local-windows-consumer.json:generic-api-key:149",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/local-windows-consumer.json:generic-api-key:258",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/taskctl-0.2.0-alpha.2-jvm-linux-x86_64.tar.gz.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/taskctl-0.2.0-alpha.2-jvm-macos-aarch64.tar.gz.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/taskctl-0.2.0-alpha.2-jvm-windows-x86_64.zip.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/taskctl-0.2.0-alpha.2-native-macos-aarch64.tar.gz.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/taskctl-0.2.0-alpha.2-native-linux-x86_64.tar.gz.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/taskctl-0.2.0-alpha.2-native-windows-x86_64.zip.intoto.json:generic-api-key:43",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/release-manifest.json:generic-api-key:40",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/release-manifest.json:generic-api-key:98",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/release-manifest.json:generic-api-key:138",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/release-manifest.json:generic-api-key:196",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/release-manifest.json:generic-api-key:236",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "b1a750358400fa954faad0d9993460ff5b78ea9b:docs/proof/productization/0.2.0-alpha.2/release-manifest.json:generic-api-key:294",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "4505ddb35d2defad02ae88691d3839ae6d8a1820:docs/proof/productization/rpm-0.2.0-alpha.2-2/rpm-manifest.json:generic-api-key:40",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    },
+    {
+      "fingerprint": "4505ddb35d2defad02ae88691d3839ae6d8a1820:docs/proof/productization/rpm-0.2.0-alpha.2-2/rpm-manifest.json:generic-api-key:565",
+      "classification": "false-positive dependency SHA-256",
+      "verified_against": "org.yaml:snakeyaml:2.5 cached JAR digest"
+    }
+  ],
+  "confirmed_credentials": 0,
+  "ci_log_runs": 35,
+  "ci_log_files": 162,
+  "ci_log_findings": 0,
+  "limits": "Pattern scanning and review of findings, not a guarantee that every possible secret is detectable.",
+  "historical_witnesses": "Retained DAEMON and Fantastikt tasking specimens, project/revision provenance and local path metadata under the repository owner's explicit public-publication instruction; source repositories keep their own visibility."
+}

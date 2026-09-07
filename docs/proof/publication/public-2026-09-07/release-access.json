@@ -1,0 +1,40 @@
+{
+  "public_releases": [
+    {
+      "tag": "v0.3.0-alpha.2",
+      "immutable": true,
+      "asset_count": 28
+    },
+    {
+      "tag": "v0.3.0-alpha.1",
+      "immutable": true,
+      "asset_count": 28
+    },
+    {
+      "tag": "rpm-v0.3.0-alpha.1-1",
+      "immutable": true,
+      "asset_count": 11
+    },
+    {
+      "tag": "v0.2.0-alpha.2",
+      "immutable": true,
+      "asset_count": 22
+    },
+    {
+      "tag": "v0.2.0-alpha.1",
+      "immutable": true,
+      "asset_count": 6
+    },
+    {
+      "tag": "rpm-v0.2.0-alpha.2-2",
+      "immutable": true,
+      "asset_count": 11
+    }
+  ],
+  "anonymous_rpm_download": {
+    "name": "taskctl-0.3.0-alpha.1-1.fc44.x86_64.rpm",
+    "sha256": "0161a0155d887d898fd5b32ad56afd5e6eb615d05641e493276f72e472149354",
+    "bytes": 6808947
+  },
+  "license_unchanged": "Apache-2.0"
+}

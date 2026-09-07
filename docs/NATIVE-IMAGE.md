@@ -99,9 +99,9 @@ release attestation. Verify it with `gh release verify TAG --repo brule-io/taskc
 then verify the asset digests and statement subjects. The statement describes the
 build; the GitHub release signature attests its publication, not independent
 observation of every build step. No separate CI OIDC signature or SLSA level is
-claimed. GitHub's per-build artifact attestations require Enterprise Cloud for
-private repositories; the current organization uses Team. This does not require
-changing repository visibility or publishing private witnesses.
+claimed. This evidence model was established while the repository was private.
+The repository became public on 2026-09-07; that does not retroactively add build
+signatures or change existing provenance claims.
 
 Byte-identical repackaging is tested from the same build/runtime inputs for both
 formats. It is not a claim that separate Native Image compiler invocations produce

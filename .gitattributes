@@ -10,3 +10,4 @@ docs/proof/productization/**/*.log -whitespace
 docs/proof/productization/**/rpmlint.txt -whitespace
 # Consumer receipts retain the same bytes as their committed source evidence.
 docs/proof/migration/** -text whitespace=cr-at-eol
+docs/proof/publication/** -text whitespace=cr-at-eol

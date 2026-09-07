@@ -25,8 +25,9 @@ write only declared ledger/transaction paths and must never run implicit Git
 operations. Run `./gradlew check` and packaged bootstrap integration tests for
 supported platforms before release. Never claim an unexecuted platform check.
 The owner selected Apache-2.0 for the protocol and reference tooling. Preserve
-LICENSE and third-party notices in all distributions. Historical source witnesses
-include private project material; repository visibility is still explicit.
+LICENSE and third-party notices in all distributions. The owner authorized public
+Apache-2.0 publication of brule-io/taskctl on 2026-09-07. Historical source witnesses
+retain their exact provenance; their source repositories keep their own visibility.
 
 Lifecycle and currency are independent. Affected closed tasks keep their historical
 receipts. Use `revise` and explicit `reconcile` evidence with CAS; never hand-edit
