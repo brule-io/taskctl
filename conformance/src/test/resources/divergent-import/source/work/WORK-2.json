@@ -1,0 +1,14 @@
+{
+  "schema": "specimen.work/1",
+  "identity": "WORK-2",
+  "lifecycle": {"state": "open", "narrative": null},
+  "contract": {
+    "title": "Publish the specimen result",
+    "intent": "Make the fictional reviewed result available.",
+    "prerequisites": ["WORK-01"],
+    "requirements": ["Use the reviewed archive."],
+    "checks": [{"text": "The result is available.", "checked": false}]
+  },
+  "feature": "FEATURE-A",
+  "labels": {"queue_rank": 0}
+}

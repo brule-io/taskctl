@@ -89,3 +89,9 @@ reconstruction and the native/JVM process and cached-wrapper boundaries.
 Readiness for a real consumer also requires its own build checks and normal
 dogfood usage before copied task tooling is removed. This adapter does not
 authorize migrations of other ancestral dialects.
+
+An independently authored [divergent object-record specimen](DIVERGENT-IMPORT.md)
+also exercises the typed import/bootstrap API with complete non-native identities,
+embedded lifecycle, no roadmaps and exact opaque values. Its adapter is confined
+to conformance tests. Unsupported ownership/eligibility states are rejected and
+remain explicit checkpoint/adoption constraints.

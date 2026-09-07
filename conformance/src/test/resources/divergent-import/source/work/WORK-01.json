@@ -1,0 +1,14 @@
+{
+  "schema": "specimen.work/1",
+  "identity": "WORK-01",
+  "lifecycle": {"state": "closed", "narrative": "Fictional historical dependency review."},
+  "contract": {
+    "title": "Review the archive",
+    "intent": "Record the fictional archive review.",
+    "prerequisites": ["WORK-1"],
+    "requirements": ["Keep the original archive identity."],
+    "checks": [{"text": "The review is recorded.", "checked": true}]
+  },
+  "feature": "FEATURE-B",
+  "labels": {"queue_rank": 1}
+}

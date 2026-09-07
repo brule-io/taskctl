@@ -3,6 +3,7 @@ outputs, exit codes and exact resulting files. No protocol-specific normalizatio
 Only implementation/build/runtime diagnostics may differ in `info`.
 """
 import hashlib, json, os, shutil, stat, subprocess, tarfile, tempfile, zipfile
+from decimal import Decimal
 from pathlib import Path
 from package import ROOT, target, digest
 
@@ -256,6 +257,63 @@ def main():
         assert not list((repo/'.agents/receipts').glob('*'))
         json_pair('import reviewed history',['history','TASK.draft-mvp.001'])
         assert source_image()==source_before
+        # A conformance-local adapter emits this through canonical Bootstrap,
+        # exercising a second import shape without registering a test adapter in
+        # the product CLI or copying private consumer records into this corpus.
+        projection=json.loads((output/'divergent-native-preimage.json').read_text(encoding='utf-8'))
+        assert projection['protocol']=='taskctl.conformance-preimage/1'
+        assert projection['adapter']=='conformance-object-work' and projection['adapter_version']=='1.0.0'
+        assert projection['source_revision']=='7426b442a1fc217894af2c6f9f77ce8bc05413af'
+        restore(None); repo.mkdir()
+        for relative,content in projection['files'].items():
+            path=repo/relative
+            assert relative.startswith('.agents/') and path.resolve().is_relative_to(repo.resolve())
+            path.parent.mkdir(parents=True,exist_ok=True); path.write_text(content,encoding='utf-8',newline='\n')
+        (repo/'source.txt').write_text('Divergent consumer source remains untouched.\n',encoding='utf-8')
+        (repo/'.git').mkdir(); (repo/'.git/sentinel').write_text('No Git execution.\n',encoding='utf-8')
+        observed=json_pair('divergent imported doctor',['doctor'])['result']
+        assert observed['tasks']==3 and observed['roadmaps']==0 and observed['epics']==2
+        for command in ('context','snapshot','status','affected','frontier','roadmap','epic'):
+            json_pair('divergent '+command,[command])
+        assert not json_pair('divergent structural readiness is not current proof',['frontier'])['result']['tasks']
+        original_history=json_pair('divergent historical unchecked closure',['history','TASK.specimen.WORK-1'])['result']
+        assert original_history['imports'] and not original_history['receipts']
+        for work_id in ('WORK-1','WORK-01','WORK-2'):
+            task_id='TASK.specimen.'+work_id
+            plan=json_pair('divergent reconcile plan '+work_id,['reconcile',task_id,'--plan'])['result']
+            review=review_file(plan,evidence_data={'specimen':'Explicit review of fictional current contract and source mapping.'})
+            json_pair('divergent reconcile '+work_id,['reconcile',task_id,'--file',review,'--expect-revision',plan['revision']],mutation=True)
+            json_pair('divergent stale review '+work_id,['reconcile',task_id,'--file',review,'--expect-revision',plan['revision']],code=4)
+        assert json_pair('divergent ready after explicit reviews',['frontier'])['result']['tasks']==['TASK.specimen.WORK-2']
+        shown=json_pair('divergent close contract',['show','TASK.specimen.WORK-2'])['result']
+        asserted=evidence|dict(task=shown['id'],contract=shown['contract_digest'],evidence={'specimen':'Current fictional result checked.'})
+        receipt=write('divergent-receipt.json',asserted)
+        json_pair('divergent verify',['verify',shown['id'],'--receipt',receipt])
+        json_pair('divergent bounded close plan',['close',shown['id'],'--receipt',receipt,'--expect-revision',shown['revision'],'--plan'])
+        json_pair('divergent evidenced close',['close',shown['id'],'--receipt',receipt,'--expect-revision',shown['revision']],mutation=True)
+        receipts={p.name:p.read_bytes() for p in (repo/'.agents/receipts').iterdir()}
+        json_pair('divergent current snapshot',['snapshot'])
+        old_root=json_pair('divergent root before revision',['show','TASK.specimen.WORK-1'])['result']
+        root_path=next(p for p in (repo/'.agents/tasks').iterdir() if json.loads(p.read_text(encoding='utf-8'))['id']==old_root['id'])
+        root_text=root_path.read_text(encoding='utf-8')
+        original_extensions=json.loads(root_text,parse_float=Decimal)['extensions']
+        # Do not round-trip opaque protocol numbers through Python binary floats.
+        original_requirement='["Keep exact input bytes."]'
+        assert root_text.count(original_requirement)==1
+        changed=work/'divergent-root-revision.json'
+        changed.write_text(root_text.replace(original_requirement,'["Keep exact bytes and audit their origin."]'),encoding='utf-8',newline='\n')
+        json_pair('divergent material revision',['revise',old_root['id'],'--file',changed,'--expect-revision',old_root['revision']],mutation=True)
+        assert json.loads(root_path.read_text(encoding='utf-8'),parse_float=Decimal)['extensions']==original_extensions
+        for work_id in ('WORK-1','WORK-01'):
+            task_id='TASK.specimen.'+work_id
+            plan=json_pair('divergent changed review plan '+work_id,['reconcile',task_id,'--plan'])['result']
+            review=review_file(plan,evidence_data={'specimen':'Explicit review of the stronger fictional archive requirement.'})
+            json_pair('divergent changed review '+work_id,['reconcile',task_id,'--file',review,'--expect-revision',plan['revision']],mutation=True)
+        remains=json_pair('divergent transitive changed inputs',['affected'])['result']['tasks']
+        assert any(t['task']=='TASK.specimen.WORK-2' and t['currency']=='affected' and t['lifecycle']=='closed' for t in remains)
+        assert receipts=={p.name:p.read_bytes() for p in (repo/'.agents/receipts').iterdir()}
+        json_pair('divergent retained native and import history',['history','TASK.specimen.WORK-2'])
+        assert (repo/'source.txt').read_text(encoding='utf-8')=='Divergent consumer source remains untouched.\n'
     result=dict(contract='taskctl.parity/alpha1',platform=system,version=native['version'],
         artifacts={kind:meta['sha256'] for kind,meta in metadata.items()},cases=checks,
         allowed_differences={'info.result':['implementation','java_runtime','vm','build']},

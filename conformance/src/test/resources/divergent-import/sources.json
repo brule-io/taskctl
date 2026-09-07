@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/brule-io/taskctl",
+  "revision": "7426b442a1fc217894af2c6f9f77ce8bc05413af",
+  "source_prefix": "conformance/src/test/resources/divergent-import/source/",
+  "classification": "independently-authored-fictional-conformance-specimen",
+  "files": {
+    "README.md": "76f9385e66d2d1bf5a5899a88f655788a62b2ce17ac26186fd9ecbdccfac27e4",
+    "features/FEATURE-A.json": "50c7983187c9c25406ba4932c40a0eb7bdcac1ac1e26871f5ed2737665097bec",
+    "features/FEATURE-B.json": "9e6fd7c24426c1562de8d1a66eff9d3ff5ba4d3895acb04f46126fe8a4765bb8",
+    "work/WORK-01.json": "6bfb782bb9bf48f8660b045ba6ad54c8db756375b60f45d6759b7b913dc1d76e",
+    "work/WORK-1.json": "59f79810cd54e2fd3e4a5fed59382d68426a0b56f1c440c60e15509bb1e79015",
+    "work/WORK-2.json": "6345fc7aa473c5eb42ee39d496d007f4047fbba9cbd916e51c27fabb93c2a602"
+  }
+}
