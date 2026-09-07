@@ -27,3 +27,11 @@ The 0.3 native guide has been updated to describe alpha2/history and the complet
 dependency observation shape directly. Historical versions remain named explicitly.
 No native-v1 freeze, provider activation or service implementation follows from
 this documentation correction.
+
+The [divergent specimen](DIVERGENT-IMPORT.md) adds concrete checkpoint inputs:
+same-label/different-structure rejection, injective legacy identity mapping,
+unchecked historical closure without fabricated proof, and execution restrictions
+that cannot be lowered to optional labels. The current open/closed import subset
+does not admit claimed/blocked or host/operator eligibility semantics. A checkpoint
+must explicitly decide the preserving capability/profile boundary or continue to
+block those consumer adoptions; passing the bounded specimen alone is insufficient.
