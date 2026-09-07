@@ -18,4 +18,6 @@ dependencies {
     implementation(project(":repository"))
     implementation(project(":compatibility"))
     implementation(project(":core"))
+    testImplementation(kotlin("test-junit5"))
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.13.4")
 }

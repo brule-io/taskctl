@@ -42,7 +42,8 @@ internal object NativeCommands {
                 adopt --repo PATH --id ID --toolchain LOCK [--seed FILE] [--plan]
                 import inspect|plan --source PATH --source-repository ID --source-revision SHA --adapter ID
                 import apply --source PATH --file PLAN --review REVIEW --repo TARGET --id ID --toolchain LOCK [--plan]
-                doctor | context | snapshot | frontier [--roadmap ID] [--epic ID]
+                doctor (diagnostics) | context (bounded briefing) | snapshot (complete typed state)
+                frontier [--roadmap ID] [--epic ID]
                 show TASK | roadmap [ID] | epic [ID]
                 status | affected [TASK] | history TASK
                 revise TASK --file RECORD --expect-revision REVISION
@@ -137,17 +138,11 @@ internal object NativeCommands {
         }
         val snapshot = ledger.snapshot()
         val universe = snapshot.universe
-        val currency = snapshot.currency()
+        val currency by lazy { snapshot.currency() }
         return when (command) {
-            "doctor", "context", "snapshot" -> obj(
-                "repository_id" to StringValue(snapshot.repositoryId), "protocol" to StringValue(if (snapshot.imports.isNotEmpty()) "taskctl.native/alpha3" else if (snapshot.history == null) "taskctl.native/alpha1" else "taskctl.native/alpha2"),
-                "profile" to StringValue("minimal/alpha1"), "revision" to StringValue(snapshot.revision.value),
-                "tasks" to integer(universe.tasks.size), "roadmaps" to integer(universe.roadmaps.size), "epics" to integer(universe.epics.size),
-                "required_capabilities_unavailable" to strings((universe.tasks.flatMap { it.requiredExtensions } + universe.roadmaps.flatMap { it.requiredExtensions } + universe.epics.flatMap { it.requiredExtensions }).distinct().sorted()),
-                "currency" to ObjectValue(Currency.entries.associate { state -> state.name.lowercase() to integer(currency.values.count { it.state == state }) }),
-                "work" to ArrayValue(universe.tasks.sortedBy { it.id }.map { obj("id" to StringValue(it.id.value), "title" to StringValue(it.title), "lifecycle" to StringValue(it.state), "currency" to StringValue(currency.getValue(it.id).state.name.lowercase())) }),
-                "instructions" to StringValue("Read AGENTS.md. Use frontier, show, roadmap, epic and affected. Reconcile requires explicit reviewed inputs and evidence; mutations require the inspected revision."),
-            )
+            "doctor" -> LedgerReadModels.doctor(snapshot)
+            "context" -> LedgerReadModels.context(snapshot)
+            "snapshot" -> LedgerReadModels.snapshot(snapshot)
             "status", "affected" -> {
                 val selected = args.positional.singleOrNull()?.let(TaskId::parseOrThrow)
                 require(selected == null || universe.tasks.any { it.id == selected }) { "unknown task: $selected" }
@@ -220,6 +215,10 @@ internal object NativeCommands {
                 println("Revision: ${result.requiredString("revision")}")
             }
             "info" -> { println("taskctl $version (${ToolRuntime.implementation}; protocol v1 not frozen)"); result.fields.forEach { (key, value) -> println("$key: " + Json.encode(value)) } }
+            "doctor" -> {
+                println("doctor: ${result.requiredString("health")}")
+                result.fields.filterKeys { it != "health" }.forEach { (key, value) -> println("$key: " + Json.encode(value)) }
+            }
             "status", "affected" -> {
                 result.requiredArray("tasks").forEach { value ->
                     val task = value as ObjectValue

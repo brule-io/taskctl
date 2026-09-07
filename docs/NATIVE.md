@@ -26,6 +26,10 @@ initial `minimal/alpha1` profile has no behavioral providers. `policy.toml` name
 the same profile. These alpha TOML contracts deliberately accept only their
 documented quoted scalar fields; unknown fields are errors.
 
+`doctor`, `context` and `snapshot` expose distinct [read contracts](READ-MODELS.md):
+diagnostics, a bounded agent briefing and the complete typed ledger view. Reads
+preserve the repository and do not activate capabilities or probes.
+
 Task, roadmap and epic documents live under `.agents/tasks`, `.agents/roadmaps`
 and `.agents/epics`. These directories may be empty or absent in a clean checkout.
 The generated YAML files use JSON syntax, a strict YAML subset with exact typed

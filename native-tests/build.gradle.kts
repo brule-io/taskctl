@@ -5,13 +5,14 @@ dependencies {
     testImplementation(project(":core"))
     testImplementation(project(":repository"))
     testImplementation(project(":compatibility"))
+    testImplementation(project(":cli"))
     testImplementation(kotlin("test-junit5"))
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.13.4")
 }
 
 // Reuse the compiled original tests, including their module-internal access.
 // Compiler/PSI policy tests remain a JVM source gate, not runtime behavior.
-val modules = listOf("core", "repository", "compatibility", "conformance")
+val modules = listOf("core", "repository", "compatibility", "conformance", "cli")
 val corpusClasses = files(modules.map { rootProject.file("$it/build/classes/kotlin/test") })
 val corpusResources = files(modules.map { rootProject.file("$it/build/resources/test") })
 tasks.test {

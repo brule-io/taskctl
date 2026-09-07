@@ -13,8 +13,9 @@ isolated test repository. Operational migrations are consumer-owned (see
 [ownership](CONSUMER-OWNERSHIP.md)). Later kernel work should pressure-test the
 service-related choices under the checkpoint's strengthened task prerequisites.
 
-- Separate `doctor` diagnostics, a bounded `context` briefing, and a complete
-  machine-oriented `snapshot`. They currently expose substantially the same data.
+- The [distinct read projections](READ-MODELS.md) implement `doctor` diagnostics,
+  bounded `context` and a complete typed `snapshot`, with
+  [three-platform closure evidence](proof/read-models/README.md).
 - Choose an explicit audit/revision model for roadmap and epic amendments,
   archival and acceptance. Planning changes must not implicitly invalidate task
   contracts or create ownership/dependency edges.
