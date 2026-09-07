@@ -1,0 +1,19 @@
+{
+  "schema": "specimen.work/1",
+  "identity": "WORK-1",
+  "lifecycle": {"state": "closed", "narrative": "Fictional historical archive check; not rerun by import."},
+  "contract": {
+    "title": "Archive the specimen",
+    "intent": "Preserve the fictional source archive.",
+    "prerequisites": [],
+    "requirements": ["Keep exact input bytes."],
+    "checks": [{"text": "The archive is available.", "checked": false}]
+  },
+  "feature": "FEATURE-A",
+  "labels": {
+    "exact_integer": 900719925474099312345678901234567890,
+    "exact_decimal": 0.123456789012345678901234567890,
+    "nested": [{"enabled": true, "nothing": null, "text": "snowman ☃ and parrot 🦜"}],
+    "queue_rank": 2
+  }
+}
