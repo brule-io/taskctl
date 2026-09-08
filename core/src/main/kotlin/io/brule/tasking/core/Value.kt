@@ -2,18 +2,35 @@ package io.brule.tasking.core
 
 import java.math.BigDecimal
 import java.math.BigInteger
+import java.util.Collections
 
 /** Closed algebra for protocol values. Numbers never pass through binary
  * floating point. The document codec independently preserves source spelling. */
 sealed interface Value
-data class ObjectValue(val fields: Map<String, Value>) : Value {
+private data class ObjectFields(val fields: Map<String, Value>)
+private data class ArrayElements(val values: List<Value>)
+
+/** Own the collection at the validity boundary. A Kotlin read-only view alone
+ * would still let a caller change the value through its original mutable alias. */
+@ConsistentCopyVisibility
+data class ObjectValue private constructor(private val content: ObjectFields) : Value {
+    constructor(fields: Map<String, Value>) : this(ObjectFields(Collections.unmodifiableMap(LinkedHashMap(fields))))
+    val fields: Map<String, Value> get() = content.fields
     init { fields.keys.forEach(::requireUnicodeScalars) }
+    fun copy(fields: Map<String, Value> = this.fields): ObjectValue = ObjectValue(fields)
+    override fun toString(): String = "ObjectValue(fields=$fields)"
     fun requiredString(key: String): String =
         (fields[key] as? StringValue)?.value ?: error("$key must be a string")
     fun requiredArray(key: String): List<Value> =
         (fields[key] as? ArrayValue)?.values ?: error("$key must be an array")
 }
-data class ArrayValue(val values: List<Value>) : Value
+@ConsistentCopyVisibility
+data class ArrayValue private constructor(private val content: ArrayElements) : Value {
+    constructor(values: List<Value>) : this(ArrayElements(Collections.unmodifiableList(ArrayList(values))))
+    val values: List<Value> get() = content.values
+    fun copy(values: List<Value> = this.values): ArrayValue = ArrayValue(values)
+    override fun toString(): String = "ArrayValue(values=$values)"
+}
 data class StringValue(val value: String) : Value {
     init { requireUnicodeScalars(value) }
 }

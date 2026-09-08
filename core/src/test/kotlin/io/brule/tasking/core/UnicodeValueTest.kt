@@ -12,9 +12,12 @@ class UnicodeValueTest {
             assertFails { ObjectValue(mapOf(invalid to NullValue)) }
             val fields = mutableMapOf<String, Value>("valid" to NullValue)
             val borrowed = ObjectValue(fields)
+            val bytes = Json.encode(borrowed)
+            val digest = Canonical.digest("unicode", borrowed)
             fields[invalid] = NullValue
-            assertFails { Json.encode(borrowed) }
-            assertFails { Canonical.digest("unicode", borrowed) }
+            assertEquals(bytes, Json.encode(borrowed))
+            assertEquals(digest, Canonical.digest("unicode", borrowed))
+            assertFails { ObjectValue(fields) }
         }
     }
 

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.brule.tasking.conformance.RecordInputBoundaryTest" tests="2" skipped="0" failures="2" errors="0" timestamp="2026-09-08T03:47:48.537Z" hostname="WORKSTATION" time="0.497">
+  <properties/>
+  <testcase name="file ledger refuses mutated task and planning inputs without writing()" classname="io.brule.tasking.conformance.RecordInputBoundaryTest" time="0.454">
+    <failure message="org.opentest4j.AssertionFailedError: Expected an exception to be thrown, but was completed successfully with the result: &lt;ObjectValue(fields={revision=StringValue(value=sha256:09b6ed715aeee5be2d26026e849fe07b2404cb8ee43087f2d808929ef64c1bd4), writes=ArrayValue(values=[ObjectValue(fields={path=StringValue(value=.agents/tasks/TASK.input.boundary-d6aa5d386ff633b1.yaml), before_sha256=StringValue(value=7487f5ef0fc50524acf5a8203cc22ce34808f8b8fbb1665bb8a7396311c84c1d), after_sha256=StringValue(value=c64159b9a5f36c528d6aaa88bcc5c7cab8811a2c8efe2bf18ca69b79591d40c1)}), ObjectValue(fields={path=StringValue(value=.agents/history/heads.json), before_sha256=StringValue(value=6aa16038fba8f3b5f2d02ae77288d08ebff1939d75a8ec59027c06cc04e4682d), after_sha256=StringValue(value=8b1dd47e76763649fbd5c1409573e5c901c50e3d19c321cde7b676aa54be23fb)}), ObjectValue(fields={path=StringValue(value=.agents/history/revisions/775ae41bde61883adc6f291b983f4e7f650bb73c09ce198b0ef8a0062d54fe5c.json), before_sha256=NullValue, after_sha256=StringValue(value=6bda78b75fd0180aa2645c6d225a7432c4e889498533449f8017676ce744c03e)})]), transaction_paths=ArrayValue(values=[StringValue(value=.agents/runtime/lock), StringValue(value=.agents/runtime/transaction.json), StringValue(value=.agents/runtime/.taskctl-*.tmp)])})&gt;." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Expected an exception to be thrown, but was completed successfully with the result: &lt;ObjectValue(fields={revision=StringValue(value=sha256:09b6ed715aeee5be2d26026e849fe07b2404cb8ee43087f2d808929ef64c1bd4), writes=ArrayValue(values=[ObjectValue(fields={path=StringValue(value=.agents/tasks/TASK.input.boundary-d6aa5d386ff633b1.yaml), before_sha256=StringValue(value=7487f5ef0fc50524acf5a8203cc22ce34808f8b8fbb1665bb8a7396311c84c1d), after_sha256=StringValue(value=c64159b9a5f36c528d6aaa88bcc5c7cab8811a2c8efe2bf18ca69b79591d40c1)}), ObjectValue(fields={path=StringValue(value=.agents/history/heads.json), before_sha256=StringValue(value=6aa16038fba8f3b5f2d02ae77288d08ebff1939d75a8ec59027c06cc04e4682d), after_sha256=StringValue(value=8b1dd47e76763649fbd5c1409573e5c901c50e3d19c321cde7b676aa54be23fb)}), ObjectValue(fields={path=StringValue(value=.agents/history/revisions/775ae41bde61883adc6f291b983f4e7f650bb73c09ce198b0ef8a0062d54fe5c.json), before_sha256=NullValue, after_sha256=StringValue(value=6bda78b75fd0180aa2645c6d225a7432c4e889498533449f8017676ce744c03e)})]), transaction_paths=ArrayValue(values=[StringValue(value=.agents/runtime/lock), StringValue(value=.agents/runtime/transaction.json), StringValue(value=.agents/runtime/.taskctl-*.tmp)])})&gt;.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at kotlin.test.junit5.JUnit5Asserter.fail(JUnitSupport.kt:56)
+	at kotlin.test.AssertionsKt__AssertionsKt.checkResultIsFailure(Assertions.kt:653)
+	at kotlin.test.AssertionsKt.checkResultIsFailure(Unknown Source)
+	at io.brule.tasking.conformance.RecordInputBoundaryTest.file ledger refuses mutated task and planning inputs without writing(RecordInputBoundaryTest.kt:38)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+</failure>
+  </testcase>
+  <testcase name="post construction invalid record lists cannot become initialization plans()" classname="io.brule.tasking.conformance.RecordInputBoundaryTest" time="0.027">
+    <failure message="org.opentest4j.AssertionFailedError: Expected an exception to be thrown, but was completed successfully with the result: &lt;InitializationPlan(root=C:\Users\developer\AppData\Local\Temp\junit-8802772897027944415\target, repositoryId=input.boundary, files={.taskctl/toolchain.lock=lockFormat=2&#10;wrapperVersion=3&#10;toolVersion=test&#10;windows-x86_64.url=file:///fixture.zip&#10;windows-x86_64.sha256=0000000000000000000000000000000000000000000000000000000000000000&#10;, .taskctl/.gitignore=bootstrap-journal.json&#10;, .agents/config.toml=contract = &quot;taskctl.repository/alpha1&quot;&#10;protocol = &quot;taskctl.native/alpha2&quot;&#10;repository_id = &quot;input.boundary&quot;&#10;profile = &quot;minimal/alpha1&quot;&#10;, .agents/policy.toml=contract = &quot;taskctl.policy/alpha1&quot;&#10;profile = &quot;minimal/alpha1&quot;&#10;, .agents/.gitignore=runtime/&#10;.taskctl-*.tmp&#10;, AGENTS.md=# Repository tasking contract&#10;&#10;Start with `./taskctl doctor`, `./taskctl context`, and `./taskctl frontier`.&#10;Windows: use `./taskctl.bat` or `./taskctl.ps1`. Add `--format json` for&#10;machine results. The launcher targets its own repository even from another&#10;working directory; `--repo PATH` overrides it explicitly.&#10;&#10;Tasks are atomic executable transitions. Prerequisites determine readiness.&#10;Roadmaps are durable named lines of advance; epics are capability scopes.&#10;Their memberships are independent and may be empty or overlapping.&#10;Read `.agents/config.toml` and `.agents/policy.toml` for protocol/profile.&#10;&#10;Use `taskctl seed --file PLAN --expect-revision REVISION` to admit an explicit&#10;plan through normal validation. `taskctl show ID` reports the current task&#10;contract. `taskctl verify ID --receipt FILE` validates supplied evidence;&#10;it never runs a command or promotes an assertion into an independent proof.&#10;`taskctl close ID --receipt FILE --expect-revision REVISION` binds closure&#10;to that contract and the inspected ledger revision. Receipts are immutable.&#10;&#10;Lifecycle and currency are independent. Use `taskctl status` and `affected`&#10;to find stale work, `history ID` for immutable revisions, `revise ID --file&#10;RECORD --expect-revision REVISION` for contract edits, and `reconcile ID&#10;--plan` to inspect the exact inputs a review must address. Submit explicit&#10;actor assertions with rationale and evidence through `reconcile --file`.&#10;Never hand-edit HEAD or immutable history to clear an affected task.&#10;&#10;Read commands do not write the project. Writes are bounded to tasking state.&#10;No command implicitly commits, stages, merges, deploys, or contacts services.&#10;Unknown required capabilities block execution. Never infer dependencies from&#10;roadmap order or claim epic completion just because its tasks are closed.&#10;Use `taskctl recover` for an interrupted tasking transaction; inspect any&#10;reported external-edit conflict instead of deleting recovery data.&#10;&#10;The `.taskctl/toolchain.lock` pins the exact release and platform digest.&#10;Commit the generated launchers and state (preserve the POSIX executable bit).&#10;Set `TASKCTL_OFFLINE=1` to require cached operation. Private GitHub release&#10;acquisition accepts `TASKCTL_GITHUB_TOKEN` or `GH_TOKEN` with contents read.&#10;Native alpha contracts are not v1; upgrades never silently rewrite records.&#10;, taskctl=fixture&#10;, taskctl.ps1=fixture&#10;, taskctl.bat=fixture&#10;, .agents/tasks/TASK.input.boundary-d6aa5d386ff633b1.yaml={&quot;protocol&quot;:&quot;tasking/core-draft-2&quot;,&quot;id&quot;:&quot;TASK.input.boundary&quot;,&quot;title&quot;:&quot;Boundary&quot;,&quot;state&quot;:&quot;open&quot;,&quot;intent&quot;:&quot;Retain constructor validity&quot;,&quot;requires&quot;:[],&quot;requirements&quot;:[],&quot;acceptance&quot;:[&quot;Observed&quot;],&quot;required_extensions&quot;:[],&quot;extensions&quot;:{},&quot;verification&quot;:[&quot;test&quot;]}&#10;, .agents/history/heads.json={&quot;protocol&quot;:&quot;taskctl.history/1&quot;,&quot;origin_ledger_revision&quot;:&quot;sha256:c94962984de6191393622d46f63754a1a65d4b34a9acb39cc0abd1221d7c2ceb&quot;,&quot;heads&quot;:{&quot;TASK.input.boundary&quot;:&quot;sha256:e504923629a10cd45a69a9ff5e295df2d89e58281ffe5f2fd8944206406e42fe&quot;}}&#10;, .agents/history/revisions/e504923629a10cd45a69a9ff5e295df2d89e58281ffe5f2fd8944206406e42fe.json={&quot;protocol&quot;:&quot;taskctl.task-revision/1&quot;,&quot;parent&quot;:null,&quot;record&quot;:{&quot;protocol&quot;:&quot;tasking/core-draft-2&quot;,&quot;id&quot;:&quot;TASK.input.boundary&quot;,&quot;title&quot;:&quot;Boundary&quot;,&quot;state&quot;:&quot;open&quot;,&quot;intent&quot;:&quot;Retain constructor validity&quot;,&quot;requires&quot;:[],&quot;requirements&quot;:[],&quot;acceptance&quot;:[&quot;Observed&quot;],&quot;required_extensions&quot;:[],&quot;extensions&quot;:{},&quot;verification&quot;:[&quot;test&quot;]},&quot;contract&quot;:&quot;sha256:6d9b2f6804da4284eb6704b529920a86192c7c6484874e65f8cc4e116796daab&quot;,&quot;dependencies&quot;:[],&quot;review&quot;:null}&#10;})&gt;." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Expected an exception to be thrown, but was completed successfully with the result: &lt;InitializationPlan(root=C:\Users\developer\AppData\Local\Temp\junit-8802772897027944415\target, repositoryId=input.boundary, files={.taskctl/toolchain.lock=lockFormat=2
+wrapperVersion=3
+toolVersion=test
+windows-x86_64.url=file:///fixture.zip
+windows-x86_64.sha256=0000000000000000000000000000000000000000000000000000000000000000
+, .taskctl/.gitignore=bootstrap-journal.json
+, .agents/config.toml=contract = &quot;taskctl.repository/alpha1&quot;
+protocol = &quot;taskctl.native/alpha2&quot;
+repository_id = &quot;input.boundary&quot;
+profile = &quot;minimal/alpha1&quot;
+, .agents/policy.toml=contract = &quot;taskctl.policy/alpha1&quot;
+profile = &quot;minimal/alpha1&quot;
+, .agents/.gitignore=runtime/
+.taskctl-*.tmp
+, AGENTS.md=# Repository tasking contract
+
+Start with `./taskctl doctor`, `./taskctl context`, and `./taskctl frontier`.
+Windows: use `./taskctl.bat` or `./taskctl.ps1`. Add `--format json` for
+machine results. The launcher targets its own repository even from another
+working directory; `--repo PATH` overrides it explicitly.
+
+Tasks are atomic executable transitions. Prerequisites determine readiness.
+Roadmaps are durable named lines of advance; epics are capability scopes.
+Their memberships are independent and may be empty or overlapping.
+Read `.agents/config.toml` and `.agents/policy.toml` for protocol/profile.
+
+Use `taskctl seed --file PLAN --expect-revision REVISION` to admit an explicit
+plan through normal validation. `taskctl show ID` reports the current task
+contract. `taskctl verify ID --receipt FILE` validates supplied evidence;
+it never runs a command or promotes an assertion into an independent proof.
+`taskctl close ID --receipt FILE --expect-revision REVISION` binds closure
+to that contract and the inspected ledger revision. Receipts are immutable.
+
+Lifecycle and currency are independent. Use `taskctl status` and `affected`
+to find stale work, `history ID` for immutable revisions, `revise ID --file
+RECORD --expect-revision REVISION` for contract edits, and `reconcile ID
+--plan` to inspect the exact inputs a review must address. Submit explicit
+actor assertions with rationale and evidence through `reconcile --file`.
+Never hand-edit HEAD or immutable history to clear an affected task.
+
+Read commands do not write the project. Writes are bounded to tasking state.
+No command implicitly commits, stages, merges, deploys, or contacts services.
+Unknown required capabilities block execution. Never infer dependencies from
+roadmap order or claim epic completion just because its tasks are closed.
+Use `taskctl recover` for an interrupted tasking transaction; inspect any
+reported external-edit conflict instead of deleting recovery data.
+
+The `.taskctl/toolchain.lock` pins the exact release and platform digest.
+Commit the generated launchers and state (preserve the POSIX executable bit).
+Set `TASKCTL_OFFLINE=1` to require cached operation. Private GitHub release
+acquisition accepts `TASKCTL_GITHUB_TOKEN` or `GH_TOKEN` with contents read.
+Native alpha contracts are not v1; upgrades never silently rewrite records.
+, taskctl=fixture
+, taskctl.ps1=fixture
+, taskctl.bat=fixture
+, .agents/tasks/TASK.input.boundary-d6aa5d386ff633b1.yaml={&quot;protocol&quot;:&quot;tasking/core-draft-2&quot;,&quot;id&quot;:&quot;TASK.input.boundary&quot;,&quot;title&quot;:&quot;Boundary&quot;,&quot;state&quot;:&quot;open&quot;,&quot;intent&quot;:&quot;Retain constructor validity&quot;,&quot;requires&quot;:[],&quot;requirements&quot;:[],&quot;acceptance&quot;:[&quot;Observed&quot;],&quot;required_extensions&quot;:[],&quot;extensions&quot;:{},&quot;verification&quot;:[&quot;test&quot;]}
+, .agents/history/heads.json={&quot;protocol&quot;:&quot;taskctl.history/1&quot;,&quot;origin_ledger_revision&quot;:&quot;sha256:c94962984de6191393622d46f63754a1a65d4b34a9acb39cc0abd1221d7c2ceb&quot;,&quot;heads&quot;:{&quot;TASK.input.boundary&quot;:&quot;sha256:e504923629a10cd45a69a9ff5e295df2d89e58281ffe5f2fd8944206406e42fe&quot;}}
+, .agents/history/revisions/e504923629a10cd45a69a9ff5e295df2d89e58281ffe5f2fd8944206406e42fe.json={&quot;protocol&quot;:&quot;taskctl.task-revision/1&quot;,&quot;parent&quot;:null,&quot;record&quot;:{&quot;protocol&quot;:&quot;tasking/core-draft-2&quot;,&quot;id&quot;:&quot;TASK.input.boundary&quot;,&quot;title&quot;:&quot;Boundary&quot;,&quot;state&quot;:&quot;open&quot;,&quot;intent&quot;:&quot;Retain constructor validity&quot;,&quot;requires&quot;:[],&quot;requirements&quot;:[],&quot;acceptance&quot;:[&quot;Observed&quot;],&quot;required_extensions&quot;:[],&quot;extensions&quot;:{},&quot;verification&quot;:[&quot;test&quot;]},&quot;contract&quot;:&quot;sha256:6d9b2f6804da4284eb6704b529920a86192c7c6484874e65f8cc4e116796daab&quot;,&quot;dependencies&quot;:[],&quot;review&quot;:null}
+})&gt;.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at kotlin.test.junit5.JUnit5Asserter.fail(JUnitSupport.kt:56)
+	at kotlin.test.AssertionsKt__AssertionsKt.checkResultIsFailure(Assertions.kt:653)
+	at kotlin.test.AssertionsKt.checkResultIsFailure(Unknown Source)
+	at io.brule.tasking.conformance.RecordInputBoundaryTest.post construction invalid record lists cannot become initialization plans(RecordInputBoundaryTest.kt:29)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
