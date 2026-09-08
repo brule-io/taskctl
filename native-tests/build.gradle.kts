@@ -30,6 +30,6 @@ graalvmNative {
         fallback.set(false)
         buildArgs.addAll("-march=compatibility", "-O0", "-J-Xmx5g")
         // Historical resources are needed by the existing provenance tests only.
-        resources.includedPatterns.addAll("daemon/.*", "planning-history/.*", "fantastikt-import/.*", "divergent-import/.*", "evidence-time/.*", "planning-native/.*")
+        resources.includedPatterns.addAll("daemon/.*", "planning-history/.*", "fantastikt-import/.*", "divergent-import/.*", "evidence-time/.*", "planning-native/.*", "complex-planning/.*")
     }
 }
