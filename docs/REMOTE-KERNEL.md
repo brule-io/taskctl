@@ -71,6 +71,9 @@ the typed writer, with strict versioned fields, valid UTF-8 and no YAML syntax.
 CAS conflicts return 409; invalid transitions/envelopes return 400; unsupported
 methods, paths, content types and oversized request bodies have distinct statuses.
 Database failure details are not included in HTTP responses.
+Malformed UTF-8 is rejected as a 400 validation error before any mutation. Its
+decoder exception is separated from transport I/O failure; the real HTTP regression
+at source `20930ec` first reproduced the earlier connection-close behavior.
 
 This is intentionally bounded: 250,000 UTF-8 bytes per stored snapshot/event/command,
 1,000,000 bytes per HTTP body, and 512 accepted events per experimental ledger.

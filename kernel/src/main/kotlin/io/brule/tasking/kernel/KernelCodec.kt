@@ -2,6 +2,7 @@ package io.brule.tasking.kernel
 
 import io.brule.tasking.core.*
 import java.nio.ByteBuffer
+import java.nio.charset.CharacterCodingException
 import java.nio.charset.CodingErrorAction
 
 /** Experimental transport/storage envelopes around existing typed core codecs. */
@@ -21,8 +22,13 @@ object KernelCodec {
     }
     fun parse(bytes: ByteArray): ObjectValue {
         require(bytes.size <= MAX_BODY_BYTES) { "bounded kernel body exceeds byte limit" }
-        val source = Charsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT)
-            .onUnmappableCharacter(CodingErrorAction.REPORT).decode(ByteBuffer.wrap(bytes)).toString()
+        val source = try {
+            Charsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT)
+                .onUnmappableCharacter(CodingErrorAction.REPORT).decode(ByteBuffer.wrap(bytes)).toString()
+        } catch (failure: CharacterCodingException) {
+            // Invalid input is a validation error, not a lost transport reply.
+            throw IllegalArgumentException("valid UTF-8 required", failure)
+        }
         val value = YamlValues.parse(source).value.objectValue()
         // This experimental wire accepts the exact JSON emitted by the typed
         // writer, not YAML's wider language or a permissive second JSON codec.
