@@ -7,7 +7,7 @@ acceptance, causal prerequisites and closure evidence. Roadmaps describe durable
 lines of advance; epics associate work by capability. Project state stays in the
 project repository; the implementation comes from an exact pinned release.
 
-**Version: `0.3.0-alpha.2` (prerelease). Native protocol v1 is not frozen.**
+**Version: `0.3.0-alpha.3` (prerelease). Native protocol v1 is not frozen.**
 The [candidate specification](docs/spec/NATIVE-V1-CANDIDATE.md) describes the
 proposed semantic boundary and exact alpha compatibility evidence.
 Native executables and JVM reference archives are tested on Windows x86_64,
@@ -17,7 +17,7 @@ The system command and repository-pinned `./taskctl` remain independent.
 
 ## 60-second greenfield quick start
 
-Download the [release](https://github.com/brule-io/taskctl/releases/tag/v0.3.0-alpha.2)
+Download the [release](https://github.com/brule-io/taskctl/releases/tag/v0.3.0-alpha.3)
 native archive for your platform and `toolchain.lock`. Native needs no JVM.
 The optional JVM reference archives use `toolchain-jvm.lock` and bundle Java.
 The repository and published releases are public. No GitHub account or token is
@@ -28,11 +28,11 @@ Windows PowerShell (no Java, Gradle or taskctl installation):
 ```powershell
 $download = Join-Path $env:TEMP ('taskctl-' + [Guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $download | Out-Null
-$release = 'https://github.com/brule-io/taskctl/releases/download/v0.3.0-alpha.2'
+$release = 'https://github.com/brule-io/taskctl/releases/download/v0.3.0-alpha.3'
 Invoke-WebRequest -UseBasicParsing "$release/toolchain.lock" -OutFile "$download/toolchain.lock"
-Invoke-WebRequest -UseBasicParsing "$release/taskctl-0.3.0-alpha.2-native-windows-x86_64.zip" -OutFile "$download/taskctl-0.3.0-alpha.2-native-windows-x86_64.zip"
+Invoke-WebRequest -UseBasicParsing "$release/taskctl-0.3.0-alpha.3-native-windows-x86_64.zip" -OutFile "$download/taskctl-0.3.0-alpha.3-native-windows-x86_64.zip"
 $pin = ConvertFrom-StringData (Get-Content -Raw "$download/toolchain.lock")
-$archive = "$download/taskctl-0.3.0-alpha.2-native-windows-x86_64.zip"
+$archive = "$download/taskctl-0.3.0-alpha.3-native-windows-x86_64.zip"
 if ((Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne $pin['windows-x86_64.sha256']) { throw 'Checksum mismatch' }
 Expand-Archive $archive "$download/tool"
 & "$download/tool/taskctl.exe" init --repo ./my-project --id brule.my-project --toolchain "$download/toolchain.lock"
@@ -47,10 +47,10 @@ Linux/macOS shell (`TARGET=macos-aarch64` on Apple Silicon):
 ```sh
 TARGET=linux-x86_64
 DOWNLOAD=$(mktemp -d)
-RELEASE=https://github.com/brule-io/taskctl/releases/download/v0.3.0-alpha.2
+RELEASE=https://github.com/brule-io/taskctl/releases/download/v0.3.0-alpha.3
 curl -fL "$RELEASE/toolchain.lock" -o "$DOWNLOAD/toolchain.lock"
-curl -fL "$RELEASE/taskctl-0.3.0-alpha.2-native-$TARGET.tar.gz" -o "$DOWNLOAD/taskctl-0.3.0-alpha.2-native-$TARGET.tar.gz"
-ARCHIVE="$DOWNLOAD/taskctl-0.3.0-alpha.2-native-$TARGET.tar.gz"
+curl -fL "$RELEASE/taskctl-0.3.0-alpha.3-native-$TARGET.tar.gz" -o "$DOWNLOAD/taskctl-0.3.0-alpha.3-native-$TARGET.tar.gz"
+ARCHIVE="$DOWNLOAD/taskctl-0.3.0-alpha.3-native-$TARGET.tar.gz"
 EXPECTED=$(sed -n "s/^$TARGET.sha256=//p" "$DOWNLOAD/toolchain.lock")
 ACTUAL=$(shasum -a 256 "$ARCHIVE"); test "${ACTUAL%% *}" = "$EXPECTED" || exit 1
 tar -xzf "$ARCHIVE" -C "$DOWNLOAD"

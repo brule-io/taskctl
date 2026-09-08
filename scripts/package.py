@@ -1,6 +1,7 @@
 """Deterministic native/JVM archives with a common, verified launcher contract."""
 import argparse, gzip, hashlib, json, os, platform, re, shutil, subprocess, tarfile, tempfile, zipfile
 from pathlib import Path
+from distribution_docs import write_guides
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = (ROOT/'VERSION').read_text(encoding='utf-8').strip()
 EPOCH = 1788480000
@@ -43,6 +44,7 @@ def main():
     dirty = bool(output_of(['git','status','--porcelain']))
     libraries = sorted((ROOT/'cli/build/install/taskctl/lib').glob('*.jar'))
     assert libraries, 'Build :cli:installDist first'
+    assert not any(p.name.startswith(('kernel-', 'idl-', 'postgresql-', 'smithy-')) for p in libraries), 'Experimental kernel/IDL dependencies must not enter CLI distributions'
     inputs = {p.name:digest(p) for p in libraries}
     identity = dict(implementation=args.kind, source_revision=revision, source_dirty=dirty,
         kotlin='2.4.10', gradle='9.6.0', libraries=inputs)
@@ -76,10 +78,7 @@ def main():
             shutil.copyfile(ROOT/'packaging'/name,stage/'bootstrap'/name)
         shutil.copyfile(ROOT/'NOTICE.md',stage/'NOTICE.md')
         shutil.copyfile(ROOT/'LICENSE',stage/'LICENSE')
-        shutil.copyfile(ROOT/'README.md',stage/'README.md')
-        (stage/'docs').mkdir()
-        for name in ('SEMANTIC-0.3.md','BOOTSTRAP.md','NATIVE.md','IMPORT.md','PRE-V1.md','EXTENSIONS.md','VERSIONING.md'):
-            shutil.copyfile(ROOT/'docs'/name,stage/'docs'/name)
+        write_guides(ROOT,stage,revision)
         script = (ROOT/'packaging/distribution.ps1').read_text(encoding='utf-8')
         script = script.replace('__IMPLEMENTATION__',args.kind).replace('__LIBRARIES__',';'.join(p.name for p in libraries))
         (stage/'taskctl.ps1').write_text(script,encoding='utf-8',newline='\n')

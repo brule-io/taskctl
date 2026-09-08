@@ -41,6 +41,10 @@ jobs:
         run: gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern "*$TARGET.$EXTENSION" --pattern "*$TARGET.$EXTENSION.intoto.json" --pattern release-manifest.json --pattern 'toolchain*.lock' --dir build/distributions
       - name: Validate release and stage metadata
         run: python scripts/stage_release_test.py
+      - name: Check the exact downloaded content
+        run: |
+          python scripts/distribution_content_test.py --kind native
+          python scripts/distribution_content_test.py --kind jvm
       - name: Exercise cold GitHub acquisition of both implementations
         run: |
           python scripts/bootstrap_test.py --kind native --lock build/distributions/toolchain.lock
