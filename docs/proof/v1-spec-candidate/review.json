@@ -1,0 +1,283 @@
+{
+  "classification": "candidate-document-source-evidence-review-not-protocol-freeze",
+  "positive": {
+    "candidate": "native-v1-2026-09-07.1",
+    "status": "proposal-not-frozen",
+    "source_files": 44,
+    "invariants": 13,
+    "distinct_witnesses": 153,
+    "historical_tests_rerun": false,
+    "external_io": false
+  },
+  "disposable_negative_checks": [
+    "changed implementation fingerprint rejected",
+    "invented executed witness rejected"
+  ],
+  "local_links_checked": [
+    {
+      "from": "README.md",
+      "to": "LICENSE"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/spec/NATIVE-V1-CANDIDATE.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/FEDORA-RPM.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/NATIVE.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/SEMANTIC-0.3.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/SELF-HOSTING.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/MILESTONES-0.3.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/NATIVE.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/EXTENSIONS.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/VERSIONING.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/NATIVE-IMAGE.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/FEDORA-RPM.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/PRODUCTIZATION.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/BOOTSTRAP.md"
+    },
+    {
+      "from": "README.md",
+      "to": "examples/generator/README.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/PLANNING-MODEL.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/IMPORT.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/MIGRATION-FANTASTIKT.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/CONSUMER-OWNERSHIP.md"
+    },
+    {
+      "from": "README.md",
+      "to": "AGENTS.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/NATIVE-IMAGE.md"
+    },
+    {
+      "from": "README.md",
+      "to": "LICENSE"
+    },
+    {
+      "from": "README.md",
+      "to": "NOTICE.md"
+    },
+    {
+      "from": "README.md",
+      "to": "docs/proof/publication/public-2026-09-07/README.md"
+    },
+    {
+      "from": "docs/CORE-DRAFT.md",
+      "to": "docs/spec/NATIVE-V1-CANDIDATE.md"
+    },
+    {
+      "from": "docs/CORE-DRAFT.md",
+      "to": "docs/VALUE-BOUNDARIES.md"
+    },
+    {
+      "from": "docs/CORE-DRAFT.md",
+      "to": "docs/PLANNING-MODEL.md"
+    },
+    {
+      "from": "docs/CORE-DRAFT.md",
+      "to": "docs/PLANNING-HISTORY.md"
+    },
+    {
+      "from": "docs/CORE-DRAFT.md",
+      "to": "docs/SEMANTIC-0.3.md"
+    },
+    {
+      "from": "docs/CORE-DRAFT.md",
+      "to": "docs/EVIDENCE-TIME.md"
+    },
+    {
+      "from": "docs/CORE-DRAFT.md",
+      "to": "docs/NATIVE-V1-ASSESSMENT-2026-09.md"
+    },
+    {
+      "from": "docs/DIVERGENT-IMPORT.md",
+      "to": "docs/proof/divergent-import/README.md"
+    },
+    {
+      "from": "docs/DIVERGENT-IMPORT.md",
+      "to": "docs/EFFECTIVE-PROFILES.md"
+    },
+    {
+      "from": "docs/DIVERGENT-IMPORT.md",
+      "to": "docs/PLANNING-HISTORY.md"
+    },
+    {
+      "from": "docs/DIVERGENT-IMPORT.md",
+      "to": "docs/COMPLEX-PLANNING.md"
+    },
+    {
+      "from": "docs/EVIDENCE-TIME.md",
+      "to": "docs/REMOTE-KERNEL.md"
+    },
+    {
+      "from": "docs/EVIDENCE-TIME.md",
+      "to": "docs/proof/evidence-time/README.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/spec/NATIVE-V1-CANDIDATE.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/SEMANTIC-0.3.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/PLANNING-HISTORY.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/EFFECTIVE-PROFILES.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/IMPORT.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/READ-MODELS.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/REMOTE-KERNEL.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/EVIDENCE-TIME.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/PLANNING-HISTORY.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/NATIVE-V1-ASSESSMENT-2026-09.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/spec/NATIVE-V1-CANDIDATE.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/PROTOCOL-CHECKPOINT-2026-09.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/CONSUMER-OWNERSHIP.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/READ-MODELS.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/proof/read-models/README.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/PLANNING-HISTORY.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/proof/planning-history/README.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/EFFECTIVE-PROFILES.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/EVIDENCE-TIME.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/proof/evidence-time/README.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/REMOTE-KERNEL.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/DIVERGENT-IMPORT.md"
+    },
+    {
+      "from": "docs/spec/NATIVE-V1-CANDIDATE.md",
+      "to": "docs/NATIVE-V1-ASSESSMENT-2026-09.md"
+    },
+    {
+      "from": "docs/spec/NATIVE-V1-CANDIDATE.md",
+      "to": "docs/spec/candidate.json"
+    },
+    {
+      "from": "docs/spec/NATIVE-V1-CANDIDATE.md",
+      "to": "docs/spec/candidate.json"
+    }
+  ],
+  "runtime_code_changed": false,
+  "historical_evidence_rewritten": false,
+  "documents": {
+    "README.md": "9b017242506241deef6e84e70bbd44ea697ccd7030c47ae831cac3293337f4f2",
+    "docs/CORE-DRAFT.md": "3b58a1f1c832ece6f4c77583d3481f17bcd0557500dd9eb414987941eb8e3166",
+    "docs/DIVERGENT-IMPORT.md": "4430160d473f979ee17fae538c2dc909acbd107f826f1a31f2179a923b970608",
+    "docs/EVIDENCE-TIME.md": "39cadc69db0ffbe2a1d0526b4fcdc36a6d65554f5c098a248678c20c80813184",
+    "docs/NATIVE.md": "5237131a5c716d9c9d72abcb6854e51d9d60687400b6d1f2ad2ec8045acc5475",
+    "docs/PRE-V1.md": "8d8c302562e6aceb05d49ca8bfca13d3b8a4f03845c95ff903c18ea355fe2ce8",
+    "docs/spec/NATIVE-V1-CANDIDATE.md": "233461d2506b13cae3196b45ae6924e03418d30fc6a6d20a0329bda00e8bff16"
+  },
+  "remaining_decisions": [
+    "Explicit owner freeze review",
+    "Concrete v1 envelope mapping and backward reader/writer support",
+    "Published conformance artifact identities for any eventual stable release"
+  ],
+  "scope": "No new v1 codec, hash algorithm, consumer mutation, provider loader or service. The candidate records existing alpha semantics and separately identified future decisions."
+}

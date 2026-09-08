@@ -82,9 +82,10 @@ requires an explicitly supplied instant. Core evaluation reads no ambient clock.
 The current file adapter leaves acceptance time absent. It does not derive one
 from occurrence time, file mtimes, the client's clock or old receipt strings, and
 it does not rewrite history to manufacture that information. Its existing CLI
-transition result remains unchanged. A future accepting backend must define its
-own persisted acceptance event and clock policy before returning authoritative
-timestamps; this type alone provides no authentication or clock assurance.
+transition result remains unchanged. The development [bounded kernel](REMOTE-KERNEL.md)
+defines its own persisted acceptance event and clock policy. Any other accepting
+backend must define those separately; this type alone provides no authentication
+or clock assurance.
 
 Import manifests remain source identities independent of their review time.
 Import admission and task-revision outer envelopes continue to carry explicitly

@@ -6,6 +6,10 @@ proofs. Freeze is deferred pending an explicit candidate specification, a new
 alpha consumer distribution and a separately reviewed freeze decision. The
 earlier checkpoint below retains its dated meaning.
 
+The [candidate specification](spec/NATIVE-V1-CANDIDATE.md) now makes that boundary
+and its remaining freeze decisions explicit. Its source/test/evidence index is
+checked in CI; the check does not execute or certify historical evidence.
+
 The [2026-09-07 checkpoint](PROTOCOL-CHECKPOINT-2026-09.md) records the decisions
 for this review. Its four correction tasks and strengthened compatibility/kernel
 prerequisites make the remaining implementation explicit. The findings below

@@ -1,0 +1,1716 @@
+{
+  "contract": "taskctl.specification-index/1",
+  "candidate": "native-v1-2026-09-07.1",
+  "status": "proposal-not-frozen",
+  "implementation_revision": "48235ab87d84af10b4fdd259f3032d3a0e28a2be",
+  "document": "docs/spec/NATIVE-V1-CANDIDATE.md",
+  "modules": [
+    "core",
+    "repository",
+    "cli",
+    "kernel",
+    "idl"
+  ],
+  "sources": [
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/AssertionInputs.kt",
+      "sha256": "f53091054819af72ebb27ec4320c2b7a4a75e308ba779f436542ebdee5c7b298",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/Canonical.kt",
+      "sha256": "dffd2603ffb0b32899864231852f186c02522fd38490f43eb49b7902ea772a0f",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/Dependency.kt",
+      "sha256": "7fd6c9fb45ce43aa0bbfa0305e5e90e8f5d7d941ff66d6ebe98ccb67c55d6a8b",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/DraftLifecycle.kt",
+      "sha256": "c68115aa47f517502d2fbaeece160c09ffac8a9d838ff3477842573efc74506c",
+      "protocol_or_hash_literals": [
+        "taskctl.semantic-contract/2",
+        "tasking/core-draft-1/semantic-contract/1",
+        "tasking/core-draft-2"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/DraftRecord.kt",
+      "sha256": "8f447bc12af5a25220761052c394cd1077893943beb0c763f000d27e2d31a50c",
+      "protocol_or_hash_literals": [
+        "tasking/core-draft-1",
+        "tasking/core-draft-2"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/DraftUniverse.kt",
+      "sha256": "a5aa28a71b33b63263033eed9ba576c4a4f592570e85e98b28238533dd37a30b",
+      "protocol_or_hash_literals": [
+        "tasking/universe-draft-1/snapshot/1"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/EffectiveProfile.kt",
+      "sha256": "f61feff50697b2e97312f552a39f52ef8855a1efe460a53d85d954c166f79285",
+      "protocol_or_hash_literals": [
+        "taskctl.effective-profile/1",
+        "taskctl.profile-revision/1",
+        "taskctl.provider-pin/1",
+        "taskctl.semantic-contract/3",
+        "tasking/core-draft-2"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/EvidenceTime.kt",
+      "sha256": "a2f9b0fdd8bd5770137489d139992c1e45b526107efafb27cbfb42b85ff30896",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/ExtensionAttributes.kt",
+      "sha256": "7dba6123d0ae1e2393d818330df20573c925f57886cc3ed0b8bd97af321b8205",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/HistoricalImport.kt",
+      "sha256": "6efd6a3670a1a1dadb2ac4d8cb0b82974ad6b1b855983abd0e037b271972c2fe",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/HistoryCodec.kt",
+      "sha256": "05ef91349525f8d5f18d5dcf0e701633b0cdee898fa0ad22ea36dde6095e9d3d",
+      "protocol_or_hash_literals": [
+        "taskctl.history/1",
+        "taskctl.reconciliation/1",
+        "taskctl.reconciliation/2",
+        "taskctl.reconciliation/3",
+        "taskctl.task-revision/1",
+        "taskctl.task-revision/2",
+        "taskctl.task-revision/3"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/Identities.kt",
+      "sha256": "6990f65c21d08393b0fbaeb840396e98365853cf8733c1ae41ed167d3bb781d7",
+      "protocol_or_hash_literals": [
+        "taskctl.initial/alpha1"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/ImportManifest.kt",
+      "sha256": "6f20065ed6b427b29592aa7465f02e40087b6fc9813d44a01cdf4d5deb758af7",
+      "protocol_or_hash_literals": [
+        "taskctl.import-admission/1",
+        "taskctl.import-manifest/1",
+        "taskctl.import-review/1",
+        "taskctl.import-review/2",
+        "taskctl.seed/alpha1"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/NativeCodec.kt",
+      "sha256": "e469456c696d9fcdf9aaafce999901d77894d13f833535210c83c810f353dd46",
+      "protocol_or_hash_literals": [
+        "taskctl.receipt/alpha1",
+        "taskctl.receipt/alpha2",
+        "taskctl.seed/alpha1",
+        "tasking/core-draft-2"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/PlanningHistory.kt",
+      "sha256": "76ae36070b690ba6e367dde6de869f2c36cbf2a1a22c280b4033f085152b9b15",
+      "protocol_or_hash_literals": [
+        "taskctl.planning-assessment/1",
+        "taskctl.planning-revision/1"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/PlanningHistoryCodec.kt",
+      "sha256": "19b2029c3a9b1f7f7e089bfb6aaa017198fb7c22b7781babada1dd51c00f837e",
+      "protocol_or_hash_literals": [
+        "taskctl.planning-amendment/1",
+        "taskctl.planning-assessment/1",
+        "taskctl.planning-audit/1",
+        "taskctl.planning-disposition/1",
+        "taskctl.planning-history/1",
+        "taskctl.planning-revision/1"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/PlanningRecord.kt",
+      "sha256": "73c0d3af569845aba806c9fc5c3f3b715c2ee299d0ac9ab9ed4a3c6130142d84",
+      "protocol_or_hash_literals": [
+        "tasking/planning-draft-1",
+        "tasking/planning-draft-2"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/PlanningTransitions.kt",
+      "sha256": "8c663afb3731ebee543d8c72bca7c256fd1eaa6056c1b303da3cde3177470abd",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/ProfileCodec.kt",
+      "sha256": "f64f967a412f9e1ec09cb57031134020b6afa8b5c57260e801f1b9d40c5afb29",
+      "protocol_or_hash_literals": [
+        "taskctl.effective-profile/1",
+        "taskctl.profile-audit/1",
+        "taskctl.profile-change/1",
+        "taskctl.profile-history/1",
+        "taskctl.profile-revision/1",
+        "taskctl.revision-semantics/1"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/ProfileIdentities.kt",
+      "sha256": "36c7b5eae2b1ab1659452d4f6a1a6d2f2ca26a87db490e9522aec25a347e8de5",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/SemanticMarkdown.kt",
+      "sha256": "67abcb5649aeedeb5bc43b6f541a42a1574b2588b7d10aaa6512b2c84e3f37b4",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/TaskHistory.kt",
+      "sha256": "5895a221c08286c22c00db5b3fcf08f671e7bfaa83b31dc91cd694efce2b2d7c",
+      "protocol_or_hash_literals": [
+        "taskctl.task-revision/1",
+        "taskctl.task-revision/2",
+        "taskctl.task-revision/3",
+        "taskctl.transitive-input/1"
+      ]
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/TaskLedger.kt",
+      "sha256": "baca9047d8f15b42a6322e7aafc60f2b2e18e1b82c97bb4560d1df2e10b4be80",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/UnicodeScalars.kt",
+      "sha256": "d49f6b6c4d07e2c3ac2386da020babdd858daebbe4e653e01feec167a2798ddb",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/Value.kt",
+      "sha256": "bacaf5a04e438779b2e86b7ffe579a78f5a3012054e3fbdd625ef83655ca1095",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "core/src/main/kotlin/io/brule/tasking/core/YamlValues.kt",
+      "sha256": "236c6bd857147d6f4b63aa410eb5ddac0890a3a15c0a62dd5304808ad400beff",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "repository/src/main/kotlin/io/brule/tasking/repository/Bootstrap.kt",
+      "sha256": "59e2ff8c140cfa75345a2609f2bbca73e73b77ec64c9345b34866aec40158537",
+      "protocol_or_hash_literals": [
+        "taskctl.bat",
+        "taskctl.init-plan/alpha1",
+        "taskctl.init/alpha1",
+        "taskctl.native/alpha2",
+        "taskctl.native/alpha3",
+        "taskctl.ps1"
+      ]
+    },
+    {
+      "path": "repository/src/main/kotlin/io/brule/tasking/repository/FileTaskLedger.kt",
+      "sha256": "c0d80543d5cb216ef620eeb126d41c1fd165202fe47321c0725d651aca2ed42b",
+      "protocol_or_hash_literals": [
+        "taskctl.file-revision/alpha1",
+        "taskctl.native/alpha1",
+        "taskctl.native/alpha2",
+        "taskctl.native/alpha3",
+        "taskctl.native/alpha4",
+        "taskctl.native/alpha5",
+        "taskctl.policy/alpha1",
+        "taskctl.repository/alpha1",
+        "taskctl.transaction/alpha1"
+      ]
+    },
+    {
+      "path": "repository/src/main/kotlin/io/brule/tasking/repository/NativeFiles.kt",
+      "sha256": "3626b9c41d7984c3627ce2e59690feb0d3066afe94bb1fbfaff4800253e68d16",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "cli/src/main/kotlin/io/brule/tasking/cli/ImportCommands.kt",
+      "sha256": "87e960662c446a59cc2c073938abfc379b74a261b617009e40286027a27ae2b5",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "cli/src/main/kotlin/io/brule/tasking/cli/LedgerReadModels.kt",
+      "sha256": "4d94a52489eadf746b4bd4095ca4afb33b49f21f5037959a5b1b9375db331b73",
+      "protocol_or_hash_literals": [
+        "taskctl.context/alpha1",
+        "taskctl.native/alpha1",
+        "taskctl.native/alpha2",
+        "taskctl.native/alpha3",
+        "taskctl.native/alpha4",
+        "taskctl.native/alpha5"
+      ]
+    },
+    {
+      "path": "cli/src/main/kotlin/io/brule/tasking/cli/Main.kt",
+      "sha256": "72d2ed2d7cfa0d6ef63b6b74d431d55b19d7fe5cec22560d8ad88ffc1def380c",
+      "protocol_or_hash_literals": [
+        "taskctl.cli/alpha1"
+      ]
+    },
+    {
+      "path": "cli/src/main/kotlin/io/brule/tasking/cli/NativeCommands.kt",
+      "sha256": "bcdfc7b2b673c92ea214182220af2ff5d7d5074a126d589db26fe36c19cb8003",
+      "protocol_or_hash_literals": [
+        "taskctl.cli/alpha1",
+        "taskctl.repository"
+      ]
+    },
+    {
+      "path": "cli/src/main/kotlin/io/brule/tasking/cli/PlanningCommands.kt",
+      "sha256": "14220247f2f63abded8450e0e982a33f3e6f1f17dc91aa19e0927ee36f758cc0",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "cli/src/main/kotlin/io/brule/tasking/cli/PlanningReadModels.kt",
+      "sha256": "6480c385b99d1c86d72f7e4689dae631215aa3b25311bfb944470c126938519c",
+      "protocol_or_hash_literals": [
+        "taskctl.planning-assessment-plan/1",
+        "taskctl.planning-history-view/1"
+      ]
+    },
+    {
+      "path": "cli/src/main/kotlin/io/brule/tasking/cli/ProfileCommands.kt",
+      "sha256": "8ebbae946477c5b46b61f435c23a6f0ceda66996f51209c0a7c28989b616d894",
+      "protocol_or_hash_literals": [
+        "taskctl.profile-history-view/1",
+        "taskctl.profile-view/1"
+      ]
+    },
+    {
+      "path": "cli/src/main/kotlin/io/brule/tasking/cli/ToolRuntime.kt",
+      "sha256": "28c2bebd82a1dc1fd6b6c5b931a759b9042c391a30490519a0d0b8669048b8d9",
+      "protocol_or_hash_literals": [
+        "taskctl.cli/alpha1",
+        "taskctl.distribution"
+      ]
+    },
+    {
+      "path": "kernel/src/main/kotlin/io/brule/tasking/kernel/HttpTaskLedger.kt",
+      "sha256": "e3226159d93a2d68be9d08904ba20349fb0851006b187182d8f5d7515a0741b2",
+      "protocol_or_hash_literals": [
+        "taskctl.kernel-error/alpha1",
+        "taskctl.kernel-event-page/alpha1"
+      ]
+    },
+    {
+      "path": "kernel/src/main/kotlin/io/brule/tasking/kernel/KernelCodec.kt",
+      "sha256": "4680f0be606e87092a7265bd834ebdf5ccce3b7942df9311f0d80676c66df6ad",
+      "protocol_or_hash_literals": [
+        "taskctl.kernel-apply/alpha1",
+        "taskctl.kernel-result/alpha1",
+        "taskctl.kernel-snapshot/alpha1",
+        "taskctl.kernel-state/alpha1",
+        "taskctl.kernel-transition/alpha1",
+        "taskctl.seed/alpha1"
+      ]
+    },
+    {
+      "path": "kernel/src/main/kotlin/io/brule/tasking/kernel/KernelEvent.kt",
+      "sha256": "f741eb9faf43e49f8727cd109d35274e8a034b0e752b420290526d2a06b0bcf6",
+      "protocol_or_hash_literals": [
+        "taskctl.kernel-event/alpha1"
+      ]
+    },
+    {
+      "path": "kernel/src/main/kotlin/io/brule/tasking/kernel/PostgresTaskLedger.kt",
+      "sha256": "b26659d11cd9b4243a21b96368f0cf766bd59c1d230864f255be62e8f0814404",
+      "protocol_or_hash_literals": []
+    },
+    {
+      "path": "idl/src/main/kotlin/io/brule/tasking/idl/Generate.kt",
+      "sha256": "c63701598bdc68e882a8e38c881570eab84f75089ddd6187a6bf0e676e5babed",
+      "protocol_or_hash_literals": [
+        "taskctl.smithy-projection/alpha1",
+        "taskctl.wire-idl/alpha1"
+      ]
+    },
+    {
+      "path": "idl/src/main/kotlin/io/brule/tasking/idl/SmithyProjection.kt",
+      "sha256": "62034e16b9bf1ae7886ddcfadce9a19bd8bde7871c12ba6dde9ae0c6dbc20366",
+      "protocol_or_hash_literals": [
+        "taskctl.wire-idl/alpha1"
+      ]
+    },
+    {
+      "path": "idl/src/main/kotlin/io/brule/tasking/idl/WireModel.kt",
+      "sha256": "db1ff07ffc782ce0ab68caca87689b8ac6e7d18532e6b0cbfeb3a442a3f59697",
+      "protocol_or_hash_literals": [
+        "taskctl.kernel-apply/alpha1",
+        "taskctl.kernel-error/alpha1",
+        "taskctl.kernel-event-page/alpha1",
+        "taskctl.kernel-event/alpha1",
+        "taskctl.kernel-result/alpha1",
+        "taskctl.kernel-snapshot/alpha1",
+        "taskctl.kernel-transition/alpha1",
+        "taskctl.wire-idl/alpha1"
+      ]
+    }
+  ],
+  "test_sources": {
+    "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt": "dd218382d691f57d9e31e49e5afccb24647d9f359e471f230f3af9d81ba77c46",
+    "core/src/test/kotlin/io/brule/tasking/core/ValueOwnershipTest.kt": "033ded922dbfe527f750f138737c154df97ece0c7109330c82e747e8fbcc1417",
+    "core/src/test/kotlin/io/brule/tasking/core/UnicodeValueTest.kt": "6148ccee4c1c30bb81b66557a8d4143ba4e58d84f49039f4357cfb503314221f",
+    "core/src/test/kotlin/io/brule/tasking/core/WholeDecimalRoundTripTest.kt": "483d605185548592de70bdf103768d869b963964a093af37b8bb8aeb72994549",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/RecordInputBoundaryTest.kt": "d96449e2e8502069afc62513485f569e6645cb1023818a3d5c6ab8359172e35c",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt": "d7473e1213ddbdd704a30baa8176298db2be1b0a30e35f1de82af895ec08b8ec",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/ArchitecturePolicyTest.kt": "424db9d386f7af7bdc4e56c61359cea3710bca84dc026bc29d0afcabb619457d",
+    "core/src/test/kotlin/io/brule/tasking/core/IdentityTest.kt": "2089efd24763ed07cd2bfa2f85adbe2943e1516c0a9811099c665d77f53b58bc",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt": "a10629f06efffd24bfc99bde88b5e1a8b76ad27a45085bf682be0d51475af896",
+    "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt": "4ed0aeaf3d8eec6aebd5c3cc4abab83e09d5c3059b1e211705fbc5f589958f7f",
+    "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt": "e0ef835f015225e2295a633fd901e4edd866e4a71ec65b2be1894900f01fca22",
+    "core/src/test/kotlin/io/brule/tasking/core/PlanningUniverseTest.kt": "d6eef998091ca2771a1cdaf3224f6ebf26262809f010bf40907e437a24b1d135",
+    "core/src/test/kotlin/io/brule/tasking/core/AuditedPlanningTest.kt": "0b797ae19a30d95bbf0b158971bd637e275a5db5916b39b5865118e1d177197d",
+    "repository/src/test/kotlin/io/brule/tasking/repository/PlanningLedgerTest.kt": "055daa5f2b97e3a131b537863757994921b26003966c3932bbe8d45c5d86a977",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/ComplexPlanningConformanceTest.kt": "addbd71ae2248eba09beadc220ebb034e8a6484d6c3364612bc68046de65fcc0",
+    "core/src/test/kotlin/io/brule/tasking/core/CanonicalProviderInputTest.kt": "57cd9a5de39897f81fe1c780f149fddec8aef0a7f021b5765d19ee808c8df81f",
+    "core/src/test/kotlin/io/brule/tasking/core/HistoricalTimeGoldenTest.kt": "fbc48f88b2a90c4ebc2156122ad4643f436b6455539dc603335a2a9a9d9b3948",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/RelatedLedgerConformanceTest.kt": "18a14010f5b3edea3bc2372134d29dfd7995d54523b26986cf8db437ae78ea8e",
+    "core/src/test/kotlin/io/brule/tasking/core/TaskLedgerSeamTest.kt": "b7a32ca96adcc0f2e80287f43509a3750087ee33c6a506e69e976d4086e7047b",
+    "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt": "0282279e9fd9d2dd6474b1e65d2b15758395645eddc2aa4df43ffb140735c8b7",
+    "core/src/test/kotlin/io/brule/tasking/core/EvidenceTimeTest.kt": "4437d18254a5b2f5ca6945a0fd7e965b44ba200d2a84572933d6c072a8f4995d",
+    "repository/src/test/kotlin/io/brule/tasking/repository/ProfileLedgerTest.kt": "d3ec0ef9c5d9c5c115fb91f4af926b944d4987916591de689ed1e586675488c8",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/WorkspaceCapabilityConformanceTest.kt": "55b61edb6660194366c47114be67fe343314ccbce3ab183c0ad0c4ffd7857bf0",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalConformanceTest.kt": "f339e57f147f843ada557317e03c7f86d3ec947260e197fece98b6f06e8be4fc",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/DivergentImportConformanceTest.kt": "19f18382f7968c425fe1f417b75c13e2103a250026ec45bcc3b0a62d934cc445",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/FantastiktImportConformanceTest.kt": "a60d6cc40bd5b25341259704a6c1bb178edf65af877edd5c12fd39ff93a3dd3a",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/ImportBorrowingTest.kt": "e48bc013587419e72aaa9797de069567abd9666a8d8b1862bec945820a3b9629",
+    "cli/src/test/kotlin/io/brule/tasking/cli/LedgerReadModelsTest.kt": "ce56dc1a69c66c9e16290302e9c5cc4cc0229f03996edb74a2c17127731e960e",
+    "conformance/src/test/kotlin/io/brule/tasking/conformance/ReadBoundaryTest.kt": "c2d5803b10126cf73a0d027111ef00cd5a1cf31b711563fee42fd9f0f4c7d61c"
+  },
+  "proofs": {
+    "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json": {
+      "sha256": "87f649991ad7ca08d0a1cd581749521f7cea6fd0da22417bb579097eb2098318",
+      "behavioral_tests": 200,
+      "test_identity_sha256": "554471ddd63e44bd97c0d6f2d045be15d4071d0229e5bc08a2b3def53f4085d8"
+    },
+    "docs/proof/historical-authority/ci/corpus-linux-x86_64.json": {
+      "sha256": "4d7802c238f09f0bac519f2ac300622bb15effefa2c2f9f3c68ef59bfd6f06d5",
+      "behavioral_tests": 199,
+      "test_identity_sha256": "f8a8f5424588107f30dd1c9a41194f001fc3a29d7854a3db745e11c71f1d627f"
+    }
+  },
+  "invariants": [
+    {
+      "id": "C01",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.conformance.ArchitecturePolicyTest#policy detects generic nullable qualified and aliased escapes without flagging prose()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ArchitecturePolicyTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ArchitecturePolicyTest#policy rejects public nominal identity constructors()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ArchitecturePolicyTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ArchitecturePolicyTest#repository has no untyped protocol state or unchecked cast escapes()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ArchitecturePolicyTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#mutated profile audit evidence cannot become accepted state or a writable plan()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#planning acceptance rejects criterion evidence made blank after construction()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#planning amendment and disposition refuse mutated audit evidence before writes()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#planning assessment refuses an emptied audit even when member observations remain exact()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#provider verification receives read only evidence and cannot mutate receipts or reviews()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#receipt and review guards reject removed required evidence and changed observations()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#valid historical receipts and typed planning profile assertions remain reconstructable after caller edits()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.RecordInputBoundaryTest#file ledger refuses mutated task and planning inputs without writing()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/RecordInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.RecordInputBoundaryTest#post construction invalid record lists cannot become initialization plans()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/RecordInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#Markdown contracts ignore wrapping and checkbox progress but retain nested criteria and code()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#YAML presentation and optional annotations do not invalidate a semantic contract()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#contributed dependencies participate in cycle detection and evidence requirements fail closed()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#extension algebra retains exact integers decimals booleans null and nested shape()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#historical receipt still addresses old contract after current acceptance changes()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#installed providers do not activate until pinned and contributions cannot waive core prerequisites()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#provider payloads and pins affect contracts only when semantic()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#required unavailable providers allow inspection but block closure and contract identity includes profile()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#unknown core fields fail while optional extensions survive exact round trips()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.UnicodeValueTest#escaped unpaired surrogates fail at the decoding boundary()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/UnicodeValueTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.UnicodeValueTest#ill formed UTF16 cannot enter string values or object keys()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/UnicodeValueTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.UnicodeValueTest#valid scalar controls and supplementary text survive JSON and YAML boundaries()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/UnicodeValueTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.UnicodeValueTest#well formed Unicode retains its prior canonical digest()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/UnicodeValueTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.ValueOwnershipTest#copy equality hashes display and exact numeric categories retain their prior meaning()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/ValueOwnershipTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.ValueOwnershipTest#exposed collection views cannot mutate a nonempty typed value()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/ValueOwnershipTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.ValueOwnershipTest#nested values and keys remain stable after all caller aliases change()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/ValueOwnershipTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.ValueOwnershipTest#object and array values own their contents for empty singleton and larger inputs()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/ValueOwnershipTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.WholeDecimalRoundTripTest#explicit scientific numeric tokens cross the composed decoder as decimals()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/WholeDecimalRoundTripTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.WholeDecimalRoundTripTest#whole decimal extension values retain their numeric type and exact value()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/WholeDecimalRoundTripTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    },
+    {
+      "id": "C02",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.conformance.ArchitecturePolicyTest#policy detects generic nullable qualified and aliased escapes without flagging prose()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ArchitecturePolicyTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ArchitecturePolicyTest#policy rejects public nominal identity constructors()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ArchitecturePolicyTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ArchitecturePolicyTest#repository has no untyped protocol state or unchecked cast escapes()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ArchitecturePolicyTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#cold historical observations and stale review rejection leave unrelated repository state unchanged()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#exact archived revisions bytes adapter versions and unverified claims survive the catalog projection()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#full historical identity and source authority are independent from a repeated numeric prefix()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#historical contract evidence cannot close newly authored native observation work()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#later stronger contracts retain historical receipts while unresolved evidence blocks downstream work()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#optional authority annotations confer no execution privilege and required unknown capabilities fail closed()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.IdentityTest#native identities validate once retain complete suffixes and cannot cross nominal kinds()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/IdentityTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    },
+    {
+      "id": "C03",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.conformance.RecordInputBoundaryTest#file ledger refuses mutated task and planning inputs without writing()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/RecordInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.RecordInputBoundaryTest#post construction invalid record lists cannot become initialization plans()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/RecordInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#Markdown contracts ignore wrapping and checkbox progress but retain nested criteria and code()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#YAML presentation and optional annotations do not invalidate a semantic contract()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#contributed dependencies participate in cycle detection and evidence requirements fail closed()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#extension algebra retains exact integers decimals booleans null and nested shape()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#historical receipt still addresses old contract after current acceptance changes()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#installed providers do not activate until pinned and contributions cannot waive core prerequisites()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#provider payloads and pins affect contracts only when semantic()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#required unavailable providers allow inspection but block closure and contract identity includes profile()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#unknown core fields fail while optional extensions survive exact round trips()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    },
+    {
+      "id": "C04",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#Markdown contracts ignore wrapping and checkbox progress but retain nested criteria and code()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#YAML presentation and optional annotations do not invalidate a semantic contract()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#contributed dependencies participate in cycle detection and evidence requirements fail closed()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#extension algebra retains exact integers decimals booleans null and nested shape()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#historical receipt still addresses old contract after current acceptance changes()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#installed providers do not activate until pinned and contributions cannot waive core prerequisites()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#provider payloads and pins affect contracts only when semantic()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#required unavailable providers allow inspection but block closure and contract identity includes profile()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#unknown core fields fail while optional extensions survive exact round trips()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#affected open tasks are inspectable but cannot execute or close()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#diamond graphs retain bounded deterministic cause witnesses()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#legacy history adoption records origin and leaves unknown inputs unresolved()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#new semantic projection ignores presentation and includes all material inputs()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#review requires exact inspected identities evidence and CAS()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#transitive invalidation survives intermediate reconciliation and preserves closed history()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#complete contributed DAG controls seed order readiness and evidence()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#contributed edge removal is drift and does not create historical recursion cycles()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#missing mismatched and failed providers cannot invent current semantic inputs()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#pin drift remains affected after matching replacement appears until explicit review()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#profile adoption preserves historical bytes and requires explicit profile review()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#provider cycles and graph defects cannot bypass core validation()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#provider input drift propagates transitively and survives intermediate review()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#provider inputs exclude lifecycle cosmetic text and inactive data and normalize semantic prose()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#strict profile and revision codecs reject untyped identities and spoofed audit time()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#unknown optional values stay inactive and installed code never auto activates()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    },
+    {
+      "id": "C05",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.conformance.ComplexPlanningConformanceTest#an upstream task outside the scope invalidates its assessment through transitive inputs()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ComplexPlanningConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ComplexPlanningConformanceTest#canonical complex import preimage is available to packaged executable parity()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ComplexPlanningConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ComplexPlanningConformanceTest#closing every member still does not accept or archive any planning scope()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ComplexPlanningConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ComplexPlanningConformanceTest#exact source adapter preserves overlapping indexes and unverified historical claims()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ComplexPlanningConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ComplexPlanningConformanceTest#member contract changes stale scope evidence and retain historical closures through explicit review()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ComplexPlanningConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ComplexPlanningConformanceTest#native planning baseline and cross-index frontier retain independent task causality()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ComplexPlanningConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ComplexPlanningConformanceTest#scope amendments archival and explicit assessments preserve all task and import state()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ComplexPlanningConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ComplexPlanningConformanceTest#the adapter rejects stateful policy and graph defects instead of lowering them to annotations()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ComplexPlanningConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.AuditedPlanningTest#acceptance is an explicit scoped assertion and never inferred from member lifecycle()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/AuditedPlanningTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.AuditedPlanningTest#amendment archival and restoration never rewrite tasks receipts or prerequisite edges()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/AuditedPlanningTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.AuditedPlanningTest#amendments and disposition changes require the inspected head and cannot hide scope changes()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/AuditedPlanningTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.AuditedPlanningTest#assessment supersession is explicit and binds the exact inspected member set()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/AuditedPlanningTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.AuditedPlanningTest#baseline adoption retains old dialect records task history and orthogonal indexes()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/AuditedPlanningTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.AuditedPlanningTest#changed scope and semantic inputs retain historical assessments while cosmetic task edits do not invalidate proof()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/AuditedPlanningTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.AuditedPlanningTest#planning codecs round trip audit history and exact extension values with distinct nominal identities()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/AuditedPlanningTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.AuditedPlanningTest#required capabilities cannot be bypassed by archival or acceptance assertions()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/AuditedPlanningTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.PlanningUniverseTest#bootstrap supports zero roadmaps zero epics and empty named lines of advance()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/PlanningUniverseTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.PlanningUniverseTest#capability prerequisites participate globally before roadmap projection()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/PlanningUniverseTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.PlanningUniverseTest#filtering a roadmap cannot conceal unmet prerequisites elsewhere or a global cycle()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/PlanningUniverseTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.PlanningUniverseTest#planning codecs enforce the reserved namespace and preserve opaque extension source()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/PlanningUniverseTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.PlanningUniverseTest#planning records reject dangling duplicate and wrong-kind references()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/PlanningUniverseTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.PlanningUniverseTest#regrouping preserves task evidence but changes the durable universe snapshot()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/PlanningUniverseTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.PlanningUniverseTest#reordering and overlapping roadmap rows never add DAG edges or duplicate execution()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/PlanningUniverseTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.PlanningUniverseTest#roadmap membership epic association and task prerequisites are orthogonal indexes()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/PlanningUniverseTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.PlanningLedgerTest#explicit baseline adoption fences older writers and preserves every legacy record and task file()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/PlanningLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.PlanningLedgerTest#old planning heads unknown fields and tampered immutable objects fail before writes()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/PlanningLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.PlanningLedgerTest#planning mutations and current assessments survive restart without touching task history()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/PlanningLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.PlanningLedgerTest#planning recovery completes partial writes and rejects external edits before any new write()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/PlanningLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    },
+    {
+      "id": "C06",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.core.CanonicalProviderInputTest#equivalent contracts supply identical provider decisions and evidence inputs()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CanonicalProviderInputTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#Markdown contracts ignore wrapping and checkbox progress but retain nested criteria and code()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#YAML presentation and optional annotations do not invalidate a semantic contract()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#contributed dependencies participate in cycle detection and evidence requirements fail closed()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#extension algebra retains exact integers decimals booleans null and nested shape()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#historical receipt still addresses old contract after current acceptance changes()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#installed providers do not activate until pinned and contributions cannot waive core prerequisites()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#provider payloads and pins affect contracts only when semantic()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#required unavailable providers allow inspection but block closure and contract identity includes profile()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CoreConformanceTest#unknown core fields fail while optional extensions survive exact round trips()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CoreConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#affected open tasks are inspectable but cannot execute or close()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#diamond graphs retain bounded deterministic cause witnesses()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#legacy history adoption records origin and leaves unknown inputs unresolved()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#new semantic projection ignores presentation and includes all material inputs()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#review requires exact inspected identities evidence and CAS()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#transitive invalidation survives intermediate reconciliation and preserves closed history()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.HistoricalTimeGoldenTest#legacy native and imported task revision identities retain their original hash domains()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/HistoricalTimeGoldenTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.HistoricalTimeGoldenTest#legacy receipt bytes and storage digest survive arbitrary recorded text()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/HistoricalTimeGoldenTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.HistoricalTimeGoldenTest#legacy reconciliation and import review preserve exact historical text()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/HistoricalTimeGoldenTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    },
+    {
+      "id": "C07",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#cold historical observations and stale review rejection leave unrelated repository state unchanged()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#exact archived revisions bytes adapter versions and unverified claims survive the catalog projection()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#full historical identity and source authority are independent from a repeated numeric prefix()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#historical contract evidence cannot close newly authored native observation work()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#later stronger contracts retain historical receipts while unresolved evidence blocks downstream work()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#optional authority annotations confer no execution privilege and required unknown capabilities fail closed()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.RelatedLedgerConformanceTest#a reused task identity from another ledger cannot satisfy the previous observation contract()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/RelatedLedgerConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.RelatedLedgerConformanceTest#cosmetic source revisions retain semantic currency and exact historical observations()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/RelatedLedgerConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.RelatedLedgerConformanceTest#dialect labels cannot conceal stateful restrictions or a mismatched source ledger()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/RelatedLedgerConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.RelatedLedgerConformanceTest#external drift is invisible locally until explicit refresh then propagates transitively()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/RelatedLedgerConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.RelatedLedgerConformanceTest#related imports preserve separate ledger identities despite equal short task names and contracts()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/RelatedLedgerConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.RelatedLedgerConformanceTest#stale refresh and stale actor observations reject without touching either ledger()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/RelatedLedgerConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#affected open tasks are inspectable but cannot execute or close()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#diamond graphs retain bounded deterministic cause witnesses()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#legacy history adoption records origin and leaves unknown inputs unresolved()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#new semantic projection ignores presentation and includes all material inputs()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#review requires exact inspected identities evidence and CAS()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CurrencyConformanceTest#transitive invalidation survives intermediate reconciliation and preserves closed history()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CurrencyConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    },
+    {
+      "id": "C08",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#mutated profile audit evidence cannot become accepted state or a writable plan()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#planning acceptance rejects criterion evidence made blank after construction()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#planning amendment and disposition refuse mutated audit evidence before writes()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#planning assessment refuses an emptied audit even when member observations remain exact()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#provider verification receives read only evidence and cannot mutate receipts or reviews()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#receipt and review guards reject removed required evidence and changed observations()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.AssertionInputBoundaryTest#valid historical receipts and typed planning profile assertions remain reconstructable after caller edits()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/AssertionInputBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.TaskLedgerSeamTest#graph and lifecycle operate through a non-filesystem ledger()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/TaskLedgerSeamTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.TaskLedgerSeamTest#observed dependency contracts can fence readiness and closure independently of identity()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/TaskLedgerSeamTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#CAS and shared closure preserve opaque source and historical evidence()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#bootstrap and reads are empty valid and mutation free()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#existing code adoption preserves source and contributor instructions()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#explicit legacy tracking fences older writers without inventing observations()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#missing prerequisites wrong kind and fabricated closed seeds fail before writes()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#new occurrence envelopes survive restart alongside legacy evidence without storage clock claims()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#recovery completes only matching preimages and rejects unrelated paths()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#revision and review persistence preserve old receipts across a cold load()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    },
+    {
+      "id": "C09",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.core.EvidenceTimeTest#ambiguous invalid and lossy timestamp forms cannot cross the new boundary()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EvidenceTimeTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EvidenceTimeTest#equivalent instants remain distinct assertions without changing task contracts()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EvidenceTimeTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EvidenceTimeTest#new envelopes reject storage authority spoofing mixed fields and unknown versions()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EvidenceTimeTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EvidenceTimeTest#occurrence order cannot confer storage acceptance or reorder lifecycle transitions()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EvidenceTimeTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EvidenceTimeTest#old envelopes never silently upgrade even when their strings look like timestamps()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EvidenceTimeTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EvidenceTimeTest#validated nominal times preserve explicit offset and nanosecond spelling()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EvidenceTimeTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.HistoricalTimeGoldenTest#legacy native and imported task revision identities retain their original hash domains()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/HistoricalTimeGoldenTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.HistoricalTimeGoldenTest#legacy receipt bytes and storage digest survive arbitrary recorded text()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/HistoricalTimeGoldenTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.HistoricalTimeGoldenTest#legacy reconciliation and import review preserve exact historical text()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/HistoricalTimeGoldenTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    },
+    {
+      "id": "C10",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.conformance.WorkspaceCapabilityConformanceTest#an environment contract change requires fresh evidence from every activated capability()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/WorkspaceCapabilityConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.WorkspaceCapabilityConformanceTest#contributed authority drift remains transitive after intermediate review and keeps receipts()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/WorkspaceCapabilityConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.WorkspaceCapabilityConformanceTest#deterministic reads and validation never run probes and observation is not automatic approval()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/WorkspaceCapabilityConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.WorkspaceCapabilityConformanceTest#installed code leaves unknown optional payloads inactive and lossless()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/WorkspaceCapabilityConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.WorkspaceCapabilityConformanceTest#malformed required payloads and unsupported stateful labels are never downgraded to optional data()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/WorkspaceCapabilityConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.WorkspaceCapabilityConformanceTest#missing or mismatched code fails closed without erasing stored profile or opaque state()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/WorkspaceCapabilityConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.WorkspaceCapabilityConformanceTest#persisted workspace and environment pins contribute an orthogonal causal graph()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/WorkspaceCapabilityConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.WorkspaceCapabilityConformanceTest#programmatic task extension invariants fail before any ledger write()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/WorkspaceCapabilityConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.WorkspaceCapabilityConformanceTest#provider evidence cannot override a held policy empty core criteria or out of scope claims()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/WorkspaceCapabilityConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.CanonicalProviderInputTest#equivalent contracts supply identical provider decisions and evidence inputs()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/CanonicalProviderInputTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#complete contributed DAG controls seed order readiness and evidence()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#contributed edge removal is drift and does not create historical recursion cycles()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#missing mismatched and failed providers cannot invent current semantic inputs()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#pin drift remains affected after matching replacement appears until explicit review()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#profile adoption preserves historical bytes and requires explicit profile review()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#provider cycles and graph defects cannot bypass core validation()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#provider input drift propagates transitively and survives intermediate review()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#provider inputs exclude lifecycle cosmetic text and inactive data and normalize semantic prose()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#strict profile and revision codecs reject untyped identities and spoofed audit time()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.EffectiveProfileTest#unknown optional values stay inactive and installed code never auto activates()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/EffectiveProfileTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.ProfileLedgerTest#cold revisions retain contributed observations evidence and exact opaque data()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/ProfileLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.ProfileLedgerTest#profile adoption preserves old task bytes and cold load uses the exact persisted profile()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/ProfileLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.ProfileLedgerTest#profile and planning histories coexist and missing pins cannot approve scope acceptance()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/ProfileLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.ProfileLedgerTest#profile history rejects tampered objects and mismatched policy without mutations()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/ProfileLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.ProfileLedgerTest#profile recovery completes partial policy writes and refuses external conflicts before writes()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/ProfileLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    },
+    {
+      "id": "C11",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.conformance.DivergentImportConformanceTest#canonical imported preimage is available for packaged process parity()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/DivergentImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.DivergentImportConformanceTest#nested object dialect preserves complete identities exact values and source provenance()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/DivergentImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.DivergentImportConformanceTest#ordinary file lifecycle requires current inputs and preserves historical evidence across restart()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/DivergentImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.DivergentImportConformanceTest#schema label cannot admit another structure or silently discard execution restrictions()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/DivergentImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.DivergentImportConformanceTest#source and adapter identity changes require a new review even for unchanged target contracts()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/DivergentImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.DivergentImportConformanceTest#unknown contract fields wrong types missing parents and cycles are rejected()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/DivergentImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.DivergentImportConformanceTest#upstream changes remain transitively affected after intermediate reconciliation()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/DivergentImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.FantastiktImportConformanceTest#drift forged classification and mismatched reviews are rejected()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/FantastiktImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.FantastiktImportConformanceTest#file bootstrap persists imported history and refuses overwrite without source mutation()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/FantastiktImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.FantastiktImportConformanceTest#import preserves closure without fabricating receipts and review is a separate transition()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/FantastiktImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.FantastiktImportConformanceTest#new import review time preserves exact source manifest and historical classification()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/FantastiktImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.FantastiktImportConformanceTest#planning baseline adoption preserves imported dialect and all historical task identities()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/FantastiktImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.FantastiktImportConformanceTest#real source preserves forty identities historical bytes and orthogonal planning()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/FantastiktImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.FantastiktImportConformanceTest#realization prerequisites lower to causal edges without planning ownership()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/FantastiktImportConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#cold historical observations and stale review rejection leave unrelated repository state unchanged()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#exact archived revisions bytes adapter versions and unverified claims survive the catalog projection()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#full historical identity and source authority are independent from a repeated numeric prefix()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#historical contract evidence cannot close newly authored native observation work()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#later stronger contracts retain historical receipts while unresolved evidence blocks downstream work()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalAuthorityTest#optional authority annotations confer no execution privilege and required unknown capabilities fail closed()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalAuthorityTest.kt",
+          "proof": "docs/proof/historical-authority/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalConformanceTest#DAEMON complete filename identity retains duplicate numeric prefixes()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalConformanceTest#conversion provenance changes manifest identity without altering semantic contract()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.HistoricalConformanceTest#unchecked historical acceptance does not erase closure or create native evidence()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/HistoricalConformanceTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ImportBorrowingTest#a newly constructed exact manifest and explicit new review remains admissible()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ImportBorrowingTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ImportBorrowingTest#mutating borrowed manifest bytes after review cannot produce an import plan()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ImportBorrowingTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ImportBorrowingTest#mutating projected records or provenance after review is rejected by the reducer()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ImportBorrowingTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    },
+    {
+      "id": "C12",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.core.TaskLedgerSeamTest#graph and lifecycle operate through a non-filesystem ledger()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/TaskLedgerSeamTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.core.TaskLedgerSeamTest#observed dependency contracts can fence readiness and closure independently of identity()",
+          "source": "core/src/test/kotlin/io/brule/tasking/core/TaskLedgerSeamTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#CAS and shared closure preserve opaque source and historical evidence()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#bootstrap and reads are empty valid and mutation free()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#existing code adoption preserves source and contributor instructions()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#explicit legacy tracking fences older writers without inventing observations()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#missing prerequisites wrong kind and fabricated closed seeds fail before writes()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#new occurrence envelopes survive restart alongside legacy evidence without storage clock claims()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#recovery completes only matching preimages and rejects unrelated paths()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#revision and review persistence preserve old receipts across a cold load()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    },
+    {
+      "id": "C13",
+      "witnesses": [
+        {
+          "identity": "io.brule.tasking.cli.LedgerReadModelsTest#complete snapshot preserves import source bytes classification and manifest identity()",
+          "source": "cli/src/test/kotlin/io/brule/tasking/cli/LedgerReadModelsTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.cli.LedgerReadModelsTest#empty diagnostics briefing and snapshot have distinct explicit contracts()",
+          "source": "cli/src/test/kotlin/io/brule/tasking/cli/LedgerReadModelsTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.cli.LedgerReadModelsTest#escaped text and long valid identities respect the encoded byte budget()",
+          "source": "cli/src/test/kotlin/io/brule/tasking/cli/LedgerReadModelsTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.cli.LedgerReadModelsTest#large records and graph produce bounded honest context and complete precise snapshot()",
+          "source": "cli/src/test/kotlin/io/brule/tasking/cli/LedgerReadModelsTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.cli.LedgerReadModelsTest#legacy identity readiness and tracked currency retain their separate meanings()",
+          "source": "cli/src/test/kotlin/io/brule/tasking/cli/LedgerReadModelsTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.cli.LedgerReadModelsTest#missing task or planning providers remain diagnostic and never gain readiness()",
+          "source": "cli/src/test/kotlin/io/brule/tasking/cli/LedgerReadModelsTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.cli.LedgerReadModelsTest#readiness projections preserve the ledger dependency binding guard()",
+          "source": "cli/src/test/kotlin/io/brule/tasking/cli/LedgerReadModelsTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.cli.LedgerReadModelsTest#snapshot retains all revisions old receipts planning and explicit dependency bindings()",
+          "source": "cli/src/test/kotlin/io/brule/tasking/cli/LedgerReadModelsTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ReadBoundaryTest#empty consumer inspection creates neither ledger nor lock()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ReadBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ReadBoundaryTest#read rechecks under existing lock when first writer appeared()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ReadBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.conformance.ReadBoundaryTest#read waits for a cooperating writer without making consumer writes()",
+          "source": "conformance/src/test/kotlin/io/brule/tasking/conformance/ReadBoundaryTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#CAS and shared closure preserve opaque source and historical evidence()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#bootstrap and reads are empty valid and mutation free()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#existing code adoption preserves source and contributor instructions()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#explicit legacy tracking fences older writers without inventing observations()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#missing prerequisites wrong kind and fabricated closed seeds fail before writes()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#new occurrence envelopes survive restart alongside legacy evidence without storage clock claims()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#recovery completes only matching preimages and rejects unrelated paths()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        },
+        {
+          "identity": "io.brule.tasking.repository.FileTaskLedgerTest#revision and review persistence preserve old receipts across a cold load()",
+          "source": "repository/src/test/kotlin/io/brule/tasking/repository/FileTaskLedgerTest.kt",
+          "proof": "docs/proof/assertion-boundaries/product/ci/corpus-linux-x86_64.json"
+        }
+      ]
+    }
+  ],
+  "independent_adapter_evidence": {
+    "docs/proof/remote-kernel/kernel/validation.json": "29ffe69edcf3a29b717a04e4de4f635196d0b1cb03d6ad23db79f9507eedee3b",
+    "docs/proof/idl-projection/idl/validation.json": "7bf506411c898fc8f50214c2bb07c7e4a17c4993c9389c2200b7a2b9270ad3a3"
+  },
+  "limits": "Historical proof identities are source-linked, not rerun or authenticated here. Different completed candidate runs supply the indexed witnesses; this is not a claim that those historical counts came from one combined run. Adapter integration evidence is separate from JVM/native corpus identities. Fingerprints cover the listed Kotlin source modules, not a stable public Kotlin API or every build dependency."
+}

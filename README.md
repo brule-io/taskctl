@@ -8,6 +8,8 @@ lines of advance; epics associate work by capability. Project state stays in the
 project repository; the implementation comes from an exact pinned release.
 
 **Version: `0.3.0-alpha.2` (prerelease). Native protocol v1 is not frozen.**
+The [candidate specification](docs/spec/NATIVE-V1-CANDIDATE.md) describes the
+proposed semantic boundary and exact alpha compatibility evidence.
 Native executables and JVM reference archives are tested on Windows x86_64,
 Linux x86_64 and macOS arm64. Native is the default after behavioral parity passes.
 Fedora 44 users can also [install the optional native RPM](docs/FEDORA-RPM.md).
