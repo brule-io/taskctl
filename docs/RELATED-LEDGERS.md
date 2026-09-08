@@ -44,7 +44,7 @@ the distribution check; this work adds no command or implicit Git/network operat
 
 ## Reviewed import identity guard
 
-The source witness at `87afe08` exposed a separate admission defect: mutating a
+The source witness at `87afe089d9afbc85bf1cd0e4b6b4e0c2ea96dae6` exposed a separate admission defect: mutating a
 borrowed file map after creating its review could produce an import plan using a
 cached manifest ID for different bytes. The completed
 [failing baseline](proof/related-ledger/import-borrowing-red.log) retains the result.
