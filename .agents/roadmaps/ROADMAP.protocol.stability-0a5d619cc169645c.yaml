@@ -1,0 +1,1 @@
+{"kind":"roadmap","id":"ROADMAP.protocol.stability","intent":"Resolve demonstrated value and input-boundary defects before assessing protocol stability.","protocol":"tasking/planning-draft-1","title":"Protocol value stability","tasks":["TASK.protocol.value-boundary","TASK.protocol.v1-candidate"],"required_extensions":[],"extensions":{}}

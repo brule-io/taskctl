@@ -1,0 +1,13 @@
+{
+  "classification": "observed-in-memory-plan-falsification-no-plan-applied",
+  "source_commit": "1759247376107c56a6b9e48af5ef0152a0dc54f8",
+  "released_distribution": false,
+  "java": "Temurin 21.0.11+10",
+  "probe_source_sha256": "b72e29bbee961401de1562bd53af5f109492e5eed7c38052b7feffab02e6bb28",
+  "result": {
+    "plan_created": true,
+    "task_reconstructable": false,
+    "plan_applied": false,
+    "target_exists": false
+  }
+}
