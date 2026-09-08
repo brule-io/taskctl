@@ -1,0 +1,19 @@
+{
+  "dialect": "specimen.related/1",
+  "ledger": "beta",
+  "id": "W2",
+  "state": "done",
+  "after": [
+    "W1"
+  ],
+  "intent": "Observe bounded result 2.",
+  "requirements": [
+    "Retain the exact result and its origin."
+  ],
+  "checks": [
+    {
+      "checked": false,
+      "text": "The bounded result has been reviewed."
+    }
+  ]
+}

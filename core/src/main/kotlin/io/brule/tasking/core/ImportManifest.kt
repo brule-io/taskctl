@@ -31,6 +31,17 @@ data class ImportReview(val manifest: ImportId, val actor: String, val time: Ass
 }
 data class ImportAdmission(val manifest: ImportManifest, val review: ImportReview) {
     init { require(manifest.id == review.manifest) { "review does not address this import manifest" } }
+
+    /** Re-establish the serialized admission boundary before a transition can
+     * persist it. Kotlin read-only collections can still alias caller-owned
+     * mutable collections; a cached ID must never bless changed source bytes,
+     * provenance or projected records. The typed decoder checks every field. */
+    fun validate() {
+        val inspected = ImportCodec.decodeManifest(ImportCodec.manifest(manifest))
+        require(inspected.id == manifest.id && inspected.id == review.manifest) {
+            "import manifest changed after identity or review; construct and review a new admission"
+        }
+    }
 }
 
 object ImportCodec {

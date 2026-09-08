@@ -1,0 +1,17 @@
+{
+  "classification": "independently-authored-fictional-related-ledgers",
+  "repository": "https://github.com/brule-io/taskctl",
+  "revision": "da0bd033a3cce21af5eeebeb78d70bbf069d4f16",
+  "adapter": "conformance-related-ledger",
+  "adapter_version": "1.0.0",
+  "files": {
+    "alpha/README.md": "d7faf5ff72d0dd83969db3078386fba76af94d26472736f015f75d4f57fc9a00",
+    "alpha/W1.json": "216294a80836acc79650337709e75a4c58a552c1517732024325397173e8f324",
+    "alpha/W2.json": "bcf93d092a3898f9f1ef200422625ef23ee315b8ee0a6b563ed139fb992ca6f1",
+    "alpha/W3.json": "d7760e1e847de271998692521fd11a6615c4ee93f2f75e599243698ef35c8145",
+    "beta/README.md": "954638b8afd9be81520edc6933b0357b5908c8fc052fb6adbf83cfdb61a32890",
+    "beta/W1.json": "4cb6ba65576ddfd94bbf7ab37ed74892239ef0c2ed80670c9473a7d874a7b409",
+    "beta/W2.json": "4a9ab8a0d4c69fbca194b5f354d5f3b55cb63a6db3e235fb25d4cd9a1364da5f",
+    "beta/W3.json": "e02e3c8b236905bd5fb7b0bf7938bbe22d93df1911cdf3d800f6e373669aceb0"
+  }
+}
