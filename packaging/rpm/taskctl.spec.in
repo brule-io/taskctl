@@ -51,6 +51,13 @@ install -pm 0644 native/distribution.json native/distribution.properties support
 install -pm 0644 native/bootstrap/* %{buildroot}%{_datadir}/taskctl/bootstrap/
 chmod 0755 %{buildroot}%{_datadir}/taskctl/bootstrap/taskctl
 install -Dpm 0644 support/taskctl.1 %{buildroot}%{_mandir}/man1/taskctl.1
+# Preserve canonical guide bytes and their relative license links. License
+# payloads keep their independent %%license classification below.
+install -d %{buildroot}%{_docdir}/%{name}
+cp -pr native/docs %{buildroot}%{_docdir}/%{name}/
+install -pm 0644 native/README.md support/README.rpm.md %{buildroot}%{_docdir}/%{name}/
+ln -s ../../licenses/%{name}/LICENSE %{buildroot}%{_docdir}/%{name}/LICENSE
+ln -s ../../licenses/%{name}/NOTICE.md %{buildroot}%{_docdir}/%{name}/NOTICE.md
 
 %check
 # RPM brp processing must not change the proven executable.
@@ -61,8 +68,7 @@ done
 
 %files
 %license native/LICENSE native/NOTICE.md native/THIRD-PARTY-NOTICES.zip
-%doc support/README.rpm.md
-%doc native/README.md native/docs
+%doc %{_docdir}/%{name}/
 %{_bindir}/taskctl
 %dir %{_libexecdir}/taskctl
 %{_libexecdir}/taskctl/taskctl

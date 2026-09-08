@@ -4,6 +4,8 @@ The RPM packages the canonical parity-tested Linux x86_64 native artifact.
 It does not compile taskctl or change protocol semantics. taskctl is licensed
 under Apache-2.0. LICENSE, NOTICE.md and canonical third-party notices are installed
 under `/usr/share/licenses/taskctl`. No shell completion files exist upstream yet.
+Canonical guides are installed under `/usr/share/doc/taskctl`; package-owned
+relative links keep README license references usable without rewriting the guides.
 
 Install a verified local RPM with `sudo dnf install ./taskctl-*.x86_64.rpm`.
 Upgrade with `sudo dnf upgrade ./taskctl-*.x86_64.rpm`; remove with
