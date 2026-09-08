@@ -21,7 +21,7 @@ fictional conformance descriptors. The registry remains a trusted injection boun
 this is not evidence of production artifact authentication, signed observations,
 operator identity or permission to modify a real workspace.
 
-The eight shared JVM/native file-ledger cases prove:
+The nine shared JVM/native file-ledger cases prove:
 
 - Installation alone does not activate schemas. Unknown optional values and an
   inactive malformed known payload survive exactly; large integers, decimal type
@@ -47,6 +47,9 @@ The eight shared JVM/native file-ledger cases prove:
   leave the repository unchanged.
 - Unknown structural capability fields, missing required payloads, path traversal,
   unsupported stateful claim identities and non-core lifecycle labels fail closed.
+- Programmatic task construction rejects malformed extension namespaces and
+  duplicate required identities before any ledger write, using the same validity
+  boundary as parsed tasks and planning records.
 
 The synthetic probe and reviews are controllable test inputs, not attestations of
 the external world. A production capability needs its own reviewed observation,
@@ -55,8 +58,16 @@ core receipt model is a cryptographic approval token. No lease, claim ownership,
 expiration, release gate or cross-repository authority mapping is supplied here.
 Unsupported stateful consumer mappings therefore remain blocked.
 
-This adds conformance coverage to the existing alpha5 provider/profile design; it
-does not change protocol semantics or introduce a loader, probe runner or reflection
+The constructor case exposed a real mismatch: at source commit
+`2575d5404f2e15e01983a931678d2cc5555e2313`, a programmatic seed could write an
+invalid namespace and then fail while reconstructing its own output. The preserved
+[failing test result](proof/workspace-capabilities/constructor-regression-red.xml)
+records the changed disposable ledger. Shared constructor validation now enforces
+the existing namespace grammar before mutation. Valid wire records, contract
+digests and opaque extension values retain their existing meaning.
+
+This adds conformance coverage to the existing alpha5 provider/profile design and
+repairs that validity boundary. It introduces no loader, probe runner or reflection
 configuration. The existing packaged CLI parity corpus covers missing-provider
 diagnostics and bounded profile mutations with the default empty registry; the new
 matching-provider cases execute through the shared JVM/Native Image test corpus.
