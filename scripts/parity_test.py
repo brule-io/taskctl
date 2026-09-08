@@ -100,7 +100,16 @@ def main():
         pair('empty frontier text',['frontier'])
         json_pair('repeat initialization refusal',initialize,code=2)
         def write(name,value):
-            path=work/name; path.write_text(json.dumps(value,ensure_ascii=False),encoding='utf-8'); return path
+            # Input fixtures may contain exact protocol decimals. Never route
+            # an opaque value through a binary float or quote it as a string.
+            def encode(item):
+                if isinstance(item,Decimal):
+                    token=str(item)
+                    return token if '.' in token or 'e' in token.lower() else token+'E+0'
+                if isinstance(item,dict): return '{'+', '.join(json.dumps(k,ensure_ascii=False)+': '+encode(v) for k,v in item.items())+'}'
+                if isinstance(item,list): return '['+', '.join(map(encode,item))+']'
+                return json.dumps(item,ensure_ascii=False)
+            path=work/name; path.write_text(encode(value),encoding='utf-8'); return path
         a=dict(protocol='tasking/core-draft-1',id='TASK.api',title='Durable API 🧬',state='open',intent='Persist results.',requirements=['Durable'],acceptance=['Restart succeeds.'])
         b=a|dict(id='TASK.ui',requires=['TASK.api'])
         c=a|dict(id='TASK.metrics')
@@ -210,6 +219,103 @@ def main():
         typed_history=json_pair('typed evidence and review survive cold history',['history',d['id']])['result']
         assert any(item['protocol']=='taskctl.receipt/alpha2' and item['occurred_at']==modern['occurred_at'] for item in typed_history['receipts'])
         assert any(item['value']['review'] and item['value']['review']['protocol']=='taskctl.reconciliation/2' for item in typed_history['revisions'])
+        # Opt-in planning history is an independent index over the same tasks.
+        # Every successful operation below must leave task bytes AND mtimes alone.
+        def task_image():
+            return {p:v for p,v in capture().items() if p.startswith(('.agents/tasks/','.agents/history/','.agents/receipts/')) or p=='source.txt'}
+        tasks_before_planning=task_image()
+        planning_id=backend['id']
+        untracked=json_pair('untracked planning history',['planning','history',planning_id])['result']
+        assert not untracked['tracked'] and untracked['head'] is None and not untracked['assessments']
+        audit=dict(protocol='taskctl.planning-audit/1',classification='actor-assertion',actor='parity-test',occurred_at='2026-09-07T23:15:00Z',
+            reason='Explicitly reviewed planning scope',evidence={'review':'Bounded fictional observation'})
+        modern_record=untracked['record']|dict(protocol='tasking/planning-draft-2',disposition='active',acceptance=['Feature works','Operator can recover'],
+            extensions={'test.precise/v1':{'whole':Decimal('1E+30'),'scaled':Decimal('1000'),'fraction':Decimal('1.2300'),'huge':10**45+9}})
+        amendment=dict(protocol='taskctl.planning-amendment/1',reviewed_head='sha256:'+'0'*64,record=modern_record,audit=audit)
+        request=write('planning-amendment.json',amendment)
+        json_pair('reject amendment before planning adoption',['planning','amend',planning_id,'--file',request,'--expect-revision',untracked['revision']],code=2)
+        tracking=['planning','track','--expect-revision',untracked['revision']]
+        plan=json_pair('planning tracking write plan',[*tracking,'--plan'])['result']
+        assert all(p['path']=='.agents/config.toml' or p['path'].startswith('.agents/planning-history/') for p in plan['writes'])
+        json_pair('explicit planning tracking',tracking,mutation=True)
+        json_pair('planning tracking stale CAS',tracking,code=4)
+        planned_doctor=json_pair('audited planning doctor',['doctor'])['result']
+        assert planned_doctor['contract']=='taskctl.doctor/alpha2' and planned_doctor['protocol']=='taskctl.native/alpha4'
+        baseline=json_pair('planning baseline witness',['planning','history',planning_id])['result']
+        assert baseline['tracked'] and baseline['record']['protocol']=='tasking/planning-draft-1'
+        assert baseline['origin_ledger_revision']==untracked['revision']
+        assert baseline['revisions'][0]['value']['change']==dict(kind='baseline',ledger_revision=untracked['revision'])
+        amendment['reviewed_head']=baseline['head']
+        request=write('planning-amendment.json',amendment|dict(audit=audit|dict(accepted_at='2026-09-07T23:16:00Z')))
+        amend=['planning','amend',planning_id,'--file',request,'--expect-revision',baseline['revision']]
+        json_pair('planning audit cannot assert storage time',amend,code=2)
+        write('planning-amendment.json',amendment)
+        json_pair('planning amendment write plan',[*amend,'--plan'])
+        json_pair('audited planning amendment',amend,mutation=True)
+        json_pair('planning amendment stale CAS',amend,code=4)
+        changed=json_pair('planning amendment cold history',['planning','history',planning_id])['result']
+        for key in ('whole','scaled','fraction'):
+            assert changed['record']['extensions']['test.precise/v1'][key].as_tuple()==modern_record['extensions']['test.precise/v1'][key].as_tuple()
+        assert changed['record']['extensions']['test.precise/v1']['huge']==10**45+9
+        assert len(changed['revisions'])==2
+        assessment_plan=json_pair('planning assessment exact input plan',['planning','assess',planning_id,'--plan'])['result']
+        assertion=dict(protocol='taskctl.planning-assessment/1',parent=assessment_plan['parent'],planning=planning_id,
+            reviewed_head=assessment_plan['reviewed_head'],observations=assessment_plan['observations'],outcome='accepted',audit=audit,
+            criterion_evidence=['Observed feature','Observed recovery'])
+        assessment_file=write('planning-assessment.json',assertion|dict(criterion_evidence=[]))
+        assess=['planning','assess',planning_id,'--file',assessment_file,'--expect-revision',assessment_plan['revision']]
+        json_pair('planning acceptance requires criterion evidence',assess,code=2)
+        write('planning-assessment.json',assertion|dict(observations=[]))
+        json_pair('planning assessment requires exact member set',assess,code=2)
+        write('planning-assessment.json',assertion)
+        json_pair('planning assessment bounded write plan',[*assess,'--plan'])
+        json_pair('explicit planning acceptance',assess,mutation=True)
+        json_pair('planning assessment stale CAS',assess,code=4)
+        accepted_doctor=json_pair('explicit acceptance diagnostics',['doctor'])['result']
+        assert accepted_doctor['planning']['current_accepted']==1
+        accepted=json_pair('accepted planning history',['planning','history',planning_id])['result']
+        assert len(accepted['assessments'])==1 and accepted['assessments'][0]['status']['currency']=='current'
+        disposition=dict(protocol='taskctl.planning-disposition/1',planning=planning_id,reviewed_head=accepted['head'],disposition='archived',audit=audit)
+        disposition_file=write('planning-disposition.json',disposition)
+        archive=['planning','archive',planning_id,'--file',disposition_file,'--expect-revision',accepted['revision']]
+        json_pair('planning archive bounded write plan',[*archive,'--plan'])
+        json_pair('planning archive preserves task universe',archive,mutation=True)
+        archived=json_pair('archived planning historical assessment',['planning','history',planning_id])['result']
+        assert archived['record']['tasks']==modern_record['tasks'] and archived['record']['disposition']=='archived'
+        assert archived['assessments'][0]['status']['currency']=='historical'
+        archive_doctor=json_pair('stale planning evidence diagnostic',['doctor'])['result']
+        assert archive_doctor['health']=='attention' and archive_doctor['planning']['current_accepted']==0
+        assert 'TASK.metrics' in json_pair('archival is not a task eligibility predicate',['frontier','--roadmap',planning_id])['result']['tasks']
+        restore_planning=['planning','restore',planning_id,'--file',disposition_file,'--expect-revision',archived['revision']]
+        json_pair('planning restore rejects opposite disposition',restore_planning,code=2)
+        write('planning-disposition.json',disposition|dict(reviewed_head=archived['head'],disposition='active'))
+        json_pair('explicit planning restore',restore_planning,mutation=True)
+        next_plan=json_pair('planning successor assessment plan',['planning','assess',planning_id,'--plan'])['result']
+        write('planning-assessment.json',assertion|dict(parent=next_plan['parent'],reviewed_head=next_plan['reviewed_head'],observations=next_plan['observations'],
+            outcome='not_accepted',criterion_evidence=[]))
+        json_pair('explicit negative planning assessment supersedes prior evidence',['planning','assess',planning_id,'--file',assessment_file,'--expect-revision',next_plan['revision']],mutation=True)
+        superseded=json_pair('planning assessment supersession history',['planning','history',planning_id])['result']
+        assert len(superseded['assessments'])==2
+        latest=next(item for item in superseded['assessments'] if item['assessment']==superseded['assessment_head'])
+        assert latest['value']['outcome']=='not_accepted' and latest['status']['currency']=='current'
+        new_epic=dict(protocol='tasking/planning-draft-2',kind='epic',id='EPIC.new',title='New scope',scope='Future capability',tasks=['TASK.metrics'],disposition='active',acceptance=[])
+        new_seed=write('planning-new-seed.json',dict(contract='taskctl.seed/alpha1',epics=[new_epic]))
+        json_pair('new audited planning creation',['seed','--file',new_seed,'--expect-revision',superseded['revision']],mutation=True)
+        created=json_pair('new planning origin witness',['planning','history','EPIC.new'])['result']
+        assert created['revisions'][0]['value']['change']==dict(kind='seeded',ledger_revision=superseded['revision'])
+        write('planning-amendment.json',amendment)
+        json_pair('old planning head fails with fresh ledger CAS',['planning','amend',planning_id,'--file',request,'--expect-revision',created['revision']],code=2)
+        json_pair('task identity cannot masquerade as planning identity',['planning','history','TASK.api'],code=2)
+        complete=json_pair('complete audited planning snapshot',['snapshot'])['result']
+        assert complete['contract']=='taskctl.snapshot/alpha2' and len(complete['planning_history']['assessments'])==2
+        assert task_image()==tasks_before_planning
+        stable=capture()
+        planning_path=next(p for p in (repo/'.agents/roadmaps').iterdir() if json.loads(p.read_text(encoding='utf-8'))['id']==planning_id)
+        planning_value=json.loads(planning_path.read_text(encoding='utf-8'),parse_float=Decimal)
+        altered=write('tampered-planning.json',planning_value|dict(title='Unrecorded external amendment'))
+        planning_path.write_bytes(altered.read_bytes())
+        json_pair('unrecorded planning edit is detected',['doctor'],code=2)
+        restore(stable)
         current=json_pair('revision doctor after reconciliations',['doctor'])['result']
         bad=write('dangling.json',dict(contract='taskctl.seed/alpha1',tasks=[a|dict(id='TASK.dangling',requires=['TASK.absent'])]))
         json_pair('reject dangling dependency',['seed','--file',bad,'--expect-revision',current['revision']],code=2)
@@ -295,6 +401,19 @@ def main():
         json_pair('import stale review CAS',['reconcile','TASK.draft-mvp.001','--file',review,'--expect-revision',root_plan['revision']],code=4)
         assert not list((repo/'.agents/receipts').glob('*'))
         json_pair('import reviewed history',['history','TASK.draft-mvp.001'])
+        assert source_image()==source_before
+        before_tracking=json_pair('import snapshot before planning baseline',['snapshot'])['result']
+        import_revision=json_pair('import revision before planning baseline',['doctor'])['result']['revision']
+        json_pair('import planning baseline write plan',['planning','track','--expect-revision',import_revision,'--plan'])
+        json_pair('import explicit planning baseline',['planning','track','--expect-revision',import_revision],mutation=True)
+        after_tracking=json_pair('import snapshot after planning baseline',['snapshot'])['result']
+        assert after_tracking['protocol']=='taskctl.native/alpha4'
+        for preserved in ('records','history','receipts','imports','dependency_bindings'):
+            assert after_tracking[preserved]==before_tracking[preserved],preserved
+        imported_planning=after_tracking['planning_history']
+        assert imported_planning['heads']['origin_ledger_revision']==import_revision
+        assert not imported_planning['assessments']
+        assert all(item['record']['protocol']=='tasking/planning-draft-1' and item['change']==dict(kind='baseline',ledger_revision=import_revision) for item in imported_planning['revisions'].values())
         assert source_image()==source_before
         # A conformance-local adapter emits this through canonical Bootstrap,
         # exercising a second import shape without registering a test adapter in

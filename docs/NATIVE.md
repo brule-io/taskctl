@@ -11,9 +11,10 @@ Existing `taskctl.native/alpha1` repositories and `tasking/core-draft-1` records
 remain readable with their original meanings. Explicit `track` adopts history
 and changes the repository marker to alpha2; it does not change old record dialects,
 invent missing observations, or relabel old evidence. Older writers reject alpha2.
-Planning history, group completion/archival and persisted provider capabilities
-remain unimplemented; the [checkpoint](PROTOCOL-CHECKPOINT-2026-09.md) records
-their design decisions and prerequisite implementation tasks.
+Development after alpha.2 adds explicit [planning history](PLANNING-HISTORY.md)
+adoption under `taskctl.native/alpha4`, with immutable amendments, archival and
+scope-bound assessments. Persisted provider capabilities remain a separate
+[checkpoint](PROTOCOL-CHECKPOINT-2026-09.md) implementation task.
 
 Reviewed ancestral import in 0.3.0-alpha.2 uses `taskctl.native/alpha3`, with
 content-addressed source manifests and origin-bearing revision/2 objects. Older
@@ -154,5 +155,6 @@ external probe. The wrapper may acquire its pinned archive into an external cach
 `TASKCTL_OFFLINE=1` disallows acquisition. Task files are current projections:
 incidental formatting and optional annotations may change without invalidating
 HEAD, but direct semantic/lifecycle edits are rejected. Use task transitions for
-those changes and `doctor` to check the result. Planning records remain add-only
-through the CLI; planning amendments/audit and completion need a future contract.
+those changes and `doctor` to check the result. Existing planning records remain
+add-only until explicit `planning track`; the [audited planning contract](PLANNING-HISTORY.md)
+defines amendments, archival and assessments without inferring group completion.

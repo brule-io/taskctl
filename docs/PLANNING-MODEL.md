@@ -153,6 +153,10 @@ rule enabled. [Recorded test counts](proof/planning-model-tests.json) identify t
 tested suites; the earlier [extraction proof](PROOF.md) remains a separate frozen
 artifact result.
 
+The later [audited planning draft](PLANNING-HISTORY.md) implements explicit
+amendments, archival and assessments while preserving this original draft's
+encoding and task/index separation. Its adoption and contracts are versioned.
+
 No product records, historical compatibility mappings, pinned extraction archives,
 or consumer checkouts are migrated by this change. The native CLI/writer and full
 protocol are still pending. Before freezing v1, specify planning archival versus

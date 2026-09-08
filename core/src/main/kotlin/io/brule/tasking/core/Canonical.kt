@@ -28,7 +28,12 @@ object Json {
         is StringValue -> quote(value.value)
         is BooleanValue -> value.value.toString()
         is IntegerValue -> value.value.toString()
-        is DecimalValue -> value.value.toPlainString()
+        is DecimalValue -> if (value.value.scale() > 0) value.value.toPlainString() else {
+            // A bare whole-number token decodes as IntegerValue. Retain the
+            // decimal category and BigDecimal scale without changing existing
+            // fractional spellings or routing a number through floating point.
+            value.value.toString().let { if ('E' in it) it else it + "E+0" }
+        }
         is ArrayValue -> value.values.joinToString(",", "[", "]") { encode(it) }
         is ObjectValue -> value.fields.entries.joinToString(",", "{", "}") { quote(it.key) + ":" + encode(it.value) }
     }

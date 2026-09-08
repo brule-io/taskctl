@@ -1,0 +1,10 @@
+{
+  "producer_source": "3e504e61aaf040de3aa69f531f47785657ff40a3",
+  "producer_archive_sha256": "215dddf4dbbfbaf69bd2b8702a97280cdab8a0a504a859c27ddc93cd2577abb4",
+  "ledger_git_revision": "da4927d505e5ffcb83881a30e79b691dd395e8ff",
+  "ledger_revision": "sha256:c97be3db41cabfd57dc92c1f991d937cd86bfe2d35a63e90e2a215268747254c",
+  "files": {
+    "roadmaps": "5fcfec97b58cd40c7eeadfc797de13bc47c5838ad097ae6ee6dde6aa92cc0e48",
+    "epics": "3a4c90bbd3db6f894d3ac7b275de571a09e0a4d7eeed0bf84bf5f13e10037b0c"
+  }
+}

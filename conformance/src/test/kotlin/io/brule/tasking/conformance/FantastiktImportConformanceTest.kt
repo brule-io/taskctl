@@ -43,6 +43,21 @@ class FantastiktImportConformanceTest {
     }
 
     private fun empty() = LedgerSnapshot("target", Revision.initial(), DraftUniverse(emptyList()), history = TaskHistory(Revision.initial()))
+    @Test fun `planning baseline adoption preserves imported dialect and all historical task identities`() {
+        val manifest = inspect(source())
+        val imported = LedgerTransitions.evolve(empty(), Transition.ImportRecords(admission(manifest)))
+        val tracked = LedgerTransitions.evolve(imported, Transition.TrackPlanning)
+        assertEquals(imported.universe, tracked.universe)
+        assertEquals(imported.history, tracked.history)
+        assertEquals(imported.imports, tracked.imports)
+        assertEquals(imported.receipts, tracked.receipts)
+        assertEquals(imported.currency(), tracked.currency())
+        assertEquals(manifest.id, ImportCodec.decodeManifest(ImportCodec.manifest(tracked.imports.single().manifest)).id)
+        val history = requireNotNull(tracked.planningHistory)
+        assertTrue(history.revisions.values.all { it.record.protocol == PlanningRecordCodec.PROTOCOL && it.change == PlanningChange.Baseline(imported.revision) })
+        assertTrue(history.assessments.isEmpty())
+        history.validate(tracked)
+    }
     private fun inventory(root: Path) = Files.walk(root).use { paths -> paths.filter { Files.isRegularFile(it) }.toList().associate {
         root.relativize(it).toString() to Pair(Canonical.sha256(Files.readAllBytes(it)), Files.getLastModifiedTime(it))
     } }

@@ -15,6 +15,12 @@ revision, lifecycle, provider or receipt semantics.
 | `context` | `taskctl.context/alpha1` | A deterministic bounded briefing with counts, selected work and explicit follow-up commands. |
 | `snapshot` | `taskctl.snapshot/alpha1` | The complete typed ledger view, including historical evidence and exact extension values. |
 
+After explicit [planning history adoption](PLANNING-HISTORY.md), doctor and snapshot
+use `/alpha2` result contracts. Doctor adds planning revision/assessment counts and
+warnings for historical or unresolved latest assessments; snapshot adds all typed
+planning history and assessment objects. Untracked repositories retain the alpha1
+contracts above. Context retains its existing bounded contract in both cases.
+
 All accept `--repo PATH` and `--format json|text`. They perform no Git operations,
 network access, environment probes or repository writes. Invalid repositories
 retain existing diagnostics and exit codes. A successfully inspected ledger can

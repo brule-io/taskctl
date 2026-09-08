@@ -12,6 +12,7 @@ internal object LedgerReadModels {
     private const val INTENT_POINTS = 240
 
     private fun protocol(value: LedgerSnapshot) = when {
+        value.planningHistory != null -> "taskctl.native/alpha4"
         value.imports.isNotEmpty() -> "taskctl.native/alpha3"
         value.history != null -> "taskctl.native/alpha2"
         else -> "taskctl.native/alpha1"
@@ -41,8 +42,16 @@ internal object LedgerReadModels {
                 "severity" to StringValue("warning"), "count" to integer(count))
         }
         if (value.history == null) diagnostics += obj("code" to StringValue("HISTORY_UNTRACKED"), "severity" to StringValue("warning"))
-        return obj(
-            "contract" to StringValue("taskctl.doctor/alpha1"), "repository_id" to StringValue(value.repositoryId),
+        val planningStatuses = value.planningHistory?.let { value.planningAssessmentStatuses(it) }.orEmpty()
+        value.planningHistory?.let { history ->
+            for (state in listOf(PlanningAssessmentCurrency.HISTORICAL, PlanningAssessmentCurrency.UNRESOLVED)) {
+                val count = history.assessmentHeads.values.count { planningStatuses.getValue(it).currency == state }
+                if (count > 0) diagnostics += obj("code" to StringValue("PLANNING_ASSESSMENT_${state.name}"),
+                    "severity" to StringValue("warning"), "count" to integer(count))
+            }
+        }
+        val result = obj(
+            "contract" to StringValue(if (value.planningHistory == null) "taskctl.doctor/alpha1" else "taskctl.doctor/alpha2"), "repository_id" to StringValue(value.repositoryId),
             "protocol" to StringValue(protocol(value)), "profile" to StringValue("minimal/alpha1"),
             "revision" to StringValue(value.revision.value), "valid" to BooleanValue(true),
             "health" to StringValue(if (missing.isNotEmpty()) "blocked" else if (diagnostics.isNotEmpty()) "attention" else "ok"),
@@ -50,6 +59,7 @@ internal object LedgerReadModels {
             "required_capabilities_unavailable" to strings(missing), "currency" to currencyCounts(currency),
             "diagnostics" to ArrayValue(diagnostics),
         )
+        return if (value.planningHistory == null) result else ObjectValue(result.fields + ("planning" to PlanningReadModels.summary(value, planningStatuses)))
     }
 
     private data class Snippet(val text: String, val truncated: Boolean) {
@@ -122,8 +132,8 @@ internal object LedgerReadModels {
         val currency = value.currency()
         val history = value.history?.let { history -> obj("heads" to HistoryCodec.heads(history),
             "revisions" to ObjectValue(history.revisions.entries.sortedBy { it.key.value }.associate { it.key.value to HistoryCodec.revision(it.value) })) } ?: NullValue
-        return obj(
-            "contract" to StringValue("taskctl.snapshot/alpha1"), "repository_id" to StringValue(value.repositoryId),
+        val result = obj(
+            "contract" to StringValue(if (value.planningHistory == null) "taskctl.snapshot/alpha1" else "taskctl.snapshot/alpha2"), "repository_id" to StringValue(value.repositoryId),
             "protocol" to StringValue(protocol(value)), "profile" to StringValue("minimal/alpha1"), "revision" to StringValue(value.revision.value),
             "records" to obj("tasks" to ArrayValue(value.universe.tasks.sortedBy { it.id }.map(NativeCodec::task)),
                 "roadmaps" to ArrayValue(value.universe.roadmaps.sortedBy { it.id.value }.map(PlanningRecordCodec::encode)),
@@ -137,5 +147,6 @@ internal object LedgerReadModels {
             "derived" to obj("frontier" to strings(ready(value).sorted().map { it.value }),
                 "currency" to ArrayValue(currency.values.sortedBy { it.task }.map(HistoryCodec::currency))),
         )
+        return if (value.planningHistory == null) result else ObjectValue(result.fields + ("planning_history" to PlanningReadModels.complete(value)))
     }
 }
