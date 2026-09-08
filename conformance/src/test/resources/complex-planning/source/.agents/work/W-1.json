@@ -1,0 +1,20 @@
+{
+  "dialect": "specimen.planning/1",
+  "kind": "work",
+  "id": "W-1",
+  "status": "done",
+  "after": [],
+  "intent": "Persist a durable request.",
+  "requirements": [
+    "Keep the result durable and reviewable."
+  ],
+  "checks": [
+    {
+      "done": true,
+      "text": "The bounded result has been observed."
+    }
+  ],
+  "annotations": {
+    "notes": "Fictional legacy state; no native receipt exists."
+  }
+}

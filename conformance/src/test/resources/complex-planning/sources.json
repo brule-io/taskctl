@@ -1,0 +1,75 @@
+{
+  "contract": "taskctl.conformance-source-index/1",
+  "classification": "independently-authored-fictional-legacy-specimen",
+  "source_repository": "https://github.com/brule-io/taskctl",
+  "source_revision": "445b637b02c4451977e015af5d6301132f8db75c",
+  "adapter": "conformance-planning-indexes",
+  "adapter_version": "1.0.0",
+  "files": [
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/.agents/capabilities/checkout.json",
+      "resource": "source/.agents/capabilities/checkout.json",
+      "sha256": "339b5def5d2d2a342a660aa72b9a6704c9bee2ca105b5e0aa5f7d9114cb9c992"
+    },
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/.agents/capabilities/resilience.json",
+      "resource": "source/.agents/capabilities/resilience.json",
+      "sha256": "c587f8a0382b53b97fbc857c648000b548d996e58b43b58cb9428176bcd35dee"
+    },
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/.agents/capabilities/visibility.json",
+      "resource": "source/.agents/capabilities/visibility.json",
+      "sha256": "1fa021271dc398c00b6323b688d4e8be407fed5a282c6809b1d80b3afd3301dc"
+    },
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/.agents/lanes/delivery.json",
+      "resource": "source/.agents/lanes/delivery.json",
+      "sha256": "f4005ecffe1304ae6f7ec694a55615a8f34e2c7522962411d5dfcd7448d82397"
+    },
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/.agents/lanes/future.json",
+      "resource": "source/.agents/lanes/future.json",
+      "sha256": "9c93a572c2a5e31c09c669a6a8048081b0d920c864d8bd7136de0a1ce6261e00"
+    },
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/.agents/lanes/reliability.json",
+      "resource": "source/.agents/lanes/reliability.json",
+      "sha256": "207933b4e8a2efe2163c4b12f33fd899e13e519f92465bca5ace77c1e60c7b16"
+    },
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/.agents/work/W-01.json",
+      "resource": "source/.agents/work/W-01.json",
+      "sha256": "ed2811988c2592f76d2b6a861243bde6683ce08819bd25cf7b071a460520eb9f"
+    },
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/.agents/work/W-1.json",
+      "resource": "source/.agents/work/W-1.json",
+      "sha256": "e5edb141eb00d1466ec31e26553dbcd237c30a2219fad89e19d64102ea92e5e2"
+    },
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/.agents/work/W-2.json",
+      "resource": "source/.agents/work/W-2.json",
+      "sha256": "77e8aa6b339ce87979e924c5df526f98157b8c1cecb41adf41cf3f911fadabcf"
+    },
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/.agents/work/W-3.json",
+      "resource": "source/.agents/work/W-3.json",
+      "sha256": "fcc0461878be02145987b9df966d576a93eac5c09a82f6ed27e7f08c7a71bea2"
+    },
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/.agents/work/W-4.json",
+      "resource": "source/.agents/work/W-4.json",
+      "sha256": "d45c939cff05060e3b456690531ed4cf4f73bcadafe2a355f52d078e9b12783b"
+    },
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/.agents/work/W-5.json",
+      "resource": "source/.agents/work/W-5.json",
+      "sha256": "46d1b0e3b3f496f771b78b902d2aa91d2a3ee119cec1b096e1a91038b1e4dfd4"
+    },
+    {
+      "path": "conformance/src/test/resources/complex-planning/source/README.md",
+      "resource": "source/README.md",
+      "sha256": "a744883933585925281b7c1f92b57fdbbf40e42cb7c0e0bbde124d0128a1259f"
+    }
+  ]
+}
