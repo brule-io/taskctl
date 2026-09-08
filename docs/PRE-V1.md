@@ -25,7 +25,7 @@ service-related choices under the checkpoint's strengthened task prerequisites.
   environment probes remain separate.
 - [Typed evidence time](EVIDENCE-TIME.md) distinguishes validated new occurrence
   values, preserved historical strings and optional storage acceptance metadata.
-  Its owning correction task tracks conformance and parity before closure;
+  Its [closure evidence](proof/evidence-time/README.md) records conformance and parity;
   the file adapter does not manufacture authoritative acceptance timestamps.
 - Preserve ledger `Revision` as snapshot identity while deciding remote CAS
   granularity from concrete contention/conformance tests. The file adapter's

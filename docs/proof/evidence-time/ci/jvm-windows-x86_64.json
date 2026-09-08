@@ -1,0 +1,42 @@
+{
+  "version": "0.3.0-alpha.2",
+  "platform": "windows-x86_64",
+  "implementation": "jvm",
+  "source_revision": "1eb333d753cdd0ac7817dca351c1ea79036480b1",
+  "source_dirty": false,
+  "license": "Apache-2.0",
+  "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+  "native_v1": "not-frozen",
+  "launcher_contract": "taskctl.launcher/1",
+  "entrypoint": "taskctl.ps1",
+  "build_identity": {
+    "implementation": "jvm",
+    "source_revision": "1eb333d753cdd0ac7817dca351c1ea79036480b1",
+    "source_dirty": false,
+    "kotlin": "2.4.10",
+    "gradle": "9.6.0",
+    "libraries": {
+      "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+      "cli-0.3.0-alpha.2.jar": "e8c0a0f6714923f08048500c17de3b5f6346c939b77ac626ebe87fb657e6bf9c",
+      "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+      "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+      "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+      "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+      "compatibility-0.3.0-alpha.2.jar": "6c607fc15e467e64cc5ab22cea53256391f1eb55a3d40cd5eec85859261b37d1",
+      "core-0.3.0-alpha.2.jar": "e6b71ceb67808efd97116428237d188d2794916c3a6306d51b043c1002c03e8f",
+      "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+      "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+      "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+      "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+      "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+      "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+      "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+      "repository-0.3.0-alpha.2.jar": "74a6367d661e14b8db3e4d05426daa02aab4c4cb235777148a8ff117d89cd665",
+      "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+    },
+    "java": "openjdk version \"21.0.11\" 2026-04-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.11+10 (build 21.0.11+10-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.11+10 (build 21.0.11+10-LTS, mixed mode)"
+  },
+  "file": "taskctl-0.3.0-alpha.2-jvm-windows-x86_64.zip",
+  "sha256": "2ff42a36330ed816562ac0ccb198409bb35f788a9c1d18cb3dc6c16739e729d1",
+  "bytes": 26129782
+}

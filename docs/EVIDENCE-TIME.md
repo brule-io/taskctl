@@ -103,5 +103,5 @@ Additional shared tests cover the parser profile, mixed-version rejection, autho
 spoofing, import identity, equivalent instants, restart, stale CAS, current inputs
 and preservation of old receipts. Packaged process cases exercise all three new
 envelopes and compare stdout, diagnostics, exit codes and resulting files between
-JVM and Native Image. The owning task stays open until the required parity proof
-is recorded.
+JVM and Native Image. The [closure evidence](proof/evidence-time/README.md) records
+the exact green candidate, all three platform builds and the retained parity proof.
