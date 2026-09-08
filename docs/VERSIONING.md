@@ -1,5 +1,11 @@
 # Versions, releases and migration
 
+The [0.3.0-alpha.3 release](RELEASE-0.3.0-alpha.3.md) packages the post-checkpoint
+corrections under their existing explicit alpha identities. The
+[native-v1 candidate](spec/NATIVE-V1-CANDIDATE.md) remains a proposal. Release
+assembly reads version-specific source notes and includes digest-bound content
+checks for the expanded consumer guides and excluded kernel/IDL dependencies.
+
 The 0.3 candidate adds history-backed native alpha2, core-draft-2 semantic
 contracts, observed dependency currency, and explicit reconciliation. See
 [SEMANTIC-0.3.md](SEMANTIC-0.3.md) for the current changes and compatibility rules;

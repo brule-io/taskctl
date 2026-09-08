@@ -50,6 +50,10 @@ jobs:
         run: |
           python scripts/reproducibility_test.py --kind jvm
           python scripts/reproducibility_test.py --kind native
+      - name: Check packaged guides and dependency boundaries
+        run: |
+          python scripts/distribution_content_test.py --kind jvm
+          python scripts/distribution_content_test.py --kind native
       - name: Prove pinned acquisition without build tools
         run: |
           python scripts/bootstrap_test.py --kind jvm

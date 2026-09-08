@@ -5,6 +5,7 @@ real-transport tests pass. Immutable releases must be enabled on the repository.
 """
 import argparse, hashlib, json, subprocess
 from pathlib import Path
+from distribution_docs import render_document
 
 def gh(*args):
     return subprocess.check_output(['gh',*args],text=True).strip()
@@ -16,7 +17,15 @@ def main():
     parser.add_argument('--version',required=True)
     parser.add_argument('--revision',required=True)
     parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--notes-file',type=Path,help='Defaults to docs/RELEASE-VERSION.md; notes must describe this exact release')
     args=parser.parse_args(); platforms=['windows-x86_64','linux-x86_64','macos-aarch64']
+    root=Path(__file__).resolve().parents[1]
+    assert args.version==(root/'VERSION').read_text(encoding='utf-8').strip(), 'Release version must match the selected source'
+    notes_source=(args.notes_file or root/'docs'/f'RELEASE-{args.version}.md').resolve()
+    assert notes_source.is_relative_to(root) and notes_source.is_file(), 'Exact release notes must exist in the source repository'
+    committed_notes=subprocess.check_output(['git','show',args.revision+':'+notes_source.relative_to(root).as_posix()],cwd=root)
+    assert committed_notes==notes_source.read_bytes(), 'Release notes must match the exact built source revision'
+    notes_text=render_document(root,notes_source,set(),args.revision)
     records=[]; archives=[]; statements=[]; parity=[]
     for platform in platforms:
         platform_records={}
@@ -41,6 +50,12 @@ def main():
             assert inspected['artifact_sha256']==meta['sha256'] and inspected['source_revision']==args.revision
             assert inspected['read_only'] and inspected['repository_id']=='brule-io.taskctl'
             parity.append(dogfood[0])
+            content=list(args.artifacts.rglob(f'content-{kind}-{platform}.json'))
+            assert len(content)==1
+            checked=json.loads(content[0].read_text(encoding='utf-8'))
+            assert checked['archive_sha256']==meta['sha256'] and checked['source_revision']==args.revision
+            assert checked['experimental_dependencies_excluded'] and checked['local_links_checked']>0 and checked['source_bound_links']>0
+            parity.append(content[0])
         proofs=list(args.artifacts.rglob('parity-'+platform+'.json'))
         assert len(proofs)==1
         comparison=json.loads(proofs[0].read_text(encoding='utf-8'))
@@ -54,29 +69,7 @@ def main():
     args.output.mkdir(parents=True,exist_ok=True)
     tag='v'+args.version
     notes=args.output/'release-notes.md'
-    notes.write_text(f'''taskctl {args.version}: reviewed ancestral import alpha.
-
-Native executables and JVM reference runtimes: Windows x86_64, Linux x86_64,
-macOS arm64. toolchain.lock selects native after corpus/process parity passed;
-toolchain-jvm.lock explicitly selects the JVM reference. No fallback is implicit.
-Version aliases work without acquisition. Immutable task revisions, transitive
-dependency currency, explicit evidenced reconciliation, and bounded existing-code
-adoption are available. See docs/SEMANTIC-0.3.md for compatibility and commands.
-
-Fantastikt import now has explicit inspect/plan/apply commands with source revision,
-adapter/version, exact source witnesses and a reviewed manifest. Imported closures
-retain their historical classification; no native receipts or current dependency
-observations are invented. Native alpha3 gates origin-bearing history from older
-writers. Existing alpha1/alpha2 contracts and revision digests are unchanged.
-See docs/IMPORT.md for the bounded migration and explicit reconciliation workflow.
-
-Native v1 is not frozen. Historical adapters remain explicit compatibility paths.
-Apache-2.0 covers the protocol and reference tooling. Existing third-party licenses remain.
-
-Source: {args.revision}. CI verifies tests, byte-identical repackaging and clean
-consumer acquisition/bootstrap on each platform. SHA-256 digests are in the
-release manifest, SHA256SUMS and toolchain.lock. No asset is replaced in place.
-''',encoding='utf-8',newline='\n')
+    notes.write_text(notes_text+f'\nSource: `{args.revision}`. Matching clean CI artifacts, real GitHub transport checks and publication evidence identify this release. No asset is replaced in place.\n',encoding='utf-8',newline='\n')
     assert json.loads(gh('api',f'repos/{args.repository}/immutable-releases'))['enabled']
     gh('release','create',tag,'--repo',args.repository,'--draft','--prerelease','--target',args.revision,'--title',f'taskctl {args.version}','--notes-file',str(notes))
     gh('release','upload',tag,'--repo',args.repository,*[str(p) for p in archives+statements+parity])
