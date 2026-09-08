@@ -1,6 +1,7 @@
 """Clean Fedora install/upgrade/erase with no network and protected project state."""
 import hashlib, json, os, pwd, re, shutil, subprocess, tarfile
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 root=Path('/work'); output=root/'output'; output.mkdir(exist_ok=True)
 meta=json.loads((root/'input.json').read_text()); packages=root/'packages'
@@ -60,6 +61,24 @@ with tarfile.open(root/meta['upstream']['file']) as archive:
         canonical_files[destination]=digest
 run(['rpm','-V','taskctl'])
 checked('installed canonical executable digest and RPM file verification')
+documentation=Path('/usr/share/doc/taskctl'); licenses=Path('/usr/share/licenses/taskctl')
+license_links={}
+for name in ('LICENSE','NOTICE.md'):
+    link=documentation/name
+    assert link.is_symlink() and os.readlink(link)=='../../licenses/taskctl/'+name
+    assert link.resolve(strict=True)==licenses/name and sha(link)==canonical_files[str(licenses/name)]
+    license_links[name]=os.readlink(link)
+local_links=0
+for document in documentation.rglob('*.md'):
+    chunks=re.split(r'(```[\s\S]*?```|~~~[\s\S]*?~~~|`[^`\n]*`)',document.read_text())
+    for link in re.findall(r'\]\(([^)]+)\)',''.join(c for i,c in enumerate(chunks) if i%2==0)):
+        parsed=urlsplit(link)
+        if parsed.scheme or parsed.netloc or not parsed.path: continue
+        target=(document.parent/unquote(parsed.path)).resolve(strict=True)
+        assert target.is_file() and (target.is_relative_to(documentation) or target.is_relative_to(licenses)),(document,link)
+        local_links+=1
+assert local_links>0
+checked('canonical guide links resolve through package-owned documentation and license paths')
 before=fingerprint(home)
 for args in (['--version'],['-V'],['version']): assert user(['taskctl',*args])==f'taskctl {meta["version"]}\n'
 observations['version']=json.loads(user(['taskctl','version','--format','json']))
@@ -112,7 +131,7 @@ checked('DNF packaging-release upgrade preserves native identity and both comman
 
 transaction('remove','taskctl','erase')
 assert shutil.which('taskctl') is None
-assert all(not Path(p).exists() for p in build['files']), 'Owned files remain after removal'
+assert all(not os.path.lexists(p) for p in build['files']), 'Owned files or dangling symlinks remain after removal'
 before=fingerprint(projects)
 assert json.loads(user(['./taskctl','doctor','--format','json'],fresh))==observations['doctor']
 assert json.loads(user(['./taskctl','frontier','--format','json'],fresh))==observations['frontier']
@@ -122,6 +141,7 @@ proof=dict(contract='taskctl.rpm-test/alpha1',passed=True,platform='fedora-44-x8
     canonical_executable_unchanged=True,canonical_files=canonical_files,canonical_executable_sha256=expected_binary,upstream_archive_sha256=meta['upstream']['sha256'],
     rpm_sha256=sha(binary),upgrade=dict(from_evr=baseline,to_evr=upgraded,kind='packaging-release upgrade of the same canonical executable'),
     unprivileged_commands=True,checks=checks,observations=observations,transaction_traces=traces,
+    documentation_links_checked=local_links,documentation_license_links=license_links,
     transaction_options=transaction_options,container_dnf_configuration=Path('/etc/dnf/dnf.conf').read_text(),
     os_release=Path('/etc/os-release').read_text(),dnf=run(['rpm','-q','dnf5']),runtime_packages=run(['rpm','-qa']).splitlines())
 (output/'rpm-test.json').write_text(json.dumps(proof,indent=2)+'\n')

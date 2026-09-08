@@ -10,6 +10,18 @@ from package import ROOT, target, digest
 def main():
     system=target(); windows=system.startswith('windows')
     output=ROOT/'build/proof'; output.mkdir(parents=True,exist_ok=True)
+    # Frozen fictional compatibility inputs are explicit source fixtures. A
+    # release checkout must not depend on a prior Gradle test's build outputs.
+    inputs=ROOT/'conformance/fixtures/packaged-preimages'
+    fixture_origin=json.loads((inputs/'origin.json').read_text(encoding='utf-8'))
+    assert fixture_origin['classification']=='fictional-canonical-import-preimages-for-packaged-compatibility'
+    assert set(fixture_origin['files'])=={'divergent-native-preimage.json','complex-planning-preimage.json'}
+    projections={}
+    for name,expected in fixture_origin['files'].items():
+        raw=(inputs/name).read_bytes()
+        assert hashlib.sha256(raw).hexdigest()==expected, name
+        projections[name]=json.loads(raw)
+        assert projections[name]['protocol']=='taskctl.conformance-preimage/1'
     metadata={kind:json.loads((ROOT/f'build/distributions/{kind}-{system}.json').read_text(encoding='utf-8')) for kind in ('jvm','native')}
     assert metadata['jvm']['version']==metadata['native']['version']
     assert metadata['jvm']['build_identity']['libraries']==metadata['native']['build_identity']['libraries']
@@ -501,7 +513,7 @@ def main():
         # A conformance-local adapter emits this through canonical Bootstrap,
         # exercising a second import shape without registering a test adapter in
         # the product CLI or copying private consumer records into this corpus.
-        projection=json.loads((output/'divergent-native-preimage.json').read_text(encoding='utf-8'))
+        projection=projections['divergent-native-preimage.json']
         assert projection['protocol']=='taskctl.conformance-preimage/1'
         assert projection['adapter']=='conformance-object-work' and projection['adapter_version']=='1.0.0'
         assert projection['source_revision']=='7426b442a1fc217894af2c6f9f77ce8bc05413af'
@@ -592,7 +604,7 @@ def main():
         json_pair('invalid context option',['context','--limit','unbounded'],code=2)
         # The complex planning adapter is test-local; both executables consume
         # its canonical imported preimage and use only normal native commands.
-        complex_projection=json.loads((output/'complex-planning-preimage.json').read_text(encoding='utf-8'))
+        complex_projection=projections['complex-planning-preimage.json']
         assert complex_projection['protocol']=='taskctl.conformance-preimage/1'
         assert complex_projection['adapter']=='conformance-planning-indexes' and complex_projection['adapter_version']=='1.0.0'
         assert complex_projection['source_revision']=='445b637b02c4451977e015af5d6301132f8db75c'
@@ -661,6 +673,7 @@ def main():
         json_pair('complex bounded final context',['context'])
     result=dict(contract='taskctl.parity/alpha1',platform=system,version=native['version'],
         artifacts={kind:meta['sha256'] for kind,meta in metadata.items()},cases=checks,
+        preimages=fixture_origin,
         allowed_differences={'info.result':['implementation','java_runtime','vm','build']},
         protocol_semantics_changed=False)
     (output/f'parity-{system}.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8',newline='\n')

@@ -1,0 +1,143 @@
+{
+  "attestation": {
+    "bundle": {
+      "mediaType": "application/vnd.dev.sigstore.bundle.v0.3+json",
+      "verificationMaterial": {
+        "certificate": {
+          "rawBytes": "MIICKzCCAbCgAwIBAgIUFEsbikF1pCGydxjUbs+jmoS800MwCgYIKoZIzj0EAwMwODEVMBMGA1UEChMMR2l0SHViLCBJbmMuMR8wHQYDVQQDExZGdWxjaW8gSW50ZXJtZWRpYXRlIGwxMB4XDTI2MDYxMjAwMDAwMFoXDTI3MDYxMjAwMDAwMFowKjEVMBMGA1UEChMMR2l0SHViLCBJbmMuMREwDwYDVQQDEwhBdHRlc3RlcjBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABGUVEVNqcSQmA0J45gqVHzCQkSWaZn4DucVDFhO4Q5OWgVdOP4WF44OUvFXQm9lDfRrHMsIVHEbvMfL7SHOVuVWjgaUwgaIwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMDMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFDrgKNmcXl2HuRedxYt9HulXf/9IMB8GA1UdIwQYMBaAFMDhuFKkS08+3no4EQbPSY6hRZszMC0GA1UdEQQmMCSGImh0dHBzOi8vZG90Y29tLnJlbGVhc2VzLmdpdGh1Yi5jb20wCgYIKoZIzj0EAwMDaQAwZgIxAJnC2khPGWJqZiEFvgyv0rktYBinUh6AkDn43wYSgUhzm8aRUa+rF25Qk1ZeoGi3IAIxAIgIBMwOkMqDQ1DVCJydaIZu1bxtvgX9Anva7kRDZrboNxsAllbdnorYRTm9mxkZaQ=="
+        },
+        "timestampVerificationData": {
+          "rfc3161Timestamps": [
+            {
+              "signedTimestamp": "MIIC0DADAgEAMIICxwYJKoZIhvcNAQcCoIICuDCCArQCAQMxDTALBglghkgBZQMEAgIwgbsGCyqGSIb3DQEJEAEEoIGrBIGoMIGlAgEBBgkrBgEEAYO/MAIwMTANBglghkgBZQMEAgEFAAQglMWQzY5DYd/rzW9vdFjfB7PNDmU3MB/9E6LSmmFgSD4CFFuSeDUdaU5heezv/rmKvgR/jT28GA8yMDI2MDkwODA2MTQ0M1owAwIBAaA2pDQwMjEVMBMGA1UEChMMR2l0SHViLCBJbmMuMRkwFwYDVQQDExBUU0EgVGltZXN0YW1waW5noAAxggHeMIIB2gIBATBKMDIxFTATBgNVBAoTDEdpdEh1YiwgSW5jLjEZMBcGA1UEAxMQVFNBIGludGVybWVkaWF0ZQIUFzPb1un+DvofqFPzAXiB5slHM1IwCwYJYIZIAWUDBAICoIIBBTAaBgkqhkiG9w0BCQMxDQYLKoZIhvcNAQkQAQQwHAYJKoZIhvcNAQkFMQ8XDTI2MDkwODA2MTQ0M1owPwYJKoZIhvcNAQkEMTIEMD2uxwLhnXfKUXgUbNoeHeeq55wR4XzlOlajytkDpNVUKO5soa4zdnOLBJu3f5KuCTCBhwYLKoZIhvcNAQkQAi8xeDB2MHQwcgQgRBbIrnMUamOhN8LlW+jecOPJrzBzvzmLqrqo2wgXztcwTjA2pDQwMjEVMBMGA1UEChMMR2l0SHViLCBJbmMuMRkwFwYDVQQDExBUU0EgaW50ZXJtZWRpYXRlAhQXM9vW6f4O+h+oU/MBeIHmyUczUjAKBggqhkjOPQQDAwRnMGUCMQDjF+PYgl2ytASTSigU+7iSYBHMPjbsBMYR1/x8SHMlXa2BAhqbOM8olQ1oyzYE208CMEsLCJGgYRRZkZ03nyqspper2pDFPXAO74Qx/4zkJ80NtWjrdEm9q2Bc9jQS4kqGCQ=="
+            }
+          ]
+        }
+      },
+      "dsseEnvelope": {
+        "payload": "eyJfdHlwZSI6Imh0dHBzOi8vaW4tdG90by5pby9TdGF0ZW1lbnQvdjEiLCAic3ViamVjdCI6W3sidXJpIjoicGtnOmdpdGh1Yi9icnVsZS1pby90YXNrY3RsQHJwbS12MC4zLjAtYWxwaGEuMy0xIiwgImRpZ2VzdCI6eyJzaGExIjoiYTYwNGRlYTJkYWU2NjJjZjU3YmVjZjEzYThiNThlMDEzZDkwNzIzMCJ9fSwgeyJuYW1lIjoicnBtLWJ1aWxkLmpzb24iLCAiZGlnZXN0Ijp7InNoYTI1NiI6IjA0YWNiMGViNzNiOTllZDc1Y2UzN2QwZmYxOTNmMmEzNTgxMzEwMjRkMDRlMDRiMjhhZjM4MDBmMTMwNDFhYmYifX0sIHsibmFtZSI6InJwbS1tYW5pZmVzdC5qc29uIiwgImRpZ2VzdCI6eyJzaGEyNTYiOiIyZDQ0Njc3NGQyYzZlMzZiM2U4ZmQ1OTRkNzliMTY5NzQxYzM2ZTU0ODc2YzA5MGUyNzJhYTVkZjgwMWNmZDA0In19LCB7Im5hbWUiOiJSUE0tU0hBMjU2U1VNUyIsICJkaWdlc3QiOnsic2hhMjU2IjoiOWM3NzA5ZWRkMWVkYzY0ZjA3NTM3MDJjMTVmMTg4MWRkOTA0MWNlOGY5NjkzNTI5ZjUwODMyYmFmZWY2ZmI3YSJ9fSwgeyJuYW1lIjoicnBtLXRlc3QuanNvbiIsICJkaWdlc3QiOnsic2hhMjU2IjoiMzRkMWJmMTAwN2YxZWYyNzM2OTlkMDE1OTE0OGVlMjlkN2NiMDFjZGM1YmUxYWNmNDhlY2MyZjFlZTk5ZjNhMSJ9fSwgeyJuYW1lIjoicnBtbGludC50eHQiLCAiZGlnZXN0Ijp7InNoYTI1NiI6IjhiNzg3ZGI0ZTY4Yjk3MjNlMTY3MzAxNTI2ZmJjODZiYWU0ZmQzZmMzMWZjZmRiYTcxNmRhODIyYjNhMDRjMTIifX0sIHsibmFtZSI6InRhc2tjdGwtMC4zLjAtYWxwaGEuMy0xLmZjNDQuc3JjLnJwbSIsICJkaWdlc3QiOnsic2hhMjU2IjoiNWFkODJlYWMwZjUyZWFhOGY3OGEzYjE4M2I4MzAxZWViNDVlOWNmOTE3ODFhMDY1MDQ0MzMzZmFjYjJlYjVlOSJ9fSwgeyJuYW1lIjoidGFza2N0bC0wLjMuMC1hbHBoYS4zLTEuZmM0NC5zcmMucnBtLmludG90by5qc29uIiwgImRpZ2VzdCI6eyJzaGEyNTYiOiIzYjY3YWU2NzVhY2YyZDg0NWU1ZGE2N2UzZWFlM2UzZWZiYzE5YjNiZGIzZWYzMmNiNTUxMTBhYThmNjU5YTZmIn19LCB7Im5hbWUiOiJ0YXNrY3RsLTAuMy4wLWFscGhhLjMtMS5mYzQ0Lng4Nl82NC5ycG0iLCAiZGlnZXN0Ijp7InNoYTI1NiI6ImIwODNhMzZlZDNlOTk4NjY1NDZiNWI0M2YxNzUzZWNmZDA2YzMyZTViZjgzNzliZWE3YzBjYzcwYzFiMTAzNWEifX0sIHsibmFtZSI6InRhc2tjdGwtMC4zLjAtYWxwaGEuMy0xLmZjNDQueDg2XzY0LnJwbS5pbnRvdG8uanNvbiIsICJkaWdlc3QiOnsic2hhMjU2IjoiYmZkMGViM2U0OWIwNTQ4NGQ4MWEzNDFmZDI0MDI1M2MwOTY4ZWNkOTlmODIyNzhkZGY1ZjVkY2ZhYzEyZDA2MCJ9fSwgeyJuYW1lIjoidGFza2N0bC5zcGVjIiwgImRpZ2VzdCI6eyJzaGEyNTYiOiI0NjJjZDA2NTc2NDMzZWQ2YzgzMDlhZGQ4NTk4ZjZhZWUxOTQ2ODRkYzJlOWYzMTdiODkxNGEzOTFlOWRlMjM5In19LCB7Im5hbWUiOiJ1cHN0cmVhbS10b29sY2hhaW4ubG9jayIsICJkaWdlc3QiOnsic2hhMjU2IjoiYjkwYjhkNGFmOGJjMTZlN2RmNTRmMDNkNDJkYzUyZjQ1ZmYyNjhlZDNkZGU0NDk3OGNjZWY1ZDFhYjkxY2JiMyJ9fV0sICJwcmVkaWNhdGVUeXBlIjoiaHR0cHM6Ly9pbi10b3RvLmlvL2F0dGVzdGF0aW9uL3JlbGVhc2UvdjAuMiIsICJwcmVkaWNhdGUiOnsiZGF0YWJhc2VJZCI6IjM4NDQ4MzI3MiIsICJvd25lcklkIjoiMTkzNzQyMjI5IiwgInBhY2thZ2VJZCI6IjEzNTc3MzQ1ODAiLCAicHVybCI6InBrZzpnaXRodWIvYnJ1bGUtaW8vdGFza2N0bEBycG0tdjAuMy4wLWFscGhhLjMtMSIsICJyZXBvc2l0b3J5IjoiYnJ1bGUtaW8vdGFza2N0bCIsICJyZXBvc2l0b3J5SWQiOiIxMzU3NzM0NTgwIiwgInRhZyI6InJwbS12MC4zLjAtYWxwaGEuMy0xIn19",
+        "payloadType": "application/vnd.in-toto+json",
+        "signatures": [
+          {
+            "sig": "MEUCIEqAlFpATN+8nijzvovthNe4leJ8Pc4/2iu5yJfk7Q8MAiEAlunUSlvbbwLkwPFv21TVHPgWDZnlJfDEaUjrshnbkA0="
+          }
+        ]
+      }
+    },
+    "bundle_url": "",
+    "initiator": ""
+  },
+  "verificationResult": {
+    "mediaType": "application/vnd.dev.sigstore.verificationresult+json;version=0.1",
+    "signature": {
+      "certificate": {
+        "certificateIssuer": "CN=Fulcio Intermediate l1,O=GitHub\\, Inc.",
+        "subjectAlternativeName": "https://dotcom.releases.github.com"
+      }
+    },
+    "verifiedTimestamps": [
+      {
+        "type": "TimestampAuthority",
+        "uri": "timestamp.githubapp.com",
+        "timestamp": "2026-09-08T06:14:43Z"
+      }
+    ],
+    "verifiedIdentity": {
+      "subjectAlternativeName": {
+        "subjectAlternativeName": "",
+        "regexp": "^https://dotcom\\.releases\\.github\\.com$"
+      },
+      "issuer": {
+        "issuer": "",
+        "regexp": ".*"
+      }
+    },
+    "statement": {
+      "_type": "https://in-toto.io/Statement/v1",
+      "subject": [
+        {
+          "uri": "pkg:github/brule-io/taskctl@rpm-v0.3.0-alpha.3-1",
+          "digest": {
+            "sha1": "a604dea2dae662cf57becf13a8b58e013d907230"
+          }
+        },
+        {
+          "name": "rpm-build.json",
+          "digest": {
+            "sha256": "04acb0eb73b99ed75ce37d0ff193f2a358131024d04e04b28af3800f13041abf"
+          }
+        },
+        {
+          "name": "rpm-manifest.json",
+          "digest": {
+            "sha256": "2d446774d2c6e36b3e8fd594d79b169741c36e54876c090e272aa5df801cfd04"
+          }
+        },
+        {
+          "name": "RPM-SHA256SUMS",
+          "digest": {
+            "sha256": "9c7709edd1edc64f0753702c15f1881dd9041ce8f9693529f50832bafef6fb7a"
+          }
+        },
+        {
+          "name": "rpm-test.json",
+          "digest": {
+            "sha256": "34d1bf1007f1ef273699d0159148ee29d7cb01cdc5be1acf48ecc2f1ee99f3a1"
+          }
+        },
+        {
+          "name": "rpmlint.txt",
+          "digest": {
+            "sha256": "8b787db4e68b9723e167301526fbc86bae4fd3fc31fcfdba716da822b3a04c12"
+          }
+        },
+        {
+          "name": "taskctl-0.3.0-alpha.3-1.fc44.src.rpm",
+          "digest": {
+            "sha256": "5ad82eac0f52eaa8f78a3b183b8301eeb45e9cf91781a065044333facb2eb5e9"
+          }
+        },
+        {
+          "name": "taskctl-0.3.0-alpha.3-1.fc44.src.rpm.intoto.json",
+          "digest": {
+            "sha256": "3b67ae675acf2d845e5da67e3eae3e3efbc19b3bdb3ef32cb55110aa8f659a6f"
+          }
+        },
+        {
+          "name": "taskctl-0.3.0-alpha.3-1.fc44.x86_64.rpm",
+          "digest": {
+            "sha256": "b083a36ed3e99866546b5b43f1753ecfd06c32e5bf8379bea7c0cc70c1b1035a"
+          }
+        },
+        {
+          "name": "taskctl-0.3.0-alpha.3-1.fc44.x86_64.rpm.intoto.json",
+          "digest": {
+            "sha256": "bfd0eb3e49b05484d81a341fd240253c0968ecd99f82278ddf5f5dcfac12d060"
+          }
+        },
+        {
+          "name": "taskctl.spec",
+          "digest": {
+            "sha256": "462cd06576433ed6c8309add8598f6aee194684dc2e9f317b8914a391e9de239"
+          }
+        },
+        {
+          "name": "upstream-toolchain.lock",
+          "digest": {
+            "sha256": "b90b8d4af8bc16e7df54f03d42dc52f45ff268ed3dde44978ccef5d1ab91cbb3"
+          }
+        }
+      ],
+      "predicateType": "https://in-toto.io/attestation/release/v0.2",
+      "predicate": {
+        "databaseId": "384483272",
+        "ownerId": "193742229",
+        "packageId": "1357734580",
+        "purl": "pkg:github/brule-io/taskctl@rpm-v0.3.0-alpha.3-1",
+        "repository": "brule-io/taskctl",
+        "repositoryId": "1357734580",
+        "tag": "rpm-v0.3.0-alpha.3-1"
+      }
+    }
+  }
+}

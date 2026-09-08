@@ -1,0 +1,10 @@
+{
+  "classification": "fictional-canonical-import-preimages-for-packaged-compatibility",
+  "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+  "generator_run": "https://github.com/brule-io/taskctl/actions/runs/34190359911",
+  "generator_artifact": "distribution-ubuntu-24.04",
+  "files": {
+    "divergent-native-preimage.json": "bf878df5511638bde220b629b10a52b6ee91b1e87b6b48e07955c39309cca7c3",
+    "complex-planning-preimage.json": "055b104479619f873ad4c2225799ccd7d978fd3ddf3e2f9ca612f4dfac69e19c"
+  }
+}

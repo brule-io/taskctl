@@ -1,0 +1,9 @@
+Package              Arch   Version                Repository        Size
+Upgrading:
+ taskctl             x86_64 0:0.3.0~alpha.3-1.fc44 @commandline  21.7 MiB
+   replacing taskctl x86_64 0:0.3.0~alpha.3-0.fc44 @commandline  21.7 MiB
+
+Transaction Summary:
+ Upgrading:          1 package
+ Replacing:          1 package
+

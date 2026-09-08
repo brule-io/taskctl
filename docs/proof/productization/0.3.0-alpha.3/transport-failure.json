@@ -1,0 +1,33 @@
+{
+  "conclusion": "failure",
+  "headSha": "084cea04271764f6d666c0db6aa0da517abce7a6",
+  "jobs": [
+    {
+      "databaseId": 101951921195,
+      "name": "consumer (windows-2025, windows-x86_64, zip)",
+      "conclusion": "failure",
+      "url": "https://github.com/brule-io/taskctl/actions/runs/34192042487/job/101951921195"
+    },
+    {
+      "databaseId": 101951921327,
+      "name": "consumer (ubuntu-24.04, linux-x86_64, tar.gz)",
+      "conclusion": "failure",
+      "url": "https://github.com/brule-io/taskctl/actions/runs/34192042487/job/101951921327"
+    },
+    {
+      "databaseId": 101951921361,
+      "name": "consumer (macos-14, macos-aarch64, tar.gz)",
+      "conclusion": "failure",
+      "url": "https://github.com/brule-io/taskctl/actions/runs/34192042487/job/101951921361"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/brule-io/taskctl/actions/runs/34192042487",
+  "classification": "release-verification-harness-failure",
+  "observed_at": "2026-09-08T05:57:16.320225+00:00",
+  "error": "FileNotFoundError: build/proof/divergent-native-preimage.json",
+  "also_undeclared": "build/proof/complex-planning-preimage.json",
+  "scope": "Bootstrap passed; the parity driver depended on local Gradle outputs absent in a clean release checkout.",
+  "correction": "cb4575b5d830169abadb3d53ea102a570060c441",
+  "runtime_artifacts_changed": false
+}

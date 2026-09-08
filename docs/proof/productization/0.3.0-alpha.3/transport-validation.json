@@ -1,0 +1,416 @@
+{
+  "observed_at": "2026-09-08T06:03:18.140554+00:00",
+  "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+  "harness_revision": "cb4575b5d830169abadb3d53ea102a570060c441",
+  "harness_changed_paths": [
+    "conformance/fixtures/packaged-preimages/README.md",
+    "conformance/fixtures/packaged-preimages/complex-planning-preimage.json",
+    "conformance/fixtures/packaged-preimages/divergent-native-preimage.json",
+    "conformance/fixtures/packaged-preimages/origin.json",
+    "scripts/parity_test.py"
+  ],
+  "runtime_sources_unchanged": true,
+  "preimages": {
+    "classification": "fictional-canonical-import-preimages-for-packaged-compatibility",
+    "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+    "generator_run": "https://github.com/brule-io/taskctl/actions/runs/34190359911",
+    "generator_artifact": "distribution-ubuntu-24.04",
+    "files": {
+      "divergent-native-preimage.json": "bf878df5511638bde220b629b10a52b6ee91b1e87b6b48e07955c39309cca7c3",
+      "complex-planning-preimage.json": "055b104479619f873ad4c2225799ccd7d978fd3ddf3e2f9ca612f4dfac69e19c"
+    }
+  },
+  "run": {
+    "conclusion": "success",
+    "event": "workflow_dispatch",
+    "headSha": "cb4575b5d830169abadb3d53ea102a570060c441",
+    "jobs": [
+      {
+        "completedAt": "2026-09-08T06:00:42Z",
+        "conclusion": "success",
+        "databaseId": 101953379101,
+        "name": "consumer (ubuntu-24.04, linux-x86_64, tar.gz)",
+        "startedAt": "2026-09-08T05:56:07Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-09-08T05:56:09Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-09-08T05:56:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:10Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-09-08T05:56:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:10Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-09-08T05:56:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:14Z",
+            "conclusion": "success",
+            "name": "Download exact release inputs",
+            "number": 4,
+            "startedAt": "2026-09-08T05:56:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:15Z",
+            "conclusion": "success",
+            "name": "Validate release and stage metadata",
+            "number": 5,
+            "startedAt": "2026-09-08T05:56:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:16Z",
+            "conclusion": "success",
+            "name": "Check the exact downloaded content",
+            "number": 6,
+            "startedAt": "2026-09-08T05:56:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:57:02Z",
+            "conclusion": "success",
+            "name": "Exercise cold GitHub acquisition of both implementations",
+            "number": 7,
+            "startedAt": "2026-09-08T05:56:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T06:00:38Z",
+            "conclusion": "success",
+            "name": "Require release process parity",
+            "number": 8,
+            "startedAt": "2026-09-08T05:57:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T06:00:39Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 9,
+            "startedAt": "2026-09-08T06:00:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T06:00:40Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 17,
+            "startedAt": "2026-09-08T06:00:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T06:00:40Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 18,
+            "startedAt": "2026-09-08T06:00:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T06:00:40Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "startedAt": "2026-09-08T06:00:40Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/brule-io/taskctl/actions/runs/34192543158/job/101953379101"
+      },
+      {
+        "completedAt": "2026-09-08T05:59:31Z",
+        "conclusion": "success",
+        "databaseId": 101953379327,
+        "name": "consumer (macos-14, macos-aarch64, tar.gz)",
+        "startedAt": "2026-09-08T05:56:12Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-09-08T05:56:15Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-09-08T05:56:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:16Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-09-08T05:56:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:16Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-09-08T05:56:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:18Z",
+            "conclusion": "success",
+            "name": "Download exact release inputs",
+            "number": 4,
+            "startedAt": "2026-09-08T05:56:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:19Z",
+            "conclusion": "success",
+            "name": "Validate release and stage metadata",
+            "number": 5,
+            "startedAt": "2026-09-08T05:56:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:19Z",
+            "conclusion": "success",
+            "name": "Check the exact downloaded content",
+            "number": 6,
+            "startedAt": "2026-09-08T05:56:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:57:05Z",
+            "conclusion": "success",
+            "name": "Exercise cold GitHub acquisition of both implementations",
+            "number": 7,
+            "startedAt": "2026-09-08T05:56:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:59:26Z",
+            "conclusion": "success",
+            "name": "Require release process parity",
+            "number": 8,
+            "startedAt": "2026-09-08T05:57:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:59:28Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 9,
+            "startedAt": "2026-09-08T05:59:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:59:28Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 17,
+            "startedAt": "2026-09-08T05:59:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:59:28Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 18,
+            "startedAt": "2026-09-08T05:59:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:59:28Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "startedAt": "2026-09-08T05:59:28Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/brule-io/taskctl/actions/runs/34192543158/job/101953379327"
+      },
+      {
+        "completedAt": "2026-09-08T06:02:46Z",
+        "conclusion": "success",
+        "databaseId": 101953379355,
+        "name": "consumer (windows-2025, windows-x86_64, zip)",
+        "startedAt": "2026-09-08T05:56:11Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-09-08T05:56:14Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-09-08T05:56:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:23Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-09-08T05:56:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:24Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-09-08T05:56:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:36Z",
+            "conclusion": "success",
+            "name": "Download exact release inputs",
+            "number": 4,
+            "startedAt": "2026-09-08T05:56:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:40Z",
+            "conclusion": "success",
+            "name": "Validate release and stage metadata",
+            "number": 5,
+            "startedAt": "2026-09-08T05:56:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:56:41Z",
+            "conclusion": "success",
+            "name": "Check the exact downloaded content",
+            "number": 6,
+            "startedAt": "2026-09-08T05:56:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T05:57:49Z",
+            "conclusion": "success",
+            "name": "Exercise cold GitHub acquisition of both implementations",
+            "number": 7,
+            "startedAt": "2026-09-08T05:56:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T06:02:41Z",
+            "conclusion": "success",
+            "name": "Require release process parity",
+            "number": 8,
+            "startedAt": "2026-09-08T05:57:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T06:02:42Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 9,
+            "startedAt": "2026-09-08T06:02:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T06:02:42Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 17,
+            "startedAt": "2026-09-08T06:02:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T06:02:44Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 18,
+            "startedAt": "2026-09-08T06:02:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T06:02:44Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "startedAt": "2026-09-08T06:02:44Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/brule-io/taskctl/actions/runs/34192543158/job/101953379355"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/brule-io/taskctl/actions/runs/34192543158",
+    "workflowName": "Release smoke"
+  },
+  "records": [
+    {
+      "path": "transport/bootstrap-native-windows-x86_64.json",
+      "sha256": "1eb5654b783a916a8128983b11ef91fcb35064110aedd0f4f9bf225354e44ffa"
+    },
+    {
+      "path": "transport/bootstrap-jvm-windows-x86_64.json",
+      "sha256": "59de18ca3447a5b88a9d58465d37d87640ebea842ad0f3983ecd499174d2817c"
+    },
+    {
+      "path": "transport/content-native-windows-x86_64.json",
+      "sha256": "e1f1ebf132a764b613586ebe1e9e2d9254567696e4c504a7fe8d0caff1780f37"
+    },
+    {
+      "path": "transport/content-jvm-windows-x86_64.json",
+      "sha256": "a64793422b96b178cc8ca7b07ffadde9e0dfa1accf546ddd530c8caaabe7bcab"
+    },
+    {
+      "path": "transport/parity-windows-x86_64.json",
+      "sha256": "cfa53a6ff2db7bc58ac80e42b525d615f421dd680fbdd32aa41c598f091d829c"
+    },
+    {
+      "path": "transport/bootstrap-native-linux-x86_64.json",
+      "sha256": "f5c78388f59e18417f5c50704da94fb954fbd7be4819f9269d73f5df88cf8d42"
+    },
+    {
+      "path": "transport/bootstrap-jvm-linux-x86_64.json",
+      "sha256": "1e5d8e684d9f96d8f15494680cb89c3dd60097ff891f470c6348f4d6e051b052"
+    },
+    {
+      "path": "transport/content-native-linux-x86_64.json",
+      "sha256": "d816626d4634f7d613d36a46e4823a809e06697ef6fa8c02c260e6ef55979500"
+    },
+    {
+      "path": "transport/content-jvm-linux-x86_64.json",
+      "sha256": "6458245f5a0409a1fc047bead8d58fb21a6f5f94a36fa32b58915185a4e9e9cf"
+    },
+    {
+      "path": "transport/parity-linux-x86_64.json",
+      "sha256": "fde5d86508dd3bad882c86d8788ac00e4e2b1960dfda11aa458a47e089864fa1"
+    },
+    {
+      "path": "transport/bootstrap-native-macos-aarch64.json",
+      "sha256": "fd2bb65fa512dedcb1cc875ac762d32651622cbe5df9eaa0dc5dd78acae8ad92"
+    },
+    {
+      "path": "transport/bootstrap-jvm-macos-aarch64.json",
+      "sha256": "5462a2726d1081303ecb729ba39d9d8e5fb6fa9e9a7116851f2b8af2d6054273"
+    },
+    {
+      "path": "transport/content-native-macos-aarch64.json",
+      "sha256": "77b7a954feed348be2ea5a8caa140c13554980bafb7eacf2c709f12fd1487eb0"
+    },
+    {
+      "path": "transport/content-jvm-macos-aarch64.json",
+      "sha256": "38685d62e126a22c5e18f975b4807b6a7805a9fd1b30670f67d2cd0ce465e9df"
+    },
+    {
+      "path": "transport/parity-macos-aarch64.json",
+      "sha256": "d2043ead2031360d43ab887cc4a7a80b4d872b0550a69346f1867767d221e89a"
+    }
+  ]
+}
