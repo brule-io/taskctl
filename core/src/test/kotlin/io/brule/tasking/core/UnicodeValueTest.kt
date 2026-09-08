@@ -10,6 +10,11 @@ class UnicodeValueTest {
         for (invalid in listOf("\uD800", "\uDC00", "prefix\uD800suffix", "\uDC00\uD800", "\uD800\uD800")) {
             assertFails { StringValue(invalid) }
             assertFails { ObjectValue(mapOf(invalid to NullValue)) }
+            val fields = mutableMapOf<String, Value>("valid" to NullValue)
+            val borrowed = ObjectValue(fields)
+            fields[invalid] = NullValue
+            assertFails { Json.encode(borrowed) }
+            assertFails { Canonical.digest("unicode", borrowed) }
         }
     }
 

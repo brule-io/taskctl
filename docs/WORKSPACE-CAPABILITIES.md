@@ -25,7 +25,9 @@ The nine shared JVM/native file-ledger cases prove:
 
 - Installation alone does not activate schemas. Unknown optional values and an
   inactive malformed known payload survive exactly; large integers, decimal type
-  and scale are preserved. Optional authority-like text grants no behavior.
+  and scale are preserved, as are Unicode controls, line separators, noncharacters
+  and supplementary characters in nested values/keys. Optional authority-like text
+  grants no behavior.
 - Required feature identities remain core-readable. Exact persisted pins activate
   contributed prerequisites without rewriting authored `requires` or introducing
   planning ownership. Missing, mismatched or failed providers leave work unresolved.
@@ -66,8 +68,23 @@ records the changed disposable ledger. Shared constructor validation now enforce
 the existing namespace grammar before mutation. Valid wire records, contract
 digests and opaque extension values retain their existing meaning.
 
+Four additional core Unicode cases cover a second value-boundary defect, reproduced
+at source `3df76b8f1b37e47726bbfee3b048cb990a4ec803`. JVM strings can contain unpaired
+surrogates, and UTF-8 encoding replaced them with `?`; the two different values
+therefore produced the same framed semantic hash before SHA-256 was applied.
+String values and object keys now reject unpaired surrogates, including escaped
+YAML input. The JSON writer also checks keys if a caller mutates a borrowed map.
+This intentionally rejects malformed text that the old decoder admitted; it does
+not change canonical identities for well-formed Unicode or normalize text.
+
+Valid C1 controls, NEL, line/paragraph separators and BMP noncharacters remain
+supported. The JSON writer escapes these scalars so the shared YAML decoder cannot
+fold whitespace, reject raw characters or reinterpret a flow-mapping key. Their
+semantic hashes are unchanged; their generated JSON spelling is now safe. The
+tests retain a pre-fix Unicode digest and the [completed failing baseline log](proof/workspace-capabilities/unicode-regression-red.log).
+
 This adds conformance coverage to the existing alpha5 provider/profile design and
-repairs that validity boundary. It introduces no loader, probe runner or reflection
+repairs those validity boundaries. It introduces no loader, probe runner or reflection
 configuration. The existing packaged CLI parity corpus covers missing-provider
 diagnostics and bounded profile mutations with the default empty registry; the new
 matching-provider cases execute through the shared JVM/Native Image test corpus.

@@ -7,13 +7,16 @@ import java.math.BigInteger
  * floating point. The document codec independently preserves source spelling. */
 sealed interface Value
 data class ObjectValue(val fields: Map<String, Value>) : Value {
+    init { fields.keys.forEach(::requireUnicodeScalars) }
     fun requiredString(key: String): String =
         (fields[key] as? StringValue)?.value ?: error("$key must be a string")
     fun requiredArray(key: String): List<Value> =
         (fields[key] as? ArrayValue)?.values ?: error("$key must be an array")
 }
 data class ArrayValue(val values: List<Value>) : Value
-data class StringValue(val value: String) : Value
+data class StringValue(val value: String) : Value {
+    init { requireUnicodeScalars(value) }
+}
 data class IntegerValue(val value: BigInteger) : Value
 data class DecimalValue(val value: BigDecimal) : Value
 data class BooleanValue(val value: Boolean) : Value

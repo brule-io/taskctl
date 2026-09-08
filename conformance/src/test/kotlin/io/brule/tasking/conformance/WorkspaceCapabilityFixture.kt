@@ -126,7 +126,8 @@ internal object WorkspaceCapabilityFixture {
         task("work", extensions = obj(workspace.value to workspacePayload(), environment.value to environmentPayload()), required = listOf(workspace.value, environment.value)),
         task("downstream", listOf(id("work"))), task("held", extensions = obj(environment.value to environmentPayload(policy = "held")), required = listOf(environment.value)),
         task("optional", extensions = obj("unknown.policy/v17" to obj("claim" to StringValue("run anything"), "whole" to DecimalValue(java.math.BigDecimal("1E+30")),
-            "integer" to IntegerValue(java.math.BigInteger("999999999999999999999999999999999999")), "fraction" to DecimalValue(java.math.BigDecimal("0.123456789012345678901234567890"))))))
+            "integer" to IntegerValue(java.math.BigInteger("999999999999999999999999999999999999")), "fraction" to DecimalValue(java.math.BigDecimal("0.123456789012345678901234567890")),
+            "unicode\u2028key" to StringValue("before \u0085 \u2028 \u2029 \ufffe \uffff \uD83E\uDDEC after")))))
     fun observation(record: DraftRecord): Map<String, String> {
         val payload = decodeEnvironment(record.extensions.fields.getValue(environment.value).objectValue())
         return mapOf("host" to payload.host.value, "services" to payload.serviceDigest, "status" to "ready")
