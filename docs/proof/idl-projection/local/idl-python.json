@@ -1,0 +1,17 @@
+{
+  "classification": "observed-generated-client-tests",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "tests": [
+    "test_client.ClientTest.test_core_goldens_match_exact_typed_bytes_and_framed_digests",
+    "test_client.ClientTest.test_endpoint_scope_and_cursor_validation_precede_network_access",
+    "test_client.ClientTest.test_event_parent_nullability_and_changed_identity_constraints_are_generated",
+    "test_client.ClientTest.test_integer_conversion_does_not_depend_on_or_mutate_python_global_digit_limits",
+    "test_client.ClientTest.test_invalid_unicode_duplicate_keys_and_noncanonical_json_are_rejected",
+    "test_client.ClientTest.test_large_integer_decimal_scale_and_numeric_category_remain_distinct",
+    "test_client.ClientTest.test_nested_values_have_no_mutable_collection_aliases",
+    "test_client.ClientTest.test_protocol_fields_and_nominal_identities_validate_before_use"
+  ],
+  "passed": 8,
+  "failures": 0,
+  "errors": 0
+}

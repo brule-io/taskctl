@@ -1,0 +1,16 @@
+{
+  "classification": "observed-disposable-idl-harness",
+  "database_image": "postgres@sha256:a426e44bac0b759c95894d68e1a0ac03ecc20b619f498a91aae373bf06d8508d",
+  "source": "49c07874b92f32350f58ebb656a63ef98349dd15",
+  "source_dirty": false,
+  "host": "Windows",
+  "idl_jar_sha256": "11959f905ce1ceec96a4f06824b70cc9e5e85104a72259d06eaa27ae71680dcd",
+  "jdbc_version": "42.7.13",
+  "managed_container": true,
+  "smithy_version": "1.73.0",
+  "generated_artifacts": {
+    "taskctl-smithy.json": "4b897c3a3be498b6ac113685e10271e46be78026fe33375a2feff3d86237952f",
+    "taskctl-wire.json": "f92c703e00906d90a3d6202b818619d8fbd6dacc47f6e8f37c9dd5bd7d7c7c65",
+    "taskctl_client.py": "945b7aa0460fad8224005685a21c88c729698473d02f6bdd9fa31c6205f88b0f"
+  }
+}
