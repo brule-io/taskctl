@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.brule.tasking.idl.ClientInteropTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-09-08T03:32:50.289Z" hostname="WORKSTATION" time="2.024">
+  <properties/>
+  <testcase name="generated Python client interoperates with real PostgreSQL HTTP lifecycle CAS and typed event history()" classname="io.brule.tasking.idl.ClientInteropTest" time="1.619"/>
+  <testcase name="generated client never replays a command after its committed reply is lost()" classname="io.brule.tasking.idl.ClientInteropTest" time="0.379"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
