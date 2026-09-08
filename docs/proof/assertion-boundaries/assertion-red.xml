@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.brule.tasking.conformance.AssertionInputBoundaryTest" tests="7" skipped="0" failures="5" errors="0" timestamp="2026-09-08T04:10:57.698Z" hostname="WORKSTATION" time="3.768">
+  <properties/>
+  <testcase name="provider verification receives read only evidence and cannot mutate receipts or reviews()" classname="io.brule.tasking.conformance.AssertionInputBoundaryTest" time="0.08">
+    <failure message="org.opentest4j.AssertionFailedError: Expected value to be true." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Expected value to be true.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at kotlin.test.junit5.JUnit5Asserter.fail(JUnitSupport.kt:56)
+	at kotlin.test.Asserter.assertTrue(Assertions.kt:767)
+	at kotlin.test.junit5.JUnit5Asserter.assertTrue(JUnitSupport.kt:30)
+	at kotlin.test.Asserter.assertTrue(Assertions.kt:777)
+	at kotlin.test.junit5.JUnit5Asserter.assertTrue(JUnitSupport.kt:30)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertTrue(Assertions.kt:44)
+	at kotlin.test.AssertionsKt.assertTrue(Unknown Source)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertTrue$default(Assertions.kt:42)
+	at kotlin.test.AssertionsKt.assertTrue$default(Unknown Source)
+	at io.brule.tasking.conformance.AssertionInputBoundaryTest.provider verification receives read only evidence and cannot mutate receipts or reviews(AssertionInputBoundaryTest.kt:126)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+</failure>
+  </testcase>
+  <testcase name="mutated profile audit evidence cannot become accepted state or a writable plan()" classname="io.brule.tasking.conformance.AssertionInputBoundaryTest" time="0.319">
+    <failure message="org.opentest4j.AssertionFailedError: Expected an exception to be thrown, but was completed successfully with the result: &lt;DraftUniverse(tasks=[DraftRecord(id=TASK.assertion.a, title=A, state=open, intent=Preserve valid assertions, requires=[], requirements=[Durable result], acceptance=[Observed], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/core-draft-2, verification=[test])], roadmaps=[DraftRoadmap(id=ROADMAP.assertion, title=Assertions, intent=Durable line, tasks=[TASK.assertion.a], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/planning-draft-1, disposition=ACTIVE, acceptance=[])], epics=[])&gt;." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Expected an exception to be thrown, but was completed successfully with the result: &lt;DraftUniverse(tasks=[DraftRecord(id=TASK.assertion.a, title=A, state=open, intent=Preserve valid assertions, requires=[], requirements=[Durable result], acceptance=[Observed], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/core-draft-2, verification=[test])], roadmaps=[DraftRoadmap(id=ROADMAP.assertion, title=Assertions, intent=Durable line, tasks=[TASK.assertion.a], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/planning-draft-1, disposition=ACTIVE, acceptance=[])], epics=[])&gt;.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at kotlin.test.junit5.JUnit5Asserter.fail(JUnitSupport.kt:56)
+	at kotlin.test.AssertionsKt__AssertionsKt.checkResultIsFailure(Assertions.kt:653)
+	at kotlin.test.AssertionsKt.checkResultIsFailure(Unknown Source)
+	at io.brule.tasking.conformance.AssertionInputBoundaryTest.reject(AssertionInputBoundaryTest.kt:35)
+	at io.brule.tasking.conformance.AssertionInputBoundaryTest.mutated profile audit evidence cannot become accepted state or a writable plan(AssertionInputBoundaryTest.kt:52)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+</failure>
+  </testcase>
+  <testcase name="valid historical receipts and typed planning profile assertions remain reconstructable after caller edits()" classname="io.brule.tasking.conformance.AssertionInputBoundaryTest" time="1.13"/>
+  <testcase name="planning acceptance rejects criterion evidence made blank after construction()" classname="io.brule.tasking.conformance.AssertionInputBoundaryTest" time="0.662">
+    <failure message="org.opentest4j.AssertionFailedError: Expected an exception to be thrown, but was completed successfully with the result: &lt;DraftUniverse(tasks=[DraftRecord(id=TASK.assertion.a, title=A, state=open, intent=Preserve valid assertions, requires=[], requirements=[Durable result], acceptance=[Observed], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/core-draft-2, verification=[test])], roadmaps=[DraftRoadmap(id=ROADMAP.assertion, title=Assertions, intent=Durable line, tasks=[TASK.assertion.a], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/planning-draft-2, disposition=ACTIVE, acceptance=[Observed criterion])], epics=[])&gt;." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Expected an exception to be thrown, but was completed successfully with the result: &lt;DraftUniverse(tasks=[DraftRecord(id=TASK.assertion.a, title=A, state=open, intent=Preserve valid assertions, requires=[], requirements=[Durable result], acceptance=[Observed], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/core-draft-2, verification=[test])], roadmaps=[DraftRoadmap(id=ROADMAP.assertion, title=Assertions, intent=Durable line, tasks=[TASK.assertion.a], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/planning-draft-2, disposition=ACTIVE, acceptance=[Observed criterion])], epics=[])&gt;.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at kotlin.test.junit5.JUnit5Asserter.fail(JUnitSupport.kt:56)
+	at kotlin.test.AssertionsKt__AssertionsKt.checkResultIsFailure(Assertions.kt:653)
+	at kotlin.test.AssertionsKt.checkResultIsFailure(Unknown Source)
+	at io.brule.tasking.conformance.AssertionInputBoundaryTest.reject(AssertionInputBoundaryTest.kt:35)
+	at io.brule.tasking.conformance.AssertionInputBoundaryTest.planning acceptance rejects criterion evidence made blank after construction(AssertionInputBoundaryTest.kt:68)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+</failure>
+  </testcase>
+  <testcase name="planning assessment refuses an emptied audit even when member observations remain exact()" classname="io.brule.tasking.conformance.AssertionInputBoundaryTest" time="0.591">
+    <failure message="org.opentest4j.AssertionFailedError: Expected an exception to be thrown, but was completed successfully with the result: &lt;DraftUniverse(tasks=[DraftRecord(id=TASK.assertion.a, title=A, state=open, intent=Preserve valid assertions, requires=[], requirements=[Durable result], acceptance=[Observed], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/core-draft-2, verification=[test])], roadmaps=[DraftRoadmap(id=ROADMAP.assertion, title=Assertions, intent=Durable line, tasks=[TASK.assertion.a], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/planning-draft-2, disposition=ACTIVE, acceptance=[Observed criterion])], epics=[])&gt;." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Expected an exception to be thrown, but was completed successfully with the result: &lt;DraftUniverse(tasks=[DraftRecord(id=TASK.assertion.a, title=A, state=open, intent=Preserve valid assertions, requires=[], requirements=[Durable result], acceptance=[Observed], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/core-draft-2, verification=[test])], roadmaps=[DraftRoadmap(id=ROADMAP.assertion, title=Assertions, intent=Durable line, tasks=[TASK.assertion.a], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/planning-draft-2, disposition=ACTIVE, acceptance=[Observed criterion])], epics=[])&gt;.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at kotlin.test.junit5.JUnit5Asserter.fail(JUnitSupport.kt:56)
+	at kotlin.test.AssertionsKt__AssertionsKt.checkResultIsFailure(Assertions.kt:653)
+	at kotlin.test.AssertionsKt.checkResultIsFailure(Unknown Source)
+	at io.brule.tasking.conformance.AssertionInputBoundaryTest.reject(AssertionInputBoundaryTest.kt:35)
+	at io.brule.tasking.conformance.AssertionInputBoundaryTest.planning assessment refuses an emptied audit even when member observations remain exact(AssertionInputBoundaryTest.kt:76)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+</failure>
+  </testcase>
+  <testcase name="receipt and review guards reject removed required evidence and changed observations()" classname="io.brule.tasking.conformance.AssertionInputBoundaryTest" time="0.524"/>
+  <testcase name="planning amendment and disposition refuse mutated audit evidence before writes()" classname="io.brule.tasking.conformance.AssertionInputBoundaryTest" time="0.391">
+    <failure message="org.opentest4j.AssertionFailedError: Expected an exception to be thrown, but was completed successfully with the result: &lt;DraftUniverse(tasks=[DraftRecord(id=TASK.assertion.a, title=A, state=open, intent=Preserve valid assertions, requires=[], requirements=[Durable result], acceptance=[Observed], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/core-draft-2, verification=[test])], roadmaps=[DraftRoadmap(id=ROADMAP.assertion, title=Changed, intent=Durable line, tasks=[TASK.assertion.a], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/planning-draft-2, disposition=ACTIVE, acceptance=[])], epics=[])&gt;." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Expected an exception to be thrown, but was completed successfully with the result: &lt;DraftUniverse(tasks=[DraftRecord(id=TASK.assertion.a, title=A, state=open, intent=Preserve valid assertions, requires=[], requirements=[Durable result], acceptance=[Observed], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/core-draft-2, verification=[test])], roadmaps=[DraftRoadmap(id=ROADMAP.assertion, title=Changed, intent=Durable line, tasks=[TASK.assertion.a], requiredExtensions=[], extensions=ObjectValue(fields={}), protocol=tasking/planning-draft-2, disposition=ACTIVE, acceptance=[])], epics=[])&gt;.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at kotlin.test.junit5.JUnit5Asserter.fail(JUnitSupport.kt:56)
+	at kotlin.test.AssertionsKt__AssertionsKt.checkResultIsFailure(Assertions.kt:653)
+	at kotlin.test.AssertionsKt.checkResultIsFailure(Unknown Source)
+	at io.brule.tasking.conformance.AssertionInputBoundaryTest.reject(AssertionInputBoundaryTest.kt:35)
+	at io.brule.tasking.conformance.AssertionInputBoundaryTest.planning amendment and disposition refuse mutated audit evidence before writes(AssertionInputBoundaryTest.kt:59)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
