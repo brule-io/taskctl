@@ -16,8 +16,12 @@ new semantics as work to review. Provider installation alone never activates it.
 An `EffectiveProfile` has a namespaced `ProfileId` and a map from validated
 `ExtensionId` values to exact `ProviderPin` values. Each pin contains a separate
 `ProviderId`, an exact `ProviderVersion` label and a SHA-256 `ProviderDigest`.
-Version labels are bounded ASCII identifiers, not a claim of SemVer ordering;
-the content digest prevents a mutable label from substituting different code.
+Version labels are bounded ASCII identifiers, not a claim of SemVer ordering.
+The core compares the entire pin with the trusted registry's descriptor; it does
+not hash or authenticate an injected Kotlin object's implementation. Build or
+dependency acquisition must verify the implementation's artifact/source identity
+before registration. This draft has no production provider acquisition path and
+makes no independent authenticity claim for the fictional conformance providers.
 `ProfileDigest` identifies the complete canonical profile. `ProfileRevisionId`
 identifies an immutable profile change including its parent, inspected ledger
 revision and actor audit. All identity constructors are private and validated.
