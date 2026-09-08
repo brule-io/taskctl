@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.brule.tasking.conformance.HistoricalAuthorityTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-09-08T04:01:37.013Z" hostname="WORKSTATION" time="2.94">
+  <properties/>
+  <testcase name="exact archived revisions bytes adapter versions and unverified claims survive the catalog projection()" classname="io.brule.tasking.conformance.HistoricalAuthorityTest" time="0.281"/>
+  <testcase name="cold historical observations and stale review rejection leave unrelated repository state unchanged()" classname="io.brule.tasking.conformance.HistoricalAuthorityTest" time="0.568"/>
+  <testcase name="full historical identity and source authority are independent from a repeated numeric prefix()" classname="io.brule.tasking.conformance.HistoricalAuthorityTest" time="0.008"/>
+  <testcase name="historical contract evidence cannot close newly authored native observation work()" classname="io.brule.tasking.conformance.HistoricalAuthorityTest" time="0.534"/>
+  <testcase name="optional authority annotations confer no execution privilege and required unknown capabilities fail closed()" classname="io.brule.tasking.conformance.HistoricalAuthorityTest" time="0.513"/>
+  <testcase name="later stronger contracts retain historical receipts while unresolved evidence blocks downstream work()" classname="io.brule.tasking.conformance.HistoricalAuthorityTest" time="1.032"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
