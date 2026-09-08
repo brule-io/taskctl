@@ -1,0 +1,237 @@
+{
+  "classification": "bounded-defect-task-admission-and-open-assessment-review",
+  "seed": {
+    "contract": "taskctl.seed/alpha1",
+    "tasks": [
+      {
+        "protocol": "tasking/core-draft-2",
+        "id": "TASK.protocol.value-boundary",
+        "title": "Keep typed values stable across mutable collection aliases",
+        "state": "open",
+        "intent": "Repair the reproduced constructor-to-plan validity breach before native-v1 assessment, while preserving valid protocol identities and exact opaque data.",
+        "requires": [
+          "TASK.migration.daemon-descendants",
+          "TASK.migration.dropzone"
+        ],
+        "requirements": [
+          "ObjectValue and ArrayValue must own immutable backing collections so caller aliases cannot invalidate a constructed typed value, including nested payloads and keys.",
+          "Shared mutating boundaries must reject invalid programmatic record inputs before producing a writable initialization plan or persisting ledger state; include post-construction changes to borrowed record collections.",
+          "Preserve valid canonical hashes, numeric category/scale, Unicode, source provenance and historical evidence. Use typed code without Any, unchecked casts or broad Native Image allowances. No cross-repository authority or implicit operations."
+        ],
+        "acceptance": [
+          "Regression cases reproduce mutable alias failures and prove stable values, rejected invalid plans/writes, valid cold reconstruction and unchanged unrelated bytes/mtimes.",
+          "Shared JVM/native conformance and packaged process parity pass; old valid hash/evidence witnesses remain unchanged. Record the actual validity boundary and any remaining limits."
+        ],
+        "verification": [
+          "conformance",
+          "parity",
+          "review"
+        ],
+        "required_extensions": [],
+        "extensions": {}
+      }
+    ],
+    "roadmaps": [
+      {
+        "protocol": "tasking/planning-draft-1",
+        "kind": "roadmap",
+        "id": "ROADMAP.protocol.stability",
+        "title": "Protocol value stability",
+        "intent": "Resolve demonstrated value and input-boundary defects before assessing protocol stability.",
+        "tasks": [
+          "TASK.protocol.value-boundary",
+          "TASK.protocol.v1-candidate"
+        ],
+        "required_extensions": [],
+        "extensions": {}
+      }
+    ],
+    "epics": []
+  },
+  "seed_plan": {
+    "revision": "sha256:f020337148cc19e53fa7e4f9df7c60fb66362e7f3b349d6beb8ed2586b73b5c7",
+    "writes": [
+      {
+        "path": ".agents/tasks/TASK.protocol.value-boundary-3d12204a6b30a7ed.yaml",
+        "before_sha256": null,
+        "after_sha256": "85a9d7d6e0ea12fd80d04775786fc21cc53529aabf05c828b7d8e54f66faad72"
+      },
+      {
+        "path": ".agents/roadmaps/ROADMAP.protocol.stability-0a5d619cc169645c.yaml",
+        "before_sha256": null,
+        "after_sha256": "0a618bb6aae7c0d3ef5d4afc3f77f463eb20dbb068fafa1b97788e44707cb2a0"
+      },
+      {
+        "path": ".agents/history/heads.json",
+        "before_sha256": "adb9ded8df638cebc08559ee4685451df4674a64eda81df5223efb8219502002",
+        "after_sha256": "4846d5667fe07a696f6f9547eba03f0b83872ee789dce3697f3286a969965b83"
+      },
+      {
+        "path": ".agents/history/revisions/fa43775230abfd076af9152a65ae4fa37b7efc100c6481206566128f7c4faf22.json",
+        "before_sha256": null,
+        "after_sha256": "297e45eae539513a653ea7edbf1c621ebe697b5d818587ab77c84b5d8fc77942"
+      }
+    ],
+    "transaction_paths": [
+      ".agents/runtime/lock",
+      ".agents/runtime/transaction.json",
+      ".agents/runtime/.taskctl-*.tmp"
+    ]
+  },
+  "revise_plan": {
+    "revision": "sha256:3747f07a7d2c2b959ac19032bbb2584c79ce588de8961f20b3b36d643fe18b2d",
+    "writes": [
+      {
+        "path": ".agents/tasks/TASK.protocol.v1-candidate-93756252331b8676.yaml",
+        "before_sha256": "89200eb6a07e2b36d3c5282a60ca06a3a6cd9808fd54b8c37faa9e7c1f740823",
+        "after_sha256": "9fa4d8f5ba813ddb0b7640e02eca760b5a4066d993cc2e7b025189ed1035b7aa"
+      },
+      {
+        "path": ".agents/history/heads.json",
+        "before_sha256": "4846d5667fe07a696f6f9547eba03f0b83872ee789dce3697f3286a969965b83",
+        "after_sha256": "34038afac2ae93a2097a51dd89bb0cacea76bd83dee3695f1713f01378fa60de"
+      },
+      {
+        "path": ".agents/history/revisions/672b9b36645f6573ec4827b305bb7bf1f4fa5ca19753bdcc6a1fd25f3b6e1ba2.json",
+        "before_sha256": null,
+        "after_sha256": "b60ce2f08f609a17f86fc47ba34ab27d8072b184daf3a128694a76e77cfd7979"
+      }
+    ],
+    "transaction_paths": [
+      ".agents/runtime/lock",
+      ".agents/runtime/transaction.json",
+      ".agents/runtime/.taskctl-*.tmp"
+    ]
+  },
+  "previous_assessment_head": "sha256:c4f3c78f2bce03950f359b22364ef81aa3c978a69be5dab4671aada519bc7a17",
+  "previous_assessment_contract": "sha256:653230a0dba8bf066e995a89eebbb9d7b30c59ff445a817730a369eebf058628",
+  "review": {
+    "protocol": "taskctl.reconciliation/1",
+    "classification": "actor-assertion",
+    "task": "TASK.protocol.v1-candidate",
+    "reviewed_head": "sha256:672b9b36645f6573ec4827b305bb7bf1f4fa5ca19753bdcc6a1fd25f3b6e1ba2",
+    "outcome": "revalidated",
+    "observations": [
+      {
+        "upstream": "TASK.migration.daemon-meta",
+        "contract": "sha256:0932278e28bca20b565dd99bc74e6c31eb55dcc2e63d4552130d2c29f8dfeb19",
+        "revision": "sha256:b618be5c369fbed6cb97d9bc104ce79f0cba465a23c8ef2442713f4215a95992",
+        "inputs": "sha256:926be8f102c81e9e5f47c6953d4dad290c746bcfb3a635252ac559f58248aa7f"
+      },
+      {
+        "upstream": "TASK.protocol.idl",
+        "contract": "sha256:bfbdaed574b61c1010c54d530d4df80d04313a6c1ca451c85854ded09143353a",
+        "revision": "sha256:3076dfb9f3f20f094448b0160d93686ae8ba3ceb49b32b52fa5f24a7711dab07",
+        "inputs": "sha256:4dcd0e940413ccd2d20595481572de7a730749cbd02f3f14740ba9fa23643630"
+      },
+      {
+        "upstream": "TASK.protocol.read-models",
+        "contract": "sha256:0a743dcdcba0aa55bcd7faea270bc6a997bf730d08d34485e917d78c01bd894e",
+        "revision": "sha256:c75e55ce8fce0410b468d9d11e5d957b619d372bcc343aa87a1d2f7f453c0db5",
+        "inputs": "sha256:ec15ae16579a4f6dc4051adf53db84bd221e644c376b43a514a7415c4fdc0989"
+      },
+      {
+        "upstream": "TASK.protocol.value-boundary",
+        "contract": "sha256:5ba767806d0aaa356e20b8fa9c5fc84344be2eda2a7c84ded1b0edce41b38877",
+        "revision": "sha256:fa43775230abfd076af9152a65ae4fa37b7efc100c6481206566128f7c4faf22",
+        "inputs": "sha256:37eb8834340fc56cbae8d7c969f522593a67a9e04e3f2dac1fb6a08f9fd5323c"
+      }
+    ],
+    "actor": "Codex",
+    "recorded_at": "2026-09-08T03:44:13.573142+00:00",
+    "rationale": "The still-open v1 assessment retains every prior gate and gains the demonstrated value-boundary correction. This reviews the future plan only and does not claim implementation or freeze readiness.",
+    "evidence": {
+      "checkpoint": "Reviewed docs/proof/value-boundaries/baseline.json and the preserved probe against the new bounded correction contract; all prior prerequisites and historical evidence remain."
+    },
+    "successor": null
+  },
+  "new_task": {
+    "protocol": "tasking/core-draft-2",
+    "id": "TASK.protocol.value-boundary",
+    "title": "Keep typed values stable across mutable collection aliases",
+    "state": "open",
+    "intent": "Repair the reproduced constructor-to-plan validity breach before native-v1 assessment, while preserving valid protocol identities and exact opaque data.",
+    "requires": [
+      "TASK.migration.daemon-descendants",
+      "TASK.migration.dropzone"
+    ],
+    "requirements": [
+      "ObjectValue and ArrayValue must own immutable backing collections so caller aliases cannot invalidate a constructed typed value, including nested payloads and keys.",
+      "Shared mutating boundaries must reject invalid programmatic record inputs before producing a writable initialization plan or persisting ledger state; include post-construction changes to borrowed record collections.",
+      "Preserve valid canonical hashes, numeric category/scale, Unicode, source provenance and historical evidence. Use typed code without Any, unchecked casts or broad Native Image allowances. No cross-repository authority or implicit operations."
+    ],
+    "acceptance": [
+      "Regression cases reproduce mutable alias failures and prove stable values, rejected invalid plans/writes, valid cold reconstruction and unchanged unrelated bytes/mtimes.",
+      "Shared JVM/native conformance and packaged process parity pass; old valid hash/evidence witnesses remain unchanged. Record the actual validity boundary and any remaining limits."
+    ],
+    "required_extensions": [],
+    "extensions": {},
+    "verification": [
+      "conformance",
+      "parity",
+      "review"
+    ],
+    "contract_digest": "sha256:5ba767806d0aaa356e20b8fa9c5fc84344be2eda2a7c84ded1b0edce41b38877",
+    "revision": "sha256:dde897d3f9ca30f839cb7b0a51a022bd7a235b114ecd791e8af0f7ebe3b4c1fc",
+    "head": "sha256:fa43775230abfd076af9152a65ae4fa37b7efc100c6481206566128f7c4faf22",
+    "currency": {
+      "task": "TASK.protocol.value-boundary",
+      "currency": "current",
+      "causes": []
+    },
+    "roadmaps": [
+      "ROADMAP.protocol.stability"
+    ],
+    "epics": []
+  },
+  "assessment": {
+    "protocol": "tasking/core-draft-2",
+    "id": "TASK.protocol.v1-candidate",
+    "title": "Assess native v1 freeze readiness",
+    "state": "open",
+    "intent": "Consider v1 only after greenfield, existing-code, legacy-import and remote-backed usage have survived.",
+    "requires": [
+      "TASK.migration.daemon-meta",
+      "TASK.protocol.idl",
+      "TASK.protocol.read-models",
+      "TASK.protocol.value-boundary"
+    ],
+    "requirements": [
+      "Consider v1 only after greenfield, existing-code, legacy-import and remote-backed usage have survived.",
+      "The checkpoint correction gates, including bounded read models and the transitively required planning, provider and timestamp proofs, must be closed/current before assessing native v1.",
+      "The reproduced mutable-value/input-boundary defect must be corrected with closed/current TASK.protocol.value-boundary evidence before assessing native v1."
+    ],
+    "acceptance": [
+      "Evidence from all four entry paths and complex migrations supports a reviewed protocol freeze decision."
+    ],
+    "required_extensions": [],
+    "extensions": {},
+    "verification": [
+      "checkpoint"
+    ],
+    "contract_digest": "sha256:19941a0d1544dcbb2e293c4f30c795b2226dabe1b8fb82bf6fcd1c4a440a0542",
+    "revision": "sha256:dde897d3f9ca30f839cb7b0a51a022bd7a235b114ecd791e8af0f7ebe3b4c1fc",
+    "head": "sha256:d5b05d2051d04da90db786ba7580989875b47c755e95d394268c73ecccc7db49",
+    "currency": {
+      "task": "TASK.protocol.v1-candidate",
+      "currency": "current",
+      "causes": []
+    },
+    "roadmaps": [
+      "ROADMAP.protocol.stability",
+      "ROADMAP.semantics"
+    ],
+    "epics": [
+      "EPIC.native-v1"
+    ]
+  },
+  "frontier": {
+    "revision": "sha256:dde897d3f9ca30f839cb7b0a51a022bd7a235b114ecd791e8af0f7ebe3b4c1fc",
+    "tasks": [
+      "TASK.migration.daemon-meta",
+      "TASK.protocol.idl",
+      "TASK.protocol.value-boundary"
+    ]
+  },
+  "closed_task_heads_preserved": true
+}
