@@ -1,5 +1,11 @@
 # Core invariants and typed values
 
+This document retains the initial extraction experiment's draft-1 design and
+historical findings. The current [native-v1 candidate](spec/NATIVE-V1-CANDIDATE.md)
+consolidates the later semantic/history, planning, profile and evidence work.
+The algebra below is conceptual: current ObjectValue/ArrayValue constructors
+own immutable collection copies; see [Value boundaries](VALUE-BOUNDARIES.md).
+
 This executable experiment uses `tasking/core-draft-1`. It does not freeze or
 accept a native v1 protocol. Its purpose is to make key architectural decisions
 testable while the historical adapter supplies the first working CLI.
@@ -33,8 +39,9 @@ the selection. Strong task/roadmap/epic ID types distinguish index operations.
 Regrouping, roadmap reordering, and epic scope edits change the universe snapshot.
 They do not automatically amend member tasks' acceptance or invalidate evidence
 for their unchanged executable contracts. Nor do completed tasks automatically
-prove an epic's scope or close a roadmap. Explicit group completion/archival and
-group evidence binding remain decisions to complete before native v1 freezes.
+prove an epic's scope or close a roadmap. These later decisions are implemented
+by [audited planning and explicit scope assessments](PLANNING-HISTORY.md), while
+the draft-1 planning envelope retains its original meaning.
 
 ## Typed decoding boundary
 
@@ -120,8 +127,9 @@ This is not labeled RFC 8785.
 A receipt identifies the task and contract it addresses. An old receipt continues
 to address that old contract after requirements change, while failing the current
 contract check. A matching digest is not itself proof that an evidence assertion
-is true. Full native receipt storage, actor/time/operation binding, and production
-transition persistence remain part of the later protocol milestone.
+is true. The later [native history contract](SEMANTIC-0.3.md) implements receipt
+storage and transition persistence, with separately [typed evidence time](EVIDENCE-TIME.md).
+This original draft does not retrospectively acquire those envelope versions.
 
 The legacy adapter's preview digest uses its own versioned domain. Its exact
 record-snapshot digest hashes authored record bytes and locations for stale-write
@@ -142,9 +150,10 @@ unchecked criteria. It is labeled `historical-narrative-unverified` with no nati
 protocol or fabricated native receipt. The selected previews are bounded to the
 sampled structures; they are not general DAEMON migration adapters.
 
-Before freezing native v1, broaden the corpus to the remaining DAEMON dialects,
-Loom realization/release rules, both incompatible Dropzone forms, and complete
-evidence/ownership transitions. Core promotion remains exceptional, but the test
+The initial extraction called for broader DAEMON, planning and workspace pressure.
+The [readiness assessment](NATIVE-V1-ASSESSMENT-2026-09.md) records the subsequently
+completed bounded specimens and the remaining consumer-specific capability gates.
+Core promotion remains exceptional, but the test
 is uniform reconstruction of durable tasking semantics across the system's
 supported uses, not mandatory occurrence in every valid graph. Roadmaps and
 epics satisfy that test; primary-lane selection, ownership, scheduling,

@@ -26,6 +26,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+      - name: Check candidate specification source and evidence links
+        run: python scripts/check_candidate_spec.py
       - name: Check source
         shell: bash
         run: ./gradlew --no-daemon check :cli:installDist

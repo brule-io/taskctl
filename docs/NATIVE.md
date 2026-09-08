@@ -1,5 +1,9 @@
 # Native repository contract (alpha)
 
+The [native-v1 candidate](spec/NATIVE-V1-CANDIDATE.md) inventories the proposed
+stable semantic boundary and current alpha compatibility identities. It is a
+review document; no v1 codec or freeze is implied.
+
 The 0.3 initializer creates history-backed
 `taskctl.native/alpha2` repositories. New tasks use `tasking/core-draft-2`;
 roadmap/epic records use `tasking/planning-draft-1`. The configuration envelope

@@ -100,17 +100,19 @@ in causal order, and changed inputs remain visible transitively.
 
 **Execution restrictions cannot become optional labels.** This adapter rejects
 claimed/blocked states and required host/operator semantics. Native task lifecycle
-and `ImportSource` currently admit open/closed state, and effective behavioral
-provider/profile identity is not yet persisted through the full history/currency
-seam. A schema-only preservation approach cannot promise equivalent readiness.
+and `ImportSource` admit open/closed state. At this specimen's checkpoint,
+effective provider/profile identity was not yet persisted through the full
+history/currency seam. The later [effective-profile proof](EFFECTIVE-PROFILES.md)
+implements that mechanism; it does not supply this adapter with a production
+preserving provider. A schema-only preservation approach cannot promise equivalent readiness.
 Before admitting a real consumer with these semantics, the protocol checkpoint
 must explicitly resolve its preserving mapping/provider requirements or keep that
 adoption blocked. This specimen does not quietly broaden import to accept it.
 
 **Planning history is separate from membership.** This specimen demonstrates
 zero roadmaps and independent feature association. It does not settle planning
-amendment/archival/closure policy; that remains a checkpoint and later planning
-conformance topic.
+amendment/archival/closure policy; the later [planning-history proof](PLANNING-HISTORY.md)
+and [complex planning specimen](COMPLEX-PLANNING.md) address that separate boundary.
 
 The bounded open/closed conversion works through existing core operations. The
 result supports the extraction boundary while keeping unsupported adoption and
