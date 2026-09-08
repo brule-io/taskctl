@@ -69,7 +69,7 @@ class ArchitecturePolicyTest {
     @Test fun `repository has no untyped protocol state or unchecked cast escapes`() {
         val root = Path.of(System.getProperty("tasking.root"))
         val errors = mutableListOf<String>()
-        for (module in listOf("core", "repository", "compatibility", "cli", "conformance", "kernel")) {
+        for (module in listOf("core", "repository", "compatibility", "cli", "conformance", "kernel", "idl")) {
             Files.walk(root.resolve("$module/src")).use { paths ->
                 paths.filter { it.toString().endsWith(".kt") }.sorted().forEach { path ->
                     val relative = root.relativize(path).toString().replace('\\', '/')
