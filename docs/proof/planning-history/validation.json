@@ -1,0 +1,633 @@
+{
+  "classification": "observed-ci-conformance-not-a-release",
+  "observed_at": "2026-09-08T00:42:18.503730+00:00",
+  "run": {
+    "conclusion": "success",
+    "event": "pull_request",
+    "headSha": "07e58a52daac7c070a2084d73bec63f4d30dc02b",
+    "jobs": [
+      {
+        "completedAt": "2026-09-08T00:37:12Z",
+        "conclusion": "success",
+        "databaseId": 101897975979,
+        "name": "check (macos-14)",
+        "startedAt": "2026-09-08T00:28:15Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-09-08T00:28:18Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-09-08T00:28:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:28:19Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-09-08T00:28:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:28:24Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-java@v5",
+            "number": 3,
+            "startedAt": "2026-09-08T00:28:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:28:24Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-09-08T00:28:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:29:58Z",
+            "conclusion": "success",
+            "name": "Check source",
+            "number": 5,
+            "startedAt": "2026-09-08T00:28:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:30:04Z",
+            "conclusion": "success",
+            "name": "Acquire digest-pinned GraalVM build toolchain",
+            "number": 6,
+            "startedAt": "2026-09-08T00:29:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:30:04Z",
+            "conclusion": "skipped",
+            "name": "Run ilammy/msvc-dev-cmd@v1",
+            "number": 7,
+            "startedAt": "2026-09-08T00:30:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:33:48Z",
+            "conclusion": "success",
+            "name": "Compile native tool and run the existing behavioral corpus natively",
+            "number": 8,
+            "startedAt": "2026-09-08T00:30:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:33:48Z",
+            "conclusion": "success",
+            "name": "Require identical successful JVM and native test identities",
+            "number": 9,
+            "startedAt": "2026-09-08T00:33:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:33:59Z",
+            "conclusion": "success",
+            "name": "Package both standalone implementations",
+            "number": 10,
+            "startedAt": "2026-09-08T00:33:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:34:09Z",
+            "conclusion": "success",
+            "name": "Verify reproducible archive bytes",
+            "number": 11,
+            "startedAt": "2026-09-08T00:33:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:34:54Z",
+            "conclusion": "success",
+            "name": "Prove pinned acquisition without build tools",
+            "number": 12,
+            "startedAt": "2026-09-08T00:34:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:36:58Z",
+            "conclusion": "success",
+            "name": "Compare process outputs exit codes and repository effects",
+            "number": 13,
+            "startedAt": "2026-09-08T00:34:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:03Z",
+            "conclusion": "success",
+            "name": "Inspect the actual self-host graph without mutations",
+            "number": 14,
+            "startedAt": "2026-09-08T00:36:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:06Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 15,
+            "startedAt": "2026-09-08T00:37:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:08Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 16,
+            "startedAt": "2026-09-08T00:37:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:08Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 30,
+            "startedAt": "2026-09-08T00:37:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:08Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-java@v5",
+            "number": 31,
+            "startedAt": "2026-09-08T00:37:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:08Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 32,
+            "startedAt": "2026-09-08T00:37:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:09Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 33,
+            "startedAt": "2026-09-08T00:37:08Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/brule-io/taskctl/actions/runs/34173404198/job/101897975979"
+      },
+      {
+        "completedAt": "2026-09-08T00:41:25Z",
+        "conclusion": "success",
+        "databaseId": 101897976009,
+        "name": "check (windows-2025)",
+        "startedAt": "2026-09-08T00:28:08Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-09-08T00:28:11Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-09-08T00:28:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:28:19Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-09-08T00:28:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:28:25Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-java@v5",
+            "number": 3,
+            "startedAt": "2026-09-08T00:28:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:28:25Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-09-08T00:28:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:31:34Z",
+            "conclusion": "success",
+            "name": "Check source",
+            "number": 5,
+            "startedAt": "2026-09-08T00:28:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:31:51Z",
+            "conclusion": "success",
+            "name": "Acquire digest-pinned GraalVM build toolchain",
+            "number": 6,
+            "startedAt": "2026-09-08T00:31:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:32:04Z",
+            "conclusion": "success",
+            "name": "Run ilammy/msvc-dev-cmd@v1",
+            "number": 7,
+            "startedAt": "2026-09-08T00:31:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:36:44Z",
+            "conclusion": "success",
+            "name": "Compile native tool and run the existing behavioral corpus natively",
+            "number": 8,
+            "startedAt": "2026-09-08T00:32:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:36:45Z",
+            "conclusion": "success",
+            "name": "Require identical successful JVM and native test identities",
+            "number": 9,
+            "startedAt": "2026-09-08T00:36:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:36:52Z",
+            "conclusion": "success",
+            "name": "Package both standalone implementations",
+            "number": 10,
+            "startedAt": "2026-09-08T00:36:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:36:58Z",
+            "conclusion": "success",
+            "name": "Verify reproducible archive bytes",
+            "number": 11,
+            "startedAt": "2026-09-08T00:36:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:38:01Z",
+            "conclusion": "success",
+            "name": "Prove pinned acquisition without build tools",
+            "number": 12,
+            "startedAt": "2026-09-08T00:36:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:41:08Z",
+            "conclusion": "success",
+            "name": "Compare process outputs exit codes and repository effects",
+            "number": 13,
+            "startedAt": "2026-09-08T00:38:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:41:18Z",
+            "conclusion": "success",
+            "name": "Inspect the actual self-host graph without mutations",
+            "number": 14,
+            "startedAt": "2026-09-08T00:41:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:41:20Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 15,
+            "startedAt": "2026-09-08T00:41:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:41:21Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 16,
+            "startedAt": "2026-09-08T00:41:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:41:22Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 30,
+            "startedAt": "2026-09-08T00:41:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:41:22Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-java@v5",
+            "number": 31,
+            "startedAt": "2026-09-08T00:41:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:41:23Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 32,
+            "startedAt": "2026-09-08T00:41:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:41:24Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 33,
+            "startedAt": "2026-09-08T00:41:23Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/brule-io/taskctl/actions/runs/34173404198/job/101897976009"
+      },
+      {
+        "completedAt": "2026-09-08T00:38:01Z",
+        "conclusion": "success",
+        "databaseId": 101897976047,
+        "name": "check (ubuntu-24.04)",
+        "startedAt": "2026-09-08T00:28:08Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-09-08T00:28:10Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-09-08T00:28:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:28:11Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-09-08T00:28:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:28:15Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-java@v5",
+            "number": 3,
+            "startedAt": "2026-09-08T00:28:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:28:16Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-09-08T00:28:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:30:06Z",
+            "conclusion": "success",
+            "name": "Check source",
+            "number": 5,
+            "startedAt": "2026-09-08T00:28:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:30:12Z",
+            "conclusion": "success",
+            "name": "Acquire digest-pinned GraalVM build toolchain",
+            "number": 6,
+            "startedAt": "2026-09-08T00:30:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:30:12Z",
+            "conclusion": "skipped",
+            "name": "Run ilammy/msvc-dev-cmd@v1",
+            "number": 7,
+            "startedAt": "2026-09-08T00:30:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:34:17Z",
+            "conclusion": "success",
+            "name": "Compile native tool and run the existing behavioral corpus natively",
+            "number": 8,
+            "startedAt": "2026-09-08T00:30:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:34:18Z",
+            "conclusion": "success",
+            "name": "Require identical successful JVM and native test identities",
+            "number": 9,
+            "startedAt": "2026-09-08T00:34:17Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:34:30Z",
+            "conclusion": "success",
+            "name": "Package both standalone implementations",
+            "number": 10,
+            "startedAt": "2026-09-08T00:34:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:34:43Z",
+            "conclusion": "success",
+            "name": "Verify reproducible archive bytes",
+            "number": 11,
+            "startedAt": "2026-09-08T00:34:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:35:23Z",
+            "conclusion": "success",
+            "name": "Prove pinned acquisition without build tools",
+            "number": 12,
+            "startedAt": "2026-09-08T00:34:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:48Z",
+            "conclusion": "success",
+            "name": "Compare process outputs exit codes and repository effects",
+            "number": 13,
+            "startedAt": "2026-09-08T00:35:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:56Z",
+            "conclusion": "success",
+            "name": "Inspect the actual self-host graph without mutations",
+            "number": 14,
+            "startedAt": "2026-09-08T00:37:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:58Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 15,
+            "startedAt": "2026-09-08T00:37:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:59Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 16,
+            "startedAt": "2026-09-08T00:37:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:59Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 30,
+            "startedAt": "2026-09-08T00:37:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:37:59Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-java@v5",
+            "number": 31,
+            "startedAt": "2026-09-08T00:37:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:38:00Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 32,
+            "startedAt": "2026-09-08T00:37:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T00:38:00Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 33,
+            "startedAt": "2026-09-08T00:38:00Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/brule-io/taskctl/actions/runs/34173404198/job/101897976047"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/brule-io/taskctl/actions/runs/34173404198"
+  },
+  "artifacts": [
+    {
+      "id": 10036664804,
+      "name": "test-results-windows-2025",
+      "size_in_bytes": 54437,
+      "digest": "sha256:a3575d267cc675102d7d46a6309a3ef07e1a6a5319bc17231d88e4d34ae051e7",
+      "expired": false
+    },
+    {
+      "id": 10036664353,
+      "name": "distribution-windows-2025",
+      "size_in_bytes": 34710484,
+      "digest": "sha256:12a2adbea91a3d84fcc7c8d47acbaa0c1271a4879bd559b19887b4176403de90",
+      "expired": false
+    },
+    {
+      "id": 10036606586,
+      "name": "test-results-ubuntu-24.04",
+      "size_in_bytes": 52728,
+      "digest": "sha256:b2254973c63c77dd0e2a3922ea73a40a3154fbe07b24caa3168560e6d81f634d",
+      "expired": false
+    },
+    {
+      "id": 10036606271,
+      "name": "distribution-ubuntu-24.04",
+      "size_in_bytes": 36713718,
+      "digest": "sha256:e2cd56e72e9b1d40ac17f408b228cf65bff453e00997470cbdf01ff6a222f5c3",
+      "expired": false
+    },
+    {
+      "id": 10036591944,
+      "name": "test-results-macos-14",
+      "size_in_bytes": 55622,
+      "digest": "sha256:abb082b72ce3413b4ea2b0921197f950e4ef8c2dac5cb3d0e93e159671ad7d99",
+      "expired": false
+    },
+    {
+      "id": 10036591391,
+      "name": "distribution-macos-14",
+      "size_in_bytes": 33186452,
+      "digest": "sha256:647e31e745df3bcf1feee922f058966ead73945917caaba4d21d8ddd05b4123d",
+      "expired": false
+    }
+  ],
+  "platforms": {
+    "linux-x86_64": {
+      "source_tests": 142,
+      "behavioral_tests_each_implementation": 139,
+      "process_parity_cases": 212,
+      "artifacts": {
+        "native": {
+          "artifact": "taskctl-0.3.0-alpha.2-native-linux-x86_64.tar.gz",
+          "sha256": "d4ee2a9d73c9e2e22b55260a9de6a0eaec95ee8d8f18bc8a9027e4a5f58d76aa",
+          "source_revision": "927fa8bbd87ac84a03ef619e9ebb34bc39d5bef8"
+        },
+        "jvm": {
+          "artifact": "taskctl-0.3.0-alpha.2-jvm-linux-x86_64.tar.gz",
+          "sha256": "99cd81d6c6069a2a2221bad46da19d5cbc4bf324ab1ba3a5f4e7521a3f7232f6",
+          "source_revision": "927fa8bbd87ac84a03ef619e9ebb34bc39d5bef8"
+        }
+      },
+      "read_commands_each_implementation": 7
+    },
+    "windows-x86_64": {
+      "source_tests": 142,
+      "behavioral_tests_each_implementation": 139,
+      "process_parity_cases": 212,
+      "artifacts": {
+        "native": {
+          "artifact": "taskctl-0.3.0-alpha.2-native-windows-x86_64.zip",
+          "sha256": "f3e0225f2c3d3308715b8a8458a8bdd8bfa7e2df60b1f7dc4f95ea446e7d2ebf",
+          "source_revision": "927fa8bbd87ac84a03ef619e9ebb34bc39d5bef8"
+        },
+        "jvm": {
+          "artifact": "taskctl-0.3.0-alpha.2-jvm-windows-x86_64.zip",
+          "sha256": "c0ddd55b2850d069e67b94e3bb79379922efd2828ee95f925deb799ed503eb16",
+          "source_revision": "927fa8bbd87ac84a03ef619e9ebb34bc39d5bef8"
+        }
+      },
+      "read_commands_each_implementation": 7
+    },
+    "macos-aarch64": {
+      "source_tests": 142,
+      "behavioral_tests_each_implementation": 139,
+      "process_parity_cases": 212,
+      "artifacts": {
+        "native": {
+          "artifact": "taskctl-0.3.0-alpha.2-native-macos-aarch64.tar.gz",
+          "sha256": "6db68dde886e96fbb0393e6a85e0b8e691dfd635fef2e84e1402e8a1956d877e",
+          "source_revision": "927fa8bbd87ac84a03ef619e9ebb34bc39d5bef8"
+        },
+        "jvm": {
+          "artifact": "taskctl-0.3.0-alpha.2-jvm-macos-aarch64.tar.gz",
+          "sha256": "c254a87b3fd5dfe24c4d9679acc27913e2fe596ee142a5e76c817f73bc2e5be7",
+          "source_revision": "927fa8bbd87ac84a03ef619e9ebb34bc39d5bef8"
+        }
+      },
+      "read_commands_each_implementation": 7
+    }
+  },
+  "source_commit": "927fa8bbd87ac84a03ef619e9ebb34bc39d5bef8",
+  "source_parents": [
+    "e84b58040710f37581817ce910fbb8a4d03e95b8",
+    "07e58a52daac7c070a2084d73bec63f4d30dc02b"
+  ],
+  "behavioral_test_identity_sha256": "d1fd5f9ef2153fe7f9feab28a7f1bf72616aec369fb1c1a139e40f1671ab6494",
+  "downloaded_archive_digests_verified": true
+}
