@@ -203,4 +203,5 @@ JVM and Native Image tests; they are not registered as product capabilities.
 Packaged CLI parity additionally exercises explicit profile adoption, reviews and
 closure under an empty profile, unavailable-pin inspection/refusal, stale CAS,
 immutable history and restoration of an exactly previously reviewed profile.
-Actual parity results are required before closing the implementation task.
+[Closure evidence](proof/provider-profile/README.md) records the successful
+three-platform JVM/native corpus and packaged process comparisons.
