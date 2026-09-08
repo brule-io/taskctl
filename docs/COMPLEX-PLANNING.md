@@ -43,3 +43,6 @@ unsupported lifecycle states, cycles, dangling membership and a misleading nativ
 dialect label are rejected. Optional annotations remain typed opaque data. This
 specimen supplies no evidence for executing stateful consumer policies, hydrating
 workspaces, contacting providers, freezing v1 or deploying a service.
+
+The completed three-platform proof and exact build identities are recorded in
+[the closure evidence](proof/complex-planning/README.md).
