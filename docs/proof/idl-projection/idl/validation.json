@@ -1,0 +1,157 @@
+{
+  "classification": "observed-idl-interop-ci-not-a-published-sdk",
+  "run": {
+    "conclusion": "success",
+    "headSha": "49c07874b92f32350f58ebb656a63ef98349dd15",
+    "jobs": [
+      {
+        "completedAt": "2026-09-08T03:34:37Z",
+        "conclusion": "success",
+        "databaseId": 101928230358,
+        "name": "idl",
+        "startedAt": "2026-09-08T03:32:43Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-09-08T03:32:46Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-09-08T03:32:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T03:32:55Z",
+            "conclusion": "success",
+            "name": "Initialize containers",
+            "number": 2,
+            "startedAt": "2026-09-08T03:32:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T03:32:56Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-09-08T03:32:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T03:33:00Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-java@v5",
+            "number": 4,
+            "startedAt": "2026-09-08T03:32:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T03:33:01Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 5,
+            "startedAt": "2026-09-08T03:33:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T03:34:31Z",
+            "conclusion": "success",
+            "name": "Validate generated artifacts and real client interoperability",
+            "number": 6,
+            "startedAt": "2026-09-08T03:33:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T03:34:32Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 7,
+            "startedAt": "2026-09-08T03:34:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T03:34:32Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 11,
+            "startedAt": "2026-09-08T03:34:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T03:34:33Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-java@v5",
+            "number": 12,
+            "startedAt": "2026-09-08T03:34:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T03:34:33Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 13,
+            "startedAt": "2026-09-08T03:34:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T03:34:33Z",
+            "conclusion": "success",
+            "name": "Stop containers",
+            "number": 14,
+            "startedAt": "2026-09-08T03:34:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T03:34:33Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 15,
+            "startedAt": "2026-09-08T03:34:33Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/brule-io/taskctl/actions/runs/34183878449/job/101928230358"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/brule-io/taskctl/actions/runs/34183878449"
+  },
+  "source_checkout": "382291006adc7053b7d28ad6734d6e7bc66b2ebc",
+  "source_parents": [
+    "812d677b172f6118b0f8683d321d8556f651a0ea",
+    "49c07874b92f32350f58ebb656a63ef98349dd15"
+  ],
+  "jvm_tests": [
+    "ProjectionTest.checked in projections are byte reproducible from the typed AST()",
+    "ProjectionTest.core generated envelopes remain the source of the interoperability witnesses()",
+    "ProjectionTest.IDL names cross a validity boundary and never admit executable syntax()",
+    "ProjectionTest.Smithy validates the custom protocol and preserves explicit typed wire shapes()",
+    "ClientInteropTest.generated Python client interoperates with real PostgreSQL HTTP lifecycle CAS and typed event history()",
+    "ClientInteropTest.generated client never replays a command after its committed reply is lost()"
+  ],
+  "python_tests": [
+    "test_client.ClientTest.test_core_goldens_match_exact_typed_bytes_and_framed_digests",
+    "test_client.ClientTest.test_endpoint_scope_and_cursor_validation_precede_network_access",
+    "test_client.ClientTest.test_event_parent_nullability_and_changed_identity_constraints_are_generated",
+    "test_client.ClientTest.test_integer_conversion_does_not_depend_on_or_mutate_python_global_digit_limits",
+    "test_client.ClientTest.test_invalid_unicode_duplicate_keys_and_noncanonical_json_are_rejected",
+    "test_client.ClientTest.test_large_integer_decimal_scale_and_numeric_category_remain_distinct",
+    "test_client.ClientTest.test_nested_values_have_no_mutable_collection_aliases",
+    "test_client.ClientTest.test_protocol_fields_and_nominal_identities_validate_before_use"
+  ],
+  "idl_jar_sha256": "11959f905ce1ceec96a4f06824b70cc9e5e85104a72259d06eaa27ae71680dcd",
+  "idl_jar_bytes": 55218,
+  "generated_artifacts": {
+    "taskctl-smithy.json": "4b897c3a3be498b6ac113685e10271e46be78026fe33375a2feff3d86237952f",
+    "taskctl-wire.json": "f92c703e00906d90a3d6202b818619d8fbd6dacc47f6e8f37c9dd5bd7d7c7c65",
+    "taskctl_client.py": "945b7aa0460fad8224005685a21c88c729698473d02f6bdd9fa31c6205f88b0f"
+  },
+  "artifacts": [
+    {
+      "id": 10039862370,
+      "name": "idl-proof",
+      "size_in_bytes": 65548,
+      "digest": "sha256:003eb82dd3419c5f012e64f7c3315f5052a3afdb4438d1806f78425362ee6d81",
+      "expired": false
+    }
+  ]
+}
