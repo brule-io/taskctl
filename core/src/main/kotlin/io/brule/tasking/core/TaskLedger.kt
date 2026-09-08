@@ -56,6 +56,7 @@ sealed interface Transition {
 /** Every adapter uses this reducer. Storage only persists the validated result. */
 object LedgerTransitions {
     fun reduce(snapshot: LedgerSnapshot, transition: Transition): DraftUniverse {
+        validateAssertionInput(transition)
         snapshot.history?.validate(snapshot.universe, snapshot.receipts, snapshot.imports)
         snapshot.planningHistory?.validate(snapshot)
         snapshot.validateProfiles()
@@ -209,7 +210,7 @@ object LedgerTransitions {
             snapshot.profileHistory?.profile?.let { profile ->
                 val resolved = snapshot.providers.resolved(profile)
                 val errors = resolved.flatMap { provider ->
-                    try { provider.verify(task, review.evidence) } catch (_: Exception) { listOf("provider evidence verification failed: ${provider.identity}") }
+                    try { provider.verify(task, evidenceView(review.evidence)) } catch (_: Exception) { listOf("provider evidence verification failed: ${provider.identity}") }
                 }
                 require(errors.isEmpty()) { errors.joinToString("\n") }
             }

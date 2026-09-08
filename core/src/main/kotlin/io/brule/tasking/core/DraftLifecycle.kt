@@ -118,7 +118,7 @@ object DraftLifecycle {
         }
         (profile.pins.keys + task.requiredExtensions).sorted().forEach { identity ->
             providers.singleOrNull { it.identity == identity }?.takeIf { it.pin == profile.pins[identity] }?.let { provider ->
-                try { errors += provider.verify(task, receipt.evidence) }
+                try { errors += provider.verify(task, evidenceView(receipt.evidence)) }
                 catch (_: Exception) { errors += "evidence verification failed: $identity" }
             }
         }
