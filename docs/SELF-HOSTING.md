@@ -1,6 +1,6 @@
 # taskctl develops through taskctl
 
-The canonical repository now has 22 real tasks, four durable roadmaps, and two
+The initial canonical adoption had 22 real tasks, four durable roadmaps, and two
 cross-roadmap epics. The graph covers semantic hardening, delivery, first migration
 pressure tests, the protocol checkpoint, later complex migrations, and the bounded
 remote/IDL pressure tests. Dependencies gate the later phases. Planning membership

@@ -27,8 +27,9 @@ seed is admitted through the same core graph/index validation as `seed`; it neve
 infers a plan from source. With no seed, task and planning indexes remain empty.
 
 A greenfield generator can initialize tasking first and then write its own project
-source skeleton. Existing source adoption is a separate next milestone; do not use
-filesystem copying to circumvent initialization's empty-destination checks.
+source skeleton. The 0.3 `adopt` command supports existing source without tasking
+through the same bounded initializer; see [semantic adoption](SEMANTIC-0.3.md).
+Do not use filesystem copying to circumvent initialization's collision checks.
 
 Example seed (each record has its own explicit protocol identity):
 

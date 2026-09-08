@@ -1,0 +1,226 @@
+{
+  "classification": "assessment-document-and-evidence-link-review",
+  "decision": "defer-native-v1-freeze",
+  "owner_freeze_approval": false,
+  "runtime_or_protocol_code_changed": false,
+  "linked_files_checked": [
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/v1-assessment/ledger-observation.json"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/assertion-boundaries/product/ci/parity-linux-x86_64.json"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/BOOTSTRAP.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/SELF-HOSTING.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/MIGRATION-FANTASTIKT.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/CONSUMER-OWNERSHIP.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/divergent-import/README.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/remote-kernel/README.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/idl-projection/README.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/complex-planning/README.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/planning-history/README.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/workspace-capabilities/README.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/related-ledger/README.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/historical-authority/README.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/value-boundaries/README.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/assertion-boundaries/README.md"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/proof/v1-assessment/followthrough-admission.json"
+    },
+    {
+      "from": "docs/NATIVE-V1-ASSESSMENT-2026-09.md",
+      "to": "docs/PROTOCOL-CHECKPOINT-2026-09.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/NATIVE-V1-ASSESSMENT-2026-09.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/PROTOCOL-CHECKPOINT-2026-09.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/CONSUMER-OWNERSHIP.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/READ-MODELS.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/proof/read-models/README.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/PLANNING-HISTORY.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/proof/planning-history/README.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/EFFECTIVE-PROFILES.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/EVIDENCE-TIME.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/proof/evidence-time/README.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/REMOTE-KERNEL.md"
+    },
+    {
+      "from": "docs/PRE-V1.md",
+      "to": "docs/DIVERGENT-IMPORT.md"
+    },
+    {
+      "from": "docs/CONSUMER-OWNERSHIP.md",
+      "to": "docs/proof/consumer-ownership/revisions.json"
+    },
+    {
+      "from": "docs/CONSUMER-OWNERSHIP.md",
+      "to": "docs/proof/consumer-ownership/validation.json"
+    },
+    {
+      "from": "docs/CONSUMER-OWNERSHIP.md",
+      "to": "docs/proof/consumer-ownership/selfhost-native.json"
+    },
+    {
+      "from": "docs/CONSUMER-OWNERSHIP.md",
+      "to": "docs/proof/consumer-ownership/selfhost-jvm.json"
+    },
+    {
+      "from": "docs/CONSUMER-OWNERSHIP.md",
+      "to": "docs/proof/divergent-import/README.md"
+    },
+    {
+      "from": "docs/CONSUMER-OWNERSHIP.md",
+      "to": "docs/PROTOCOL-CHECKPOINT-2026-09.md"
+    },
+    {
+      "from": "docs/CONSUMER-OWNERSHIP.md",
+      "to": "docs/NATIVE-V1-ASSESSMENT-2026-09.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/SEMANTIC-0.3.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/PLANNING-HISTORY.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/EFFECTIVE-PROFILES.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/IMPORT.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/READ-MODELS.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/REMOTE-KERNEL.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/EVIDENCE-TIME.md"
+    },
+    {
+      "from": "docs/NATIVE.md",
+      "to": "docs/PLANNING-HISTORY.md"
+    },
+    {
+      "from": "docs/BOOTSTRAP.md",
+      "to": "docs/SEMANTIC-0.3.md"
+    },
+    {
+      "from": "docs/BOOTSTRAP.md",
+      "to": "docs/SEMANTIC-0.3.md"
+    },
+    {
+      "from": "docs/SELF-HOSTING.md",
+      "to": "docs/proof/productization/0.3.0-alpha.1/README.md"
+    },
+    {
+      "from": "docs/SELF-HOSTING.md",
+      "to": "docs/proof/productization/0.3.0-alpha.2/README.md"
+    },
+    {
+      "from": "docs/SELF-HOSTING.md",
+      "to": "docs/MIGRATION-FANTASTIKT.md"
+    },
+    {
+      "from": "docs/SELF-HOSTING.md",
+      "to": "docs/proof/migration/fantastikt-0.3/producer-final.json"
+    },
+    {
+      "from": "docs/SELF-HOSTING.md",
+      "to": "docs/proof/publication/public-2026-09-07/README.md"
+    }
+  ],
+  "documents": {
+    "AGENTS.md": "9cb33fd0fce85dd7d637bbe68cab5f62edfc73c7a45992d879b4b5ad3c2a1996",
+    "docs/NATIVE-V1-ASSESSMENT-2026-09.md": "40e128e6cd9a9b82c33c82dde520265b3b8e3be7aacf5677fc043b0b7176177c",
+    "docs/PRE-V1.md": "f30b72d6e33d07a419bf02dde799d7043489174c24de5c0ef3db016e04b2aa2b",
+    "docs/CONSUMER-OWNERSHIP.md": "f971ecbff28de3dbd9157e53a0b20e28f0ef4ee2444278de8c6c2ed243d5ef03",
+    "docs/NATIVE.md": "ba0b99a21b73fb1231c53511d0c3b980947a466973dbf2cbee3c968df03fb473",
+    "docs/BOOTSTRAP.md": "f85bb43f57753b1c4eb3d4baa2338cad8cbcc2ffe63bda6a7866fffce8754cd0",
+    "docs/SELF-HOSTING.md": "0c8e1868709e2e1a513a6a11fd591fb522d92c70948ba411d7ad496f8a1d0d30"
+  },
+  "evidence_limits": "Existing executed candidate proofs and exact historical receipts are reviewed; this documentation change does not rerun their tests or certify actor truth."
+}
