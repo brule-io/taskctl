@@ -6,6 +6,16 @@ import java.security.MessageDigest
 /** Draft framed encoding, not RFC 8785. Maps use JVM ordinal key ordering;
  * arrays retain order and strings carry their UTF-8 byte length. */
 object Canonical {
+    /** A semantic view for deterministic providers; the original Value stays
+     * lossless. Only representation details already ignored by encode change. */
+    internal fun semanticValue(value: ObjectValue): ObjectValue = ObjectValue(
+        value.fields.keys.sorted().associateWith { semanticValue(value.fields.getValue(it)) })
+    internal fun semanticValue(value: Value): Value = when (value) {
+        is ObjectValue -> semanticValue(value)
+        is ArrayValue -> ArrayValue(value.values.map(::semanticValue))
+        is DecimalValue -> DecimalValue(value.value.stripTrailingZeros())
+        is StringValue, is IntegerValue, is BooleanValue, NullValue -> value
+    }
     fun encode(value: Value): String = when (value) {
         NullValue -> "n"
         is StringValue -> "s${value.value.toByteArray(UTF_8).size}:${value.value}"

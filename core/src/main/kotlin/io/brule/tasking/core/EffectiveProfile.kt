@@ -43,7 +43,10 @@ data class RevisionSemantics(val profile: EffectiveProfile, val contributedPrere
 }
 
 /** Providers see only data included in the effective semantic contract. */
-class ProviderTask internal constructor(val id: TaskId, val core: ObjectValue, val payload: Value, val contract: ContractDigest)
+class ProviderTask internal constructor(val id: TaskId, core: ObjectValue, payload: Value, val contract: ContractDigest) {
+    val core: ObjectValue = Canonical.semanticValue(core)
+    val payload: Value = Canonical.semanticValue(payload)
+}
 
 /** Explicitly injected deterministic code. It has no lifecycle, raw-record or storage API. */
 interface PinnedSemanticProvider {

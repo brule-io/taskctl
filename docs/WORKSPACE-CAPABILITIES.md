@@ -83,6 +83,18 @@ fold whitespace, reject raw characters or reinterpret a flow-mapping key. Their
 semantic hashes are unchanged; their generated JSON spelling is now safe. The
 tests retain a pre-fix Unicode digest and the [completed failing baseline log](proof/workspace-capabilities/unicode-regression-red.log).
 
+A further provider regression at source `cbfd7378df6cb3c4364a19fee50a180becec265b`
+showed equal semantic contracts producing different readiness decisions because a
+provider could inspect map insertion order and decimal scale. The preserved
+[failing result](proof/workspace-capabilities/provider-input-regression-red.xml)
+records an allowed versus blocked contribution under the same exact pin/contract.
+`ProviderTask` now exposes a recursively canonical semantic view for both evaluation
+and evidence verification: maps use the existing ordinal ordering and decimals
+use the existing trailing-zero equivalence. The original record/payload remains
+lossless, and contract hashes are unchanged. A capability that needs a precision
+declaration must encode it as explicit semantic data, such as an integer field;
+formatting cannot secretly change readiness under an unchanged contract.
+
 This adds conformance coverage to the existing alpha5 provider/profile design and
 repairs those validity boundaries. It introduces no loader, probe runner or reflection
 configuration. The existing packaged CLI parity corpus covers missing-provider
