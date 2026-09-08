@@ -185,5 +185,6 @@ explicit negative assessments, exact opaque numbers and required-capability refu
 File tests exercise cold reconstruction, bounded writes, stale CAS, tampering and
 interrupted recovery. Packaged process cases repeat adoption, amendments, assessments,
 archival, import preservation, read-only behavior, diagnostics and exit codes through
-JVM and Native Image distributions. Release or closure claims require the actual
-executed results; adding these cases does not itself establish cross-platform parity.
+JVM and Native Image distributions. The [closure evidence](proof/planning-history/README.md)
+records the exact green three-platform candidate, builds and 212 process cases per
+platform. It establishes development conformance and does not publish a release.

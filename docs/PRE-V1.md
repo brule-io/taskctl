@@ -18,7 +18,8 @@ service-related choices under the checkpoint's strengthened task prerequisites.
   [three-platform closure evidence](proof/read-models/README.md).
 - [Audited planning history](PLANNING-HISTORY.md) adds explicit roadmap/epic
   amendments, archival and scope-bound assessments through an opt-in storage
-  version. Planning changes preserve task contracts and causal edges.
+  version. Planning changes preserve task contracts and causal edges; its
+  [closure evidence](proof/planning-history/README.md) records three-platform parity.
 - [Persisted effective profiles](EFFECTIVE-PROFILES.md) bind contracts, history,
   currency and contributed input observations to the same exact provider pins.
   Deterministic evaluation and probes remain separate; concrete production
