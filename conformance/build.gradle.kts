@@ -18,7 +18,7 @@ tasks.test {
     systemProperty("tasking.complex.output", complexPreimage.get().asFile.absolutePath)
     outputs.file(complexPreimage)
     inputs.files(rootProject.fileTree(".") {
-        include("core/src/**/*.kt", "repository/src/**/*.kt", "compatibility/src/**/*.kt", "cli/src/**/*.kt", "conformance/src/**/*.kt")
+        include("core/src/**/*.kt", "repository/src/**/*.kt", "compatibility/src/**/*.kt", "cli/src/**/*.kt", "conformance/src/**/*.kt", "kernel/src/**/*.kt")
     }).withPropertyName("architecturalPolicySources")
 }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.brule.tasking.kernel.KernelIntegrationTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-09-08T02:35:44.879Z" hostname="runnervmejwal" time="11.362">
+  <properties/>
+  <testcase name="HTTP diagnostics and rejected transitions leave the database unchanged()" classname="io.brule.tasking.kernel.KernelIntegrationTest" time="1.472"/>
+  <testcase name="adapter capacity refusal is atomic without changing core task validity()" classname="io.brule.tasking.kernel.KernelIntegrationTest" time="0.719"/>
+  <testcase name="explicit history adoption preserves old native assertions and leaves unobserved inputs unresolved()" classname="io.brule.tasking.kernel.KernelIntegrationTest" time="0.097"/>
+  <testcase name="snapshot identity is independent of event sequence and a nonmonotonic acceptance clock()" classname="io.brule.tasking.kernel.KernelIntegrationTest" time="0.067"/>
+  <testcase name="a reply lost after commit is inspected without replaying the accepted command()" classname="io.brule.tasking.kernel.KernelIntegrationTest" time="0.235"/>
+  <testcase name="file direct PostgreSQL and HTTP share lifecycle currency planning and historical evidence()" classname="io.brule.tasking.kernel.KernelIntegrationTest" time="7.572"/>
+  <testcase name="event corruption is detected and PostgreSQL stores exact JSON as text()" classname="io.brule.tasking.kernel.KernelIntegrationTest" time="0.095"/>
+  <testcase name="unrelated HTTP writers demonstrate strict whole-ledger contention without automatic retries()" classname="io.brule.tasking.kernel.KernelIntegrationTest" time="0.265"/>
+  <testcase name="historical import preserves old assertions without synthesizing receipts or acceptance times()" classname="io.brule.tasking.kernel.KernelIntegrationTest" time="0.709"/>
+  <testcase name="failed event insert rolls the snapshot and sequence back before explicit retry()" classname="io.brule.tasking.kernel.KernelIntegrationTest" time="0.09"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

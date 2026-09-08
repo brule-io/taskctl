@@ -6,3 +6,4 @@ dependencyResolutionManagement {
 rootProject.name = "taskctl"
 include("core", "repository", "compatibility", "cli", "conformance")
 include("native-tests")
+include("kernel")

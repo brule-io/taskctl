@@ -1,0 +1,74 @@
+NOTE: Picked up JDK_JAVA_OPTIONS: -Djdk.net.unixdomain.tmpdir=C:\Users\developer\.codex\jdk-unixdomain-disabled-do-not-create
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.6.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:compileKotlin UP-TO-DATE
+> Task :core:compileJava NO-SOURCE
+> Task :kernel:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :kernel:compileKotlin UP-TO-DATE
+> Task :kernel:compileJava NO-SOURCE
+> Task :kernel:processResources NO-SOURCE
+> Task :kernel:classes UP-TO-DATE
+> Task :kernel:jar UP-TO-DATE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :repository:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :repository:compileKotlin UP-TO-DATE
+> Task :repository:compileJava NO-SOURCE
+> Task :kernel:compileTestKotlin UP-TO-DATE
+> Task :kernel:compileTestJava NO-SOURCE
+> Task :kernel:processTestResources NO-SOURCE
+> Task :kernel:testClasses UP-TO-DATE
+> Task :repository:processResources NO-SOURCE
+> Task :repository:classes UP-TO-DATE
+> Task :repository:jar UP-TO-DATE
+> Task :kernel:test UP-TO-DATE
+> Task :kernel:compileIntegrationKotlin
+> Task :kernel:compileIntegrationJava NO-SOURCE
+> Task :kernel:processIntegrationResources UP-TO-DATE
+> Task :kernel:integrationClasses UP-TO-DATE
+
+> Task :kernel:integrationTest
+NOTE: Picked up JDK_JAVA_OPTIONS: -Djdk.net.unixdomain.tmpdir=C:\Users\developer\.codex\jdk-unixdomain-disabled-do-not-create
+
+KernelIntegrationTest > HTTP diagnostics and rejected transitions leave the database unchanged() FAILED
+    java.io.IOException at KernelIntegrationTest.kt:202
+        Caused by: java.io.IOException at Utils.java:412
+            Caused by: java.io.EOFException at Http1AsyncReceiver.java:601
+
+10 tests completed, 1 failed
+
+> Task :kernel:integrationTest FAILED
+
+[Incubating] Problems report is available at: file:///C:/projects/taskctl-remote-kernel/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':kernel:integrationTest'.
+> There were failing tests. See the report at: file:///C:/projects/taskctl-remote-kernel/kernel/build/reports/tests/integrationTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.6.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 1m 5s
+11 actionable tasks: 2 executed, 9 up-to-date
+Disposed the exact test container; no persistent database or service remains.
+Traceback (most recent call last):
+  File "C:\projects\taskctl-remote-kernel\scripts\kernel_test.py", line 35, in <module>
+    run(*gradle, ':kernel:test', ':kernel:integrationTest', ':kernel:jar', '--no-daemon', '--console=plain', '--max-workers=1', env=environment, timeout=600)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\projects\taskctl-remote-kernel\scripts\kernel_test.py", line 13, in run
+    return subprocess.run(list(arguments), cwd=ROOT, check=True, text=True, encoding='utf-8', **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\developer\AppData\Local\Programs\Python\Python314\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['cmd.exe', '/d', '/c', 'gradlew.bat', ':kernel:test', ':kernel:integrationTest', ':kernel:jar', '--no-daemon', '--console=plain', '--max-workers=1']' returned non-zero exit status 1.

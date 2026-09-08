@@ -1,0 +1,10 @@
+{
+  "classification": "observed-disposable-kernel-harness",
+  "database_image": "postgres@sha256:a426e44bac0b759c95894d68e1a0ac03ecc20b619f498a91aae373bf06d8508d",
+  "source": "4336445ff00deee04c91e90554f7317c9a679606",
+  "source_dirty": false,
+  "host": "Linux",
+  "kernel_jar_sha256": "e6f5c3a52b98130a482a98b0a34cd0fe9c248dd406e280c1119451e00a6c176c",
+  "jdbc_version": "42.7.13",
+  "managed_container": false
+}

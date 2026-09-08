@@ -1,0 +1,149 @@
+{
+  "classification": "observed-disposable-kernel-ci-not-a-deployment",
+  "run": {
+    "conclusion": "success",
+    "headSha": "241ac85312ec2b51dcb32c4a2cb795a888aefbc8",
+    "jobs": [
+      {
+        "completedAt": "2026-09-08T02:36:00Z",
+        "conclusion": "success",
+        "databaseId": 101918439034,
+        "name": "kernel",
+        "startedAt": "2026-09-08T02:34:05Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-09-08T02:34:07Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-09-08T02:34:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T02:34:16Z",
+            "conclusion": "success",
+            "name": "Initialize containers",
+            "number": 2,
+            "startedAt": "2026-09-08T02:34:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T02:34:16Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-09-08T02:34:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T02:34:21Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-java@v5",
+            "number": 4,
+            "startedAt": "2026-09-08T02:34:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T02:34:21Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 5,
+            "startedAt": "2026-09-08T02:34:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T02:35:56Z",
+            "conclusion": "success",
+            "name": "Exercise the disposable PostgreSQL and loopback HTTP adapters",
+            "number": 6,
+            "startedAt": "2026-09-08T02:34:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T02:35:57Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 7,
+            "startedAt": "2026-09-08T02:35:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T02:35:57Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 11,
+            "startedAt": "2026-09-08T02:35:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T02:35:57Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-java@v5",
+            "number": 12,
+            "startedAt": "2026-09-08T02:35:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T02:35:58Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 13,
+            "startedAt": "2026-09-08T02:35:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T02:35:58Z",
+            "conclusion": "success",
+            "name": "Stop containers",
+            "number": 14,
+            "startedAt": "2026-09-08T02:35:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-08T02:35:58Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 15,
+            "startedAt": "2026-09-08T02:35:58Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/brule-io/taskctl/actions/runs/34180495189/job/101918439034"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/brule-io/taskctl/actions/runs/34180495189"
+  },
+  "source_checkout": "4336445ff00deee04c91e90554f7317c9a679606",
+  "source_parents": [
+    "6957057e9d7755d060babf4f19a4a1973cb3eb99",
+    "241ac85312ec2b51dcb32c4a2cb795a888aefbc8"
+  ],
+  "tests": [
+    "KernelCodecTest.strict envelopes reject unknown fields noncanonical JSON malformed UTF8 and forged revisions()",
+    "KernelCodecTest.effective profiles are refused explicitly and event identities cross validated boundaries()",
+    "KernelCodecTest.snapshot and transition envelopes preserve exact typed values and old history()",
+    "KernelIntegrationTest.HTTP diagnostics and rejected transitions leave the database unchanged()",
+    "KernelIntegrationTest.adapter capacity refusal is atomic without changing core task validity()",
+    "KernelIntegrationTest.explicit history adoption preserves old native assertions and leaves unobserved inputs unresolved()",
+    "KernelIntegrationTest.snapshot identity is independent of event sequence and a nonmonotonic acceptance clock()",
+    "KernelIntegrationTest.a reply lost after commit is inspected without replaying the accepted command()",
+    "KernelIntegrationTest.file direct PostgreSQL and HTTP share lifecycle currency planning and historical evidence()",
+    "KernelIntegrationTest.event corruption is detected and PostgreSQL stores exact JSON as text()",
+    "KernelIntegrationTest.unrelated HTTP writers demonstrate strict whole-ledger contention without automatic retries()",
+    "KernelIntegrationTest.historical import preserves old assertions without synthesizing receipts or acceptance times()",
+    "KernelIntegrationTest.failed event insert rolls the snapshot and sequence back before explicit retry()"
+  ],
+  "kernel_jar_sha256": "e6f5c3a52b98130a482a98b0a34cd0fe9c248dd406e280c1119451e00a6c176c",
+  "kernel_jar_bytes": 64499,
+  "artifacts": [
+    {
+      "id": 10038760417,
+      "name": "kernel-proof",
+      "size_in_bytes": 64568,
+      "digest": "sha256:e2ed590afab4db40cfc13b57c9e677f5a387fea0e38b6ad7399afdb491679111",
+      "expired": false
+    }
+  ]
+}
