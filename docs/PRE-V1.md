@@ -14,8 +14,8 @@ isolated test repository. Operational migrations are consumer-owned (see
 service-related choices under the checkpoint's strengthened task prerequisites.
 
 - The [distinct read projections](READ-MODELS.md) implement `doctor` diagnostics,
-  bounded `context` and a complete typed `snapshot`; their evidence remains
-  tracked by `TASK.protocol.read-models` until all required checks pass.
+  bounded `context` and a complete typed `snapshot`, with
+  [three-platform closure evidence](proof/read-models/README.md).
 - Choose an explicit audit/revision model for roadmap and epic amendments,
   archival and acceptance. Planning changes must not implicitly invalidate task
   contracts or create ownership/dependency edges.

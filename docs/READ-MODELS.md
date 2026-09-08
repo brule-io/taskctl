@@ -80,3 +80,6 @@ precise opaque values, unavailable task/planning capabilities, legacy readiness,
 tracked currency, complete revision/receipt/import reconstruction and deterministic
 selection. Packaged process tests repeat distinct outputs and large-state reads
 through both implementations while checking exit codes, file bytes and timestamps.
+
+The [closure evidence](proof/read-models/README.md) retains the exact green
+three-platform candidate, build identities and corpus/process parity results.
