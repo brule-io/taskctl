@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.brule.tasking.idl.ProjectionTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-08T03:34:25.714Z" hostname="runnervmejwal" time="0.554">
+  <properties/>
+  <testcase name="checked in projections are byte reproducible from the typed AST()" classname="io.brule.tasking.idl.ProjectionTest" time="0.139"/>
+  <testcase name="core generated envelopes remain the source of the interoperability witnesses()" classname="io.brule.tasking.idl.ProjectionTest" time="0.08"/>
+  <testcase name="IDL names cross a validity boundary and never admit executable syntax()" classname="io.brule.tasking.idl.ProjectionTest" time="0.003"/>
+  <testcase name="Smithy validates the custom protocol and preserves explicit typed wire shapes()" classname="io.brule.tasking.idl.ProjectionTest" time="0.312"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
