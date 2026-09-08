@@ -1,5 +1,7 @@
 package io.brule.tasking.experiment
 
+import io.brule.tasking.core.LegacyRecordedAt
+
 import io.brule.tasking.core.ArrayValue
 import io.brule.tasking.core.BooleanValue
 import io.brule.tasking.core.ClosureEvidence
@@ -185,7 +187,7 @@ fun stepLedger(ledger: FileTaskLedger, prepareOnly: Boolean = false): ObjectValu
         val assertion = Json.encode(obj("input_revision" to StringValue(input.id.value), "branch" to StringValue(step.branch),
             "successor_revision" to optionalString(prepared?.id?.value), "halt" to BooleanValue(step.next == null)))
         val receipt = Receipt(current, DraftLifecycle.contract(input.record), mapOf("machine-step" to assertion))
-        commit("retire", Transition.CloseTask(ClosureEvidence(receipt, "fixed-minsky-stepper/lab1", Instant.now().toString())))
+        commit("retire", Transition.CloseTask(ClosureEvidence(receipt, "fixed-minsky-stepper/lab1", LegacyRecordedAt.parseOrThrow(Instant.now().toString()))))
         check(ledger.frontier().tasks == listOfNotNull(prepared?.record?.id))
     }
     return obj("input_ledger_revision" to StringValue(initial.revision.value), "input_task" to StringValue(current.value),

@@ -23,13 +23,14 @@ data class LedgerSnapshot(val repositoryId: String, val revision: Revision, val 
                           val history: TaskHistory? = null, val imports: List<ImportAdmission> = emptyList())
 data class FrontierQuery(val roadmap: RoadmapId? = null, val epic: EpicId? = null)
 data class Frontier(val revision: Revision, val tasks: List<TaskId>)
-data class TransitionResult(val revision: Revision, val changed: List<RecordId>)
+/** Acceptance time is optional boundary metadata. File storage does not claim one. */
+data class TransitionResult(val revision: Revision, val changed: List<RecordId>, val acceptedAt: AcceptedAt? = null)
 class RevisionConflict(message: String) : IllegalStateException(message)
 
 /** Actor-supplied assertions are labeled honestly; this is not an attestation
  * that taskctl ran tests or independently proved acceptance. */
-data class ClosureEvidence(val receipt: Receipt, val actor: String, val recordedAt: String) {
-    init { require(actor.isNotBlank() && recordedAt.isNotBlank()) }
+data class ClosureEvidence(val receipt: Receipt, val actor: String, val time: AssertionTime) {
+    init { require(actor.isNotBlank()) }
 }
 
 sealed interface Transition {

@@ -4,6 +4,10 @@ Native v1 remains unfrozen. The four milestones are revision/currency semantics,
 self-hosting, distribution/license hardening, and a verified consumer release.
 Product migrations and service implementation follow these milestones.
 
+For development after alpha.2, see [typed evidence time](EVIDENCE-TIME.md).
+The historical `/1` review examples below remain supported with their original
+nonblank-string meaning; new `/2` reviews validate an explicit occurrence time.
+
 ## Decisions under test
 
 Task identity, immutable task revision, semantic contract, and whole-ledger CAS

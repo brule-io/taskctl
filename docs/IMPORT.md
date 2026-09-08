@@ -2,6 +2,9 @@
 
 The 0.3.0-alpha.2 Fantastikt adapter admits the tested `loom.agent/v1` dialect
 through a reviewed, content-addressed manifest. It is not a generic YAML import.
+The examples below use that release's legacy review envelope. Development after
+alpha.2 also supports [typed occurrence reviews](EVIDENCE-TIME.md) under
+`taskctl.import-review/2`; manifest identity and historical classification are unchanged.
 Select `fantastikt-loom-agent-2026` explicitly; its conversion version is `0.2.0`.
 The older inspection/extraction adapter remains a separate historical interface.
 

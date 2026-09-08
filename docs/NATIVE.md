@@ -131,8 +131,10 @@ to inspect exact HEAD and current input observations, then submit an explicit
 review through `reconcile TASK --file REVIEW --expect-revision REVISION`.
 Only an evidenced `revalidated` outcome can acknowledge current inputs; `revise`,
 `successor` and `unresolved` outcomes retain unresolved currency. Reviews and old
-receipts remain distinct historical evidence. `recorded_at` currently requires a
-nonblank actor-supplied string; typed occurrence/acceptance time is not yet promised.
+receipts remain distinct historical evidence. The published alpha envelopes shown
+here retain `recorded_at` as nonblank historical text. Development after alpha.2
+adds [versioned typed occurrence envelopes](EVIDENCE-TIME.md), with separately
+typed storage acceptance metadata and no invented historical acceptance times.
 
 Add `--plan` to a mutating command to inspect exact bounded writes and preimage/
 postimage digests. Applying still requires the inspected ledger revision.

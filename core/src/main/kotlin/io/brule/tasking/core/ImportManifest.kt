@@ -26,8 +26,8 @@ data class ImportManifest(val repository: String, val revision: String, val adap
     val id: ImportId by lazy { ImportId.parseOrThrow(Canonical.digest("taskctl.import-manifest/1", ImportCodec.manifest(this))) }
 }
 
-data class ImportReview(val manifest: ImportId, val actor: String, val recordedAt: String, val rationale: String) {
-    init { require(actor.isNotBlank() && recordedAt.isNotBlank() && rationale.isNotBlank()) }
+data class ImportReview(val manifest: ImportId, val actor: String, val time: AssertionTime, val rationale: String) {
+    init { require(actor.isNotBlank() && rationale.isNotBlank()) }
 }
 data class ImportAdmission(val manifest: ImportManifest, val review: ImportReview) {
     init { require(manifest.id == review.manifest) { "review does not address this import manifest" } }
@@ -67,12 +67,13 @@ object ImportCodec {
                     when (val contract = source.fields["contract"]) { NullValue -> null; is StringValue -> ContractDigest.parseOrThrow(contract.value); else -> error("source contract required") })
             }, DraftUniverse(records.tasks, records.roadmaps, records.epics))
     }
-    fun review(value: ImportReview): ObjectValue = obj("protocol" to StringValue("taskctl.import-review/1"), "classification" to StringValue("actor-assertion"),
-        "manifest" to StringValue(value.manifest.value), "actor" to StringValue(value.actor), "recorded_at" to StringValue(value.recordedAt), "rationale" to StringValue(value.rationale))
+    fun review(value: ImportReview): ObjectValue = obj("protocol" to StringValue(value.time.version.protocol("taskctl.import-review/1", "taskctl.import-review/2")), "classification" to StringValue("actor-assertion"),
+        "manifest" to StringValue(value.manifest.value), "actor" to StringValue(value.actor), value.time.version.field to StringValue(value.time.value), "rationale" to StringValue(value.rationale))
     fun decodeReview(value: ObjectValue): ImportReview {
-        value.exact("protocol", "classification", "manifest", "actor", "recorded_at", "rationale")
-        require(value.requiredString("protocol") == "taskctl.import-review/1" && value.requiredString("classification") == "actor-assertion")
-        return ImportReview(ImportId.parseOrThrow(value.requiredString("manifest")), value.requiredString("actor"), value.requiredString("recorded_at"), value.requiredString("rationale"))
+        val time = AssertionTimeVersion.select(value.requiredString("protocol"), "taskctl.import-review/1", "taskctl.import-review/2")
+        value.exact("protocol", "classification", "manifest", "actor", time.field, "rationale")
+        require(value.requiredString("classification") == "actor-assertion")
+        return ImportReview(ImportId.parseOrThrow(value.requiredString("manifest")), value.requiredString("actor"), time.decode(value), value.requiredString("rationale"))
     }
     fun admission(value: ImportAdmission): ObjectValue = obj("protocol" to StringValue("taskctl.import-admission/1"), "manifest" to manifest(value.manifest), "review" to review(value.review))
     fun decodeAdmission(value: ObjectValue): ImportAdmission {

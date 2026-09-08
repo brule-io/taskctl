@@ -5,11 +5,11 @@ enum class ReviewOutcome { REVALIDATED, REVISE, SUCCESSOR, UNRESOLVED }
 
 data class Reconciliation(
     val task: TaskId, val reviewedHead: TaskRevisionId, val outcome: ReviewOutcome,
-    val observations: List<Dependency>, val actor: String, val recordedAt: String,
+    val observations: List<Dependency>, val actor: String, val time: AssertionTime,
     val rationale: String, val evidence: Map<String, String>, val successor: TaskId? = null,
 ) {
     init {
-        require(actor.isNotBlank() && recordedAt.isNotBlank() && rationale.isNotBlank())
+        require(actor.isNotBlank() && rationale.isNotBlank())
         require(observations.distinctBy { it.upstream }.size == observations.size)
         require((outcome == ReviewOutcome.SUCCESSOR) == (successor != null))
     }

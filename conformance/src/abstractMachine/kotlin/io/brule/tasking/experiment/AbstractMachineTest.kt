@@ -1,5 +1,7 @@
 package io.brule.tasking.experiment
 
+import io.brule.tasking.core.LegacyRecordedAt
+
 import io.brule.tasking.core.ArrayValue
 import io.brule.tasking.core.BooleanValue
 import io.brule.tasking.core.Canonical
@@ -226,7 +228,7 @@ class AbstractMachineTest {
         assertEquals(Currency.CURRENT, revised.currency().getValue(first).state)
         // A named nonblank assertion is sufficient to core; no machine provider
         // verifies the arithmetic. This negative control is never a program run.
-        val evidence = ClosureEvidence(Receipt(first, DraftLifecycle.contract(changed), mapOf("machine-step" to "deliberately unverified negative control")), "lab-negative-control", "2026-09-07T00:00:00Z")
+        val evidence = ClosureEvidence(Receipt(first, DraftLifecycle.contract(changed), mapOf("machine-step" to "deliberately unverified negative control")), "lab-negative-control", LegacyRecordedAt.parseOrThrow("2026-09-07T00:00:00Z"))
         ledger.apply(revised.revision, Transition.CloseTask(evidence))
         assertTrue(ledger.frontier().tasks.isEmpty())
         save("optional-authority", obj("original_contract" to StringValue(DraftLifecycle.contract(task).value),
@@ -245,7 +247,7 @@ class AbstractMachineTest {
         val before = inventory(ledger.root)
         val frontierError = assertFails { ledger.frontier() }
         val closeError = assertFails { ledger.apply(ledger.snapshot().revision, Transition.CloseTask(ClosureEvidence(
-            Receipt(first, DraftLifecycle.contract(task), mapOf("machine-step" to "asserted")), "tester", "2026-09-07T00:00:00Z"))) }
+            Receipt(first, DraftLifecycle.contract(task), mapOf("machine-step" to "asserted")), "tester", LegacyRecordedAt.parseOrThrow("2026-09-07T00:00:00Z")))) }
         assertEquals(before, inventory(ledger.root))
         save("required-provider", obj("problems" to strings(evaluation.problems), "frontier_error" to StringValue(requireNotNull(frontierError.message)), "close_error" to StringValue(requireNotNull(closeError.message))))
     }

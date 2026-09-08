@@ -95,7 +95,7 @@ class LedgerReadModelsTest {
     @Test fun `legacy identity readiness and tracked currency retain their separate meanings`() {
         val a = task().copy(state = "closed")
         val b = task("TASK.b").copy(requires = listOf(a.id))
-        val receipt = ClosureEvidence(Receipt(a.id, DraftLifecycle.contract(a), mapOf("check" to "Historical result")), "actor", "historical time")
+        val receipt = ClosureEvidence(Receipt(a.id, DraftLifecycle.contract(a), mapOf("check" to "Historical result")), "actor", LegacyRecordedAt.parseOrThrow("historical time"))
         val legacy = LedgerSnapshot("legacy", Revision.initial(), DraftUniverse(listOf(a, b)), receipts = listOf(receipt))
         assertEquals(Currency.UNRESOLVED, legacy.currency().getValue(b.id).state)
         val item = context(legacy).requiredArray("work").objects().single { it.requiredString("id") == b.id.value }
@@ -112,7 +112,7 @@ class LedgerReadModelsTest {
         val roadmap = DraftRoadmap(RoadmapId.parseOrThrow("ROADMAP.r"), "Lane", "Advance", listOf(b.id, a.id))
         val epic = DraftEpic(EpicId.parseOrThrow("EPIC.e"), "Capability", "Across lanes", listOf(a.id))
         var value = LedgerTransitions.evolve(empty(), Transition.AddRecords(listOf(a, b), listOf(roadmap), listOf(epic)))
-        val receipt = ClosureEvidence(Receipt(a.id, DraftLifecycle.contract(a), mapOf("check" to "Observed")), "actor", "historical arbitrary timestamp")
+        val receipt = ClosureEvidence(Receipt(a.id, DraftLifecycle.contract(a), mapOf("check" to "Observed")), "actor", LegacyRecordedAt.parseOrThrow("historical arbitrary timestamp"))
         value = LedgerTransitions.evolve(value, Transition.CloseTask(receipt))
         value = LedgerTransitions.evolve(value, Transition.ReviseTask(a.copy(state = "closed", acceptance = listOf("A stronger result"))))
         value = value.copy(dependencyBindings = mapOf(b.id to listOf(Dependency(a.id))))
@@ -138,7 +138,7 @@ class LedgerReadModelsTest {
         val source = "fictional historical closure\n  exact decimal spelling: 0.123456789012345678901234567890\n"
         val manifest = ImportManifest("fictional-source", "a".repeat(40), "test-read-model", "1.0.0", mapOf("task.txt" to source),
             listOf(ImportSource(historical.id, "task.txt", "closed", Canonical.sha256(source.toByteArray()), DraftLifecycle.contract(historical))), DraftUniverse(listOf(historical)))
-        val admission = ImportAdmission(manifest, ImportReview(manifest.id, "reviewer", "historical time", "Fictional test review"))
+        val admission = ImportAdmission(manifest, ImportReview(manifest.id, "reviewer", LegacyRecordedAt.parseOrThrow("historical time"), "Fictional test review"))
         val value = LedgerTransitions.evolve(empty(), Transition.ImportRecords(admission))
         val encoded = LedgerReadModels.snapshot(value)
         assertEquals("taskctl.native/alpha3", encoded.requiredString("protocol"))

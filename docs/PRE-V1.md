@@ -23,9 +23,10 @@ service-related choices under the checkpoint's strengthened task prerequisites.
   provider identity for contracts, history and currency. Contributed prerequisites
   must participate in transitive input observations; deterministic evaluation and
   environment probes remain separate.
-- Validate a typed actor-asserted occurrence timestamp and distinguish it from
-  server-authoritative acceptance time before exposing a remote API. Existing
-  nonblank timestamp strings must retain their historical meaning on conversion.
+- [Typed evidence time](EVIDENCE-TIME.md) distinguishes validated new occurrence
+  values, preserved historical strings and optional storage acceptance metadata.
+  Its [closure evidence](proof/evidence-time/README.md) records conformance and parity;
+  the file adapter does not manufacture authoritative acceptance timestamps.
 - Preserve ledger `Revision` as snapshot identity while deciding remote CAS
   granularity from concrete contention/conformance tests. The file adapter's
   whole-ledger CAS need not force unrelated remote task edits to serialize.

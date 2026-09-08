@@ -51,7 +51,7 @@ class FileTaskLedgerTest {
         Files.writeString(taskPath, document)
         val before = ledger.snapshot()
         val record = before.universe.tasks.single()
-        val evidence = ClosureEvidence(Receipt(task.id, DraftLifecycle.contract(record), mapOf("test" to "passed")), "tester", "2026-09-05T00:00:00Z")
+        val evidence = ClosureEvidence(Receipt(task.id, DraftLifecycle.contract(record), mapOf("test" to "passed")), "tester", LegacyRecordedAt.parseOrThrow("2026-09-05T00:00:00Z"))
         assertFailsWith<RevisionConflict> { ledger.apply(Revision.parseOrThrow("sha256:" + "f".repeat(64)), Transition.CloseTask(evidence)) }
         ledger.apply(before.revision, Transition.CloseTask(evidence))
         assertEquals("closed", ledger.task(task.id)!!.state)
@@ -72,7 +72,7 @@ class FileTaskLedgerTest {
     @Test fun `revision and review persistence preserve old receipts across a cold load`() {
         val initial = task.copy(protocol = "tasking/core-draft-2", verification = listOf("test"))
         val ledger = create(Transition.AddRecords(listOf(initial)))
-        val evidence = ClosureEvidence(Receipt(initial.id, DraftLifecycle.contract(initial), mapOf("test" to "passed")), "tester", "2026-09-06T00:00:00Z")
+        val evidence = ClosureEvidence(Receipt(initial.id, DraftLifecycle.contract(initial), mapOf("test" to "passed")), "tester", LegacyRecordedAt.parseOrThrow("2026-09-06T00:00:00Z"))
         ledger.apply(ledger.snapshot().revision, Transition.CloseTask(evidence))
         val before = ledger.snapshot()
         val revised = initial.copy(state = "closed", acceptance = listOf("A stronger outcome"))
@@ -85,13 +85,47 @@ class FileTaskLedgerTest {
         assertEquals(Currency.AFFECTED, cold.snapshot().currency().getValue(initial.id).state)
         assertEquals(before.receipts, cold.snapshot().receipts)
         val review = Reconciliation(initial.id, cold.snapshot().history!!.heads.getValue(initial.id), ReviewOutcome.REVALIDATED,
-            emptyList(), "tester", "2026-09-06T00:00:00Z", "Revalidated the stronger contract.", mapOf("test" to "passed"))
+            emptyList(), "tester", LegacyRecordedAt.parseOrThrow("2026-09-06T00:00:00Z"), "Revalidated the stronger contract.", mapOf("test" to "passed"))
         cold.apply(cold.snapshot().revision, Transition.ReconcileTask(review))
         assertEquals(Currency.CURRENT, FileTaskLedger(ledger.root).snapshot().currency().getValue(initial.id).state)
         assertEquals(before.receipts, cold.snapshot().receipts)
         val revisionPath = Files.list(ledger.root.resolve(".agents/history/revisions")).use { it.findFirst().orElseThrow() }
         Files.writeString(revisionPath, Files.readString(revisionPath).replace("Bounded work", "Forged work"))
         assertFails { cold.snapshot() }
+    }
+
+    @Test fun `new occurrence envelopes survive restart alongside legacy evidence without storage clock claims`() {
+        val a = task.copy(protocol = "tasking/core-draft-2", verification = listOf("test"))
+        val b = a.copy(id = TaskId.parseOrThrow("TASK.b"), requires = listOf(a.id))
+        val ledger = create(Transition.AddRecords(listOf(a, b)))
+        val original = ledger.snapshot()
+        val legacy = ClosureEvidence(Receipt(a.id, DraftLifecycle.contract(a), mapOf("test" to "Old assertion")),
+            "actor", LegacyRecordedAt.parseOrThrow("  before the clock was recorded\n "))
+        ledger.apply(original.revision, Transition.CloseTask(legacy))
+        val afterA = ledger.snapshot()
+        val evidence = ClosureEvidence(Receipt(b.id, DraftLifecycle.contract(b), mapOf("test" to "New assertion")),
+            "actor", OccurredAt.parseOrThrow("9999-12-31T23:59:59.000000001+00:00"))
+        assertFailsWith<RevisionConflict> { ledger.apply(original.revision, Transition.CloseTask(evidence)) }
+        assertEquals(afterA, FileTaskLedger(ledger.root).snapshot())
+        assertNull(ledger.apply(afterA.revision, Transition.CloseTask(evidence)).acceptedAt)
+        val beforeRevision = FileTaskLedger(ledger.root).snapshot()
+        val receiptFiles = NativeFiles.regularFiles(ledger.root, ".agents/receipts")
+        assertEquals(listOf(legacy, evidence).toSet(), beforeRevision.receipts.toSet())
+        ledger.apply(beforeRevision.revision, Transition.ReviseTask(a.copy(state = "closed", acceptance = listOf("Stronger durability"))))
+        val inspected = ledger.snapshot()
+        val review = Reconciliation(a.id, inspected.history!!.heads.getValue(a.id), ReviewOutcome.REVALIDATED,
+            emptyList(), "actor", OccurredAt.parseOrThrow("0001-01-01T00:00:00Z"), "Explicitly rechecked the changed contract", mapOf("test" to "Revalidated"))
+        assertNull(ledger.apply(inspected.revision, Transition.ReconcileTask(review)).acceptedAt)
+        val cold = FileTaskLedger(ledger.root).snapshot()
+        val coldHistory = requireNotNull(cold.history)
+        assertEquals(review, coldHistory.head(a.id).review)
+        assertEquals(Currency.CURRENT, cold.currency().getValue(a.id).state)
+        assertEquals(Currency.AFFECTED, cold.currency().getValue(b.id).state)
+        assertEquals(receiptFiles, NativeFiles.regularFiles(ledger.root, ".agents/receipts"))
+        assertTrue(beforeRevision.history!!.revisions.all { (id, value) -> coldHistory.revisions[id] == value })
+        val afterFiles = NativeFiles.regularFiles(ledger.root, ".agents/history")
+        assertFailsWith<RevisionConflict> { ledger.apply(inspected.revision, Transition.ReconcileTask(review)) }
+        assertEquals(afterFiles, NativeFiles.regularFiles(ledger.root, ".agents/history"))
     }
 
     @Test fun `existing code adoption preserves source and contributor instructions`() {
