@@ -29,15 +29,20 @@ object DraftLifecycle {
     fun contract(record: DraftRecord, profile: Profile = Profile()): ContractDigest {
         if (record.protocol == "tasking/core-draft-2") return ContractDigest.parseOrThrow(
             Canonical.digest("taskctl.semantic-contract/2", projection(record, profile)))
+        return ContractDigest.parseOrThrow(Canonical.digest("tasking/core-draft-1/semantic-contract/1", legacyProjection(record, profile)))
+    }
+
+    /** Preserve the legacy projection exactly while exposing only canonical inputs. */
+    internal fun legacyProjection(record: DraftRecord, profile: Profile = Profile()): ObjectValue {
         val active = (profile.pins.keys + record.requiredExtensions).sorted()
-        return ContractDigest.parseOrThrow(Canonical.digest("tasking/core-draft-1/semantic-contract/1", obj(
+        return obj(
             "id" to StringValue(record.id.value), "title" to SemanticMarkdown.value(record.title),
             "intent" to SemanticMarkdown.value(record.intent), "requires" to strings(record.requires.sorted().map { it.value }),
             "requirements" to ArrayValue(record.requirements.map { SemanticMarkdown.value(it) }),
             "acceptance" to ArrayValue(record.acceptance.map { SemanticMarkdown.value(it, acceptance = true) }),
             "required_extensions" to strings(record.requiredExtensions.sorted()), "profile" to stringMap(profile.pins),
             "semantic_extensions" to ObjectValue(active.associateWith { record.extensions.fields[it] ?: NullValue }),
-        )))
+        )
     }
 
     /** Versioned public projection. Title is presentation; bounded intent is contractual. */

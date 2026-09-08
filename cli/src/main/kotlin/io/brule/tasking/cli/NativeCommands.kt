@@ -52,6 +52,7 @@ internal object NativeCommands {
                 planning track --expect-revision REVISION [--plan]
                 planning history ID | planning assess ID --plan
                 planning amend|archive|restore|assess ID --file ASSERTION --expect-revision REVISION [--plan]
+                profile show|history | profile set --file CHANGE --expect-revision REVISION [--plan]
                 seed --file FILE --expect-revision REVISION
                 verify TASK --receipt FILE
                 close TASK --receipt FILE --expect-revision REVISION
@@ -65,6 +66,7 @@ internal object NativeCommands {
         val result = when (command) {
             "import" -> ImportCommands.run(options)
             "planning" -> PlanningCommands.run(options)
+            "profile" -> ProfileCommands.run(options)
             "info" -> { options.allow(); ToolRuntime.info() }
             "init", "adopt" -> {
                 options.allow("--id", "--toolchain", "--profile", "--seed", "--plan", "--contract")
@@ -186,16 +188,20 @@ internal object NativeCommands {
                 val history = requireNotNull(snapshot.history) { "track history before reconciliation" }
                 val task = universe.tasks.singleOrNull { it.id == id } ?: error("unknown task: $id")
                 val observations = CurrencyEvaluation.observations(snapshot)
+                val evaluation = snapshot.effectiveEvaluation()
+                val profile = snapshot.profileHistory?.profile
                 obj("revision" to StringValue(snapshot.revision.value), "reviewed_head" to StringValue(history.heads.getValue(id).value),
                     "task" to StringValue(id.value), "currency" to HistoryCodec.currency(currency.getValue(id)),
-                    "observations" to ArrayValue(task.requires.sorted().map { HistoryCodec.dependency(observations.getValue(it)) }),
-                    "required_evidence" to strings(task.verification),
+                    "observations" to ArrayValue(evaluation.dependencies.getValue(id).sorted().map { HistoryCodec.dependency(observations.getValue(it)) }),
+                    "required_evidence" to strings((task.verification + evaluation.contributions.getValue(id).evidenceRequirements).distinct()),
                     "outcomes" to strings(ReviewOutcome.entries.map { it.name.lowercase() }),
-                    "instructions" to StringValue("Submit taskctl.reconciliation/2 actor-assertion with these exact inputs, outcome, actor, occurred_at (explicit offset timestamp), rationale, evidence and successor (null except successor outcome). Legacy /1 recorded_at remains historical text. No review has been recorded."))
+                    "instructions" to StringValue(if (profile == null) "Submit taskctl.reconciliation/2 actor-assertion with these exact inputs, outcome, actor, occurred_at (explicit offset timestamp), rationale, evidence and successor (null except successor outcome). Legacy /1 recorded_at remains historical text. No review has been recorded."
+                        else "Submit taskctl.reconciliation/3 with this exact profile digest, reviewed HEAD, complete effective observations, outcome, actor, occurred_at, rationale, evidence and successor. Missing provider evaluation cannot be acknowledged as current. No review has been recorded."))
+                    .let { if (profile == null) it else ObjectValue(it.fields + ("profile" to StringValue(profile.digest.value))) }
             }
             "show" -> {
                 val task = universe.tasks.singleOrNull { it.id == TaskId.parseOrThrow(args.positional.single()) } ?: error("unknown task: ${args.positional.single()}")
-                ObjectValue(NativeCodec.task(task).fields + mapOf("contract_digest" to StringValue(DraftLifecycle.contract(task).value),
+                ObjectValue(NativeCodec.task(task).fields + mapOf("contract_digest" to StringValue(snapshot.effectiveContract(task).value),
                     "revision" to StringValue(snapshot.revision.value), "head" to optionalString(snapshot.history?.heads?.get(task.id)?.value),
                     "currency" to HistoryCodec.currency(currency.getValue(task.id)), "roadmaps" to strings(universe.roadmapsFor(task.id).map { it.value }),
                     "epics" to strings(universe.epicsFor(task.id).map { it.value })))

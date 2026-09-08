@@ -32,7 +32,7 @@ internal object PlanningTransitions {
         if (value.outcome == PlanningAssessmentOutcome.ACCEPTED) {
             require(record.protocol == PlanningRecordCodec.AUDITED_PROTOCOL && record.acceptance.isNotEmpty()) { "acceptance requires explicit planning criteria" }
             require(value.criterionEvidence.size == record.acceptance.size) { "acceptance requires evidence for every criterion" }
-            require((snapshot.universe.tasks.flatMap { it.requiredExtensions } + snapshot.universe.planningRecords.flatMap { it.requiredExtensions }).isEmpty()) {
+            require(snapshot.semanticProblems().isEmpty()) {
                 "required semantic provider unavailable for planning acceptance"
             }
             val currency = snapshot.currency()
@@ -62,7 +62,7 @@ internal object PlanningTransitions {
                 history = history.append(PlanningRevision(change.reviewedHead, after.universe.planning(change.planning), PlanningChange.DispositionChanged(change.audit)))
             }
             is Transition.AssessPlanning -> history = history.append(transition.assessment)
-            is Transition.CloseTask, is Transition.ReviseTask, is Transition.ReconcileTask, Transition.TrackHistory -> Unit
+            is Transition.CloseTask, is Transition.ReviseTask, is Transition.ReconcileTask, Transition.TrackHistory, is Transition.SetProfile -> Unit
             Transition.TrackPlanning -> error("handled above")
         }
         return history

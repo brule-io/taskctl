@@ -11,8 +11,11 @@ interface TaskLedger {
 /** One pure readiness query for ledger adapters and application projections. */
 fun LedgerSnapshot.frontier(query: FrontierQuery = FrontierQuery()): Frontier {
     require(dependencyProblems().isEmpty()) { dependencyProblems().joinToString("\n") }
+    require(semanticProblems().isEmpty()) { semanticProblems().joinToString("\n") }
     val currency = currency()
-    return Frontier(revision, universe.frontier(query.roadmap, query.epic).filter {
+    val profile = profileHistory?.profile
+    return Frontier(revision, universe.frontier(query.roadmap, query.epic, profile?.legacyEvaluationProfile() ?: Profile(),
+        profile?.let { providers.resolved(it) }.orEmpty()).filter {
         history == null || currency.getValue(it).state == Currency.CURRENT
     })
 }
@@ -21,7 +24,8 @@ data class LedgerSnapshot(val repositoryId: String, val revision: Revision, val 
                           val receipts: List<ClosureEvidence> = emptyList(),
                           val dependencyBindings: Map<TaskId, List<Dependency>> = emptyMap(),
                           val history: TaskHistory? = null, val imports: List<ImportAdmission> = emptyList(),
-                          val planningHistory: PlanningHistory? = null)
+                          val planningHistory: PlanningHistory? = null, val profileHistory: ProfileHistory? = null,
+                          val providers: ProviderRegistry = ProviderRegistry())
 data class FrontierQuery(val roadmap: RoadmapId? = null, val epic: EpicId? = null)
 data class Frontier(val revision: Revision, val tasks: List<TaskId>)
 /** Acceptance time is optional boundary metadata. File storage does not claim one. */
@@ -46,6 +50,7 @@ sealed interface Transition {
     data class AmendPlanning(val amendment: PlanningAmendment) : Transition
     data class SetPlanningDisposition(val change: PlanningDispositionChange) : Transition
     data class AssessPlanning(val assessment: PlanningAssessment) : Transition
+    data class SetProfile(val change: ProfileChange) : Transition
 }
 
 /** Every adapter uses this reducer. Storage only persists the validated result. */
@@ -53,6 +58,7 @@ object LedgerTransitions {
     fun reduce(snapshot: LedgerSnapshot, transition: Transition): DraftUniverse {
         snapshot.history?.validate(snapshot.universe, snapshot.receipts, snapshot.imports)
         snapshot.planningHistory?.validate(snapshot)
+        snapshot.validateProfiles()
         require(snapshot.dependencyProblems().isEmpty()) { snapshot.dependencyProblems().joinToString("\n") }
         val universe = snapshot.universe
         val updated = when (transition) {
@@ -60,6 +66,7 @@ object LedgerTransitions {
                 require(universe.tasks.isEmpty() && universe.roadmaps.isEmpty() && universe.epics.isEmpty() && snapshot.receipts.isEmpty() && snapshot.imports.isEmpty()) { "import requires an empty target ledger" }
                 require(snapshot.history != null && snapshot.history.revisions.isEmpty()) { "import requires fresh tracked history" }
                 require(snapshot.planningHistory == null || (snapshot.planningHistory.revisions.isEmpty() && snapshot.planningHistory.assessments.isEmpty())) { "import requires fresh planning history" }
+                require(snapshot.profileHistory == null) { "import before explicit effective profile adoption" }
                 transition.admission.manifest.universe
             }
             is Transition.AddRecords -> {
@@ -92,11 +99,15 @@ object LedgerTransitions {
             is Transition.AmendPlanning -> PlanningTransitions.amend(snapshot, transition.amendment)
             is Transition.SetPlanningDisposition -> PlanningTransitions.disposition(snapshot, transition.change)
             is Transition.AssessPlanning -> { PlanningTransitions.validateAssessment(snapshot, transition.assessment); universe }
+            is Transition.SetProfile -> { snapshot.changeProfile(transition.change); universe }
         }
-        val errors = updated.indexProblems() + DraftLifecycle.evaluate(updated.tasks).problems
+        val prospective = (if (transition is Transition.SetProfile) snapshot.changeProfile(transition.change) else snapshot).copy(universe = updated)
+        val evaluation = prospective.effectiveEvaluation()
+        val errors = updated.indexProblems() + evaluation.problems
         // Missing capability implementations must not prevent storing/inspecting
         // typed data, but they never confer readiness or closure authority.
-        require(errors.filterNot { "required semantic provider unavailable" in it }.isEmpty()) { errors.joinToString("\n") }
+        require(errors.filterNot(::providerUnavailable).isEmpty()) { errors.joinToString("\n") }
+        if (transition is Transition.AddRecords && snapshot.profileHistory != null) require(evaluation.problems.isEmpty()) { "required provider evaluation must be available before creating profiled revisions: ${evaluation.problems}" }
         return updated
     }
 
@@ -109,7 +120,9 @@ object LedgerTransitions {
                 history = requireNotNull(history).append(TaskRevision(null, task, task.requires.map { Dependency(it) }))
             }
         } else if (history != null) {
-            val observations = CurrencyEvaluation.observations(snapshot.copy(universe = universe))
+            val prospective = snapshot.copy(universe = universe)
+            val observations = CurrencyEvaluation.observations(prospective)
+            val evaluation = prospective.effectiveEvaluation()
             when (transition) {
                 is Transition.ImportRecords -> {
                     universe.tasks.sortedBy { it.id }.forEach { task ->
@@ -121,9 +134,15 @@ object LedgerTransitions {
                     val pending = transition.tasks.associateBy { it.id }
                     fun add(task: DraftRecord) {
                         if (task.id in requireNotNull(history).heads) return
-                        task.requires.mapNotNull { pending[it] }.sortedBy { it.id }.forEach(::add)
-                        val edges = task.requires.sorted().map { observations.getValue(it).copy(observedRevision = requireNotNull(history).heads[it]) }
-                        history = requireNotNull(history).append(TaskRevision(null, task, edges))
+                        val dependencies = evaluation.dependencies.getValue(task.id)
+                        dependencies.mapNotNull { pending[it] }.sortedBy { it.id }.forEach(::add)
+                        dependencies.forEach { id ->
+                            require(requireNotNull(history).heads[id]?.let { requireNotNull(history).revisions.getValue(it).contract } == observations.getValue(id).observedContract) {
+                                "reconcile prerequisite profile before capturing its revision: $id"
+                            }
+                        }
+                        val edges = dependencies.sorted().map { observations.getValue(it).copy(observedRevision = requireNotNull(history).heads[it]) }
+                        history = requireNotNull(history).append(TaskRevision(null, task, edges, semantics = prospective.revisionSemantics(task.id, evaluation)))
                     }
                     transition.tasks.sortedBy { it.id }.forEach(::add)
                 }
@@ -135,37 +154,58 @@ object LedgerTransitions {
                 is Transition.ReviseTask -> {
                     val record = transition.record
                     val old = history.head(record.id)
-                    val review = if (DraftLifecycle.contract(old.record) == DraftLifecycle.contract(record)) old.review else null
-                    history = history.append(TaskRevision(old.id, record, record.requires.sorted().map { id -> old.dependencies.singleOrNull { it.upstream == id } ?: Dependency(id) }, review))
+                    val review = if (effectiveContract(old.record, old.semantics?.profile) == effectiveContract(record, old.semantics?.profile)) old.review else null
+                    val retainedEdges = (record.requires + old.semantics?.contributedPrerequisites.orEmpty()).distinct().sorted()
+                    history = history.append(TaskRevision(old.id, record, retainedEdges.map { id -> old.dependencies.singleOrNull { it.upstream == id } ?: Dependency(id) }, review, semantics = old.semantics))
                 }
                 is Transition.ReconcileTask -> {
                     val review = transition.review
                     val old = history.head(review.task)
                     history = history.append(old.copy(parent = old.id,
-                        dependencies = if (review.outcome == ReviewOutcome.REVALIDATED) review.observations else old.dependencies, review = review))
+                        dependencies = if (review.outcome == ReviewOutcome.REVALIDATED) review.observations else old.dependencies, review = review,
+                        semantics = if (review.outcome == ReviewOutcome.REVALIDATED) prospective.revisionSemantics(review.task, evaluation) else old.semantics))
                 }
                 Transition.TrackHistory -> error("handled above")
-                Transition.TrackPlanning, is Transition.AmendPlanning, is Transition.SetPlanningDisposition, is Transition.AssessPlanning -> Unit
+                Transition.TrackPlanning, is Transition.AmendPlanning, is Transition.SetPlanningDisposition, is Transition.AssessPlanning, is Transition.SetProfile -> Unit
             }
         }
-        val result = snapshot.copy(universe = universe, history = history,
+        val source = if (transition is Transition.SetProfile) snapshot.changeProfile(transition.change) else snapshot
+        val result = source.copy(universe = universe, history = history,
             imports = snapshot.imports + if (transition is Transition.ImportRecords) listOf(transition.admission) else emptyList(),
             receipts = snapshot.receipts + if (transition is Transition.CloseTask) listOf(transition.evidence) else emptyList())
-        return result.copy(planningHistory = PlanningTransitions.evolve(snapshot, result, transition)).also { it.planningHistory?.validate(it) }
+        return result.copy(planningHistory = PlanningTransitions.evolve(snapshot, result, transition)).also {
+            it.history?.validate(it.universe, it.receipts, it.imports)
+            it.planningHistory?.validate(it)
+            it.validateProfiles()
+        }
     }
 
     private fun validateReview(snapshot: LedgerSnapshot, review: Reconciliation) {
         val history = requireNotNull(snapshot.history) { "track history before reconciliation" }
         require(history.heads[review.task] == review.reviewedHead) { "review does not address task HEAD" }
         val task = snapshot.universe.tasks.single { it.id == review.task }
+        require(review.profile == snapshot.profileHistory?.profile?.digest) { "review does not address the current effective profile; use its explicit review envelope" }
+        val evaluation = snapshot.effectiveEvaluation()
         val now = CurrencyEvaluation.observations(snapshot)
-        require(review.observations.sortedBy { it.upstream } == task.requires.sorted().map { now.getValue(it) }) { "review observations do not match current upstream revisions/contracts/inputs" }
+        val dependencies = evaluation.dependencies.getValue(task.id)
+        require(review.observations.sortedBy { it.upstream } == dependencies.sorted().map { now.getValue(it) }) { "review observations do not match current upstream revisions/contracts/inputs" }
         if (review.outcome == ReviewOutcome.REVALIDATED) {
             val currency = snapshot.currency()
-            require(task.requires.all { currency.getValue(it).state == Currency.CURRENT }) { "upstream currency must be current before revalidation" }
-            require(task.requiredExtensions.isEmpty()) { "required semantic provider unavailable for revalidation" }
+            require(evaluation.problems.isEmpty()) { "required semantic provider unavailable for revalidation: ${evaluation.problems}" }
+            require(dependencies.all { currency.getValue(it).state == Currency.CURRENT }) { "upstream currency must be current before revalidation" }
+            if (snapshot.profileHistory != null) require(snapshot.semanticProblems().isEmpty() && evaluation.contributions.getValue(task.id).blockers.isEmpty()) {
+                "required provider readiness or planning capability blocks revalidation"
+            }
             require(review.evidence.values.any { it.isNotBlank() }) { "revalidation evidence is required" }
             require(task.verification.all { !review.evidence[it].isNullOrBlank() }) { "missing required revalidation evidence" }
+            require(evaluation.contributions.getValue(task.id).evidenceRequirements.all { !review.evidence[it].isNullOrBlank() }) { "missing required provider revalidation evidence" }
+            snapshot.profileHistory?.profile?.let { profile ->
+                val resolved = snapshot.providers.resolved(profile)
+                val errors = resolved.flatMap { provider ->
+                    try { provider.verify(task, review.evidence) } catch (_: Exception) { listOf("provider evidence verification failed: ${provider.identity}") }
+                }
+                require(errors.isEmpty()) { errors.joinToString("\n") }
+            }
         }
         review.successor?.let { id ->
             require(id != task.id && snapshot.universe.tasks.any { it.id == id && it.state == "open" }) { "successor must identify distinct existing open work" }
