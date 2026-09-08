@@ -14,6 +14,9 @@ tasks.test {
     val divergentPreimage = rootProject.layout.buildDirectory.file("proof/divergent-native-preimage.json")
     systemProperty("tasking.divergent.output", divergentPreimage.get().asFile.absolutePath)
     outputs.file(divergentPreimage)
+    val complexPreimage = rootProject.layout.buildDirectory.file("proof/complex-planning-preimage.json")
+    systemProperty("tasking.complex.output", complexPreimage.get().asFile.absolutePath)
+    outputs.file(complexPreimage)
     inputs.files(rootProject.fileTree(".") {
         include("core/src/**/*.kt", "repository/src/**/*.kt", "compatibility/src/**/*.kt", "cli/src/**/*.kt", "conformance/src/**/*.kt", "kernel/src/**/*.kt")
     }).withPropertyName("architecturalPolicySources")

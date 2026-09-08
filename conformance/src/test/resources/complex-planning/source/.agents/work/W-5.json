@@ -1,0 +1,23 @@
+{
+  "dialect": "specimen.planning/1",
+  "kind": "work",
+  "id": "W-5",
+  "status": "open",
+  "after": [
+    "W-2",
+    "W-4"
+  ],
+  "intent": "Complete an end-to-end recovery exercise.",
+  "requirements": [
+    "Keep the result durable and reviewable."
+  ],
+  "checks": [
+    {
+      "done": false,
+      "text": "The bounded result has been observed."
+    }
+  ],
+  "annotations": {
+    "notes": "Fictional legacy state; no native receipt exists."
+  }
+}
