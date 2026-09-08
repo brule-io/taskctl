@@ -1,0 +1,17 @@
+{
+  "classification": "observed-reducer-falsification-profile-not-applied",
+  "source_commit": "355e70000178039d5e3e1594c54c42ac88f77bd6",
+  "checkout_at_probe": "fe46c13376a0155eb8f7c182df86351179556909",
+  "released_distribution": false,
+  "java": "Temurin 21.0.11+10",
+  "probe_source_sha256": "0be1405d58776dd8dba023621808638471a07748bdccff3ba1f7fb3f9d4becc8",
+  "compiled_jar_sha256": {
+    "core-0.3.0-alpha.2.jar": "1a28347482d4e58e40e7476cfd17ee351d42ebc75880409dbedb7d8e1801ff38",
+    "repository-0.3.0-alpha.2.jar": "a3d6223dfcc039c20703f5b165be55009dab0bf140b7dd4b90707c69415d277b"
+  },
+  "result": {
+    "reducer_accepted": true,
+    "profile_reconstructable": false,
+    "profile_applied": false
+  }
+}

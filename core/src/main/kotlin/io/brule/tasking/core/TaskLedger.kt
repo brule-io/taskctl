@@ -102,6 +102,12 @@ object LedgerTransitions {
             is Transition.AssessPlanning -> { PlanningTransitions.validateAssessment(snapshot, transition.assessment); universe }
             is Transition.SetProfile -> { snapshot.changeProfile(transition.change); universe }
         }
+        // Programmatic callers can retain mutable aliases to draft-record lists.
+        // Re-run each typed constructor before a plan or adapter can persist it.
+        // Value payloads themselves own immutable collections at construction.
+        updated.tasks.forEach { it.copy() }
+        updated.roadmaps.forEach { it.copy() }
+        updated.epics.forEach { it.copy() }
         val prospective = (if (transition is Transition.SetProfile) snapshot.changeProfile(transition.change) else snapshot).copy(universe = updated)
         val evaluation = prospective.effectiveEvaluation()
         val errors = updated.indexProblems() + evaluation.problems
