@@ -77,11 +77,9 @@ object PlanningRecordCodec {
     const val PROTOCOL = "tasking/planning-draft-1"
     const val AUDITED_PROTOCOL = "tasking/planning-draft-2"
     private val commonFields = setOf("protocol", "kind", "id", "title", "tasks", "required_extensions", "extensions")
-    private val feature = Regex("[a-z][a-z0-9-]*(?:\\.[a-z][a-z0-9-]*)+/v[1-9][0-9]*")
 
     internal fun validateExtensions(required: List<String>, extensions: ObjectValue) {
-        require(required.distinct().size == required.size && required.all { feature.matches(it) })
-        require(extensions.fields.keys.all { feature.matches(it) })
+        validateExtensionAttributes(required, extensions)
     }
 
     internal fun validateVersion(protocol: String, disposition: PlanningDisposition, acceptance: List<String>) {

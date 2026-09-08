@@ -15,6 +15,7 @@ data class DraftRecord(
         require(acceptance.isNotEmpty() && acceptance.all { it.isNotBlank() })
         require(protocol in setOf("tasking/core-draft-1", "tasking/core-draft-2"))
         require(verification.all { it.isNotBlank() } && (protocol != "tasking/core-draft-1" || verification.isEmpty()))
+        validateExtensionAttributes(requiredExtensions, extensions)
     }
 }
 
@@ -30,7 +31,6 @@ class DraftDocument private constructor(val record: DraftRecord, val source: Str
     fun withState(state: String): DraftDocument = parse(source.replaceRange(stateSpan.start, stateSpan.end, Json.encode(StringValue(state))))
     companion object {
         private val fields = setOf("protocol", "id", "title", "state", "intent", "requires", "requirements", "acceptance", "verification", "required_extensions", "extensions")
-        private val feature = Regex("[a-z][a-z0-9-]*(?:\\.[a-z][a-z0-9-]*)+/v[1-9][0-9]*")
         fun parse(source: String): DraftDocument {
             val decoded = YamlValues.parse(source)
             val root = decoded.value as? ObjectValue ?: error("record must be a YAML mapping")
@@ -47,9 +47,7 @@ class DraftDocument private constructor(val record: DraftRecord, val source: Str
                 return result
             }
             val extensions = (values["extensions"] ?: obj()) as? ObjectValue ?: error("extensions must be a mapping")
-            require(extensions.fields.keys.all { feature.matches(it) }) { "extensions require versioned namespaces" }
             val required = texts("required_extensions")
-            require(required.distinct().size == required.size && required.all { feature.matches(it) })
             val dependencies = texts("requires")
             require(dependencies.distinct().size == dependencies.size)
             val state = text("state").also { require(it in setOf("open", "closed")) }
