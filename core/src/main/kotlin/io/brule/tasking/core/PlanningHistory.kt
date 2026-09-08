@@ -95,8 +95,8 @@ fun PlanningHistory.validate(snapshot: LedgerSnapshot) {
         require(value.observations.map { it.task }.toSet() == reviewed.tasks.toSet()) { "assessment observations disagree with reviewed membership" }
         require(value.criterionEvidence.isEmpty() || value.criterionEvidence.size == reviewed.acceptance.size) { "criterion evidence disagrees with reviewed scope" }
         value.observations.forEach { observation ->
-            val task = taskHistory.revisions[observation.revision]?.record ?: error("assessed task revision absent")
-            require(task.id == observation.task && DraftLifecycle.contract(task) == observation.contract) { "assessment task revision and contract disagree" }
+            val task = taskHistory.revisions[observation.revision] ?: error("assessed task revision absent")
+            require(task.record.id == observation.task && task.contract == observation.contract) { "assessment task revision and contract disagree" }
         }
         if (value.outcome == PlanningAssessmentOutcome.ACCEPTED) require(reviewed.protocol == PlanningRecordCodec.AUDITED_PROTOCOL &&
             reviewed.acceptance.isNotEmpty() && value.criterionEvidence.size == reviewed.acceptance.size) { "accepted planning assessment requires evidence for every criterion" }
@@ -118,7 +118,8 @@ fun LedgerSnapshot.planningObservations(record: PlanningRecord): List<PlanningTa
     val observed = CurrencyEvaluation.observations(this)
     return record.tasks.sorted().map { id ->
         val value = observed.getValue(id)
-        PlanningTaskObservation(id, requireNotNull(value.observedContract), requireNotNull(value.observedRevision), requireNotNull(value.observedInputs))
+        PlanningTaskObservation(id, requireNotNull(value.observedContract), requireNotNull(value.observedRevision),
+            requireNotNull(value.observedInputs) { "required provider evaluation unavailable; planning member inputs are unknown" })
     }
 }
 
@@ -126,7 +127,7 @@ fun LedgerSnapshot.planningAssessmentStatuses(history: PlanningHistory): Map<Pla
     val records = universe.planningRecords.associateBy { it.id }
     val observed = CurrencyEvaluation.observations(this)
     val currency = currency()
-    val missing = (universe.tasks.flatMap { it.requiredExtensions } + universe.planningRecords.flatMap { it.requiredExtensions }).isNotEmpty()
+    val missing = semanticProblems().isNotEmpty()
     return history.assessments.mapValues { (_, assessment) ->
         val reasons = mutableListOf<String>()
         if (history.assessmentHeads[assessment.planning] != assessment.id) reasons += "superseded by a later explicit assessment"
@@ -134,7 +135,7 @@ fun LedgerSnapshot.planningAssessmentStatuses(history: PlanningHistory): Map<Pla
         val record = records.getValue(assessment.planning)
         if (assessment.observations.map { it.task }.toSet() != record.tasks.toSet() || assessment.observations.any {
                 val now = observed[it.task]
-                now == null || now.observedContract != it.contract || now.observedInputs != it.inputs
+                now == null || now.observedContract != it.contract || (now.observedInputs != null && now.observedInputs != it.inputs)
             }) reasons += "observed member contracts or inputs changed"
         if (reasons.isNotEmpty()) PlanningAssessmentStatus(assessment.id, PlanningAssessmentCurrency.HISTORICAL, reasons)
         else {

@@ -21,6 +21,12 @@ warnings for historical or unresolved latest assessments; snapshot adds all type
 planning history and assessment objects. Untracked repositories retain the alpha1
 contracts above. Context retains its existing bounded contract in both cases.
 
+Explicit [effective profile adoption](EFFECTIVE-PROFILES.md) uses doctor/snapshot
+`/alpha3`: both name the selected profile digest, doctor reports unavailable
+semantics, and snapshot includes complete immutable profile history. Context names
+the same digest while preserving its existing bounds. Runtime provider code is
+an explicitly supplied adapter dependency and is never included in the snapshot.
+
 All accept `--repo PATH` and `--format json|text`. They perform no Git operations,
 network access, environment probes or repository writes. Invalid repositories
 retain existing diagnostics and exit codes. A successfully inspected ledger can

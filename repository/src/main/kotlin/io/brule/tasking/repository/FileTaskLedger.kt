@@ -8,7 +8,7 @@ import java.nio.file.StandardOpenOption.*
 
 /** The native filesystem adapter owns all layout, locking and journal behavior.
  * Read commands never create a lock, cache or journal inside the consumer. */
-class FileTaskLedger(repository: Path) : TaskLedger {
+class FileTaskLedger(repository: Path, private val providers: ProviderRegistry = ProviderRegistry()) : TaskLedger {
     val root: Path = NativeFiles.repositoryRoot(repository)
     private val journal = ".agents/runtime/transaction.json"
     private data class Loaded(val snapshot: LedgerSnapshot, val documents: Map<TaskId, DraftDocument>,
@@ -21,7 +21,7 @@ class FileTaskLedger(repository: Path) : TaskLedger {
         check(!Files.exists(NativeFiles.locate(root, journal))) { "interrupted transaction: run taskctl recover" }
         val files = linkedMapOf<String, String>()
         for (name in listOf(".agents/config.toml", ".agents/policy.toml")) files[name] = Files.readString(NativeFiles.locate(root, name))
-        for (name in listOf("tasks", "roadmaps", "epics", "receipts", "history", "imports", "planning-history")) files += NativeFiles.regularFiles(root, ".agents/$name")
+        for (name in listOf("tasks", "roadmaps", "epics", "receipts", "history", "imports", "planning-history", "profile-history")) files += NativeFiles.regularFiles(root, ".agents/$name")
         check(!Files.exists(NativeFiles.locate(root, journal))) { "concurrent transaction: retry after recovery/completion" }
         return files
     }
@@ -30,10 +30,23 @@ class FileTaskLedger(repository: Path) : TaskLedger {
         val files = contents()
         if (files != contents()) throw RevisionConflict("ledger changed while reading; retry")
         val config = NativeFiles.flatToml(files.getValue(".agents/config.toml"), setOf("contract", "protocol", "repository_id", "profile"))
-        require(config["contract"] == "taskctl.repository/alpha1" && config["protocol"] in setOf("taskctl.native/alpha1", "taskctl.native/alpha2", "taskctl.native/alpha3", "taskctl.native/alpha4")) { "unsupported repository contract; no automatic migration" }
-        require(config["repository_id"]!!.isNotBlank() && config["profile"] == "minimal/alpha1") { "unsupported profile or missing identity" }
+        require(config["contract"] == "taskctl.repository/alpha1" && config["protocol"] in setOf("taskctl.native/alpha1", "taskctl.native/alpha2", "taskctl.native/alpha3", "taskctl.native/alpha4", "taskctl.native/alpha5")) { "unsupported repository contract; no automatic migration" }
+        val profiled = config["protocol"] == "taskctl.native/alpha5"
+        require(config["repository_id"]!!.isNotBlank() && (profiled || config["profile"] == "minimal/alpha1")) { "unsupported profile or missing identity" }
         val policy = NativeFiles.flatToml(files.getValue(".agents/policy.toml"), setOf("contract", "profile"))
         require(policy["contract"] == "taskctl.policy/alpha1" && policy["profile"] == config["profile"]) { "unsupported policy" }
+        val profileFiles = files.filterKeys { it.startsWith(".agents/profile-history/") }
+        val profiles = profileFiles[".agents/profile-history/heads.json"]?.let { source ->
+            require(profileFiles.keys.all { it == ".agents/profile-history/heads.json" || Regex("^\\.agents/profile-history/revisions/[a-f0-9]{64}\\.json$").matches(it) }) { "unknown profile history locator" }
+            val revisions = profileFiles.filterKeys { it.startsWith(".agents/profile-history/revisions/") }.map { (path, content) ->
+                val value = ProfileCodec.decodeRevision(NativeFiles.objectValue(content))
+                require(path == profileRevisionPath(value.id)) { "immutable profile revision digest mismatch" }
+                value.id to value
+            }.toMap()
+            ProfileCodec.decodeHeads(NativeFiles.objectValue(source), revisions)
+        }
+        require(profiled == (profiles != null) && (profiles != null || profileFiles.isEmpty())) { "effective profile history requires native alpha5 and explicit adoption" }
+        profiles?.let { require(config["profile"] == it.profile.digest.value) { "configuration and effective profile identity disagree" } }
         val taskFiles = files.filterKeys { it.startsWith(".agents/tasks/") }.mapValues { DraftDocument.parse(it.value) }
         val roadmapFiles = files.filterKeys { it.startsWith(".agents/roadmaps/") }.mapValues {
             PlanningDocument.parse(it.value).record as? DraftRoadmap ?: error("roadmap kind required")
@@ -47,7 +60,7 @@ class FileTaskLedger(repository: Path) : TaskLedger {
                 require(path == ".agents/imports/${it.manifest.id.value.removePrefix("sha256:")}.json") { "import manifest identity mismatch" }
             }
         }
-        if (config["protocol"] != "taskctl.native/alpha4") require((config["protocol"] == "taskctl.native/alpha3") == imports.isNotEmpty()) { "import evidence requires native alpha3 or alpha4" }
+        if (config["protocol"] !in setOf("taskctl.native/alpha4", "taskctl.native/alpha5")) require((config["protocol"] == "taskctl.native/alpha3") == imports.isNotEmpty()) { "import evidence requires native alpha3 or later" }
         val universe = DraftUniverse(taskFiles.values.map { it.record }, roadmapFiles.values.toList(), epicFiles.values.toList())
         val errors = universe.indexProblems() + DraftLifecycle.evaluate(universe.tasks).problems.filterNot { "required semantic provider unavailable" in it }
         require(errors.isEmpty()) { errors.joinToString("\n") }
@@ -59,7 +72,7 @@ class FileTaskLedger(repository: Path) : TaskLedger {
             }.toMap()
             HistoryCodec.decodeHeads(NativeFiles.objectValue(source), revisions).also { it.validate(universe, receipts, imports) }
         }
-        require(config["protocol"] == "taskctl.native/alpha1" || history != null) { "native alpha2/alpha3/alpha4 requires tracked history" }
+        require(config["protocol"] == "taskctl.native/alpha1" || history != null) { "native alpha2 and later require tracked history" }
         if (history == null) universe.tasks.filter { it.state == "closed" }.forEach { task ->
             require(receipts.any { DraftLifecycle.addresses(it.receipt, task) }) { "closed task lacks evidence for its current contract: ${task.id}" }
         }
@@ -80,10 +93,12 @@ class FileTaskLedger(repository: Path) : TaskLedger {
             }.toMap()
             PlanningHistoryCodec.decodeHeads(NativeFiles.objectValue(source), revisions, assessments)
         }
-        require((config["protocol"] == "taskctl.native/alpha4") == (planning != null)) { "planning history requires native alpha4 and explicit tracking" }
+        if (!profiled) require((config["protocol"] == "taskctl.native/alpha4") == (planning != null)) { "planning history requires native alpha4 or later and explicit tracking" }
         require(planning != null || planningFiles.isEmpty()) { "planning history has no HEAD index" }
         require(planning != null || universe.planningRecords.all { it.protocol == PlanningRecordCodec.PROTOCOL }) { "audited planning records require tracked planning history" }
-        val snapshot = LedgerSnapshot(config.getValue("repository_id"), revision, universe, receipts, history = history, imports = imports, planningHistory = planning)
+        val snapshot = LedgerSnapshot(config.getValue("repository_id"), revision, universe, receipts, history = history, imports = imports, planningHistory = planning, profileHistory = profiles, providers = providers)
+        snapshot.validateProfiles()
+        require(snapshot.structuralProblems().isEmpty()) { snapshot.structuralProblems().joinToString("\n") }
         planning?.validate(snapshot)
         val planningPaths: Map<PlanningId, String> = (roadmapFiles.entries.map { it.value.id to it.key } + epicFiles.entries.map { it.value.id to it.key }).toMap()
         return Loaded(snapshot, taskFiles.values.associateBy { it.record.id }, taskFiles.entries.associate { it.value.record.id to it.key }, planningPaths, files)
@@ -168,6 +183,24 @@ class FileTaskLedger(repository: Path) : TaskLedger {
                 changed += record.id
             }
             is Transition.AssessPlanning -> changed += transition.assessment.planning
+            is Transition.SetProfile -> {
+                val digest = requireNotNull(after.profileHistory).profile.digest.value
+                fun updateConfig(path: String, fields: Set<String>, changes: Map<String, String>) {
+                    val values = NativeFiles.flatToml(before.contents.getValue(path), fields) + changes
+                    writes[path] = fields.joinToString("\n", postfix = "\n") { key -> "$key = ${Json.encode(StringValue(values.getValue(key)))}" }
+                }
+                updateConfig(".agents/config.toml", setOf("contract", "protocol", "repository_id", "profile"), mapOf("protocol" to "taskctl.native/alpha5", "profile" to digest))
+                updateConfig(".agents/policy.toml", setOf("contract", "profile"), mapOf("profile" to digest))
+                changed += before.snapshot.universe.tasks.map { it.id }
+            }
+        }
+        after.profileHistory?.takeIf { it != before.snapshot.profileHistory }?.let { history ->
+            writes[".agents/profile-history/heads.json"] = Json.encode(ProfileCodec.heads(history)) + "\n"
+            history.revisions.filterKeys { it !in before.snapshot.profileHistory?.revisions.orEmpty() }.forEach { (id, value) ->
+                val path = profileRevisionPath(id)
+                require(!Files.exists(NativeFiles.locate(root, path))) { "immutable profile revision already exists" }
+                writes[path] = Json.encode(ProfileCodec.revision(value)) + "\n"
+            }
         }
         after.history?.takeIf { it != before.snapshot.history }?.let { history ->
             writes[".agents/history/heads.json"] = Json.encode(HistoryCodec.heads(history)) + "\n"
@@ -220,7 +253,8 @@ class FileTaskLedger(repository: Path) : TaskLedger {
         // Validate EVERY preimage before writing any file, including on recovery.
         for ((relative, content) in writes) {
             require(Regex("^\\.agents/(tasks|roadmaps|epics|receipts|imports)/[A-Za-z0-9._/-]+$").matches(relative) ||
-                relative in setOf(".agents/config.toml", ".agents/history/heads.json", ".agents/planning-history/heads.json") ||
+                relative in setOf(".agents/config.toml", ".agents/policy.toml", ".agents/history/heads.json", ".agents/planning-history/heads.json", ".agents/profile-history/heads.json") ||
+                Regex("^\\.agents/profile-history/revisions/[a-f0-9]{64}\\.json$").matches(relative) ||
                 Regex("^\\.agents/history/revisions/[a-f0-9]{64}\\.json$").matches(relative) ||
                 Regex("^\\.agents/planning-history/(revisions|assessments)/[a-f0-9]{64}\\.json$").matches(relative)) { "journal path outside writable record roots" }
             val path = NativeFiles.locate(root, relative)
@@ -232,6 +266,7 @@ class FileTaskLedger(repository: Path) : TaskLedger {
     }
 
     private fun historyPath(id: TaskRevisionId): String = ".agents/history/revisions/${id.value.removePrefix("sha256:")}.json"
+    private fun profileRevisionPath(id: ProfileRevisionId): String = ".agents/profile-history/revisions/${id.value.removePrefix("sha256:")}.json"
     private fun planningRevisionPath(id: PlanningRevisionId): String = ".agents/planning-history/revisions/${id.value.removePrefix("sha256:")}.json"
     private fun planningAssessmentPath(id: PlanningAssessmentId): String = ".agents/planning-history/assessments/${id.value.removePrefix("sha256:")}.json"
 

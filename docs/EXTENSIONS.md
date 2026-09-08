@@ -16,7 +16,7 @@ the complete contributed graph and retains transition authority. Environment
 probes are separate explicit operations; deterministic reads never contact a host.
 Provider artifacts and behavior must be pinned when activated by a profile.
 
-This alpha ships the `minimal/alpha1` profile, with no runtime behavioral provider
+The published alpha ships the `minimal/alpha1` profile, with no runtime behavioral provider
 loader. Required unsupported features can be stored and inspected; `doctor`
 lists them explicitly, and frontier/closure fails closed. There is no arbitrary
 project code execution, schema-fetch side effect or placeholder provider that
@@ -25,4 +25,8 @@ ownership and execution providers remain subsequent capability work.
 
 Roadmap and epic concepts are native. Primary-lane policy, concurrency, ownership,
 release gates, host requirements and project-specific annotations remain extensions.
-Group archival/completion evidence still needs a native contract before v1 freezes.
+Development after alpha.2 adds [audited planning](PLANNING-HISTORY.md) and
+[persisted effective profiles](EFFECTIVE-PROFILES.md). The latter binds exact
+provider identities through contracts, revisions and currency, with an explicitly
+injected deterministic registry. It ships no runtime loader or placeholder provider;
+concrete production capabilities and preserving legacy mappings remain separate.

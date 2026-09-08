@@ -19,10 +19,10 @@ service-related choices under the checkpoint's strengthened task prerequisites.
 - [Audited planning history](PLANNING-HISTORY.md) adds explicit roadmap/epic
   amendments, archival and scope-bound assessments through an opt-in storage
   version. Planning changes preserve task contracts and causal edges.
-- Before activating behavioral providers, persist the same effective profile and
-  provider identity for contracts, history and currency. Contributed prerequisites
-  must participate in transitive input observations; deterministic evaluation and
-  environment probes remain separate.
+- [Persisted effective profiles](EFFECTIVE-PROFILES.md) bind contracts, history,
+  currency and contributed input observations to the same exact provider pins.
+  Deterministic evaluation and probes remain separate; concrete production
+  capabilities and preserving legacy mappings remain gated.
 - [Typed evidence time](EVIDENCE-TIME.md) distinguishes validated new occurrence
   values, preserved historical strings and optional storage acceptance metadata.
   Its [closure evidence](proof/evidence-time/README.md) records conformance and parity;

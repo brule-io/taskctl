@@ -12,14 +12,24 @@ internal object LedgerReadModels {
     private const val INTENT_POINTS = 240
 
     private fun protocol(value: LedgerSnapshot) = when {
+        value.profileHistory != null -> "taskctl.native/alpha5"
         value.planningHistory != null -> "taskctl.native/alpha4"
         value.imports.isNotEmpty() -> "taskctl.native/alpha3"
         value.history != null -> "taskctl.native/alpha2"
         else -> "taskctl.native/alpha1"
     }
 
-    private fun unavailable(value: LedgerSnapshot): List<String> = (value.universe.tasks.flatMap { it.requiredExtensions } +
-        value.universe.roadmaps.flatMap { it.requiredExtensions } + value.universe.epics.flatMap { it.requiredExtensions }).distinct().sorted()
+    private fun unavailable(value: LedgerSnapshot): List<String> {
+        val profile = value.profileHistory?.profile
+        val tasks = (value.universe.tasks.flatMap { it.requiredExtensions } + profile?.bindings.orEmpty().keys.map { it.value }).filter { feature ->
+            val id = ExtensionId.parseOrThrow(feature)
+            val pin = profile?.bindings?.get(id)
+            pin == null || value.providers.providers.none { it.feature == id && it.pin == pin }
+        }
+        return (tasks + value.universe.planningRecords.flatMap { it.requiredExtensions }).distinct().sorted()
+    }
+    private fun profileIdentity(value: LedgerSnapshot): String = value.profileHistory?.profile?.digest?.value ?: "minimal/alpha1"
+    private fun resultVersion(value: LedgerSnapshot): String = if (value.profileHistory != null) "alpha3" else if (value.planningHistory != null) "alpha2" else "alpha1"
 
     private fun currencyCounts(currency: Map<TaskId, TaskCurrency>) = ObjectValue(Currency.entries.associate { state ->
         state.name.lowercase() to integer(currency.values.count { it.state == state })
@@ -27,7 +37,7 @@ internal object LedgerReadModels {
 
     private fun ready(value: LedgerSnapshot): Set<TaskId> {
         require(value.dependencyProblems().isEmpty()) { value.dependencyProblems().joinToString("\n") }
-        return if (unavailable(value).isNotEmpty()) emptySet() else value.frontier().tasks.toSet()
+        return if (value.semanticProblems().isNotEmpty()) emptySet() else value.frontier().tasks.toSet()
     }
 
     fun doctor(value: LedgerSnapshot): ObjectValue {
@@ -36,6 +46,9 @@ internal object LedgerReadModels {
         val diagnostics = mutableListOf<Value>()
         if (missing.isNotEmpty()) diagnostics += obj("code" to StringValue("REQUIRED_CAPABILITY_UNAVAILABLE"),
             "severity" to StringValue("error"), "capabilities" to strings(missing))
+        val semanticProblems = value.semanticProblems()
+        if (value.profileHistory != null && semanticProblems.isNotEmpty()) diagnostics += obj("code" to StringValue("EFFECTIVE_SEMANTICS_UNAVAILABLE"),
+            "severity" to StringValue("error"), "problems" to strings(semanticProblems))
         for (state in listOf(Currency.AFFECTED, Currency.UNRESOLVED)) {
             val count = currency.values.count { it.state == state }
             if (count > 0) diagnostics += obj("code" to StringValue("TASK_CURRENCY_${state.name}"),
@@ -51,10 +64,10 @@ internal object LedgerReadModels {
             }
         }
         val result = obj(
-            "contract" to StringValue(if (value.planningHistory == null) "taskctl.doctor/alpha1" else "taskctl.doctor/alpha2"), "repository_id" to StringValue(value.repositoryId),
-            "protocol" to StringValue(protocol(value)), "profile" to StringValue("minimal/alpha1"),
+            "contract" to StringValue("taskctl.doctor/${resultVersion(value)}"), "repository_id" to StringValue(value.repositoryId),
+            "protocol" to StringValue(protocol(value)), "profile" to StringValue(profileIdentity(value)),
             "revision" to StringValue(value.revision.value), "valid" to BooleanValue(true),
-            "health" to StringValue(if (missing.isNotEmpty()) "blocked" else if (diagnostics.isNotEmpty()) "attention" else "ok"),
+            "health" to StringValue(if (semanticProblems.isNotEmpty()) "blocked" else if (diagnostics.isNotEmpty()) "attention" else "ok"),
             "tasks" to integer(value.universe.tasks.size), "roadmaps" to integer(value.universe.roadmaps.size), "epics" to integer(value.universe.epics.size),
             "required_capabilities_unavailable" to strings(missing), "currency" to currencyCounts(currency),
             "diagnostics" to ArrayValue(diagnostics),
@@ -96,7 +109,7 @@ internal object LedgerReadModels {
             "required_capabilities_unavailable" to integer(unavailable(value).size))
         fun projection(items: List<ObjectValue>): ObjectValue = obj(
             "contract" to StringValue("taskctl.context/alpha1"), "repository_display" to repository.encode(),
-            "protocol" to StringValue(protocol(value)), "profile" to StringValue("minimal/alpha1"), "revision" to StringValue(value.revision.value),
+            "protocol" to StringValue(protocol(value)), "profile" to StringValue(profileIdentity(value)), "revision" to StringValue(value.revision.value),
             "counts" to counts, "currency" to currencyCounts(currency),
             "limits" to obj("max_result_utf8_bytes" to integer(CONTEXT_MAX_BYTES), "max_items" to integer(CONTEXT_MAX_ITEMS),
                 "max_identity_utf16_units" to integer(MAX_ID_UNITS), "title_code_points" to integer(TITLE_POINTS), "intent_code_points" to integer(INTENT_POINTS)),
@@ -119,7 +132,7 @@ internal object LedgerReadModels {
                 "title" to StringValue(title.text), "intent" to StringValue(intent.text),
                 "text_truncated" to BooleanValue(title.truncated || intent.truncated),
                 "prerequisite_count" to integer(task.requires.size),
-                "contract" to StringValue(DraftLifecycle.contract(task).value), "head" to optionalString(value.history?.heads?.get(task.id)?.value))
+                "contract" to StringValue(value.effectiveContract(task).value), "head" to optionalString(value.history?.heads?.get(task.id)?.value))
             if (Json.encode(projection(selected + item)).toByteArray(Charsets.UTF_8).size <= CONTEXT_MAX_BYTES) selected += item
         }
         return projection(selected).also { check(Json.encode(it).toByteArray(Charsets.UTF_8).size <= CONTEXT_MAX_BYTES) }
@@ -133,8 +146,8 @@ internal object LedgerReadModels {
         val history = value.history?.let { history -> obj("heads" to HistoryCodec.heads(history),
             "revisions" to ObjectValue(history.revisions.entries.sortedBy { it.key.value }.associate { it.key.value to HistoryCodec.revision(it.value) })) } ?: NullValue
         val result = obj(
-            "contract" to StringValue(if (value.planningHistory == null) "taskctl.snapshot/alpha1" else "taskctl.snapshot/alpha2"), "repository_id" to StringValue(value.repositoryId),
-            "protocol" to StringValue(protocol(value)), "profile" to StringValue("minimal/alpha1"), "revision" to StringValue(value.revision.value),
+            "contract" to StringValue("taskctl.snapshot/${resultVersion(value)}"), "repository_id" to StringValue(value.repositoryId),
+            "protocol" to StringValue(protocol(value)), "profile" to StringValue(profileIdentity(value)), "revision" to StringValue(value.revision.value),
             "records" to obj("tasks" to ArrayValue(value.universe.tasks.sortedBy { it.id }.map(NativeCodec::task)),
                 "roadmaps" to ArrayValue(value.universe.roadmaps.sortedBy { it.id.value }.map(PlanningRecordCodec::encode)),
                 "epics" to ArrayValue(value.universe.epics.sortedBy { it.id.value }.map(PlanningRecordCodec::encode))),
@@ -147,6 +160,7 @@ internal object LedgerReadModels {
             "derived" to obj("frontier" to strings(ready(value).sorted().map { it.value }),
                 "currency" to ArrayValue(currency.values.sortedBy { it.task }.map(HistoryCodec::currency))),
         )
-        return if (value.planningHistory == null) result else ObjectValue(result.fields + ("planning_history" to PlanningReadModels.complete(value)))
+        val planning = if (value.planningHistory == null) result else ObjectValue(result.fields + ("planning_history" to PlanningReadModels.complete(value)))
+        return value.profileHistory?.let { ObjectValue(planning.fields + ("profile_history" to ProfileReadModels.complete(it))) } ?: planning
     }
 }
