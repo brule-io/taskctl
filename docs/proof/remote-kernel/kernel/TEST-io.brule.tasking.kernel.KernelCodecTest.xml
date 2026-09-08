@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.brule.tasking.kernel.KernelCodecTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-08T01:41:10.708Z" hostname="runnervmejwal" time="0.294">
+<testsuite name="io.brule.tasking.kernel.KernelCodecTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-08T02:04:28.505Z" hostname="runnervmejwal" time="0.272">
   <properties/>
-  <testcase name="strict envelopes reject unknown fields noncanonical JSON malformed UTF8 and forged revisions()" classname="io.brule.tasking.kernel.KernelCodecTest" time="0.105"/>
-  <testcase name="effective profiles are refused explicitly and event identities cross validated boundaries()" classname="io.brule.tasking.kernel.KernelCodecTest" time="0.038"/>
-  <testcase name="snapshot and transition envelopes preserve exact typed values and old history()" classname="io.brule.tasking.kernel.KernelCodecTest" time="0.129"/>
+  <testcase name="strict envelopes reject unknown fields noncanonical JSON malformed UTF8 and forged revisions()" classname="io.brule.tasking.kernel.KernelCodecTest" time="0.106"/>
+  <testcase name="effective profiles are refused explicitly and event identities cross validated boundaries()" classname="io.brule.tasking.kernel.KernelCodecTest" time="0.034"/>
+  <testcase name="snapshot and transition envelopes preserve exact typed values and old history()" classname="io.brule.tasking.kernel.KernelCodecTest" time="0.11"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

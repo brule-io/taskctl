@@ -2,123 +2,123 @@
   "classification": "observed-disposable-kernel-ci-not-a-deployment",
   "run": {
     "conclusion": "success",
-    "headSha": "b2f608b718ac5c27a8bc6658002cc5cb1313be50",
+    "headSha": "497a5be693c53a188402627486961c00dd105567",
     "jobs": [
       {
-        "completedAt": "2026-09-08T01:41:31Z",
+        "completedAt": "2026-09-08T02:04:46Z",
         "conclusion": "success",
-        "databaseId": 101909381716,
+        "databaseId": 101913131471,
         "name": "kernel",
-        "startedAt": "2026-09-08T01:39:32Z",
+        "startedAt": "2026-09-08T02:02:52Z",
         "status": "completed",
         "steps": [
           {
-            "completedAt": "2026-09-08T01:39:34Z",
+            "completedAt": "2026-09-08T02:02:54Z",
             "conclusion": "success",
             "name": "Set up job",
             "number": 1,
-            "startedAt": "2026-09-08T01:39:33Z",
+            "startedAt": "2026-09-08T02:02:53Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T01:39:43Z",
+            "completedAt": "2026-09-08T02:03:03Z",
             "conclusion": "success",
             "name": "Initialize containers",
             "number": 2,
-            "startedAt": "2026-09-08T01:39:34Z",
+            "startedAt": "2026-09-08T02:02:54Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T01:39:44Z",
+            "completedAt": "2026-09-08T02:03:04Z",
             "conclusion": "success",
             "name": "Run actions/checkout@v4",
             "number": 3,
-            "startedAt": "2026-09-08T01:39:43Z",
+            "startedAt": "2026-09-08T02:03:03Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T01:39:49Z",
+            "completedAt": "2026-09-08T02:03:09Z",
             "conclusion": "success",
             "name": "Run actions/setup-java@v5",
             "number": 4,
-            "startedAt": "2026-09-08T01:39:44Z",
+            "startedAt": "2026-09-08T02:03:04Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T01:39:49Z",
+            "completedAt": "2026-09-08T02:03:09Z",
             "conclusion": "success",
             "name": "Run actions/setup-python@v5",
             "number": 5,
-            "startedAt": "2026-09-08T01:39:49Z",
+            "startedAt": "2026-09-08T02:03:09Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T01:41:25Z",
+            "completedAt": "2026-09-08T02:04:42Z",
             "conclusion": "success",
             "name": "Exercise the disposable PostgreSQL and loopback HTTP adapters",
             "number": 6,
-            "startedAt": "2026-09-08T01:39:49Z",
+            "startedAt": "2026-09-08T02:03:09Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T01:41:26Z",
+            "completedAt": "2026-09-08T02:04:43Z",
             "conclusion": "success",
             "name": "Run actions/upload-artifact@v4",
             "number": 7,
-            "startedAt": "2026-09-08T01:41:25Z",
+            "startedAt": "2026-09-08T02:04:42Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T01:41:26Z",
+            "completedAt": "2026-09-08T02:04:43Z",
             "conclusion": "success",
             "name": "Post Run actions/setup-python@v5",
             "number": 11,
-            "startedAt": "2026-09-08T01:41:26Z",
+            "startedAt": "2026-09-08T02:04:43Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T01:41:26Z",
+            "completedAt": "2026-09-08T02:04:44Z",
             "conclusion": "success",
             "name": "Post Run actions/setup-java@v5",
             "number": 12,
-            "startedAt": "2026-09-08T01:41:26Z",
+            "startedAt": "2026-09-08T02:04:43Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T01:41:27Z",
+            "completedAt": "2026-09-08T02:04:44Z",
             "conclusion": "success",
             "name": "Post Run actions/checkout@v4",
             "number": 13,
-            "startedAt": "2026-09-08T01:41:26Z",
+            "startedAt": "2026-09-08T02:04:44Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T01:41:27Z",
+            "completedAt": "2026-09-08T02:04:44Z",
             "conclusion": "success",
             "name": "Stop containers",
             "number": 14,
-            "startedAt": "2026-09-08T01:41:27Z",
+            "startedAt": "2026-09-08T02:04:44Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T01:41:27Z",
+            "completedAt": "2026-09-08T02:04:44Z",
             "conclusion": "success",
             "name": "Complete job",
             "number": 15,
-            "startedAt": "2026-09-08T01:41:27Z",
+            "startedAt": "2026-09-08T02:04:44Z",
             "status": "completed"
           }
         ],
-        "url": "https://github.com/brule-io/taskctl/actions/runs/34177378888/job/101909381716"
+        "url": "https://github.com/brule-io/taskctl/actions/runs/34178677097/job/101913131471"
       }
     ],
     "status": "completed",
-    "url": "https://github.com/brule-io/taskctl/actions/runs/34177378888"
+    "url": "https://github.com/brule-io/taskctl/actions/runs/34178677097"
   },
-  "source_checkout": "ed6a7fb114e29a2b6328ab8dcad3f51ea982c306",
+  "source_checkout": "8f766654f75a0bba739cb3dce3cf31ec54ab7ae7",
   "source_parents": [
     "226033f3933a1c29bc9fb76bf95c7e26ddb90a72",
-    "b2f608b718ac5c27a8bc6658002cc5cb1313be50"
+    "497a5be693c53a188402627486961c00dd105567"
   ],
   "tests": [
     "KernelCodecTest.strict envelopes reject unknown fields noncanonical JSON malformed UTF8 and forged revisions()",
@@ -135,14 +135,14 @@
     "KernelIntegrationTest.historical import preserves old assertions without synthesizing receipts or acceptance times()",
     "KernelIntegrationTest.failed event insert rolls the snapshot and sequence back before explicit retry()"
   ],
-  "kernel_jar_sha256": "c8de3471b7f66430357a0c4b57418920dc74834dd5bbfca88d2929bb56279a77",
-  "kernel_jar_bytes": 64355,
+  "kernel_jar_sha256": "e6f5c3a52b98130a482a98b0a34cd0fe9c248dd406e280c1119451e00a6c176c",
+  "kernel_jar_bytes": 64499,
   "artifacts": [
     {
-      "id": 10037747296,
+      "id": 10038156722,
       "name": "kernel-proof",
-      "size_in_bytes": 64425,
-      "digest": "sha256:16d2f36e4ff8e2c0679834ab2012d7fc4aed05ec31de59237fa4b1212ebac670",
+      "size_in_bytes": 64565,
+      "digest": "sha256:72a944fd29a6112ccbf3ba043e35a82466b406ff8ca614291f18bb35bf483611",
       "expired": false
     }
   ]

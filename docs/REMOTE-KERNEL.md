@@ -73,7 +73,10 @@ methods, paths, content types and oversized request bodies have distinct statuse
 Database failure details are not included in HTTP responses.
 Malformed UTF-8 is rejected as a 400 validation error before any mutation. Its
 decoder exception is separated from transport I/O failure; the real HTTP regression
-at source `20930ec` first reproduced the earlier connection-close behavior.
+at source `20930ec16208b3db24420c5e57346510e79c7ad3` first reproduced the earlier
+connection-close behavior. The [completed baseline log](proof/remote-kernel/utf8-regression-red.log)
+records that failed HTTP case; the corrected complete suite is included in closure
+evidence.
 
 This is intentionally bounded: 250,000 UTF-8 bytes per stored snapshot/event/command,
 1,000,000 bytes per HTTP body, and 512 accepted events per experimental ledger.
