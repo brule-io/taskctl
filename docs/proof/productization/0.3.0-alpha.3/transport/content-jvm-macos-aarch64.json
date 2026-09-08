@@ -1,0 +1,13 @@
+{
+  "contract": "taskctl.distribution-content/1",
+  "platform": "macos-aarch64",
+  "implementation": "jvm",
+  "version": "0.3.0-alpha.3",
+  "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+  "archive_sha256": "e6f1c91a54e13a0a2fbe9f76e0b9be7db58bd5eb2768753fe78debff7d1eecbf",
+  "guide_files": 37,
+  "local_links_checked": 99,
+  "source_bound_links": 70,
+  "experimental_dependencies_excluded": true,
+  "native_v1": "not-frozen"
+}

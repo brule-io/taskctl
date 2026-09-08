@@ -1,0 +1,503 @@
+{
+  "contract": "taskctl.selfhost-proof/1",
+  "platform": "macos-aarch64",
+  "implementation": "native",
+  "version": "0.3.0-alpha.3",
+  "artifact_sha256": "adfba8a50daecc9e7c7d65fa2f6c5c3645e55ad54053d1db79fbbbdf5454f2fe",
+  "repository_id": "brule-io.taskctl",
+  "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+  "read_only": true,
+  "ledger_revision": "sha256:e4c0bc9a6bbfdf3a86da3f702294cb9ad0edb51b6a9708ca02eaf3a4bb979172",
+  "commands": {
+    "doctor": {
+      "contract": "taskctl.doctor/alpha1",
+      "repository_id": "brule-io.taskctl",
+      "protocol": "taskctl.native/alpha2",
+      "profile": "minimal/alpha1",
+      "revision": "sha256:e4c0bc9a6bbfdf3a86da3f702294cb9ad0edb51b6a9708ca02eaf3a4bb979172",
+      "valid": true,
+      "health": "ok",
+      "tasks": 35,
+      "roadmaps": 7,
+      "epics": 2,
+      "required_capabilities_unavailable": [],
+      "currency": {
+        "current": 35,
+        "affected": 0,
+        "unresolved": 0
+      },
+      "diagnostics": []
+    },
+    "context": {
+      "contract": "taskctl.context/alpha1",
+      "repository_display": {
+        "text": "brule-io.taskctl",
+        "truncated": false
+      },
+      "protocol": "taskctl.native/alpha2",
+      "profile": "minimal/alpha1",
+      "revision": "sha256:e4c0bc9a6bbfdf3a86da3f702294cb9ad0edb51b6a9708ca02eaf3a4bb979172",
+      "counts": {
+        "tasks": 35,
+        "roadmaps": 7,
+        "epics": 2,
+        "closed": 32,
+        "ready": 1,
+        "needs_review": 0,
+        "waiting": 2,
+        "required_capabilities_unavailable": 0
+      },
+      "currency": {
+        "current": 35,
+        "affected": 0,
+        "unresolved": 0
+      },
+      "limits": {
+        "max_result_utf8_bytes": 32768,
+        "max_items": 12,
+        "max_identity_utf16_units": 512,
+        "title_code_points": 160,
+        "intent_code_points": 240
+      },
+      "work": [
+        {
+          "id": "TASK.release.0.3.0-alpha.3",
+          "category": "ready",
+          "lifecycle": "open",
+          "currency": "current",
+          "title": "Publish the post-checkpoint alpha.3 distributions",
+          "intent": "Expose the proved corrections as a new immutable native/JVM consumer release with accurate compatibility notes.",
+          "text_truncated": false,
+          "prerequisite_count": 1,
+          "contract": "sha256:790b38122f9c743a8d086ff1b5772d66dd8eed22a3d46f4a79fe8a70ae80a52d",
+          "head": "sha256:6409cf7aed7d95c1bde7bf28d6adbf5be839b2acdca450299d4bc9f484874bd3"
+        },
+        {
+          "id": "TASK.distribution.rpm-alpha.3",
+          "category": "waiting",
+          "lifecycle": "open",
+          "currency": "current",
+          "title": "Package the canonical alpha.3 Linux artifact for Fedora",
+          "intent": "Offer an optional Fedora RPM of the parity-proven Linux native release without rebuilding its implementation.",
+          "text_truncated": false,
+          "prerequisite_count": 1,
+          "contract": "sha256:3f4c5a106a5244cba71c8b71b7d882c99eca733b2e6bf040a8de8bc28886d00e",
+          "head": "sha256:a88b3d56423f7a3741b4a7e5676f9e74a12aa34d576e9b4ef4b59940190b1c01"
+        },
+        {
+          "id": "TASK.release.0.3.0-alpha.3-acceptance",
+          "category": "waiting",
+          "lifecycle": "open",
+          "currency": "current",
+          "title": "Dogfood the published alpha.3 pin",
+          "intent": "Accept the new public release through the producer pin and a source-free disposable consumer.",
+          "text_truncated": false,
+          "prerequisite_count": 1,
+          "contract": "sha256:703a23f798998b221939b04aca1d52fd9633746ccac96cfc3440b8d2bfb03689",
+          "head": "sha256:f9c2c9b7b848f520a42ee56aed79969553967b0594de34fafea713ef50f176a8"
+        }
+      ],
+      "omitted_items": 0,
+      "omitted_overlong_identities": 0,
+      "truncated": false,
+      "complete_ledger": false,
+      "follow_up": [
+        "frontier --format json",
+        "affected --format json",
+        "show TASK --format json",
+        "doctor --format json",
+        "snapshot --format json"
+      ],
+      "instructions": "Read AGENTS.md. This is a bounded briefing; use show for a full record and snapshot for complete typed state. Presentation order grants no priority or execution authority. Mutations require the inspected revision."
+    },
+    "frontier": {
+      "revision": "sha256:e4c0bc9a6bbfdf3a86da3f702294cb9ad0edb51b6a9708ca02eaf3a4bb979172",
+      "tasks": [
+        "TASK.release.0.3.0-alpha.3"
+      ]
+    },
+    "status": {
+      "revision": "sha256:e4c0bc9a6bbfdf3a86da3f702294cb9ad0edb51b6a9708ca02eaf3a4bb979172",
+      "tasks": [
+        {
+          "task": "TASK.bootstrap.adopt",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.distribution.license",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.distribution.parity",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.distribution.rpm",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.distribution.rpm-alpha.3",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.document.fences",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.migration.brule",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.migration.daemon-descendants",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.migration.daemon-meta",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.migration.divergent",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.migration.dropzone",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.migration.fantastikt",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.migration.loom",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.product.consumer-ownership",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.protocol.assertion-boundary",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.protocol.checkpoint",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.protocol.evidence-time",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.protocol.idl",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.protocol.planning-history",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.protocol.provider-profile",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.protocol.read-models",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.protocol.v1-candidate",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.protocol.v1-spec-candidate",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.protocol.value-boundary",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.release.0.3.0-alpha.3",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.release.0.3.0-alpha.3-acceptance",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "open"
+        },
+        {
+          "task": "TASK.release.alpha3",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.release.dogfood",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.release.public",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.remote.kernel",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.research.abstract-machine",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.semantic.contract",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.semantic.currency",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.semantic.history",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        },
+        {
+          "task": "TASK.semantic.reconcile",
+          "currency": "current",
+          "causes": [],
+          "lifecycle": "closed"
+        }
+      ]
+    },
+    "roadmap": {
+      "revision": "sha256:e4c0bc9a6bbfdf3a86da3f702294cb9ad0edb51b6a9708ca02eaf3a4bb979172",
+      "records": [
+        {
+          "kind": "roadmap",
+          "id": "ROADMAP.alpha3-candidate",
+          "intent": "Turn the completed protocol assessment into a reviewable boundary and an independently accepted consumer release.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "Candidate specification and alpha.3 delivery",
+          "tasks": [
+            "TASK.protocol.v1-spec-candidate",
+            "TASK.release.0.3.0-alpha.3",
+            "TASK.release.0.3.0-alpha.3-acceptance",
+            "TASK.distribution.rpm-alpha.3"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        },
+        {
+          "kind": "roadmap",
+          "id": "ROADMAP.delivery",
+          "intent": "Ship usable pinned artifacts and operate taskctl through its own graph.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "Tool delivery and dogfood",
+          "tasks": [
+            "TASK.bootstrap.adopt",
+            "TASK.distribution.license",
+            "TASK.distribution.parity",
+            "TASK.release.alpha3",
+            "TASK.distribution.rpm",
+            "TASK.release.dogfood"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        },
+        {
+          "kind": "roadmap",
+          "id": "ROADMAP.migrations",
+          "intent": "Exercise real legacy graphs in the authorized order.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "Migration pressure tests",
+          "tasks": [
+            "TASK.migration.fantastikt",
+            "TASK.migration.brule",
+            "TASK.migration.divergent",
+            "TASK.migration.loom",
+            "TASK.migration.dropzone",
+            "TASK.migration.daemon-descendants",
+            "TASK.migration.daemon-meta"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        },
+        {
+          "kind": "roadmap",
+          "id": "ROADMAP.pre-v1-corrections",
+          "intent": "Resolve the explicit checkpoint findings through versioned and tested native contracts.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "Pre-v1 semantic corrections",
+          "tasks": [
+            "TASK.protocol.read-models",
+            "TASK.protocol.planning-history",
+            "TASK.protocol.provider-profile",
+            "TASK.protocol.evidence-time"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        },
+        {
+          "kind": "roadmap",
+          "id": "ROADMAP.protocol.stability",
+          "intent": "Resolve demonstrated value and input-boundary defects before assessing protocol stability.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "Protocol value stability",
+          "tasks": [
+            "TASK.protocol.value-boundary",
+            "TASK.protocol.v1-candidate"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        },
+        {
+          "kind": "roadmap",
+          "id": "ROADMAP.remote",
+          "intent": "After the checkpoint, test the storage seam and one IDL projection.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "Remote contract pressure tests",
+          "tasks": [
+            "TASK.remote.kernel",
+            "TASK.protocol.idl"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        },
+        {
+          "kind": "roadmap",
+          "id": "ROADMAP.semantics",
+          "intent": "Harden typed task contracts, currency and document boundaries.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "Protocol semantics",
+          "tasks": [
+            "TASK.semantic.contract",
+            "TASK.semantic.history",
+            "TASK.semantic.currency",
+            "TASK.semantic.reconcile",
+            "TASK.document.fences",
+            "TASK.protocol.checkpoint",
+            "TASK.protocol.v1-candidate"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        }
+      ]
+    },
+    "epic": {
+      "revision": "sha256:e4c0bc9a6bbfdf3a86da3f702294cb9ad0edb51b6a9708ca02eaf3a4bb979172",
+      "records": [
+        {
+          "kind": "epic",
+          "id": "EPIC.alpha3",
+          "scope": "Complete M1-M4 without broad migration or service implementation.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "0.3 semantic hardening and self-hosting",
+          "tasks": [
+            "TASK.semantic.contract",
+            "TASK.semantic.history",
+            "TASK.semantic.currency",
+            "TASK.semantic.reconcile",
+            "TASK.document.fences",
+            "TASK.bootstrap.adopt",
+            "TASK.distribution.license",
+            "TASK.distribution.parity",
+            "TASK.release.alpha3",
+            "TASK.distribution.rpm",
+            "TASK.release.dogfood"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        },
+        {
+          "kind": "epic",
+          "id": "EPIC.native-v1",
+          "scope": "Validate native semantics through migration, storage and interoperability pressure before freezing.",
+          "protocol": "tasking/planning-draft-1",
+          "title": "A protocol proven across entry paths",
+          "tasks": [
+            "TASK.migration.fantastikt",
+            "TASK.migration.brule",
+            "TASK.migration.divergent",
+            "TASK.protocol.checkpoint",
+            "TASK.migration.loom",
+            "TASK.migration.dropzone",
+            "TASK.migration.daemon-descendants",
+            "TASK.migration.daemon-meta",
+            "TASK.remote.kernel",
+            "TASK.protocol.idl",
+            "TASK.protocol.v1-candidate"
+          ],
+          "required_extensions": [],
+          "extensions": {}
+        }
+      ]
+    },
+    "affected": {
+      "revision": "sha256:e4c0bc9a6bbfdf3a86da3f702294cb9ad0edb51b6a9708ca02eaf3a4bb979172",
+      "tasks": []
+    }
+  },
+  "inventory_sha256": "abed27fb73ac5d8bdeee7c7f536d5fab6ab238702e8b866f474715a9d2137496"
+}

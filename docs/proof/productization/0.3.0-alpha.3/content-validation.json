@@ -1,0 +1,108 @@
+{
+  "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+  "run": "34190359911",
+  "content": [
+    {
+      "path": "ci/content-native-windows-x86_64.json",
+      "sha256": "e1f1ebf132a764b613586ebe1e9e2d9254567696e4c504a7fe8d0caff1780f37",
+      "observation": {
+        "contract": "taskctl.distribution-content/1",
+        "platform": "windows-x86_64",
+        "implementation": "native",
+        "version": "0.3.0-alpha.3",
+        "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+        "archive_sha256": "c783d5633d624b0018e6654f8a6f891200dc805a77c305b9b2e7d7681ccce8b7",
+        "guide_files": 37,
+        "local_links_checked": 99,
+        "source_bound_links": 70,
+        "experimental_dependencies_excluded": true,
+        "native_v1": "not-frozen"
+      }
+    },
+    {
+      "path": "ci/content-jvm-windows-x86_64.json",
+      "sha256": "a64793422b96b178cc8ca7b07ffadde9e0dfa1accf546ddd530c8caaabe7bcab",
+      "observation": {
+        "contract": "taskctl.distribution-content/1",
+        "platform": "windows-x86_64",
+        "implementation": "jvm",
+        "version": "0.3.0-alpha.3",
+        "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+        "archive_sha256": "888a1b4f5ed6bc41576cbec0414efd4b104b48f0fb398e883e0d7d2616acf7f6",
+        "guide_files": 37,
+        "local_links_checked": 99,
+        "source_bound_links": 70,
+        "experimental_dependencies_excluded": true,
+        "native_v1": "not-frozen"
+      }
+    },
+    {
+      "path": "ci/content-native-linux-x86_64.json",
+      "sha256": "d816626d4634f7d613d36a46e4823a809e06697ef6fa8c02c260e6ef55979500",
+      "observation": {
+        "contract": "taskctl.distribution-content/1",
+        "platform": "linux-x86_64",
+        "implementation": "native",
+        "version": "0.3.0-alpha.3",
+        "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+        "archive_sha256": "7893fccabdf9688ba53fb2e694a361bdfad36e64b880cf5c733b5b13dce874e7",
+        "guide_files": 37,
+        "local_links_checked": 99,
+        "source_bound_links": 70,
+        "experimental_dependencies_excluded": true,
+        "native_v1": "not-frozen"
+      }
+    },
+    {
+      "path": "ci/content-jvm-linux-x86_64.json",
+      "sha256": "6458245f5a0409a1fc047bead8d58fb21a6f5f94a36fa32b58915185a4e9e9cf",
+      "observation": {
+        "contract": "taskctl.distribution-content/1",
+        "platform": "linux-x86_64",
+        "implementation": "jvm",
+        "version": "0.3.0-alpha.3",
+        "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+        "archive_sha256": "ee3d7c7a43d8aaf840117663b71c5a2d1bf9b384b5509c44733531650417c91a",
+        "guide_files": 37,
+        "local_links_checked": 99,
+        "source_bound_links": 70,
+        "experimental_dependencies_excluded": true,
+        "native_v1": "not-frozen"
+      }
+    },
+    {
+      "path": "ci/content-native-macos-aarch64.json",
+      "sha256": "77b7a954feed348be2ea5a8caa140c13554980bafb7eacf2c709f12fd1487eb0",
+      "observation": {
+        "contract": "taskctl.distribution-content/1",
+        "platform": "macos-aarch64",
+        "implementation": "native",
+        "version": "0.3.0-alpha.3",
+        "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+        "archive_sha256": "adfba8a50daecc9e7c7d65fa2f6c5c3645e55ad54053d1db79fbbbdf5454f2fe",
+        "guide_files": 37,
+        "local_links_checked": 99,
+        "source_bound_links": 70,
+        "experimental_dependencies_excluded": true,
+        "native_v1": "not-frozen"
+      }
+    },
+    {
+      "path": "ci/content-jvm-macos-aarch64.json",
+      "sha256": "38685d62e126a22c5e18f975b4807b6a7805a9fd1b30670f67d2cd0ce465e9df",
+      "observation": {
+        "contract": "taskctl.distribution-content/1",
+        "platform": "macos-aarch64",
+        "implementation": "jvm",
+        "version": "0.3.0-alpha.3",
+        "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+        "archive_sha256": "e6f1c91a54e13a0a2fbe9f76e0b9be7db58bd5eb2768753fe78debff7d1eecbf",
+        "guide_files": 37,
+        "local_links_checked": 99,
+        "source_bound_links": 70,
+        "experimental_dependencies_excluded": true,
+        "native_v1": "not-frozen"
+      }
+    }
+  ]
+}
