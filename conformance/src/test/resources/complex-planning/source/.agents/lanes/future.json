@@ -1,0 +1,11 @@
+{
+  "dialect": "specimen.planning/1",
+  "kind": "lane",
+  "id": "future",
+  "status": "open",
+  "members": [],
+  "scope": "Reserve a durable line for future work.",
+  "annotations": {
+    "notes": "Legacy planning status is narrative, not native scope acceptance."
+  }
+}

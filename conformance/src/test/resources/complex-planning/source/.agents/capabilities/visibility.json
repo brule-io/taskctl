@@ -1,0 +1,15 @@
+{
+  "dialect": "specimen.planning/1",
+  "kind": "capability",
+  "id": "visibility",
+  "status": "done",
+  "members": [
+    "W-01",
+    "W-2",
+    "W-4"
+  ],
+  "scope": "An observable fulfilment capability.",
+  "annotations": {
+    "notes": "Legacy planning status is narrative, not native scope acceptance."
+  }
+}

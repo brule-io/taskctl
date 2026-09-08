@@ -1,0 +1,22 @@
+{
+  "dialect": "specimen.planning/1",
+  "kind": "work",
+  "id": "W-3",
+  "status": "open",
+  "after": [
+    "W-2"
+  ],
+  "intent": "Expose fulfilment to a client.",
+  "requirements": [
+    "Keep the result durable and reviewable."
+  ],
+  "checks": [
+    {
+      "done": false,
+      "text": "The bounded result has been observed."
+    }
+  ],
+  "annotations": {
+    "notes": "Fictional legacy state; no native receipt exists."
+  }
+}

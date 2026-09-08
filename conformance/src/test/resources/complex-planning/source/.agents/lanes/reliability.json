@@ -1,0 +1,16 @@
+{
+  "dialect": "specimen.planning/1",
+  "kind": "lane",
+  "id": "reliability",
+  "status": "done",
+  "members": [
+    "W-01",
+    "W-4",
+    "W-2",
+    "W-5"
+  ],
+  "scope": "Advance restart visibility and recovery.",
+  "annotations": {
+    "notes": "Legacy planning status is narrative, not native scope acceptance."
+  }
+}
