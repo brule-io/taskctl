@@ -36,7 +36,7 @@ class AssertionInputBoundaryTest {
         assertFails { LedgerTransitions.evolve(snapshot, transition) }
         assertFails { ledger.plan(snapshot.revision, transition) }
         assertFails { ledger.apply(snapshot.revision, transition) }
-        assertEquals(before, image(ledger.root)); assertEquals(snapshot, FileTaskLedger(ledger.root).snapshot())
+        assertEquals(before, image(ledger.root)); assertEquals(snapshot, FileTaskLedger(ledger.root, snapshot.providers).snapshot())
     }
     private fun criteria(ledger: FileTaskLedger): DraftRoadmap {
         val value = roadmap.copy(protocol = PlanningRecordCodec.AUDITED_PROTOCOL, acceptance = listOf("Observed criterion"))
@@ -91,7 +91,7 @@ class AssertionInputBoundaryTest {
     }
     @Test fun `valid historical receipts and typed planning profile assertions remain reconstructable after caller edits`() {
         val ledger = tracked(); val record = criteria(ledger)
-        val oldTime = LegacyRecordedAt("legacy narrative time without a calendar")
+        val oldTime = LegacyRecordedAt.parseOrThrow("legacy narrative time without a calendar")
         val receipt = ClosureEvidence(Receipt(task.id, DraftLifecycle.contract(task), mapOf("test" to "Observed")), "reviewer", oldTime)
         ledger.apply(ledger.snapshot().revision, Transition.CloseTask(receipt))
         val auditMap = mutableMapOf("test" to "Observed"); val audit = planningAudit(auditMap)
