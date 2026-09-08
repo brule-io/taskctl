@@ -19,40 +19,45 @@ object HistoryCodec {
             value.nullableText("revision")?.let(TaskRevisionId::parseOrThrow), value.nullableText("inputs")?.let(InputDigest::parseOrThrow))
     }
     fun review(value: Reconciliation): ObjectValue = obj(
-        "protocol" to StringValue(value.time.version.protocol("taskctl.reconciliation/1", "taskctl.reconciliation/2")), "classification" to StringValue("actor-assertion"),
+        "protocol" to StringValue(if (value.profile != null) "taskctl.reconciliation/3" else value.time.version.protocol("taskctl.reconciliation/1", "taskctl.reconciliation/2")), "classification" to StringValue("actor-assertion"),
         "task" to StringValue(value.task.value), "reviewed_head" to StringValue(value.reviewedHead.value),
         "outcome" to StringValue(value.outcome.name.lowercase()), "observations" to ArrayValue(value.observations.sortedBy { it.upstream }.map(::dependency)),
         "actor" to StringValue(value.actor), value.time.version.field to StringValue(value.time.value),
         "rationale" to StringValue(value.rationale), "evidence" to stringMap(value.evidence), "successor" to optionalString(value.successor?.value),
-    )
+    ).let { if (value.profile == null) it else ObjectValue(it.fields + ("profile" to StringValue(value.profile.value))) }
     fun decodeReview(value: ObjectValue): Reconciliation {
-        val time = AssertionTimeVersion.select(value.requiredString("protocol"), "taskctl.reconciliation/1", "taskctl.reconciliation/2")
-        value.exact("protocol", "classification", "task", "reviewed_head", "outcome", "observations", "actor", time.field, "rationale", "evidence", "successor")
+        val profiled = value.requiredString("protocol") == "taskctl.reconciliation/3"
+        val time = if (profiled) AssertionTimeVersion.OCCURRENCE else AssertionTimeVersion.select(value.requiredString("protocol"), "taskctl.reconciliation/1", "taskctl.reconciliation/2")
+        val fields = listOf("protocol", "classification", "task", "reviewed_head", "outcome", "observations", "actor", time.field, "rationale", "evidence", "successor")
+        value.exact(*(fields + if (profiled) listOf("profile") else emptyList()).toTypedArray())
         require(value.requiredString("classification") == "actor-assertion") { "unsupported reconciliation" }
         return Reconciliation(TaskId.parseOrThrow(value.requiredString("task")), TaskRevisionId.parseOrThrow(value.requiredString("reviewed_head")),
             ReviewOutcome.entries.singleOrNull { it.name.lowercase() == value.requiredString("outcome") } ?: error("unknown reconciliation outcome"),
             value.requiredArray("observations").map { decodeDependency(it as? ObjectValue ?: error("observation object required")) },
             value.requiredString("actor"), time.decode(value), value.requiredString("rationale"),
             value.objectAt("evidence").fields.mapValues { (it.value as? StringValue)?.value ?: error("evidence string required") },
-            value.nullableText("successor")?.let(TaskId::parseOrThrow))
+            value.nullableText("successor")?.let(TaskId::parseOrThrow), if (profiled) ProfileDigest.parseOrThrow(value.requiredString("profile")) else null)
     }
     fun revision(value: TaskRevision): ObjectValue = obj(
-        "protocol" to StringValue(if (value.importedFrom == null) "taskctl.task-revision/1" else "taskctl.task-revision/2"), "parent" to optionalString(value.parent?.value),
-        "record" to NativeCodec.task(value.record), "contract" to StringValue(DraftLifecycle.contract(value.record).value),
+        "protocol" to StringValue(value.protocol), "parent" to optionalString(value.parent?.value),
+        "record" to NativeCodec.task(value.record), "contract" to StringValue(value.contract.value),
         "dependencies" to ArrayValue(value.dependencies.sortedBy { it.upstream }.map(::dependency)),
         "review" to (value.review?.let(::review) ?: NullValue),
-    ).let { if (value.importedFrom == null) it else ObjectValue(it.fields + ("imported_from" to StringValue(value.importedFrom.value))) }
+    ).let { if (value.semantics != null) ObjectValue(it.fields + mapOf("imported_from" to optionalString(value.importedFrom?.value), "semantics" to ProfileCodec.semantics(value.semantics)))
+        else if (value.importedFrom == null) it else ObjectValue(it.fields + ("imported_from" to StringValue(value.importedFrom.value))) }
     fun decodeRevision(value: ObjectValue): TaskRevision {
         val imported = when (value.requiredString("protocol")) {
             "taskctl.task-revision/1" -> { value.exact("protocol", "parent", "record", "contract", "dependencies", "review"); null }
             "taskctl.task-revision/2" -> { value.exact("protocol", "parent", "record", "contract", "dependencies", "review", "imported_from"); ImportId.parseOrThrow(value.requiredString("imported_from")) }
+            "taskctl.task-revision/3" -> { value.exact("protocol", "parent", "record", "contract", "dependencies", "review", "imported_from", "semantics"); value.nullableText("imported_from")?.let(ImportId::parseOrThrow) }
             else -> error("unsupported task revision")
         }
         val record = DraftDocument.parse(Json.encode(value.objectAt("record"))).record
-        require(DraftLifecycle.contract(record).value == value.requiredString("contract")) { "revision contract digest mismatch" }
+        val semantics = if (value.requiredString("protocol") == "taskctl.task-revision/3") ProfileCodec.decodeSemantics(value.objectAt("semantics")) else null
+        require(effectiveContract(record, semantics?.profile).value == value.requiredString("contract")) { "revision contract digest mismatch" }
         return TaskRevision(value.nullableText("parent")?.let(TaskRevisionId::parseOrThrow), record,
             value.requiredArray("dependencies").map { decodeDependency(it as? ObjectValue ?: error("dependency object required")) },
-            if (value.fields["review"] == NullValue) null else decodeReview(value.objectAt("review")), imported)
+            if (value.fields["review"] == NullValue) null else decodeReview(value.objectAt("review")), imported, semantics)
     }
     fun heads(value: TaskHistory): ObjectValue = obj(
         "protocol" to StringValue("taskctl.history/1"), "origin_ledger_revision" to StringValue(value.origin.value),

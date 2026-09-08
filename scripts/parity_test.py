@@ -191,6 +191,9 @@ def main():
                 task=plan['task'],reviewed_head=plan['reviewed_head'],observations=plan['observations'],outcome=outcome,
                 actor='parity-test',recorded_at='2026-09-06T00:00:00Z',rationale='Reviewed against current inputs.',
                 evidence={'integration':'Explicit caller revalidation assertion.'} if evidence_data is None else evidence_data,successor=None)
+            if 'profile' in plan:
+                value=occurrence(value)|dict(protocol='taskctl.reconciliation/3',profile=plan['profile'])
+                return write('review.json',value)
             return write('review.json',occurrence(value) if typed_time else value)
         review=review_file(plan,typed_time=True)
         valid_review=json.loads(review.read_text(encoding='utf-8'))
@@ -316,6 +319,86 @@ def main():
         planning_path.write_bytes(altered.read_bytes())
         json_pair('unrecorded planning edit is detected',['doctor'],code=2)
         restore(stable)
+        # A separate opt-in specimen exercises profile storage and refusal paths.
+        # Real contributed behavior is injected only by the shared core/file corpus;
+        # the CLI has no arbitrary provider loader or fictional approval provider.
+        profile_baseline=capture()
+        old_profile_tasks=task_image()
+        original_profile=json_pair('legacy profile inspection',['profile','show'])['result']
+        assert original_profile['head'] is None and not original_profile['tracked']
+        empty_profile=dict(protocol='taskctl.effective-profile/1',identity='test.empty/v1',bindings={})
+        profile_audit=audit|dict(protocol='taskctl.profile-audit/1')
+        profile_change=dict(protocol='taskctl.profile-change/1',reviewed_head=None,profile=empty_profile,audit=profile_audit)
+        profile_file=write('profile-change.json',profile_change|dict(audit=profile_audit|dict(accepted_at='2026-09-07T23:16:00Z')))
+        selecting=['profile','set','--file',profile_file,'--expect-revision',original_profile['revision']]
+        json_pair('profile audit cannot assert acceptance time',selecting,code=2)
+        write('profile-change.json',profile_change)
+        profile_plan=json_pair('effective profile bounded write plan',[*selecting,'--plan'])['result']
+        assert len(profile_plan['writes'])==4
+        assert all(item['path'] in ('.agents/config.toml','.agents/policy.toml') or item['path'].startswith('.agents/profile-history/') for item in profile_plan['writes'])
+        json_pair('explicit effective profile adoption',selecting,mutation=True)
+        json_pair('profile adoption stale CAS',selecting,code=4)
+        assert task_image()==old_profile_tasks
+        profiled=json_pair('cold effective profile',['profile','show'])['result']
+        assert profiled['tracked'] and profiled['profile']==empty_profile and not profiled['semantic_problems']
+        profile_doctor=json_pair('profile adoption diagnostic version',['doctor'])['result']
+        assert profile_doctor['contract']=='taskctl.doctor/alpha3' and profile_doctor['protocol']=='taskctl.native/alpha5'
+        assert profile_doctor['profile']==profiled['profile_digest'] and profile_doctor['currency']['affected']>0
+        profile_context=json_pair('profile bound context',['context'])['result']
+        assert profile_context['profile']==profiled['profile_digest'] and profile_context['counts']['ready']==0
+        profiled_snapshot=json_pair('complete effective profile snapshot',['snapshot'])['result']
+        assert profiled_snapshot['contract']=='taskctl.snapshot/alpha3' and 'profile_history' in profiled_snapshot
+        assert 'planning_history' in profiled_snapshot
+        assert not json_pair('profile drift is not implicit approval',['frontier'])['result']['tasks']
+        # Review in the authored DAG order; this empty profile contributes no edges.
+        pending={record['id']:record for record in profiled_snapshot['records']['tasks']}
+        while pending:
+            ready=[record for record in pending.values() if all(dep not in pending for dep in record['requires'])]
+            assert ready,'profile review fixture cycle'
+            for record in sorted(ready,key=lambda item:item['id']):
+                plan=json_pair('profile exact review inputs '+record['id'],['reconcile',record['id'],'--plan'])['result']
+                assert plan['profile']==profiled['profile_digest']
+                review=review_file(plan,evidence_data={key:'Explicit current profile review' for key in plan['required_evidence']} or {'review':'Explicit review'})
+                valid_profile_review=json.loads(review.read_text(encoding='utf-8'))
+                if record['id']=='TASK.api':
+                    write('review.json',{key:value for key,value in valid_profile_review.items() if key!='profile'}|dict(protocol='taskctl.reconciliation/2'))
+                    json_pair('legacy review cannot approve effective profile',['reconcile',record['id'],'--file',review,'--expect-revision',plan['revision']],code=2)
+                    write('review.json',valid_profile_review|dict(profile='sha256:'+'0'*64))
+                    json_pair('review must bind exact effective profile',['reconcile',record['id'],'--file',review,'--expect-revision',plan['revision']],code=2)
+                    write('review.json',valid_profile_review)
+                json_pair('explicit profiled review '+record['id'],['reconcile',record['id'],'--file',review,'--expect-revision',plan['revision']],mutation=True)
+                json_pair('profiled review stale CAS '+record['id'],['reconcile',record['id'],'--file',review,'--expect-revision',plan['revision']],code=4)
+                del pending[record['id']]
+        assert not json_pair('profile inputs current after explicit reviews',['affected'])['result']['tasks']
+        modern_history=json_pair('profile revision history reconstruction',['history','TASK.api'])['result']
+        assert modern_history['revisions'][0]['value']['protocol']=='taskctl.task-revision/3'
+        assert any(item['value']['protocol']=='taskctl.task-revision/1' for item in modern_history['revisions'])
+        metrics=json_pair('effective closure contract',['show','TASK.metrics'])['result']
+        profile_receipt=write('profile-receipt.json',modern|dict(task=metrics['id'],contract=metrics['contract_digest']))
+        json_pair('verify exact effective closure',['verify',metrics['id'],'--receipt',profile_receipt])
+        json_pair('close under effective profile',['close',metrics['id'],'--receipt',profile_receipt,'--expect-revision',metrics['revision']],mutation=True)
+        known=json_pair('profile head before capability drift',['profile','show'])['result']
+        unknown_profile=empty_profile|dict(bindings={'test.execution/v1':dict(provider='test.executor/v1',version='1.0.0',digest='sha256:'+'e'*64)})
+        write('profile-change.json',profile_change|dict(reviewed_head=known['head'],profile=unknown_profile))
+        json_pair('persist unavailable exact provider pin',['profile','set','--file',profile_file,'--expect-revision',known['revision']],mutation=True)
+        unknown=json_pair('missing exact provider is inspectable',['profile','history'])['result']
+        assert len(unknown['history']['revisions'])==2 and unknown['semantic_problems']
+        blocked=json_pair('missing effective provider diagnostics',['doctor'])['result']
+        assert blocked['health']=='blocked' and blocked['currency']['unresolved']==blocked['tasks']
+        assert blocked['required_capabilities_unavailable']==['test.execution/v1']
+        json_pair('missing pinned provider denies frontier',['frontier'],code=3)
+        blocked_plan=json_pair('missing provider inputs are explicitly unknown',['reconcile','TASK.rev.b','--plan'])['result']
+        assert blocked_plan['observations'] and all(item['inputs'] is None for item in blocked_plan['observations'])
+        blocked_review=review_file(blocked_plan)
+        json_pair('missing pinned provider denies revalidation',['reconcile','TASK.rev.b','--file',blocked_review,'--expect-revision',blocked_plan['revision']],code=3)
+        write('profile-change.json',profile_change|dict(reviewed_head=known['head']))
+        json_pair('stale profile head fails with fresh ledger CAS',['profile','set','--file',profile_file,'--expect-revision',unknown['revision']],code=2)
+        write('profile-change.json',profile_change|dict(reviewed_head=unknown['head']))
+        json_pair('restore exact previously reviewed semantic profile',['profile','set','--file',profile_file,'--expect-revision',unknown['revision']],mutation=True)
+        restored_profile=json_pair('complete profile history after explicit restoration',['profile','history'])['result']
+        assert len(restored_profile['history']['revisions'])==3 and restored_profile['profile_digest']==profiled['profile_digest']
+        assert not json_pair('equivalent reviewed profile inputs remain current',['affected'])['result']['tasks']
+        restore(profile_baseline)
         current=json_pair('revision doctor after reconciliations',['doctor'])['result']
         bad=write('dangling.json',dict(contract='taskctl.seed/alpha1',tasks=[a|dict(id='TASK.dangling',requires=['TASK.absent'])]))
         json_pair('reject dangling dependency',['seed','--file',bad,'--expect-revision',current['revision']],code=2)

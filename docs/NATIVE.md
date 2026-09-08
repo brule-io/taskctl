@@ -13,8 +13,10 @@ and changes the repository marker to alpha2; it does not change old record diale
 invent missing observations, or relabel old evidence. Older writers reject alpha2.
 Development after alpha.2 adds explicit [planning history](PLANNING-HISTORY.md)
 adoption under `taskctl.native/alpha4`, with immutable amendments, archival and
-scope-bound assessments. Persisted provider capabilities remain a separate
-[checkpoint](PROTOCOL-CHECKPOINT-2026-09.md) implementation task.
+scope-bound assessments. [Persisted effective profiles](EFFECTIVE-PROFILES.md)
+add an independent explicit alpha5 adoption, audited pins and profile-bound task
+revisions, with matching code supplied through the programmatic adapter seam.
+The CLI has no runtime provider loader or placeholder capability implementation.
 
 Reviewed ancestral import in 0.3.0-alpha.2 uses `taskctl.native/alpha3`, with
 content-addressed source manifests and origin-bearing revision/2 objects. Older
