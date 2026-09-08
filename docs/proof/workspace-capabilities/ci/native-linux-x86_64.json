@@ -1,0 +1,60 @@
+{
+  "version": "0.3.0-alpha.2",
+  "platform": "linux-x86_64",
+  "implementation": "native",
+  "source_revision": "414a2fb45751f268bdda26294519b8f1aeee2896",
+  "source_dirty": false,
+  "license": "Apache-2.0",
+  "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+  "native_v1": "not-frozen",
+  "launcher_contract": "taskctl.launcher/1",
+  "entrypoint": "taskctl",
+  "build_identity": {
+    "implementation": "native",
+    "source_revision": "414a2fb45751f268bdda26294519b8f1aeee2896",
+    "source_dirty": false,
+    "kotlin": "2.4.10",
+    "gradle": "9.6.0",
+    "libraries": {
+      "annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+      "cli-0.3.0-alpha.2.jar": "0ee7e368f1900d8d480cf6f75b084220396d8e81b1f1d3a1bcf9e398e117e7d8",
+      "clikt-jvm.jar": "7f78049fa8159bac05ce09ddef4313248d4cad0014a744214c1150d14e3661e7",
+      "clikt-mordant-jvm.jar": "75c330967db15a5c591fba69fc3b18ffb68271d54f90f21c1c9c52e86faeb9d6",
+      "colormath-jvm.jar": "59f741adfe62053066782d8b1a45afd06685a4bc64b33277e54876b993ed885c",
+      "commonmark-0.24.0.jar": "679338e0b7fc15c02d275d598654b01a149893bc28a87992e90123c8d06af25b",
+      "compatibility-0.3.0-alpha.2.jar": "e8a1fda5dbf465b8f52369cd0ceaeb1f2b991dbbf4812a56f260d2c8a4c2c0cb",
+      "core-0.3.0-alpha.2.jar": "78ec881e7ea9f80e5d1199939dc36781aae541da231b30fd83239b90ba032322",
+      "jna-5.14.0.jar": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6",
+      "kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+      "mordant-jvm-ffm-jvm.jar": "10224784125c9f1782c1d4f1d38f3d54236fcc55c030a2ad00cbe4306e162ba4",
+      "mordant-jvm-graal-ffi-jvm.jar": "6dd4bebc164aeacddacc8f98e8f871e00fd21ce7bc2eb0d18230ea83bddfc86a",
+      "mordant-jvm-jna-jvm.jar": "41063442c8891b2774536a9b87a5062a7fd20e6f1949974c6da72f49472d6f4d",
+      "mordant-jvm.jar": "651c3bd74ff4e98db4d58e3dcf4b14e8099ee0d220e672f571f8cfeee4493905",
+      "mordant-omnibus-jvm.jar": "9ed3b976fcccc78da746d49866fa8ebb8f10530a93c544ea0420259a607dd95e",
+      "repository-0.3.0-alpha.2.jar": "a3d6223dfcc039c20703f5b165be55009dab0bf140b7dd4b90707c69415d277b",
+      "snakeyaml-2.5.jar": "e6682acf1ace77508ef13649cbf4f8d09d2cf5457bdb61d25ffb6ac0233d78dd"
+    },
+    "graalvm": {
+      "distribution": "GraalVM Community",
+      "release": "graal-25.3.4.1",
+      "toolchain": {
+        "url": "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.3.4.1/graalvm-community-jdk-25i3-25.0.4.1_linux-x64_bin.tar.gz",
+        "sha256": "b2bc38d0c4141426eb44d0eefa3cc172c96faf92727d703b61541699128b6fc7"
+      },
+      "native_image": "native-image 25.0.4.1 2026-08-18\nGraalVM Runtime Environment GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1-jvmci-25.3-b22)\nSubstrate VM GraalVM CE 25.3.4.1+1.1 (build 25.0.4.1+1, serial gc, compressed references)",
+      "native_build_tools": "0.11.5",
+      "arguments": [
+        "--no-fallback",
+        "-march=compatibility",
+        "-J-Xmx5g"
+      ],
+      "resources": [
+        "VERSION"
+      ],
+      "executable_sha256": "c03e17a46cae8b9573f09e28429700d3d8de0a8be99f4dd26b55803976e71aad"
+    }
+  },
+  "file": "taskctl-0.3.0-alpha.2-native-linux-x86_64.tar.gz",
+  "sha256": "ac65caa4dea032406020a0c47e48ba56c99f728c2ec7e4a510259715e895cb0a",
+  "bytes": 8589845
+}

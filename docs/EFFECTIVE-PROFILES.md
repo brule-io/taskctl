@@ -33,7 +33,15 @@ payload and the exact effective contract digest. It cannot inspect incidental
 title/layout, lifecycle state or inactive optional annotations through this input;
 the legacy draft-1 title remains visible only because that dialect made it semantic.
 Semantic prose is normalized before reaching providers. This prevents code from
-depending on record data excluded from its digest. It receives no transition or
+depending on record data excluded from its digest. Both core data and the activated
+payload are also recursively projected to the canonical value representation:
+object keys use the existing ordinal order and decimals remove nonsemantic trailing
+zeros. Array order and integer-versus-decimal identity remain meaningful. The
+stored payload retains its exact value representation. A declared precision must
+be an explicit semantic field, not a decision based on incidental decimal scale.
+The [workspace conformance regression](WORKSPACE-CAPABILITIES.md) exercises an
+allowed-versus-blocked counterexample under one unchanged contract and pin.
+It receives no transition or
 storage API. The core validates identities, the entire
 contributed graph, lifecycle, acceptance, currency and CAS; it retains all transition
 authority. Missing pins, unavailable or mismatched code, failed evaluation, cycles,
@@ -134,7 +142,7 @@ write; an unrelated edit causes a conflict. No command invokes Git or a network.
 the full typed effective profile and selected extension payloads. This preserves
 the original content interpretation of each task record dialect while making the
 new profile explicit. Optional unknown extension data stays losslessly preserved
-and inactive. Activating a feature makes its exact payload contractual. Required
+and inactive. Activating a feature makes its canonical semantic payload contractual. Required
 feature identities remain independently readable core data.
 
 `taskctl.task-revision/3` stores `RevisionSemantics`: the exact effective profile
