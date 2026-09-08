@@ -24,4 +24,31 @@ class ImportBorrowingTest {
         assertFails { Bootstrap.plan(directory.resolve("target"), "conformance.borrowing", "test", distribution.parent, lock, imported = admission) }
         assertFalse(Files.exists(directory.resolve("target")))
     }
+
+    @Test fun `mutating projected records or provenance after review is rejected by the reducer`() {
+        val original = ComplexPlanningFixture.inspect()
+        val tasks = original.universe.tasks.toMutableList()
+        val manifest = original.copy(universe = original.universe.copy(tasks = tasks))
+        val admission = ComplexPlanningFixture.admission(manifest)
+        val empty = LedgerSnapshot("conformance.borrowing", Revision.initial(), DraftUniverse(emptyList()), history = TaskHistory(Revision.initial()))
+        tasks[0] = tasks[0].copy(requirements = listOf("New unreviewed semantic requirement"))
+        assertFails { LedgerTransitions.evolve(empty, Transition.ImportRecords(admission)) }
+        val sources = original.sources.toMutableList()
+        val sourceAdmission = ComplexPlanningFixture.admission(original.copy(sources = sources))
+        sources[0] = sources[0].copy(sha256 = "0".repeat(64))
+        assertFails { LedgerTransitions.evolve(empty, Transition.ImportRecords(sourceAdmission)) }
+        assertTrue(empty.history!!.heads.isEmpty())
+    }
+
+    @Test fun `a newly constructed exact manifest and explicit new review remains admissible`() {
+        val original = ComplexPlanningFixture.inspect()
+        val changed = original.copy(files = original.files + ("README.md" to "Reviewed additional witness text.\n"))
+        assertNotEquals(original.id, changed.id)
+        assertFails { ImportAdmission(changed, ComplexPlanningFixture.admission(original).review) }
+        val admission = ComplexPlanningFixture.admission(changed)
+        admission.validate()
+        val empty = LedgerSnapshot("conformance.borrowing", Revision.initial(), DraftUniverse(emptyList()), history = TaskHistory(Revision.initial()))
+        val imported = LedgerTransitions.evolve(empty, Transition.ImportRecords(admission))
+        assertEquals(changed, imported.imports.single().manifest)
+    }
 }

@@ -138,6 +138,7 @@ fun LedgerSnapshot.closureProblems(evidence: ClosureEvidence): List<String> =
         if (history != null && currency()[evidence.receipt.taskId]?.state != Currency.CURRENT) listOf("task currency is not current; reconcile its inputs before closure") else emptyList()
 
 fun TaskHistory.validate(universe: DraftUniverse, receipts: List<ClosureEvidence>, imports: List<ImportAdmission> = emptyList()) {
+    imports.forEach(ImportAdmission::validate)
     val history = this
     require(history.heads.keys == universe.tasks.map { it.id }.toSet()) { "task identities and history HEADs disagree" }
     history.revisions.forEach { (id, value) ->

@@ -63,6 +63,7 @@ object LedgerTransitions {
         val universe = snapshot.universe
         val updated = when (transition) {
             is Transition.ImportRecords -> {
+                transition.admission.validate()
                 require(universe.tasks.isEmpty() && universe.roadmaps.isEmpty() && universe.epics.isEmpty() && snapshot.receipts.isEmpty() && snapshot.imports.isEmpty()) { "import requires an empty target ledger" }
                 require(snapshot.history != null && snapshot.history.revisions.isEmpty()) { "import requires fresh tracked history" }
                 require(snapshot.planningHistory == null || (snapshot.planningHistory.revisions.isEmpty() && snapshot.planningHistory.assessments.isEmpty())) { "import requires fresh planning history" }
