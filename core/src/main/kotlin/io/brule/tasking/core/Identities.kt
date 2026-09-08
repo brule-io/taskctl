@@ -1,6 +1,12 @@
 package io.brule.tasking.core
 
 sealed interface RecordId { val value: String }
+sealed interface PlanningId : RecordId {
+    companion object {
+        fun parse(value: String): PlanningId? = RoadmapId.parse(value) ?: EpicId.parse(value)
+        fun parseOrThrow(value: String): PlanningId = parse(value) ?: error("Invalid PlanningId: $value")
+    }
+}
 
 private fun <T> parseIdentity(value: String, pattern: Regex, construct: (String) -> T): T? =
     if (pattern.matches(value)) construct(value) else null
@@ -29,7 +35,7 @@ value class TaskId private constructor(override val value: String) : RecordId, C
 }
 
 @JvmInline
-value class RoadmapId private constructor(override val value: String) : RecordId, Comparable<RoadmapId> {
+value class RoadmapId private constructor(override val value: String) : PlanningId, Comparable<RoadmapId> {
     init { require(PATTERN.matches(value)) { "Invalid RoadmapId: $value" } }
     override fun compareTo(other: RoadmapId): Int = value.compareTo(other.value)
     override fun toString(): String = value
@@ -41,7 +47,7 @@ value class RoadmapId private constructor(override val value: String) : RecordId
 }
 
 @JvmInline
-value class EpicId private constructor(override val value: String) : RecordId, Comparable<EpicId> {
+value class EpicId private constructor(override val value: String) : PlanningId, Comparable<EpicId> {
     init { require(PATTERN.matches(value)) { "Invalid EpicId: $value" } }
     override fun compareTo(other: EpicId): Int = value.compareTo(other.value)
     override fun toString(): String = value
@@ -94,5 +100,27 @@ value class InputDigest private constructor(val value: String) {
         private val PATTERN = Regex("sha256:[0-9a-f]{64}")
         fun parse(value: String): InputDigest? = parseIdentity(value, PATTERN, ::InputDigest)
         fun parseOrThrow(value: String): InputDigest = parse(value) ?: error("Invalid InputDigest: $value")
+    }
+}
+
+@JvmInline
+value class PlanningRevisionId private constructor(val value: String) {
+    init { require(PATTERN.matches(value)) { "Invalid PlanningRevisionId: $value" } }
+    override fun toString(): String = value
+    companion object {
+        private val PATTERN = Regex("sha256:[0-9a-f]{64}")
+        fun parse(value: String): PlanningRevisionId? = parseIdentity(value, PATTERN, ::PlanningRevisionId)
+        fun parseOrThrow(value: String): PlanningRevisionId = parse(value) ?: error("Invalid PlanningRevisionId: $value")
+    }
+}
+
+@JvmInline
+value class PlanningAssessmentId private constructor(val value: String) {
+    init { require(PATTERN.matches(value)) { "Invalid PlanningAssessmentId: $value" } }
+    override fun toString(): String = value
+    companion object {
+        private val PATTERN = Regex("sha256:[0-9a-f]{64}")
+        fun parse(value: String): PlanningAssessmentId? = parseIdentity(value, PATTERN, ::PlanningAssessmentId)
+        fun parseOrThrow(value: String): PlanningAssessmentId = parse(value) ?: error("Invalid PlanningAssessmentId: $value")
     }
 }

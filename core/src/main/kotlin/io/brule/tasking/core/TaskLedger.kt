@@ -20,7 +20,8 @@ fun LedgerSnapshot.frontier(query: FrontierQuery = FrontierQuery()): Frontier {
 data class LedgerSnapshot(val repositoryId: String, val revision: Revision, val universe: DraftUniverse,
                           val receipts: List<ClosureEvidence> = emptyList(),
                           val dependencyBindings: Map<TaskId, List<Dependency>> = emptyMap(),
-                          val history: TaskHistory? = null, val imports: List<ImportAdmission> = emptyList())
+                          val history: TaskHistory? = null, val imports: List<ImportAdmission> = emptyList(),
+                          val planningHistory: PlanningHistory? = null)
 data class FrontierQuery(val roadmap: RoadmapId? = null, val epic: EpicId? = null)
 data class Frontier(val revision: Revision, val tasks: List<TaskId>)
 /** Acceptance time is optional boundary metadata. File storage does not claim one. */
@@ -41,22 +42,31 @@ sealed interface Transition {
     data class ReconcileTask(val review: Reconciliation) : Transition
     data object TrackHistory : Transition
     data class ImportRecords(val admission: ImportAdmission) : Transition
+    data object TrackPlanning : Transition
+    data class AmendPlanning(val amendment: PlanningAmendment) : Transition
+    data class SetPlanningDisposition(val change: PlanningDispositionChange) : Transition
+    data class AssessPlanning(val assessment: PlanningAssessment) : Transition
 }
 
 /** Every adapter uses this reducer. Storage only persists the validated result. */
 object LedgerTransitions {
     fun reduce(snapshot: LedgerSnapshot, transition: Transition): DraftUniverse {
         snapshot.history?.validate(snapshot.universe, snapshot.receipts, snapshot.imports)
+        snapshot.planningHistory?.validate(snapshot)
         require(snapshot.dependencyProblems().isEmpty()) { snapshot.dependencyProblems().joinToString("\n") }
         val universe = snapshot.universe
         val updated = when (transition) {
             is Transition.ImportRecords -> {
                 require(universe.tasks.isEmpty() && universe.roadmaps.isEmpty() && universe.epics.isEmpty() && snapshot.receipts.isEmpty() && snapshot.imports.isEmpty()) { "import requires an empty target ledger" }
                 require(snapshot.history != null && snapshot.history.revisions.isEmpty()) { "import requires fresh tracked history" }
+                require(snapshot.planningHistory == null || (snapshot.planningHistory.revisions.isEmpty() && snapshot.planningHistory.assessments.isEmpty())) { "import requires fresh planning history" }
                 transition.admission.manifest.universe
             }
             is Transition.AddRecords -> {
                 require(transition.tasks.all { it.state == "open" }) { "new tasks must be open; use the closure transition for evidence" }
+                val planning: List<PlanningRecord> = transition.roadmaps + transition.epics
+                require(planning.all { it.protocol == (if (snapshot.planningHistory == null) PlanningRecordCodec.PROTOCOL else PlanningRecordCodec.AUDITED_PROTOCOL) &&
+                    it.disposition == PlanningDisposition.ACTIVE }) { "planning creation must match the tracked or legacy record contract and start active" }
                 universe.copy(tasks = universe.tasks + transition.tasks, roadmaps = universe.roadmaps + transition.roadmaps,
                     epics = universe.epics + transition.epics)
             }
@@ -74,6 +84,14 @@ object LedgerTransitions {
             }
             is Transition.ReconcileTask -> { validateReview(snapshot, transition.review); universe }
             Transition.TrackHistory -> { require(snapshot.history == null) { "history already tracked" }; universe }
+            Transition.TrackPlanning -> {
+                require(snapshot.history != null) { "track task history before planning history" }
+                require(snapshot.planningHistory == null) { "planning history already tracked" }
+                universe
+            }
+            is Transition.AmendPlanning -> PlanningTransitions.amend(snapshot, transition.amendment)
+            is Transition.SetPlanningDisposition -> PlanningTransitions.disposition(snapshot, transition.change)
+            is Transition.AssessPlanning -> { PlanningTransitions.validateAssessment(snapshot, transition.assessment); universe }
         }
         val errors = updated.indexProblems() + DraftLifecycle.evaluate(updated.tasks).problems
         // Missing capability implementations must not prevent storing/inspecting
@@ -127,11 +145,13 @@ object LedgerTransitions {
                         dependencies = if (review.outcome == ReviewOutcome.REVALIDATED) review.observations else old.dependencies, review = review))
                 }
                 Transition.TrackHistory -> error("handled above")
+                Transition.TrackPlanning, is Transition.AmendPlanning, is Transition.SetPlanningDisposition, is Transition.AssessPlanning -> Unit
             }
         }
-        return snapshot.copy(universe = universe, history = history,
+        val result = snapshot.copy(universe = universe, history = history,
             imports = snapshot.imports + if (transition is Transition.ImportRecords) listOf(transition.admission) else emptyList(),
             receipts = snapshot.receipts + if (transition is Transition.CloseTask) listOf(transition.evidence) else emptyList())
+        return result.copy(planningHistory = PlanningTransitions.evolve(snapshot, result, transition)).also { it.planningHistory?.validate(it) }
     }
 
     private fun validateReview(snapshot: LedgerSnapshot, review: Reconciliation) {

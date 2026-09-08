@@ -16,9 +16,9 @@ service-related choices under the checkpoint's strengthened task prerequisites.
 - The [distinct read projections](READ-MODELS.md) implement `doctor` diagnostics,
   bounded `context` and a complete typed `snapshot`, with
   [three-platform closure evidence](proof/read-models/README.md).
-- Choose an explicit audit/revision model for roadmap and epic amendments,
-  archival and acceptance. Planning changes must not implicitly invalidate task
-  contracts or create ownership/dependency edges.
+- [Audited planning history](PLANNING-HISTORY.md) adds explicit roadmap/epic
+  amendments, archival and scope-bound assessments through an opt-in storage
+  version. Planning changes preserve task contracts and causal edges.
 - Before activating behavioral providers, persist the same effective profile and
   provider identity for contracts, history and currency. Contributed prerequisites
   must participate in transitive input observations; deterministic evaluation and

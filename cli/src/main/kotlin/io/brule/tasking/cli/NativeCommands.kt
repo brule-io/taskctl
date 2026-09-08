@@ -49,6 +49,9 @@ internal object NativeCommands {
                 revise TASK --file RECORD --expect-revision REVISION
                 reconcile TASK --plan | --file REVIEW --expect-revision REVISION
                 track --expect-revision REVISION (explicit adoption of legacy native history)
+                planning track --expect-revision REVISION [--plan]
+                planning history ID | planning assess ID --plan
+                planning amend|archive|restore|assess ID --file ASSERTION --expect-revision REVISION [--plan]
                 seed --file FILE --expect-revision REVISION
                 verify TASK --receipt FILE
                 close TASK --receipt FILE --expect-revision REVISION
@@ -61,6 +64,7 @@ internal object NativeCommands {
         }
         val result = when (command) {
             "import" -> ImportCommands.run(options)
+            "planning" -> PlanningCommands.run(options)
             "info" -> { options.allow(); ToolRuntime.info() }
             "init", "adopt" -> {
                 options.allow("--id", "--toolchain", "--profile", "--seed", "--plan", "--contract")
