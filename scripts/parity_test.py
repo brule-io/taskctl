@@ -590,6 +590,75 @@ def main():
         pair('bounded context text',['context'])
         assert pair('diagnostic text',['doctor']).startswith('doctor: attention\n')
         json_pair('invalid context option',['context','--limit','unbounded'],code=2)
+        # The complex planning adapter is test-local; both executables consume
+        # its canonical imported preimage and use only normal native commands.
+        complex_projection=json.loads((output/'complex-planning-preimage.json').read_text(encoding='utf-8'))
+        assert complex_projection['protocol']=='taskctl.conformance-preimage/1'
+        assert complex_projection['adapter']=='conformance-planning-indexes' and complex_projection['adapter_version']=='1.0.0'
+        assert complex_projection['source_revision']=='445b637b02c4451977e015af5d6301132f8db75c'
+        restore(None); repo.mkdir()
+        for relative,content in complex_projection['files'].items():
+            path=repo/relative
+            assert relative.startswith('.agents/') and path.resolve().is_relative_to(repo.resolve())
+            path.parent.mkdir(parents=True,exist_ok=True); path.write_text(content,encoding='utf-8',newline='\n')
+        (repo/'source.txt').write_text('Complex consumer source remains untouched.\n',encoding='utf-8')
+        (repo/'.git').mkdir(); (repo/'.git/sentinel').write_text('No Git execution.\n',encoding='utf-8')
+        imports_before={p.name:p.read_bytes() for p in (repo/'.agents/imports').iterdir()}
+        original=json_pair('complex imported snapshot',['snapshot'])['result']
+        assert len(original['records']['tasks'])==6 and len(original['records']['roadmaps'])==3 and len(original['records']['epics'])==3
+        assert original['imports'][0]['manifest']['source_revision']==complex_projection['source_revision']
+        assert not original['receipts'] and not original['derived']['frontier']
+        historical=json_pair('complex unchecked historical claim',['history','TASK.specimen.W-4'])['result']
+        assert historical['imports'] and not historical['receipts']
+        tasks_before=task_image()
+        track=['planning','track','--expect-revision',original['revision']]
+        planned=json_pair('complex planning baseline bounded plan',[*track,'--plan'])['result']
+        assert all(p['path']=='.agents/config.toml' or p['path'].startswith('.agents/planning-history/') for p in planned['writes'])
+        json_pair('complex explicit planning baseline',track,mutation=True)
+        json_pair('complex baseline stale CAS',track,code=4)
+        assert task_image()==tasks_before
+        for work_id in ('W-1','W-01','W-2','W-3','W-4','W-5'):
+            task_id='TASK.specimen.'+work_id
+            plan=json_pair('complex review plan '+work_id,['reconcile',task_id,'--plan'])['result']
+            review=review_file(plan,evidence_data={'mapping':'Explicit current fictional mapping and prerequisite review.'},typed_time=True)
+            json_pair('complex explicit review '+work_id,['reconcile',task_id,'--file',review,'--expect-revision',plan['revision']],mutation=True)
+        assert not list((repo/'.agents/receipts').glob('*'))
+        assert json_pair('complex orthogonal frontier',['frontier','--roadmap','ROADMAP.specimen.reliability','--epic','EPIC.specimen.resilience'])['result']['tasks']==['TASK.specimen.W-5']
+        tasks_before=task_image()
+        scope_id='EPIC.specimen.resilience'
+        baseline=json_pair('complex epic baseline',['planning','history',scope_id])['result']
+        amendment=dict(protocol='taskctl.planning-amendment/1',reviewed_head=baseline['head'],audit=audit,
+            record=baseline['record']|dict(protocol='tasking/planning-draft-2',disposition='active',acceptance=['Recovery scope explicitly reviewed']))
+        amendment_file=write('complex-amendment.json',amendment)
+        json_pair('complex explicit epic amendment',['planning','amend',scope_id,'--file',amendment_file,'--expect-revision',baseline['revision']],mutation=True)
+        plan=json_pair('complex scope assessment plan',['planning','assess',scope_id,'--plan'])['result']
+        assertion=dict(protocol='taskctl.planning-assessment/1',parent=plan['parent'],planning=scope_id,reviewed_head=plan['reviewed_head'],
+            observations=plan['observations'],outcome='accepted',audit=audit,criterion_evidence=['Observed fictional recovery scope'])
+        assessment_file=write('complex-assessment.json',assertion)
+        json_pair('complex assessment with open members',['planning','assess',scope_id,'--file',assessment_file,'--expect-revision',plan['revision']],mutation=True)
+        roadmap_id='ROADMAP.specimen.reliability'
+        roadmap=json_pair('complex roadmap before archive',['planning','history',roadmap_id])['result']
+        disposition=write('complex-disposition.json',dict(protocol='taskctl.planning-disposition/1',planning=roadmap_id,
+            reviewed_head=roadmap['head'],disposition='archived',audit=audit))
+        json_pair('complex roadmap archive',['planning','archive',roadmap_id,'--file',disposition,'--expect-revision',roadmap['revision']],mutation=True)
+        assert json_pair('complex archived roadmap frontier',['frontier','--roadmap',roadmap_id,'--epic',scope_id])['result']['tasks']==['TASK.specimen.W-5']
+        accepted=json_pair('complex independent epic assessment',['planning','history',scope_id])['result']
+        assert accepted['assessments'][0]['status']['currency']=='current'
+        assert task_image()==tasks_before
+        root_id='TASK.specimen.W-1' # Outside this epic; reaches it through W-2.
+        root=json_pair('complex external prerequisite before revision',['show',root_id])['result']
+        root_path=next(p for p in (repo/'.agents/tasks').iterdir() if json.loads(p.read_text(encoding='utf-8'))['id']==root_id)
+        root_record=json.loads(root_path.read_text(encoding='utf-8'))
+        revised=write('complex-task-revision.json',root_record|dict(requirements=['Stronger external prerequisite']))
+        json_pair('complex transitive prerequisite revision',['revise',root_id,'--file',revised,'--expect-revision',root['revision']],mutation=True)
+        stale=json_pair('complex historical scope assessment',['planning','history',scope_id])['result']
+        assert stale['assessments'][0]['status']['currency']=='historical'
+        assert stale['assessments'][0]['value']==accepted['assessments'][0]['value']
+        final=json_pair('complex final cold snapshot',['snapshot'])['result']
+        assert final['imports']==original['imports'] and not final['receipts']
+        assert imports_before=={p.name:p.read_bytes() for p in (repo/'.agents/imports').iterdir()}
+        assert (repo/'source.txt').read_text(encoding='utf-8')=='Complex consumer source remains untouched.\n'
+        json_pair('complex bounded final context',['context'])
     result=dict(contract='taskctl.parity/alpha1',platform=system,version=native['version'],
         artifacts={kind:meta['sha256'] for kind,meta in metadata.items()},cases=checks,
         allowed_differences={'info.result':['implementation','java_runtime','vm','build']},
