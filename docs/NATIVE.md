@@ -52,7 +52,9 @@ Core defines the internal `TaskLedger` interface: snapshot, task lookup, frontie
 query and `apply(expectedRevision, transition)`. `FileTaskLedger` owns layout,
 consistent reads, a cooperative writer lock and recoverable bounded writes.
 `LedgerTransitions` is the shared pure reducer. An in-memory adapter exercises
-the same operations in conformance; no service or HTTP adapter is implemented.
+the same operations in conformance. The development-only
+[bounded kernel](REMOTE-KERNEL.md) adds PostgreSQL and loopback HTTP adapters
+through that reducer; these are not part of the CLI distribution or a service.
 The interface is not a supported public Kotlin API in this alpha.
 
 Native `TaskId`, `RoadmapId`, `EpicId`, `Revision`, `TaskRevisionId`, `ContractDigest`
@@ -92,8 +94,8 @@ File-ledger revisions identify exact authoritative file contents. They are optim
 concurrency tokens, distinct from semantic task contract digests. Changing a
 planning record changes a revision without changing an unchanged task contract.
 Writes require the revision the caller inspected. Stale mutations fail with exit
-4. This conservative whole-ledger CAS policy belongs to the file adapter; a future
-remote adapter's conflict granularity is a separate contract decision. Read commands
+4. The bounded remote experiment proves the same whole-snapshot precondition;
+any narrower operation requires a separate versioned contract. Read commands
 do not create locks, caches or journals in the project.
 
 ## Plans and evidence

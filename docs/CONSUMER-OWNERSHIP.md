@@ -71,6 +71,8 @@ Seven read commands produced identical results through the existing packaged
 `TASK.product.consumer-ownership` records and closes this organizational change.
 The divergent compatibility specimen has since passed its bounded import and
 three-platform JVM/native checks; see [the evidence](proof/divergent-import/README.md).
-The [protocol checkpoint](PROTOCOL-CHECKPOINT-2026-09.md) records the next
-implementation gates. The four later compatibility tasks remain open, and
-unsupported stateful consumer adoptions remain gated.
+The [protocol checkpoint](PROTOCOL-CHECKPOINT-2026-09.md) recorded the subsequent
+implementation gates. The four later compatibility tasks have since closed with
+bounded specimen evidence; the [native-v1 assessment](NATIVE-V1-ASSESSMENT-2026-09.md)
+collects those proofs and their limits. Unsupported stateful consumer adoptions
+remain gated by their owning source, adapter, provider and integration contracts.

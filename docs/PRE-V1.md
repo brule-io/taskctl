@@ -1,5 +1,11 @@
 # Pre-v1 review and implementation gates
 
+Current disposition: [the native-v1 assessment](NATIVE-V1-ASSESSMENT-2026-09.md)
+reviews the completed correction, compatibility, kernel, IDL and type-boundary
+proofs. Freeze is deferred pending an explicit candidate specification, a new
+alpha consumer distribution and a separately reviewed freeze decision. The
+earlier checkpoint below retains its dated meaning.
+
 The [2026-09-07 checkpoint](PROTOCOL-CHECKPOINT-2026-09.md) records the decisions
 for this review. Its four correction tasks and strengthened compatibility/kernel
 prerequisites make the remaining implementation explicit. The findings below
@@ -28,9 +34,10 @@ service-related choices under the checkpoint's strengthened task prerequisites.
   values, preserved historical strings and optional storage acceptance metadata.
   Its [closure evidence](proof/evidence-time/README.md) records conformance and parity;
   the file adapter does not manufacture authoritative acceptance timestamps.
-- Preserve ledger `Revision` as snapshot identity while deciding remote CAS
-  granularity from concrete contention/conformance tests. The file adapter's
-  whole-ledger CAS need not force unrelated remote task edits to serialize.
+- The [bounded remote kernel](REMOTE-KERNEL.md) preserves ledger `Revision` as
+  whole-snapshot CAS and records measured unrelated-writer contention. A narrower
+  operation remains a separately typed/versioned design choice; it cannot silently
+  reinterpret the existing precondition.
 
 The 0.3 native guide has been updated to describe alpha2/history and the complete
 dependency observation shape directly. Historical versions remain named explicitly.

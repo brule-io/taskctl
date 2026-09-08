@@ -1,0 +1,204 @@
+{
+  "classification": "assessment-followthrough-admission-not-implementation-or-freeze",
+  "seed": {
+    "contract": "taskctl.seed/alpha1",
+    "tasks": [
+      {
+        "protocol": "tasking/core-draft-2",
+        "id": "TASK.protocol.v1-spec-candidate",
+        "title": "Consolidate the native-v1 candidate boundary",
+        "state": "open",
+        "intent": "Make the exact proposed stable protocol surface reviewable from current implementation and evidence without freezing it.",
+        "requires": [
+          "TASK.protocol.v1-candidate"
+        ],
+        "requirements": [
+          "Inventory the existing task, planning, identity, hash, lifecycle, evidence, extension and ledger contracts. Distinguish proposed stable core, alpha compatibility envelopes, storage/wire adapters and project capabilities.",
+          "Map the candidate invariants to exact existing conformance identities and retain historical dialect/provenance meaning. Identify gaps honestly; do not change protocol behavior to make a document simpler.",
+          "Keep the small typed core, orthogonal task/roadmap/epic indexes, narrow provider authority and explicit revision-aware observations. A candidate document is not native v1 adoption or a freeze decision."
+        ],
+        "acceptance": [
+          "A reviewable candidate and compatibility matrix name the selected boundaries and exact executable witnesses, with mechanically checked source/test links.",
+          "Current alpha guides no longer claim completed features are missing; dated historical evidence remains unchanged."
+        ],
+        "verification": [
+          "specification",
+          "review"
+        ],
+        "required_extensions": [],
+        "extensions": {}
+      },
+      {
+        "protocol": "tasking/core-draft-2",
+        "id": "TASK.release.0.3.0-alpha.3",
+        "title": "Publish the post-checkpoint alpha.3 distributions",
+        "state": "open",
+        "intent": "Expose the proved corrections as a new immutable native/JVM consumer release with accurate compatibility notes.",
+        "requires": [
+          "TASK.protocol.v1-spec-candidate"
+        ],
+        "requirements": [
+          "Use clean exact source and matching three-platform native/JVM corpus, packaged parity, bootstrap and provenance inputs. Preserve Apache-2.0 notices and all old release bytes.",
+          "Publish 0.3.0-alpha.3 only after real GitHub draft transport checks pass. Generated locks prefer native and retain an explicit JVM reference; no protocol semantics, implicit state rewrite or consumer migration is introduced.",
+          "Keep experimental kernel/IDL dependencies outside the CLI artifacts. Notes distinguish newly available alpha envelopes from the unfrozen v1 candidate."
+        ],
+        "acceptance": [
+          "Linux x86_64, Windows x86_64 and macOS aarch64 pass native/JVM behavioral and process parity, clean bootstrap and offline cached operation against the exact release artifacts.",
+          "The immutable published release, source tag, checksums, implementation/build identities, locks and signed release asset attestations agree. No unexecuted signature or SLSA claim is made."
+        ],
+        "verification": [
+          "build",
+          "transport",
+          "publication"
+        ],
+        "required_extensions": [],
+        "extensions": {}
+      },
+      {
+        "protocol": "tasking/core-draft-2",
+        "id": "TASK.release.0.3.0-alpha.3-acceptance",
+        "title": "Dogfood the published alpha.3 pin",
+        "state": "open",
+        "intent": "Accept the new public release through the producer pin and a source-free disposable consumer.",
+        "requires": [
+          "TASK.release.0.3.0-alpha.3"
+        ],
+        "requirements": [
+          "Update only the producer toolchain lock and any required canonical launcher changes from verified published artifacts; retain native task state and historical evidence meanings.",
+          "Prove cold acquisition, version without acquisition, source-free and JVM-free native use, offline cached reads, and bounded inspectable mutations in disposable specimens.",
+          "Do not update pins or tasking state in other consumer repositories."
+        ],
+        "acceptance": [
+          "The exact public pin passes producer doctor/context/frontier/status and preserves all task contracts, history and receipt identities.",
+          "Cold and offline consumer evidence binds the released archive and lock digests and records repository bytes/mtime preservation for read commands."
+        ],
+        "verification": [
+          "consumer",
+          "selfhost"
+        ],
+        "required_extensions": [],
+        "extensions": {}
+      },
+      {
+        "protocol": "tasking/core-draft-2",
+        "id": "TASK.distribution.rpm-alpha.3",
+        "title": "Package the canonical alpha.3 Linux artifact for Fedora",
+        "state": "open",
+        "intent": "Offer an optional Fedora RPM of the parity-proven Linux native release without rebuilding its implementation.",
+        "requires": [
+          "TASK.release.0.3.0-alpha.3"
+        ],
+        "requirements": [
+          "Package the exact canonical Linux native artifact, retaining PATH integration, metadata, docs, Apache-2.0 notices and the distinction between global taskctl and repository pins.",
+          "Install, upgrade and erase must not contact the network, initialize projects or alter repository-local .agents/.taskctl or unrelated user data.",
+          "Publish a separate immutable RPM companion with checksum/provenance coverage; it must not block or replace tar.gz/wrapper delivery. No COPR or Fedora inclusion work."
+        ],
+        "acceptance": [
+          "A clean current Fedora environment passes install, version/help, greenfield init, doctor/frontier, upgrade, erase, package-content checks and rpmlint with documented dispositions.",
+          "The packaged executable matches the canonical artifact and the source RPM rebuilds offline; published companion evidence and assets agree."
+        ],
+        "verification": [
+          "fedora",
+          "provenance"
+        ],
+        "required_extensions": [],
+        "extensions": {}
+      }
+    ],
+    "roadmaps": [
+      {
+        "kind": "roadmap",
+        "id": "ROADMAP.alpha3-candidate",
+        "protocol": "tasking/planning-draft-1",
+        "title": "Candidate specification and alpha.3 delivery",
+        "intent": "Turn the completed protocol assessment into a reviewable boundary and an independently accepted consumer release.",
+        "tasks": [
+          "TASK.protocol.v1-spec-candidate",
+          "TASK.release.0.3.0-alpha.3",
+          "TASK.release.0.3.0-alpha.3-acceptance",
+          "TASK.distribution.rpm-alpha.3"
+        ],
+        "required_extensions": [],
+        "extensions": {}
+      }
+    ],
+    "epics": []
+  },
+  "plan": {
+    "revision": "sha256:9e711735a168ba53ea757acb1d4e9426d521384c1ac6e2b298468fe790862427",
+    "writes": [
+      {
+        "path": ".agents/tasks/TASK.protocol.v1-spec-candidate-252d6e9aecd72896.yaml",
+        "before_sha256": null,
+        "after_sha256": "e268f646a5030b6ae59d7356667d4e69300827b97ca29009af37314f196bb426"
+      },
+      {
+        "path": ".agents/tasks/TASK.release.0.3.0-alpha.3-7441e7fe9a2f999c.yaml",
+        "before_sha256": null,
+        "after_sha256": "38cba7da8f5e02627216922380343be2c41ebb77a5f718315f33649eea210265"
+      },
+      {
+        "path": ".agents/tasks/TASK.release.0.3.0-alpha.3-acceptance-4f6cef0ed418b009.yaml",
+        "before_sha256": null,
+        "after_sha256": "0a690f41a6083b5968216a8f90e7cffa15081e2498113677c171e7f089a7b0ac"
+      },
+      {
+        "path": ".agents/tasks/TASK.distribution.rpm-alpha.3-b96fbf607e1a3f29.yaml",
+        "before_sha256": null,
+        "after_sha256": "50e9d8601b888745e036ff563cb7dac9dc7f7b006ddf73043731d130667448ad"
+      },
+      {
+        "path": ".agents/roadmaps/ROADMAP.alpha3-candidate-af2acb87615c3142.yaml",
+        "before_sha256": null,
+        "after_sha256": "dea18ce4e9bbf3556dc41f1d7b55f1418c24a6a0ed31f8f0831f630c8d51f222"
+      },
+      {
+        "path": ".agents/history/heads.json",
+        "before_sha256": "d9874ed0d5f7ef33ecaab0a5c15b73f5df550555053ac398ca2ce117bcec8388",
+        "after_sha256": "e6ad3f2fbba014f5fa321023bef5118cb0b636133a51098ac01f61912074b735"
+      },
+      {
+        "path": ".agents/history/revisions/01a6cd5b2057857fcd988e77b8e2e572aa3b5f74e223f01b11479c1eb981eee5.json",
+        "before_sha256": null,
+        "after_sha256": "6f64fcffe3a1753cde5eb69f7fc4b791f988f1a66f691343493ab3f9b5ddcd7f"
+      },
+      {
+        "path": ".agents/history/revisions/6409cf7aed7d95c1bde7bf28d6adbf5be839b2acdca450299d4bc9f484874bd3.json",
+        "before_sha256": null,
+        "after_sha256": "ea052c31a4a2d93b284efc1c738d763fb2cd33672ef4743ed8a773f9d21d6710"
+      },
+      {
+        "path": ".agents/history/revisions/a88b3d56423f7a3741b4a7e5676f9e74a12aa34d576e9b4ef4b59940190b1c01.json",
+        "before_sha256": null,
+        "after_sha256": "40b123285688cd5b24ca3011e744fab6f1b65b82a77ea393e9c5f1dd1b4340e6"
+      },
+      {
+        "path": ".agents/history/revisions/f9c2c9b7b848f520a42ee56aed79969553967b0594de34fafea713ef50f176a8.json",
+        "before_sha256": null,
+        "after_sha256": "75b52859408dcb470ec9af3a599e4aedc860cc9eb1fb7523b7c72eb3d937f0f2"
+      }
+    ],
+    "transaction_paths": [
+      ".agents/runtime/lock",
+      ".agents/runtime/transaction.json",
+      ".agents/runtime/.taskctl-*.tmp"
+    ]
+  },
+  "applied": {
+    "revision": "sha256:b55411fc24c519b4a87a608176800bd9ae0d88c9c15f85e1b1886a5cc5bb2214",
+    "changed": [
+      "ROADMAP.alpha3-candidate",
+      "TASK.distribution.rpm-alpha.3",
+      "TASK.protocol.v1-spec-candidate",
+      "TASK.release.0.3.0-alpha.3",
+      "TASK.release.0.3.0-alpha.3-acceptance"
+    ]
+  },
+  "all_previous_heads_preserved": true,
+  "frontier": {
+    "revision": "sha256:b55411fc24c519b4a87a608176800bd9ae0d88c9c15f85e1b1886a5cc5bb2214",
+    "tasks": [
+      "TASK.protocol.v1-candidate"
+    ]
+  }
+}
