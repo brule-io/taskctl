@@ -2,123 +2,123 @@
   "classification": "observed-disposable-kernel-ci-not-a-deployment",
   "run": {
     "conclusion": "success",
-    "headSha": "497a5be693c53a188402627486961c00dd105567",
+    "headSha": "241ac85312ec2b51dcb32c4a2cb795a888aefbc8",
     "jobs": [
       {
-        "completedAt": "2026-09-08T02:04:46Z",
+        "completedAt": "2026-09-08T02:36:00Z",
         "conclusion": "success",
-        "databaseId": 101913131471,
+        "databaseId": 101918439034,
         "name": "kernel",
-        "startedAt": "2026-09-08T02:02:52Z",
+        "startedAt": "2026-09-08T02:34:05Z",
         "status": "completed",
         "steps": [
           {
-            "completedAt": "2026-09-08T02:02:54Z",
+            "completedAt": "2026-09-08T02:34:07Z",
             "conclusion": "success",
             "name": "Set up job",
             "number": 1,
-            "startedAt": "2026-09-08T02:02:53Z",
+            "startedAt": "2026-09-08T02:34:06Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T02:03:03Z",
+            "completedAt": "2026-09-08T02:34:16Z",
             "conclusion": "success",
             "name": "Initialize containers",
             "number": 2,
-            "startedAt": "2026-09-08T02:02:54Z",
+            "startedAt": "2026-09-08T02:34:07Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T02:03:04Z",
+            "completedAt": "2026-09-08T02:34:16Z",
             "conclusion": "success",
             "name": "Run actions/checkout@v4",
             "number": 3,
-            "startedAt": "2026-09-08T02:03:03Z",
+            "startedAt": "2026-09-08T02:34:16Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T02:03:09Z",
+            "completedAt": "2026-09-08T02:34:21Z",
             "conclusion": "success",
             "name": "Run actions/setup-java@v5",
             "number": 4,
-            "startedAt": "2026-09-08T02:03:04Z",
+            "startedAt": "2026-09-08T02:34:16Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T02:03:09Z",
+            "completedAt": "2026-09-08T02:34:21Z",
             "conclusion": "success",
             "name": "Run actions/setup-python@v5",
             "number": 5,
-            "startedAt": "2026-09-08T02:03:09Z",
+            "startedAt": "2026-09-08T02:34:21Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T02:04:42Z",
+            "completedAt": "2026-09-08T02:35:56Z",
             "conclusion": "success",
             "name": "Exercise the disposable PostgreSQL and loopback HTTP adapters",
             "number": 6,
-            "startedAt": "2026-09-08T02:03:09Z",
+            "startedAt": "2026-09-08T02:34:21Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T02:04:43Z",
+            "completedAt": "2026-09-08T02:35:57Z",
             "conclusion": "success",
             "name": "Run actions/upload-artifact@v4",
             "number": 7,
-            "startedAt": "2026-09-08T02:04:42Z",
+            "startedAt": "2026-09-08T02:35:56Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T02:04:43Z",
+            "completedAt": "2026-09-08T02:35:57Z",
             "conclusion": "success",
             "name": "Post Run actions/setup-python@v5",
             "number": 11,
-            "startedAt": "2026-09-08T02:04:43Z",
+            "startedAt": "2026-09-08T02:35:57Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T02:04:44Z",
+            "completedAt": "2026-09-08T02:35:57Z",
             "conclusion": "success",
             "name": "Post Run actions/setup-java@v5",
             "number": 12,
-            "startedAt": "2026-09-08T02:04:43Z",
+            "startedAt": "2026-09-08T02:35:57Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T02:04:44Z",
+            "completedAt": "2026-09-08T02:35:58Z",
             "conclusion": "success",
             "name": "Post Run actions/checkout@v4",
             "number": 13,
-            "startedAt": "2026-09-08T02:04:44Z",
+            "startedAt": "2026-09-08T02:35:57Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T02:04:44Z",
+            "completedAt": "2026-09-08T02:35:58Z",
             "conclusion": "success",
             "name": "Stop containers",
             "number": 14,
-            "startedAt": "2026-09-08T02:04:44Z",
+            "startedAt": "2026-09-08T02:35:58Z",
             "status": "completed"
           },
           {
-            "completedAt": "2026-09-08T02:04:44Z",
+            "completedAt": "2026-09-08T02:35:58Z",
             "conclusion": "success",
             "name": "Complete job",
             "number": 15,
-            "startedAt": "2026-09-08T02:04:44Z",
+            "startedAt": "2026-09-08T02:35:58Z",
             "status": "completed"
           }
         ],
-        "url": "https://github.com/brule-io/taskctl/actions/runs/34178677097/job/101913131471"
+        "url": "https://github.com/brule-io/taskctl/actions/runs/34180495189/job/101918439034"
       }
     ],
     "status": "completed",
-    "url": "https://github.com/brule-io/taskctl/actions/runs/34178677097"
+    "url": "https://github.com/brule-io/taskctl/actions/runs/34180495189"
   },
-  "source_checkout": "8f766654f75a0bba739cb3dce3cf31ec54ab7ae7",
+  "source_checkout": "4336445ff00deee04c91e90554f7317c9a679606",
   "source_parents": [
-    "226033f3933a1c29bc9fb76bf95c7e26ddb90a72",
-    "497a5be693c53a188402627486961c00dd105567"
+    "6957057e9d7755d060babf4f19a4a1973cb3eb99",
+    "241ac85312ec2b51dcb32c4a2cb795a888aefbc8"
   ],
   "tests": [
     "KernelCodecTest.strict envelopes reject unknown fields noncanonical JSON malformed UTF8 and forged revisions()",
@@ -139,10 +139,10 @@
   "kernel_jar_bytes": 64499,
   "artifacts": [
     {
-      "id": 10038156722,
+      "id": 10038760417,
       "name": "kernel-proof",
-      "size_in_bytes": 64565,
-      "digest": "sha256:72a944fd29a6112ccbf3ba043e35a82466b406ff8ca614291f18bb35bf483611",
+      "size_in_bytes": 64568,
+      "digest": "sha256:e2ed590afab4db40cfc13b57c9e677f5a387fea0e38b6ad7399afdb491679111",
       "expired": false
     }
   ]
