@@ -1,0 +1,10 @@
+04acb0eb73b99ed75ce37d0ff193f2a358131024d04e04b28af3800f13041abf  rpm-build.json
+2d446774d2c6e36b3e8fd594d79b169741c36e54876c090e272aa5df801cfd04  rpm-manifest.json
+34d1bf1007f1ef273699d0159148ee29d7cb01cdc5be1acf48ecc2f1ee99f3a1  rpm-test.json
+8b787db4e68b9723e167301526fbc86bae4fd3fc31fcfdba716da822b3a04c12  rpmlint.txt
+5ad82eac0f52eaa8f78a3b183b8301eeb45e9cf91781a065044333facb2eb5e9  taskctl-0.3.0-alpha.3-1.fc44.src.rpm
+3b67ae675acf2d845e5da67e3eae3e3efbc19b3bdb3ef32cb55110aa8f659a6f  taskctl-0.3.0-alpha.3-1.fc44.src.rpm.intoto.json
+b083a36ed3e99866546b5b43f1753ecfd06c32e5bf8379bea7c0cc70c1b1035a  taskctl-0.3.0-alpha.3-1.fc44.x86_64.rpm
+bfd0eb3e49b05484d81a341fd240253c0968ecd99f82278ddf5f5dcfac12d060  taskctl-0.3.0-alpha.3-1.fc44.x86_64.rpm.intoto.json
+462cd06576433ed6c8309add8598f6aee194684dc2e9f317b8914a391e9de239  taskctl.spec
+b90b8d4af8bc16e7df54f03d42dc52f45ff268ed3dde44978ccef5d1ab91cbb3  upstream-toolchain.lock

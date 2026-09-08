@@ -45,23 +45,29 @@ acquire releases anonymously. The default cache on this host has also been popul
 Task closure is recorded only after its acceptance is met. Receipts describe
 actual checks and source identities as actor assertions. Distribution parity,
 release transport, RPM transaction tests and final consumer acceptance remain
-separate evidence requirements. Later product migrations and service work are
-planned here but are not part of this release's implementation.
+separate evidence requirements. Public conformance belongs here; operational
+consumer migrations retain their owning repositories and private coordination.
 
-The current pin is the published native **v0.3.0-alpha.2** lock, SHA-256
-`a73195736ee727f70608cfdcde58e4f07491abf5635e7fbffcc8725cad254f99`, from source
-`8933bac1c090d175dfc035d7d52a40d1101f5333`. Its
-[publication proof](proof/productization/0.3.0-alpha.2/README.md) records all-platform
-JVM/native behavior and real-release transport validation.
+The current pin is the published native **v0.3.0-alpha.3** lock, SHA-256
+`b90b8d4af8bc16e7df54f03d42dc52f45ff268ed3dde44978ccef5d1ab91cbb3`, from source
+`084cea04271764f6d666c0db6aa0da517abce7a6`. Its
+[publication and acceptance proof](proof/productization/0.3.0-alpha.3/README.md)
+records all-platform JVM/native behavior, real-release transport, an anonymous
+source-free consumer and the producer pin update with preserved task identities.
 
-Fantastikt migration completed with 12 closed tasks and all 22 tasks current.
-`frontier` now selects `TASK.migration.brule`; that migration has not begun.
+At the historical Fantastikt handoff, 12 tasks were closed and all 22 were current;
+the frontier then selected `TASK.migration.brule`.
 [Consumer migration evidence](MIGRATION-FANTASTIKT.md) includes normal canonical
 usage before copied-tool retirement and reconstruction from committed files.
 The preserved observations distinguish progress during release and migration from
 the [final producer graph](proof/migration/fantastikt-0.3/producer-final.json).
 
 Public Apache-2.0 publication is recorded in the closed `TASK.release.public`.
-The repository now has 23 current tasks and 13 closures; Brule migration remains
-the only frontier task. Its [public-access proof](proof/publication/public-2026-09-07/README.md)
+That historical checkpoint had 23 current tasks and 13 closures. Its
+[public-access proof](proof/publication/public-2026-09-07/README.md)
 records anonymous native/RPM downloads, bootstrap and hosted consumer verification.
+
+The alpha.3 follow-through closes all 35 admitted public tasks with current
+currency, including the separate RPM and producer acceptance. Use `frontier` and
+`status` for subsequent work; these dated counts are not a live task index.
+Native-v1 remains an unfrozen candidate.

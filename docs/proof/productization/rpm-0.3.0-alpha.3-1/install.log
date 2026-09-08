@@ -1,0 +1,7 @@
+Package  Arch   Version                Repository        Size
+Installing:
+ taskctl x86_64 0:0.3.0~alpha.3-0.fc44 @commandline  21.7 MiB
+
+Transaction Summary:
+ Installing:         1 package
+

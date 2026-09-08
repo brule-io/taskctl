@@ -1,0 +1,24 @@
+{
+  "classification": "read-only-packaging-layout-preflight-not-installed-rpm-evidence",
+  "source_revision": "084cea04271764f6d666c0db6aa0da517abce7a6",
+  "spec_sha256": "0b148681fa54e35e34915ae8a7d59cee42be0b6823bbc3e7a9df4015073f0c22",
+  "missing_document_targets": [
+    {
+      "document": "README.md",
+      "link": "LICENSE",
+      "target": "LICENSE"
+    },
+    {
+      "document": "README.md",
+      "link": "LICENSE",
+      "target": "LICENSE"
+    },
+    {
+      "document": "README.md",
+      "link": "NOTICE.md",
+      "target": "NOTICE.md"
+    }
+  ],
+  "reason": "RPM relocates license files to /usr/share/licenses/taskctl; unchanged guide bytes still use local relative targets.",
+  "next_step": "After release prerequisite closure, preserve canonical guide bytes and provide RPM-owned local documentation links, then verify actual installed links in clean Fedora."
+}

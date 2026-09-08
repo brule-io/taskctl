@@ -22,12 +22,12 @@ or the anonymous URLs below; `gh release verify` remains available for signature
 verification when using an authenticated GitHub CLI.
 
 ```sh
-gh release verify rpm-v0.3.0-alpha.1-1 --repo brule-io/taskctl
-RELEASE=https://github.com/brule-io/taskctl/releases/download/rpm-v0.3.0-alpha.1-1
-curl -fL "$RELEASE/taskctl-0.3.0-alpha.1-1.fc44.x86_64.rpm" -o taskctl-0.3.0-alpha.1-1.fc44.x86_64.rpm
+gh release verify rpm-v0.3.0-alpha.3-1 --repo brule-io/taskctl
+RELEASE=https://github.com/brule-io/taskctl/releases/download/rpm-v0.3.0-alpha.3-1
+curl -fL "$RELEASE/taskctl-0.3.0-alpha.3-1.fc44.x86_64.rpm" -o taskctl-0.3.0-alpha.3-1.fc44.x86_64.rpm
 curl -fL "$RELEASE/RPM-SHA256SUMS" -o RPM-SHA256SUMS
 sha256sum --check --ignore-missing RPM-SHA256SUMS
-sudo dnf install ./taskctl-0.3.0-alpha.1-1.fc44.x86_64.rpm
+sudo dnf install ./taskctl-0.3.0-alpha.3-1.fc44.x86_64.rpm
 taskctl --version
 taskctl help
 taskctl init --repo ./my-project --id example.my-project \
@@ -79,7 +79,7 @@ process evidence must identify that exact native archive and JVM reference.
 
 ```sh
 gh workflow run rpm.yml --repo brule-io/taskctl \
-  -f upstream_tag=v0.3.0-alpha.1 -f packaging_release=1
+  -f upstream_tag=v0.3.0-alpha.3 -f packaging_release=1
 ```
 
 Dependency images are prepared with network access. The actual rpmbuild and runtime

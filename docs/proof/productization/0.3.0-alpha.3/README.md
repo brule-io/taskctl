@@ -47,6 +47,19 @@ record, receipt, planning and profile envelope versions described in the release
 notes. This release introduces no automatic consumer adoption or state rewrite.
 The Fedora RPM and producer-pin acceptance have their own prerequisite-bound tasks.
 
+[Producer-pin acceptance](producer-pin.json) records the exact native lock update
+and unchanged canonical launcher bytes. All 35 task HEADs, semantic contracts,
+lifecycle and currency identities agreed before and after the alpha.2-to-alpha.3
+tool upgrade; tasking/history/receipt bytes and mtimes were preserved.
+[Anonymous consumer acceptance](anonymous-consumer.json) reconstructs only
+committable tasking files outside the source checkout, with no host Java, Gradle,
+Git or Python on the consumer PATH. Four version forms acquire no cache; cold
+public acquisition and eight offline reads pass without changing consumer bytes
+or mtimes. The seed plan matches its three canonical writes and the explicitly
+declared empty runtime lock; stale CAS changes no files. The first local effect
+assertion had omitted that declared runtime path and was corrected before closure.
+No other consumer repository pin was changed.
+
 Build, transport, publication, closure and later producer-pin commits have distinct
 identities. A receipt written after publication is not part of the already-built
 source, and no later CI artifact replaces the published bytes. The intended
